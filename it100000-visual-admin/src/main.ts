@@ -14,7 +14,8 @@ import router from './router';
 import store, {key} from './store/index';
 // element
 import ElementPlus from 'element-plus';
-import '@/plugin/element/index.scss';
+import 'element-plus/dist/index.css'
+// import '@/plugin/element/index.scss';
 // 国际化
 import i18n from "@/plugin/i18n";
 
