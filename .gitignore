@@ -1,0 +1,26 @@
+.DS_Store
+node_modules
+/dist
+/test
+/public/SuperMap_iClient3D_10i(2020)_sp1_for_WebGL_CN
+/docker/dist
+/docker/dist.zip
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
