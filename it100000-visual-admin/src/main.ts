@@ -18,6 +18,8 @@ import 'element-plus/dist/index.css'
 // import '@/plugin/element/index.scss';
 // 国际化
 import i18n from "@/plugin/i18n";
+// 全局混入
+import GlobalMixinDemo from "@/mixins/GlobalMixinDemo";
 
 const app = createApp(App);
 
@@ -26,4 +28,5 @@ app
 	.use(router)
 	.use(ElementPlus)
 	.use(i18n)
+	.mixin(GlobalMixinDemo)
 	.mount('#app');
