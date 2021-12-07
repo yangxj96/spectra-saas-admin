@@ -20,10 +20,13 @@ import 'element-plus/dist/index.css'
 import i18n from "@/plugin/i18n";
 // 全局混入
 import GlobalMixinDemo from "@/mixins/GlobalMixinDemo";
+// 自定义指令
+import AuthDirective from "@/directive/Auth";
 
 const app = createApp(App);
 
 app
+	.use(AuthDirective)
 	.use(store, key)
 	.use(router)
 	.use(ElementPlus)
