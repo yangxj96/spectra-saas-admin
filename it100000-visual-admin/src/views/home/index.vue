@@ -1,5 +1,5 @@
 <template>
-    <div v-auth >首页</div>
+    <div v-auth="'alibaba'" >首页</div>
 </template>
 
 <script lang="ts">
