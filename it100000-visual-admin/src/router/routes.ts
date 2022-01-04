@@ -34,7 +34,8 @@ export const routes: Array<RouteRecordRaw> = [
 				name: 'service',
 				component: () => import('@/views/system/service/index.vue'),
 				meta: {
-					title: '服务管理'
+					// title: '服务管理'
+					title: '测试1'
 				}
 			},
 			{
@@ -42,7 +43,8 @@ export const routes: Array<RouteRecordRaw> = [
 				name: 'module',
 				component: () => import('@/views/system/module/index.vue'),
 				meta: {
-					title: '模块管理'
+					// title: '模块管理'
+					title: '测试2'
 				}
 			},
 			{
@@ -50,7 +52,8 @@ export const routes: Array<RouteRecordRaw> = [
 				name: 'menu',
 				component: () => import('@/views/system/menu/index.vue'),
 				meta: {
-					title: '菜单管理'
+					// title: '菜单管理'
+					title: '测试3'
 				}
 			},
 			{
@@ -58,7 +61,8 @@ export const routes: Array<RouteRecordRaw> = [
 				name: 'dict',
 				component: () => import('@/views/system/dict/index.vue'),
 				meta: {
-					title: '字典管理'
+					// title: '字典管理'
+					title: '测试4'
 				}
 			}
 		]

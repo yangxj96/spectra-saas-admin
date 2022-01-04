@@ -24,9 +24,7 @@
                         </el-breadcrumb>
                     </el-row>
                     <div class="box-content">
-                        <!--<transition name="el-fade-in-linear">-->
                         <router-view/>
-                        <!--</transition>-->
                     </div>
                 </div>
             </el-main>
@@ -85,6 +83,10 @@ export default defineComponent({
     height: auto;
     border-bottom: solid 1px var(--el-border-color-base);
     padding: 0;
+}
+
+.box-container{
+    height: calc(100% - 61px);
 }
 
 .box-main {
