@@ -15,6 +15,7 @@ export default defineComponent({
     created() {
         this.test();
     }
+
 });
 </script>
 

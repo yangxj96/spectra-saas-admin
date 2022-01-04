@@ -22,14 +22,21 @@ import i18n from "@/plugin/i18n";
 import GlobalMixinDemo from "@/mixins/GlobalMixinDemo";
 // 自定义指令
 import AuthDirective from "@/directive/Auth";
+// 全局注册element icon
+import * as ELIcons from '@element-plus/icons-vue';
 
 const app = createApp(App);
 
+for (let icon in ELIcons) {
+    // @ts-ignore
+    app.component(icon, ELIcons[icon])
+}
+
 app
-	.use(AuthDirective)
-	.use(store, key)
-	.use(router)
-	.use(ElementPlus)
-	.use(i18n)
-	.mixin(GlobalMixinDemo)
-	.mount('#app');
+    .use(AuthDirective)
+    .use(store, key)
+    .use(router)
+    .use(ElementPlus)
+    .use(i18n)
+    .mixin(GlobalMixinDemo)
+    .mount('#app');
