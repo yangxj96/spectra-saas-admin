@@ -35,21 +35,13 @@
                 <template #dropdown>
                     <el-dropdown-menu>
                         <el-dropdown-item>
-                            <el-icon :size="16">
-                                <info-filled/>
-                            </el-icon>
                             个人信息
                         </el-dropdown-item>
                         <el-dropdown-item>
-                            <el-icon :size="16">
-                                <edit/>
-                            </el-icon>
                             修改密码
                         </el-dropdown-item>
                         <el-dropdown-item>
-                            <el-icon :size="18">
-                                <circle-check-filled/>
-                            </el-icon>
+                            <icon-font :icon-href="'icon-shouye'"/>
                             退出登录
                         </el-dropdown-item>
                     </el-dropdown-menu>
@@ -62,11 +54,8 @@
 <script lang="ts">
 
 import {defineComponent} from "vue";
-import {CircleCheckFilled, Edit, InfoFilled} from "@element-plus/icons-vue";
 
-export default defineComponent({
-    components: {CircleCheckFilled, Edit, InfoFilled}
-})
+export default defineComponent({})
 
 </script>
 

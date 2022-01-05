@@ -19,6 +19,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+
+@import "assets/css/common.scss";
+
 * {
     padding: 0;
     margin: 0;

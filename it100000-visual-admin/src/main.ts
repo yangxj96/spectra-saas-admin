@@ -22,15 +22,12 @@ import i18n from "@/plugin/i18n";
 import GlobalMixinDemo from "@/mixins/GlobalMixinDemo";
 // 自定义指令
 import AuthDirective from "@/directive/Auth";
-// 全局注册element icon
-import * as ELIcons from '@element-plus/icons-vue';
+// 全局字体
+import iconFont from "@/components/IconFont.vue";
 
 const app = createApp(App);
 
-for (let icon in ELIcons) {
-    // @ts-ignore
-    app.component(icon, ELIcons[icon])
-}
+app.component('IconFont', iconFont);
 
 app
     .use(AuthDirective)

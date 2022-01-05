@@ -8,28 +8,31 @@
     >
         <el-menu-item index="/">
             <i class="el-icon-s-home"></i>
-            <template #title>首页</template>
+            <template #title>
+                <icon-font :icon-href="'icon-yanzhengma'"/>
+                首页
+            </template>
         </el-menu-item>
         <el-sub-menu index="1">
             <template #title>
-                <i class="el-icon-s-tools"></i>
+                <icon-font :icon-href="'icon-yanzhengma'"/>
                 <span>系统配置</span>
             </template>
-            <el-menu-item index="/system/service"><i class="el-icon-s-operation"/>服务管理</el-menu-item>
-            <el-menu-item index="/system/module"><i class="el-icon-s-operation"/>模块管理</el-menu-item>
-            <el-menu-item index="/system/menu"><i class="el-icon-s-operation"/>菜单管理</el-menu-item>
-            <el-menu-item index="/system/dict"><i class="el-icon-s-operation"/>字典管理</el-menu-item>
+            <el-menu-item index="/system/service">服务管理</el-menu-item>
+            <el-menu-item index="/system/module">模块管理</el-menu-item>
+            <el-menu-item index="/system/menu">菜单管理</el-menu-item>
+            <el-menu-item index="/system/dict">字典管理</el-menu-item>
         </el-sub-menu>
 
         <el-sub-menu index="2">
             <template #title>
-                <i class="el-icon-s-tools"></i>
+                <icon-font :icon-href="'icon-yanzhengma'"/>
                 <span>用户相关</span>
             </template>
-            <el-menu-item index="1-2"><i class="el-icon-s-operation"/>租户管理</el-menu-item>
-            <el-menu-item index="1-2"><i class="el-icon-s-operation"/>用户管理</el-menu-item>
-            <el-menu-item index="1-2"><i class="el-icon-s-operation"/>角色管理</el-menu-item>
-            <el-menu-item index="1-2"><i class="el-icon-s-operation"/>权限管理</el-menu-item>
+            <el-menu-item index="1-2"><icon-font :icon-href="'icon-yanzhengma'"/> 租户管理</el-menu-item>
+            <el-menu-item index="1-2">用户管理</el-menu-item>
+            <el-menu-item index="1-2">角色管理</el-menu-item>
+            <el-menu-item index="1-2">权限管理</el-menu-item>
         </el-sub-menu>
 
     </el-menu>

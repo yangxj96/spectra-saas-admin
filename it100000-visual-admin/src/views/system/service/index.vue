@@ -1,3 +1,4 @@
+<!--suppress JSUnresolvedVariable -->
 <template>
     <div class="box">
         <el-button-group class="operation">
@@ -6,7 +7,6 @@
         </el-button-group>
         <div class="palette">
             <div id="canvas" class="canvas" ref="canvas"></div>
-
             <el-scrollbar style="height:100%;width: 20%">
                 <div id="attrs-panel" class="attrs-panel" ref="attrs-panel"></div>
             </el-scrollbar>
@@ -15,47 +15,32 @@
     </div>
 </template>
 
-<script>
+<script lang="js">
 
+import {defineComponent} from "vue";
 import BpmnJS from 'bpmn-js/lib/Modeler';
 import propertiesPanelModule from "bpmn-js-properties-panel";
 import propertiesProviderModule from "bpmn-js-properties-panel/lib/provider/camunda";
 // 一个描述的json
 import BpmnJSCamunda from 'camunda-bpmn-moddle/resources/camunda'
-// 国际化插件
-import translate from '@/plugin/bpmnjs/translate';
+// 国际化
+import translate from '@/plugin/bpmnjs/translate.js';
 
 const CustomTranslate = {
     translate: ['value', translate]
 }
 
-export default {
+export default defineComponent({
     name: "index",
+    created() {
+        this.$nextTick(()=>{
+            this.initBpmn();
+        })
+    },
     data() {
-        return {
-            diagramXML: null,
-
-        };
+        return {}
     },
     mounted() {
-        this.bpmnModeler = new BpmnJS({
-            container: document.getElementById('canvas'),
-            propertiesPanel: {
-                parent: "#attrs-panel"
-            },
-            additionalModules: [
-                CustomTranslate,
-                propertiesPanelModule,
-                propertiesProviderModule,
-            ],
-            moddleExtensions: {
-                //如果要在属性面板中维护camunda：XXX属性，则需要此
-                camunda: BpmnJSCamunda
-            }
-        });
-
-        this.bpmnModeler.createDiagram();
-
         // fetch(`${process.env.BASE_URL}diagram.bpmn`).then(async res => {
         //     return res.text()
         // }).then(async res => {
@@ -69,6 +54,24 @@ export default {
         // })
     },
     methods: {
+        initBpmn(){
+            this.bpmnModeler = new BpmnJS({
+                container: document.getElementById('canvas'),
+                propertiesPanel: {
+                    parent: "#attrs-panel"
+                },
+                additionalModules: [
+                    CustomTranslate,
+                    propertiesPanelModule,
+                    propertiesProviderModule,
+                ],
+                moddleExtensions: {
+                    //如果要在属性面板中维护camunda：XXX属性，则需要此
+                    camunda: BpmnJSCamunda
+                }
+            });
+            this.bpmnModeler.createDiagram();
+        },
         reset() {
             this.bpmnModeler.clear();
             this.bpmnModeler.createDiagram();
@@ -90,7 +93,7 @@ export default {
             this.bpmnModeler.destroy();
         }
     }
-}
+})
 </script>
 
 <style scoped lang="scss">
@@ -133,7 +136,7 @@ export default {
 
 // 隐藏bpmn.js的图标
 :deep(.bjs-powered-by) {
-    display:none;
+    display: none;
 }
 
 // 修正右侧面板输入框长度问题
