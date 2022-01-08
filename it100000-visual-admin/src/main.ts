@@ -15,9 +15,8 @@ import store, {key} from './store/index';
 // element
 import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css'
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
 // import '@/plugin/element/index.scss';
-// 国际化
-import i18n from "@/plugin/i18n";
 // 全局混入
 import GlobalMixinDemo from "@/mixins/GlobalMixinDemo";
 // 自定义指令
@@ -33,7 +32,8 @@ app
     .use(AuthDirective)
     .use(store, key)
     .use(router)
-    .use(ElementPlus)
-    .use(i18n)
+    .use(ElementPlus, {
+        locale: zhCn,
+    })
     .mixin(GlobalMixinDemo)
     .mount('#app');

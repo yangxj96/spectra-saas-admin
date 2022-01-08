@@ -5,3 +5,14 @@
     fill: currentColor;
     overflow: hidden;
 }
+
+//滚动条的宽度
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+//滚动条的滑块
+::-webkit-scrollbar-thumb {
+    background-color: var(--el-scrollbar-bg-color, var(--el-text-color-secondary));
+    border-radius: 3px;
+}

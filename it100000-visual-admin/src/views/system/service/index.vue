@@ -1,151 +1,70 @@
-<!--suppress JSUnresolvedVariable -->
 <template>
-    <div class="box">
-        <el-button-group class="operation">
-            <el-button type="primary" @click="reset">重置</el-button>
-            <el-button type="primary" @click="query">查询</el-button>
-        </el-button-group>
-        <div class="palette">
-            <div id="canvas" class="canvas" ref="canvas"></div>
-            <el-scrollbar style="height:100%;width: 20%">
-                <div id="attrs-panel" class="attrs-panel" ref="attrs-panel"></div>
-            </el-scrollbar>
-        </div>
+    <el-row style="height: 5%">
 
-    </div>
+    </el-row>
+
+    <el-row style="height: 87%">
+        <!-- @formatter:off -->
+        <el-table :data="table_data" stripe border  height="100%" style="width: 100%">
+            <el-table-column label="序号"    type="index" width="80"/>
+            <el-table-column label="服务名称" prop="date"  width="180"/>
+            <el-table-column label="说明"    prop="name"  width="180" show-overflow-tooltip/>
+            <el-table-column label="实例数量" prop="num"   width="120"/>
+            <el-table-column label="实例状态" prop="num" />
+            <el-table-column label="操作"    fixed="right" width="120">
+                <template #default>
+                    <el-button type="text" size="small">详情</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+        <!-- @formatter:on -->
+    </el-row>
+
+    <el-row style="float: right;height: 8%">
+        <el-pagination
+            v-model:currentPage="pagination.page"
+            hide-on-single-page
+            background
+            :page-sizes="pagination.page_sizes"
+            layout="sizes,prev, pager, next"
+            :total="pagination.total"
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+        />
+    </el-row>
 </template>
 
-<script lang="js">
+<script lang="ts">
 
 import {defineComponent} from "vue";
-import BpmnJS from 'bpmn-js/lib/Modeler';
-import propertiesPanelModule from "bpmn-js-properties-panel";
-import propertiesProviderModule from "bpmn-js-properties-panel/lib/provider/camunda";
-// 一个描述的json
-import BpmnJSCamunda from 'camunda-bpmn-moddle/resources/camunda'
-// 国际化
-import translate from '@/plugin/bpmnjs/translate.js';
-
-const CustomTranslate = {
-    translate: ['value', translate]
-}
+import table from "@/mixins/Table";
 
 export default defineComponent({
     name: "index",
+    mixins: [table],
     created() {
-        this.$nextTick(()=>{
-            this.initBpmn();
-        })
+        let data = [];
+        for (let i = 0; i < 100; i++) {
+            data.push({
+                date: '用户服务',
+                name: '用户服务用户服务用户服务用户服务用户服务用户服务用户服务用户服务用户服务用户服务用户服务用户服务用户服务用户服务用户服务用户服务',
+                num: 8,
+            });
+        }
+        this.handleTableData(data);
     },
     data() {
         return {}
     },
-    mounted() {
-        // fetch(`${process.env.BASE_URL}diagram.bpmn`).then(async res => {
-        //     return res.text()
-        // }).then(async res => {
-        //     try {
-        //         const result = await this.bpmnModeler.importXML(res);
-        //         const {warnings} = result;
-        //         console.log(warnings);
-        //     } catch (err) {
-        //         console.log(err.message, err.warnings);
-        //     }
-        // })
-    },
     methods: {
-        initBpmn(){
-            this.bpmnModeler = new BpmnJS({
-                container: document.getElementById('canvas'),
-                propertiesPanel: {
-                    parent: "#attrs-panel"
-                },
-                additionalModules: [
-                    CustomTranslate,
-                    propertiesPanelModule,
-                    propertiesProviderModule,
-                ],
-                moddleExtensions: {
-                    //如果要在属性面板中维护camunda：XXX属性，则需要此
-                    camunda: BpmnJSCamunda
-                }
-            });
-            this.bpmnModeler.createDiagram();
-        },
-        reset() {
-            this.bpmnModeler.clear();
-            this.bpmnModeler.createDiagram();
-        },
-        modify() {
-
-        },
-        async query() {
-            try {
-                let {xml} = await this.bpmnModeler.saveXML({format: true});
-                console.log('xml', xml)
-            } catch (err) {
-                console.log('err', err);
-            }
-        }
-    },
-    beforeDestroy() {
-        if (this.bpmnModeler != null) {
-            this.bpmnModeler.destroy();
+        handleTableData(data: object[]) {
+            this.table_data = data;
         }
     }
 })
 </script>
 
 <style scoped lang="scss">
-@import '~bpmn-js/dist/assets/diagram-js.css';
-@import '~bpmn-js/dist/assets/bpmn-font/css/bpmn.css';
-@import '~bpmn-js/dist/assets/bpmn-font/css/bpmn-codes.css';
-@import '~bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css';
-//右边工具栏样式
-@import "~bpmn-js-properties-panel/dist/assets/bpmn-js-properties-panel.css";
 
-.box {
-    width: 100%;
-    height: 100%;
 
-    .operation {
-        height: 5%;
-        width: 100%;
-        float: right;
-    }
-
-    .palette {
-        height: 95%;
-        width: 100%;
-
-        .canvas {
-            height: 100%;
-            width: 80%;
-            float: left;
-        }
-
-        .attrs-panel {
-            height: 100%;
-            width: 100%;
-            float: right;
-        }
-
-    }
-
-}
-
-// 隐藏bpmn.js的图标
-:deep(.bjs-powered-by) {
-    display: none;
-}
-
-// 修正右侧面板输入框长度问题
-:deep(.bpp-properties-panel [type=text]) {
-    padding-right: 0;
-}
-
-// 修改右侧面板背景色
-:deep(.bpp-properties-panel) {
-    background-color: #FFF;
-}
 </style>
