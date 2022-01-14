@@ -28,10 +28,10 @@
                 <el-menu-item index="4">订单管理</el-menu-item>
             </el-menu>
         </el-col>
-        <el-col :span="1" class="avatar">
+        <el-col :span="1">
             <el-dropdown>
-                <el-avatar split-button
-                           src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"/>
+                <el-avatar split-button class="avatar-image"
+                           src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic_source%2Ff0%2F4b%2F31%2Ff04b31b61de3beb1d87898afc6d84760.jpeg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1644772664&t=82aba550cf7ee7fd169853007fc3ab0c"/>
                 <template #dropdown>
                     <el-dropdown-menu>
                         <el-dropdown-item @click="handlePersonalPopup">
@@ -104,8 +104,11 @@ export default defineComponent({
     border: 0;
 }
 
+:deep(.el-avatar--large) {
+    --el-avatar-size: 2.8vw
+}
 
-::v-deep(.el-dropdown) {
+:deep(.el-dropdown) {
     width: 100%;
     height: 100%;
     text-align: center;

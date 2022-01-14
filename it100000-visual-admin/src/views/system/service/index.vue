@@ -52,7 +52,7 @@ export default defineComponent({
     components: {ServiceDetails},
     created() {
         let data = [];
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 17; i++) {
             data.push({
                 date: '用户服务',
                 name: '用户服务用户',
