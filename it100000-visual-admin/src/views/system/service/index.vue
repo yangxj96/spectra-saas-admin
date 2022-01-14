@@ -13,7 +13,7 @@
             <el-table-column label="实例状态" prop="num" />
             <el-table-column label="操作"    fixed="right" width="120">
                 <template #default>
-                    <el-button type="text" size="small">详情</el-button>
+                    <el-button type="text" @click="this.handleShowDetails" size="small">详情</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -32,33 +32,54 @@
             @current-change="handleCurrentChange"
         />
     </el-row>
+
+    <service-details :id="pop.id" :visible="pop.show" @submit="this.handleSubmitDetails">
+        <!--<template v-slot:footer>-->
+        <!--    我是插槽内容-->
+        <!--</template>-->
+    </service-details>
 </template>
 
 <script lang="ts">
 
 import {defineComponent} from "vue";
 import table from "@/mixins/Table";
+import ServiceDetails from './components/details.vue';
 
 export default defineComponent({
     name: "index",
     mixins: [table],
+    components: {ServiceDetails},
     created() {
         let data = [];
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 20; i++) {
             data.push({
                 date: '用户服务',
-                name: '用户服务用户服务用户服务用户服务用户服务用户服务用户服务用户服务用户服务用户服务用户服务用户服务用户服务用户服务用户服务用户服务',
+                name: '用户服务用户',
                 num: 8,
             });
         }
         this.handleTableData(data);
     },
     data() {
-        return {}
+        return {
+            pop: {
+                id: '1',
+                show: false
+            }
+        }
     },
     methods: {
         handleTableData(data: object[]) {
             this.table_data = data;
+        },
+        handleShowDetails() {
+            this.pop.id = '1';
+            this.pop.show = !this.pop.show;
+        },
+        handleSubmitDetails(val: any) {
+            console.log(val);
+            this.pop.show = false;
         }
     }
 })

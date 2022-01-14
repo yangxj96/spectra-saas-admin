@@ -22,7 +22,7 @@ import GlobalMixinDemo from "@/mixins/GlobalMixinDemo";
 // 自定义指令
 import AuthDirective from "@/directive/Auth";
 // 全局字体
-import iconFont from "@/components/IconFont.vue";
+import iconFont from "@/components/IconFont/index.vue";
 
 const app = createApp(App);
 
