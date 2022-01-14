@@ -13,6 +13,6 @@ export default interface RootStateTypes {
 }
 
 export interface AllStateTypes extends RootStateTypes {
-	SystemModule: SystemModuleTypes;
+    SystemModule: SystemModuleTypes;
 }
 

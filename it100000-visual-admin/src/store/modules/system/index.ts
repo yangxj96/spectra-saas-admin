@@ -11,22 +11,25 @@ import SystemModuleTypes from "@/store/modules/system/interface";
 import RootStateTypes from "@/store/interface";
 
 const SystemModule: Module<SystemModuleTypes, RootStateTypes> = {
-	namespaced: true,
-	state: {
-		sidebar_unfold: true,
-	},
-	// 同步提交操作
-	mutations: {
-		CHANGE_SIDEBAR_UNFOLD(state) {
-			state.sidebar_unfold = !state.sidebar_unfold;
-		}
-	},
-	// 异步提交操作
-	actions: {
-		changeSidebarUnfold({commit}) {
-			commit('CHANGE_SIDEBAR_UNFOLD');
-		}
-	}
+    namespaced: true,
+    state: {
+        sidebar_unfold: true,
+    },
+    // 同步提交操作
+    mutations: {
+        CHANGE_SIDEBAR_UNFOLD(state) {
+            state.sidebar_unfold = !state.sidebar_unfold;
+        }
+    },
+    // 异步提交操作
+    actions: {
+        changeSidebarUnfold({commit}) {
+            commit('CHANGE_SIDEBAR_UNFOLD');
+        }
+    },
+    getters: {
+        getUnfold: (state: any) =>  state.sidebar_unfold,
+    }
 };
 
 export default SystemModule;

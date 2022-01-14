@@ -1,5 +1,5 @@
 <template>
-    <el-dialog v-model="this.is_show" title="个人信息" width="30%">
+    <el-dialog v-model="this.is_show" destroy-on-close title="个人信息" width="30%">
 
         <el-avatar style="margin-left: 100px;margin-bottom: 10px"
                    src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"/>

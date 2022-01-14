@@ -12,6 +12,8 @@ import App from './App.vue';
 import router from './router';
 // 状态
 import store, {key} from './store/index';
+// 事件
+import 'default-passive-events';
 // element
 import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css'

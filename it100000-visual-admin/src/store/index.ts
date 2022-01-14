@@ -9,16 +9,27 @@
 import {InjectionKey} from "vue";
 import {createStore, Store, useStore as baseUseStore} from "vuex";
 import RootStateTypes, {AllStateTypes} from "@/store/interface";
+// vuex存储到本地session
+import persistedState from 'vuex-persistedstate';
+// 模块
 import SystemModule from "@/store/modules/system";
+import UserModule from "@/store/modules/user";
 
-export default createStore<RootStateTypes>({
-	modules: {
-		SystemModule
-	}
-});
+const store = createStore<RootStateTypes>({
+    modules: {
+        SystemModule,
+        UserModule
+    },
+    plugins: [
+        persistedState({storage: window.sessionStorage})
+    ]
+})
 
-export const key: InjectionKey<Store<RootStateTypes>> = Symbol('vue-store')
+export const key: InjectionKey<Store<RootStateTypes>> = Symbol('vue-store');
 
 export function useStore<T = AllStateTypes>() {
-	return baseUseStore<T>(key);
+    return baseUseStore<T>(key);
 }
+
+export default store;
+

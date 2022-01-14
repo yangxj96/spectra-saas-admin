@@ -1,14 +1,4 @@
-import {App, VNode} from 'vue';
-
-// 简单示例
-// export default (app: App<Element>) => {
-//     // 这将被作为 `mounted` 和 `updated` 调用
-//     app.directive('auth', (el: HTMLElement, binding) => {
-//         el.addEventListener('click', () => {
-//             console.log('auth directive click');
-//         })
-//     })
-// }
+import {App} from 'vue';
 
 const authority = ['USER:INSERT', 'USER:DELETE', 'USER:UPDATE', 'USER:SELECT'];
 

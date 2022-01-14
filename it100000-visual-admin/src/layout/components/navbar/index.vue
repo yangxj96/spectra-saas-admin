@@ -43,7 +43,7 @@
                                        :icon-class="{width: '1.1em', height: '1.1em'}"/>
                             修改密码
                         </el-dropdown-item>
-                        <el-dropdown-item>
+                        <el-dropdown-item @click="handleUserLogout">
                             <icon-font :icon-href="'icon-logout'" :icon-class="{width: '1.5em', height: '1.5em'}"/>
                             退出登录
                         </el-dropdown-item>
@@ -61,8 +61,10 @@
 import {defineComponent} from "vue";
 import PersonalPopup from "@/components/PersonalPopup/index.vue";
 import ModifyPasswordPopup from "@/components/ModifyPasswordPopup/index.vue";
+import {ElMessage} from 'element-plus'
 
 export default defineComponent({
+    name: 'layout-navbar',
     components: {PersonalPopup, ModifyPasswordPopup},
     data() {
         return {
@@ -76,8 +78,20 @@ export default defineComponent({
             this.personal_visible = !this.personal_visible;
         },
         /** 打开修改密码信息弹框 **/
-        handleModifyPasswordPopup(){
+        handleModifyPasswordPopup() {
             this.modify_password_visible = !this.modify_password_visible;
+        },
+        /** 处理用户登出消息 **/
+        handleUserLogout() {
+            ElMessage.success({
+                message: '登出成功',
+                duration: 500,
+                onClose() {
+                    // 清空storage后强制刷新下,防止缓存
+                    window.sessionStorage.clear();
+                    location.reload();
+                }
+            })
         }
     }
 })
