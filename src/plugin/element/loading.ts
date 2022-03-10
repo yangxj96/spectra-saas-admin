@@ -8,13 +8,14 @@
 
 // ElLoading       : loading组件
 // ILoadingInstance: loading对象类型接口
-import {ElLoading, ILoadingInstance} from "element-plus";
+import {ElLoading} from "element-plus";
 
 // 计数器
 let count: number = 0;
 
 // loading对象
-let loading: ILoadingInstance;
+// let loading: ILoadingInstance;
+let loading: any;
 
 function open(): void {
 	loading = ElLoading.service({

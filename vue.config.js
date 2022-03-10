@@ -1,7 +1,7 @@
 module.exports = {
 	runtimeCompiler: true,
 	css: {
-		requireModuleExtension: true,
+		// requireModuleExtension: true,
 		sourceMap: true
 	}
 }
