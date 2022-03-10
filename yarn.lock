@@ -5335,11 +5335,6 @@ isstream@~0.1.2:
   resolved "https://registry.nlark.com/isstream/download/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
   integrity sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo=
 
-it100000-utils@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/it100000-utils/-/it100000-utils-1.0.2.tgz#f7a88909c169fd9cb187e6cb7835d4a4af843f91"
-  integrity sha512-B7QJQr4jhwpj2aHNlG/n6mH6xNzx58s++IFS/9oLT1JcMDTELxmTpT81dKHY7oVUmgLYaYKibVR13z22C8L3iA==
-
 javascript-stringify@^2.0.1:
   version "2.1.0"
   resolved "https://registry.nlark.com/javascript-stringify/download/javascript-stringify-2.1.0.tgz#27c76539be14d8bd128219a2d731b09337904e79"
