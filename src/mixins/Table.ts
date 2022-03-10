@@ -30,6 +30,10 @@ export default {
         handleCurrentChange(val: number) {
             console.log(`当前页: ${val}`)
         },
+        /**
+         * 处理表单数据
+         * @param data
+         */
         handleTableData(data: object[]) {
             console.log(typeof data);
             console.log(data);

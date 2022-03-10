@@ -35,11 +35,9 @@
 <script>
 
 import {defineComponent} from "vue";
-import IconFont from "@/components/IconFont";
 
 export default defineComponent({
     name: "login",
-    components: {IconFont},
     methods: {
         handleLogin() {
             this.$message.success({

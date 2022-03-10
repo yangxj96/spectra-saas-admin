@@ -9,7 +9,6 @@ import {defineComponent} from "vue";
 
 export default defineComponent({
     name: "IconFont",
-    // props: ['iconClass', 'iconHref']
     props: {
         iconClass: {
             type: Object,
