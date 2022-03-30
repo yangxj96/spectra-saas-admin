@@ -25,6 +25,16 @@
                     <div class="box-content">
                         <router-view/>
                     </div>
+                    <el-row>
+                        <el-footer class="footer">
+                            Copyright © 2018-2022
+                            <strong><a href="//www.it100000.com/" target="_blank">IT十万</a></strong>
+                            &nbsp;
+                            <strong><a href="//www.it100000.com/" target="_blank">it100000.com</a></strong>
+                            All Rights Reserved. 备案号：
+                            <a target="_blank" rel="nofollow" href="https://beian.miit.gov.cn/">滇ICP备17009249号-2</a>
+                        </el-footer>
+                    </el-row>
                 </div>
             </el-main>
         </el-container>
@@ -93,7 +103,7 @@ export default defineComponent({
 
     .box-content {
         width: 100%;
-        height: calc(100% - 25px);
+        height: calc(100% - 25px - 25px);
     }
 
     .box-breadcrumb {
@@ -104,6 +114,19 @@ export default defineComponent({
 
     .box-unfold-a:hover {
         cursor: pointer;
+    }
+
+    .footer {
+        text-align: center;
+        width: 100%;
+        height: 20px;
+        font-size: 10px;
+        line-height: 1;
+        color: var(--el-text-color-regular);
+
+        a {
+            color: var(--el-text-color-primary);
+        }
     }
 }
 
