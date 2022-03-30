@@ -8,13 +8,13 @@
 
 import {RouteRecordRaw} from "vue-router";
 
-import layout from '@/layout/index.vue';
+import layout from '@/views/Layout/index.vue';
 
 export const routes: Array<RouteRecordRaw> = [
     {
         path: '/login',
         name: 'login',
-        component: () => import('@/views/login/index.vue'),
+        component: () => import('@/views/Login/index.vue'),
         meta: {
             title: '登录',
         }
@@ -26,7 +26,7 @@ export const routes: Array<RouteRecordRaw> = [
             {
                 path: '',
                 name: 'index',
-                component: () => import('@/views/home/index.vue'),
+                component: () => import('@/views/Home/index.vue'),
                 meta: {
                     title: '首页',
                 }
@@ -34,13 +34,13 @@ export const routes: Array<RouteRecordRaw> = [
         ]
     },
     {
-        path: '/system',
+        path: '/System',
         component: layout,
         children: [
             {
                 path: 'service',
                 name: 'service',
-                component: () => import('@/views/system/service/index.vue'),
+                component: () => import('@/views/System/Service/index.vue'),
                 meta: {
                     // title: '服务管理'
                     title: '测试1'
@@ -49,7 +49,7 @@ export const routes: Array<RouteRecordRaw> = [
             {
                 path: 'module',
                 name: 'module',
-                component: () => import('@/views/system/module/index.vue'),
+                component: () => import('@/views/System/Module/index.vue'),
                 meta: {
                     // title: '模块管理'
                     title: '测试2'
@@ -58,7 +58,7 @@ export const routes: Array<RouteRecordRaw> = [
             {
                 path: 'menu',
                 name: 'menu',
-                component: () => import('@/views/system/menu/index.vue'),
+                component: () => import('@/views/System/Menu/index.vue'),
                 meta: {
                     // title: '菜单管理'
                     title: '测试3'
@@ -67,7 +67,7 @@ export const routes: Array<RouteRecordRaw> = [
             {
                 path: 'dict',
                 name: 'dict',
-                component: () => import('@/views/system/dict/index.vue'),
+                component: () => import('@/views/System/Dict/index.vue'),
                 meta: {
                     // title: '字典管理'
                     title: '测试4'

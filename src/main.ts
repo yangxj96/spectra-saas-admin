@@ -9,9 +9,9 @@
 import {createApp} from 'vue';
 import App from './App.vue';
 // 路由
-import router from './router';
+import router from './plugin/router';
 // 状态
-import store, {key} from './store/index';
+import store, {key} from './plugin/store/index';
 // 事件
 import 'default-passive-events';
 // element

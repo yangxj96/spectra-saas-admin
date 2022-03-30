@@ -1,6 +1,10 @@
 import {Module} from "vuex";
-import UserModuleTypes from "@/store/modules/user/interface";
-import RootStateTypes from "@/store/interface";
+import RootStateTypes from "@/plugin/store/interface";
+
+export  interface UserModuleTypes {
+    // token
+    token: string;
+}
 
 const UserModule: Module<UserModuleTypes, RootStateTypes> = {
     namespaced: true,

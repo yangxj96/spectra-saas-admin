@@ -8,12 +8,12 @@
 
 import {InjectionKey} from "vue";
 import {createStore, Store, useStore as baseUseStore} from "vuex";
-import RootStateTypes, {AllStateTypes} from "@/store/interface";
+import RootStateTypes, {AllStateTypes} from "@/plugin/store/interface";
 // vuex存储到本地session
 import persistedState from 'vuex-persistedstate';
 // 模块
-import SystemModule from "@/store/modules/system";
-import UserModule from "@/store/modules/user";
+import SystemModule from "@/plugin/store/modules/system";
+import UserModule from "@/plugin/store/modules/user";
 
 const store = createStore<RootStateTypes>({
     modules: {

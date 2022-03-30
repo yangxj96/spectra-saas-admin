@@ -7,8 +7,8 @@
  */
 
 import {createRouter, createWebHashHistory} from 'vue-router';
-import {routes} from '@/router/routes';
-import store from "@/store";
+import {routes} from '@/plugin/router/routes';
+import store from "@/plugin/store";
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -29,9 +29,9 @@ router.beforeEach(async (to, from, next) => {
     }
     // 判断token
     let token = store.getters["UserModule/token"];
-    if (token === '' && to.path !== '/login') {
+    if (token === '' && to.path !== '/Login') {
         next({
-            path: '/login'
+            path: '/Login'
         });
     } else {
         next();

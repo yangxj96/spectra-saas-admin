@@ -7,10 +7,8 @@
              :unique-opened="true"
     >
         <el-menu-item index="/">
-            <template #title>
-                <icon-font :icon-href="'icon-home'"/>
-                首页
-            </template>
+            <icon-font :icon-href="'icon-home'"/>
+            <template #title>首页</template>
         </el-menu-item>
         <el-sub-menu index="1">
             <template #title>
@@ -63,7 +61,7 @@
 
 <script lang="ts">
 import {defineComponent} from "vue";
-import {useStore} from "@/store";
+import {useStore} from "@/plugin/store";
 
 export default defineComponent({
     data() {

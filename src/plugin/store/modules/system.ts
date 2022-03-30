@@ -7,8 +7,12 @@
  */
 
 import {Module} from "vuex";
-import SystemModuleTypes from "@/store/modules/system/interface";
-import RootStateTypes from "@/store/interface";
+import RootStateTypes from "@/plugin/store/interface";
+
+export  interface SystemModuleTypes {
+    // 左侧菜单是否展开
+    sidebar_unfold: boolean;
+}
 
 const SystemModule: Module<SystemModuleTypes, RootStateTypes> = {
     namespaced: true,

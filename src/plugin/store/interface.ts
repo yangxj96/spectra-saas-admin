@@ -6,13 +6,15 @@
  * Copyright (c) 2021.
  */
 
-import SystemModuleTypes from "@/store/modules/system/interface";
+import {SystemModuleTypes} from "@/plugin/store/modules/system";
+import {UserModuleTypes} from "@/plugin/store/modules/user";
 
 export default interface RootStateTypes {
 
 }
 
 export interface AllStateTypes extends RootStateTypes {
-    SystemModule: SystemModuleTypes;
+    SystemModule: SystemModuleTypes,
+    UserModule: UserModuleTypes
 }
 

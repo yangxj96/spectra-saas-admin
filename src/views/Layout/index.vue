@@ -12,10 +12,9 @@
             <el-main class="box-main">
                 <div style="height: 100%">
                     <el-row class="box-breadcrumb">
-                        <i class="box-unfold-a"
-                           :class="icon_class ? 'el-icon-s-fold' : 'el-icon-s-unfold'"
-                           @click="handleChangeUnfold"
-                           style="padding-right: 1%"/>
+                        <i class="box-unfold-a" @click="handleChangeUnfold">
+                            <icon-font :icon-href="icon_class ? 'icon-close-menu' : 'icon-unfold-menu'"/>
+                        </i>
                         <el-breadcrumb separator-class="el-icon-arrow-right">
                             <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
                             <el-breadcrumb-item>活动管理</el-breadcrumb-item>
@@ -37,9 +36,9 @@
 
 import {defineComponent} from "vue";
 
-import Navbar from "@/layout/components/navbar/index.vue";
-import Sidebar from "@/layout/components/sidebar/index.vue";
-import {useStore} from "@/store";
+import Navbar from "@/views/Layout/components/navbar/index.vue";
+import Sidebar from "@/views/Layout/components/sidebar/index.vue";
+import {useStore} from "@/plugin/store";
 
 export default defineComponent({
     name: 'Layout',
@@ -81,7 +80,7 @@ export default defineComponent({
 
 .box-header {
     height: auto;
-    border-bottom: solid 1px var(--el-border-color-base);
+    border-bottom: solid 1px var(--el-border-color);
     padding: 0;
 }
 
