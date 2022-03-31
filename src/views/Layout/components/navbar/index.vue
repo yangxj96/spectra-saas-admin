@@ -36,49 +36,49 @@
             </el-dropdown>
         </el-col>
     </el-row>
-    <personal-popup :visible="this.personal_visible"/>
+    <personal-popup        :visible="this.personal_visible"/>
     <modify-password-popup :visible="this.modify_password_visible"/>
 </template>
 
 <script lang="ts">
 
-import {defineComponent} from "vue";
 import PersonalPopup from "@/components/PersonalPopup/index.vue";
 import ModifyPasswordPopup from "@/components/ModifyPasswordPopup/index.vue";
-import {ElMessage} from 'element-plus'
+import {ElMessage} from 'element-plus';
 
-export default defineComponent({
-    name: 'layout-navbar',
-    components: {PersonalPopup, ModifyPasswordPopup},
-    data() {
-        return {
-            personal_visible: false,
-            modify_password_visible: false
-        }
-    },
-    methods: {
-        /** 打开个人信息弹框 **/
-        handlePersonalPopup() {
-            this.personal_visible = !this.personal_visible;
-        },
-        /** 打开修改密码信息弹框 **/
-        handleModifyPasswordPopup() {
-            this.modify_password_visible = !this.modify_password_visible;
-        },
-        /** 处理用户登出消息 **/
-        handleUserLogout() {
-            ElMessage.success({
-                message: '登出成功',
-                duration: 500,
-                onClose() {
-                    // 清空storage后强制刷新下,防止缓存
-                    window.sessionStorage.clear();
-                    location.reload();
-                }
-            })
-        }
-    }
+import {Vue, Options} from "vue-property-decorator";
+
+@Options({
+    components: {PersonalPopup, ModifyPasswordPopup}
 })
+export default class LayoutNavbar extends Vue {
+
+    public personal_visible: boolean = false;
+    public modify_password_visible: boolean = false;
+
+    /** 打开个人信息弹框 **/
+    public handlePersonalPopup() {
+        this.personal_visible = !this.personal_visible;
+    }
+
+    /** 打开修改密码信息弹框 **/
+    public handleModifyPasswordPopup() {
+        this.modify_password_visible = !this.modify_password_visible;
+    }
+
+    /** 处理用户登出消息 **/
+    public handleUserLogout() {
+        ElMessage.success({
+            message: '登出成功',
+            duration: 500,
+            onClose() {
+                // 清空storage后强制刷新下,防止缓存
+                window.sessionStorage.clear();
+                location.reload();
+            }
+        })
+    }
+}
 
 </script>
 

@@ -21,7 +21,7 @@
 		"vue": "^3.2.31",
 		"vue-bpmn": "^0.3.0",
 		"vue-class-component": "^8.0.0-0",
-		"vue-property-decorator": "^9.1.2",
+		"vue-property-decorator": "10.0.0-rc.3",
 		"vue-router": "^4.0.14",
 		"vuex": "^4.0.0-0",
 		"vuex-persistedstate": "^4.1.0"

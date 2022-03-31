@@ -16,6 +16,11 @@ import SystemModule from "@/plugin/store/modules/system";
 import UserModule from "@/plugin/store/modules/user";
 
 const store = createStore<RootStateTypes>({
+    devtools: true,
+    state: {},
+    mutations: {},
+    actions: {},
+    getters: {},
     modules: {
         SystemModule,
         UserModule

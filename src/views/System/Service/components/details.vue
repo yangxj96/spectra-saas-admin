@@ -14,50 +14,44 @@
 
 <script lang="ts">
 
-import {defineComponent} from "vue";
+import {Vue, Options, Watch, Prop} from "vue-property-decorator";
 
-export default defineComponent({
-    name: 'service-details',
-    emits: ['submit'],
-    props: {
-        id: {
-            require: true,
-            type: String,
-            default: ''
-        },
-        visible: {
-            require: true,
-            type: Boolean,
-            default: false
-        }
-    },
-    data() {
-        return {
-            is_show: false
-        }
-    },
-    methods: {
-        getServiceDetails() {
-
-        },
-        /**
-         * 销毁当前组件
-         */
-        handleDestroyDialog() {
-            this.is_show = false;
-            console.log(this);
-        }
-    },
-    watch: {
-        id(val) {
-            console.log('新值:', val);
-            this.getServiceDetails();
-        },
-        visible(val) {
-            this.is_show = val;
-        }
-    }
+@Options({
+    emits: ['submit']
 })
+export default class SystemServiceDetails extends Vue {
+
+    @Prop({default: ''})
+    public id!: string;
+
+    @Prop({default: false})
+    public visible!: boolean;
+
+    public is_show: boolean = false;
+
+    /** 获取数据详情 **/
+    public getServiceDetails() {
+
+    }
+
+    /** 销毁当前组件 **/
+    public handleDestroyDialog() {
+        this.is_show = false;
+    }
+
+    @Watch('id', {immediate: true})
+    public watchId(nv: string) {
+        this.getServiceDetails();
+    }
+
+    @Watch('visible')
+    public watchVisible(nv: boolean) {
+        console.log('visible', nv);
+        this.is_show = nv;
+    }
+
+}
+
 </script>
 
 <style scoped>

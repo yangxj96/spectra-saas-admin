@@ -2,10 +2,17 @@
 <div>菜单管理</div>
 </template>
 
-<script>
-export default {
-    name: "index"
+<script lang="ts">
+
+import {Vue, Options} from "vue-property-decorator";
+
+@Options({})
+export default class Menu extends Vue {
+    created() {
+
+    }
 }
+
 </script>
 
 <style scoped>

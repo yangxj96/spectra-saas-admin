@@ -9,13 +9,13 @@
 
 <script lang="ts">
 
-import {defineComponent} from "vue";
+import {Options, Vue} from "vue-property-decorator";
 
-export default defineComponent({
-    setup() {
-        return {};
-    }
-})
+@Options({})
+export default class App extends Vue {
+
+}
+
 </script>
 
 <style lang="scss">

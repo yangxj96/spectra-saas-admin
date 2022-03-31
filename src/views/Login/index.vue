@@ -34,23 +34,23 @@
 
 <script>
 
-import {defineComponent} from "vue";
+import {Vue} from "vue-class-component";
 
-export default defineComponent({
-    name: "login",
-    methods: {
-        handleLogin() {
-            this.$message.success({
-                message: '测试',
-                duration: 500,
-                onClose: () => {
-                    this.$store.dispatch('UserModule/setToken', 'token');
-                    this.$router.push({path: '/'})
-                }
-            })
-        }
+export default class Login extends Vue {
+
+    // 登录事件处理
+    handleLogin() {
+        this.$message.success({
+            message: '测试',
+            duration: 500,
+            onClose: () => {
+                this.$store.dispatch('UserModule/setToken', 'token');
+                this.$router.push({path: '/'});
+            }
+        })
     }
-})
+}
+
 </script>
 
 <style scoped lang="scss">

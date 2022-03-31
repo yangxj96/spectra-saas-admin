@@ -26,16 +26,12 @@ import AuthDirective from "@/directive/Auth";
 // 全局字体
 import iconFont from "@/components/IconFont/index.vue";
 
-const app = createApp(App);
-
-app.component('IconFont', iconFont);
-
-app
+createApp(App)
     .use(AuthDirective)
     .use(store, key)
     .use(router)
-    .use(ElementPlus, {
-        locale: zhCn,
-    })
+    .use(ElementPlus, {locale: zhCn})
+    // 挂在入组件
+    .component('IconFont', iconFont)
     .mixin(GlobalMixinDemo)
     .mount('#app');

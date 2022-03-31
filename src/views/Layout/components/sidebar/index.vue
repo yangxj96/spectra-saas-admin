@@ -60,23 +60,21 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
-import {useStore} from "@/plugin/store";
 
-export default defineComponent({
-    data() {
-        const store = useStore();
-        return {
-            store,
-            unfold: true
-        }
-    },
-    watch: {
-        'store.state.SystemModule.sidebar_unfold'(nv) {
-            this.unfold = nv;
-        }
+import {Vue, Options, Watch} from "vue-property-decorator";
+
+@Options({})
+export default class LayoutSidebar extends Vue {
+
+    public unfold: boolean = true;
+
+    @Watch("$store.state.SystemModule.sidebar_unfold", {immediate: true})
+    public watchSidebarUnfold(nv: boolean) {
+        this.unfold = nv;
     }
-})
+
+}
+
 </script>
 
 <style scoped lang="scss">

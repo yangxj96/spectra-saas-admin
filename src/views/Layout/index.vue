@@ -44,35 +44,31 @@
 
 <script lang="ts">
 
-import {defineComponent} from "vue";
 
 import Navbar from "@/views/Layout/components/navbar/index.vue";
 import Sidebar from "@/views/Layout/components/sidebar/index.vue";
-import {useStore} from "@/plugin/store";
 
-export default defineComponent({
-    name: 'Layout',
-    components: {Navbar, Sidebar},
-    data() {
-        const store = useStore();
-        return {
-            store,
-            width: 'auto',
-            icon_class: true
-        }
-    },
-    methods: {
-        handleChangeUnfold() {
-            // 切换状态
-            this.store.commit('SystemModule/CHANGE_SIDEBAR_UNFOLD');
-        }
-    },
-    watch: {
-        'store.state.SystemModule.sidebar_unfold'(nv) {
-            this.icon_class = nv;
-        }
-    }
+import {Watch, Options, Vue} from "vue-property-decorator";
+
+@Options({
+    components: {Navbar, Sidebar}
 })
+export default class Layout extends Vue {
+
+    public width: string = 'auto';
+
+    public icon_class: boolean = true;
+
+    public handleChangeUnfold() {
+        this.$store.commit('SystemModule/CHANGE_SIDEBAR_UNFOLD');
+    }
+
+    @Watch('$store.state.SystemModule.sidebar_unfold', {immediate: true})
+    private watchSidebarUnfold(newVal: boolean) {
+        this.icon_class = newVal;
+    }
+
+}
 </script>
 
 <style scoped lang="scss">
@@ -94,7 +90,7 @@ export default defineComponent({
     padding: 0;
 }
 
-.box-container{
+.box-container {
     height: calc(100% - 61px);
 }
 

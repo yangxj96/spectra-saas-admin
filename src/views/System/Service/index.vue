@@ -33,7 +33,7 @@
         />
     </el-row>
 
-    <service-details :id="pop.id" :visible="pop.show" @submit="this.handleSubmitDetails">
+    <service-details :id="detailId" :visible="detailsPopupShow" @submit="this.handleSubmitDetails">
         <!--<template v-slot:footer>-->
         <!--    我是插槽内容-->
         <!--</template>-->
@@ -42,47 +42,48 @@
 
 <script lang="ts">
 
-import {defineComponent} from "vue";
 import table from "@/mixins/Table";
 import ServiceDetails from './components/details.vue';
 
-export default defineComponent({
-    name: "index",
-    mixins: [table],
-    components: {ServiceDetails},
-    created() {
-        let data = [];
-        for (let i = 0; i < 17; i++) {
-            data.push({
-                date: '用户服务',
-                name: '用户服务用户',
-                num: 8,
-            });
-        }
-        this.handleTableData(data);
-    },
-    data() {
-        return {
-            pop: {
-                id: '1',
-                show: false
-            }
-        }
-    },
-    methods: {
-        handleTableData(data: object[]) {
-            this.table_data = data;
-        },
-        handleShowDetails() {
-            this.pop.id = '1';
-            this.pop.show = !this.pop.show;
-        },
-        handleSubmitDetails(val: any) {
-            console.log(val);
-            this.pop.show = false;
-        }
+import {Options, mixins} from "vue-property-decorator";
+
+@Options({
+    components: {
+        ServiceDetails
     }
 })
+export default class SystemService extends mixins(table) {
+
+    public detailId: string = '1';
+
+    public detailsPopupShow: boolean = false;
+
+    public created() {
+        for (let i = 0; i < 17; i++) {
+            this.table_data.push({
+                date: '用户服务',
+                name: '用户服务服务',
+                num: 8
+            })
+        }
+    }
+
+    handleTableData(data: Array<any>) {
+        super.handleTableData(data);
+    }
+
+    public handleShowDetails() {
+        this.detailId = '1';
+        this.detailsPopupShow = !this.detailsPopupShow;
+    }
+
+    public handleSubmitDetails(param: any) {
+        console.log('父类接受到子类emit事件', param)
+        this.detailsPopupShow = false;
+    }
+
+}
+
 </script>
 
 <style scoped lang="scss">
