@@ -5,8 +5,8 @@
     </span>
         <template #footer>
             <slot name="footer">
-                <el-button @click="this.handleDestroyDialog">关闭</el-button>
-                <el-button @click="$emit('submit',{k:1})" type="primary">确定</el-button>
+                <el-button @click="handleDestroyDialog">关闭</el-button>
+                <el-button @click="handleSubmit" type="primary">确定</el-button>
             </slot>
         </template>
     </el-dialog>
@@ -14,11 +14,9 @@
 
 <script lang="ts">
 
-import {Vue, Options, Watch, Prop} from "vue-property-decorator";
+import {Vue, Options, Watch, Prop, Emit} from "vue-property-decorator";
 
-@Options({
-    emits: ['submit']
-})
+@Options({})
 export default class SystemServiceDetails extends Vue {
 
     @Prop({default: ''})
@@ -39,6 +37,12 @@ export default class SystemServiceDetails extends Vue {
         this.is_show = false;
     }
 
+    @Emit('submit')
+    public handleSubmit(param:any){
+        console.log('submit事件提交之前执行~');
+        param.k = 1;
+    }
+
     @Watch('id', {immediate: true})
     public watchId(nv: string) {
         this.getServiceDetails();
@@ -46,7 +50,6 @@ export default class SystemServiceDetails extends Vue {
 
     @Watch('visible')
     public watchVisible(nv: boolean) {
-        console.log('visible', nv);
         this.is_show = nv;
     }
 
