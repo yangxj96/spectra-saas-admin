@@ -40,19 +40,6 @@ export default defineComponent({
     data() {
         return {}
     },
-    mounted() {
-        // fetch(`${process.env.BASE_URL}diagram.bpmn`).then(async res => {
-        //     return res.text()
-        // }).then(async res => {
-        //     try {
-        //         const result = await this.bpmnModeler.importXML(res);
-        //         const {warnings} = result;
-        //         console.log(warnings);
-        //     } catch (err) {
-        //         console.log(err.message, err.warnings);
-        //     }
-        // })
-    },
     methods: {
         initBpmn(){
             this.bpmnModeler = new BpmnJS({
