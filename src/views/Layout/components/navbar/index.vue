@@ -1,13 +1,14 @@
 <template>
     <el-row>
         <el-col :span="4">
-            <el-image :src="require('@/assets/logo2.png')" :fit="'fill'" style="height: 56px">
-                <template #error>
-                    <div class="image-slot">
-                        <i class="el-icon-picture-outline"></i>
-                    </div>
-                </template>
-            </el-image>
+            <img src="~@/assets/logo2.png" alt="logo" fit="fill" style="height: 56px"/>
+            <!--<el-image :src="require('@/assets/logo2.png')" :fit="'fill'" style="height: 56px">-->
+            <!--    <template #error>-->
+            <!--        <div class="image-slot">-->
+            <!--            <i class="el-icon-picture-outline"></i>-->
+            <!--        </div>-->
+            <!--    </template>-->
+            <!--</el-image>-->
         </el-col>
         <el-col :span="19">
 

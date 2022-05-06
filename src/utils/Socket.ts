@@ -1,11 +1,13 @@
 export interface IOptions {
-    /** 心跳时间 **/
+    /** 心跳时间 */
     heart_time?: number;
-    /** 检查连接时间 **/
+    /** 心跳消息 */
+    heart_msg?: any;
+    /** 检查连接时间 */
     check_time?: number;
-    /** 断线重连时间 **/
+    /** 断线重连时间 */
     lock_time?: number;
-    /** 接受到消息 **/
+    /** 接受到消息 */
     handleMessage?: Function | null;
 }
 
@@ -19,20 +21,23 @@ export default class Socket {
 
     private options: IOptions = {
         heart_time: 3000,
+        heart_msg: '',
         check_time: 3000,
         lock_time: 3000
     };
 
     private intervalId?: NodeJS.Timer;
 
-
-    constructor(url: string, options: IOptions) {
+    constructor(url: string, options?: IOptions) {
         if (url === undefined || url === null || url === '') {
             throw new Error(`${this.LOG_PREFIX} 地址不能为空`);
         }
         this.url = url;
-        // 合并配置
-        Object.assign(this.options, options);
+        // 如果有配置则合并配置
+        if (options) {
+            // Object.assign(this.options, options);
+            (<any>Object).assign(this.options, options);
+        }
         // 初始化
         this.init();
     }
@@ -46,11 +51,22 @@ export default class Socket {
             console.debug(`${this.LOG_PREFIX} 发送消息失败,ws对象为null`);
             return;
         }
-        // do {
-        //     console.debug(`${this.LOG_PREFIX} 等待连接成功`);
-        // } while (this.ws.readyState !== 1)
+        if (this.ws?.readyState !== 1) {
+            console.debug(`${this.LOG_PREFIX} ws未准备好`);
+            return;
+        }
         this.ws.send(msg);
         console.debug(`${this.LOG_PREFIX} 发送消息成功`);
+    }
+
+    /**
+     * 销毁当前实例
+     */
+    public destroy(){
+        if (this.ws !== null){
+            this.ws.close();
+        }
+        console.debug(`${this.LOG_PREFIX} 实例销毁`);
     }
 
     private init(): void {
@@ -121,7 +137,7 @@ export default class Socket {
     private heartCheck() {
         this.intervalId = setInterval(() => {
             if (this.ws != null) {
-                this.ws.send('');
+                this.ws.send(this.options.heart_msg);
                 console.debug(`${this.LOG_PREFIX} 发送心跳`);
             }
         }, this.options.heart_time);

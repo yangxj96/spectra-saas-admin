@@ -1,11 +1,3 @@
-/*
- * Copyright (c) 2021.
- * 作者：杨新杰(Jack Young)
- * 邮箱：yangxj96@gmail.com
- * 日期：2021-11-28 02:57:27
- * Copyright (c) 2021.
- */
-
 import {createApp} from 'vue';
 import App from './App.vue';
 // 路由
@@ -15,7 +7,7 @@ import store, {key} from './plugin/store/index';
 // 事件
 import 'default-passive-events';
 // element
-import ElementPlus from 'element-plus';
+import ElementPlus, {ElMessage} from 'element-plus';
 import 'element-plus/dist/index.css'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 // import '@/plugin/element/index.scss';
@@ -26,8 +18,11 @@ import AuthDirective from "@/directive/Auth";
 // 全局字体
 import iconFont from "@/components/IconFont/index.vue";
 
-createApp(App)
-    .use(AuthDirective)
+const app = createApp(App);
+
+app.config.globalProperties.$message = ElMessage;
+
+app.use(AuthDirective)
     .use(store, key)
     .use(router)
     .use(ElementPlus, {locale: zhCn})

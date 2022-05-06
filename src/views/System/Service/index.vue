@@ -1,9 +1,7 @@
 <template>
-    <el-row style="height: 5%">
+    <el-row style="height: 1.2%"></el-row>
 
-    </el-row>
-
-    <el-row style="height: 87%">
+    <el-row style="height: 90.8%">
         <!-- @formatter:off -->
         <el-table :data="table_data" stripe border  height="100%" style="width: 100%">
             <el-table-column label="序号"    type="index" width="80"/>

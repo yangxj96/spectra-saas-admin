@@ -32,11 +32,30 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 
-import {Vue} from "vue-class-component";
+import {Options, Vue} from "vue-property-decorator";
+import Socket from "@/utils/Socket";
 
+@Options({})
 export default class Login extends Vue {
+
+    private socket?: Socket | null;
+
+    // 组件创建钩子
+    public created() {
+        //  websocket
+        this.socket = new Socket('ws://127.0.0.1:8080/api/websocket/alarm', {
+            handleMessage(e: string) {
+                console.log(`外部定义的处理方式,消息是:${e}`)
+            }
+        });
+    }
+
+    // 组件销毁钩子
+    public unmounted() {
+        this.socket?.destroy();
+    }
 
     // 登录事件处理
     handleLogin() {
