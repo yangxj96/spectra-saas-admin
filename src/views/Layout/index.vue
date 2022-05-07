@@ -44,7 +44,6 @@
 
 <script lang="ts">
 
-
 import Navbar from "@/views/Layout/components/navbar/index.vue";
 import Sidebar from "@/views/Layout/components/sidebar/index.vue";
 
@@ -95,11 +94,11 @@ export default class Layout extends Vue {
 }
 
 .box-main {
-    padding: 20px 20px 0;
 
     .box-content {
         width: 100%;
         height: calc(100% - 25px - 25px);
+        padding: 1%;
     }
 
     .box-breadcrumb {
