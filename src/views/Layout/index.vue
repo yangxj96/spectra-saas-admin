@@ -98,7 +98,7 @@ export default class Layout extends Vue {
     .box-content {
         width: 100%;
         height: calc(100% - 25px - 25px);
-        padding: 1%;
+        padding-top: 1%;
     }
 
     .box-breadcrumb {

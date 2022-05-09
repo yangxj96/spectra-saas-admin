@@ -1,19 +1,16 @@
 import {Vue, Options} from "vue-property-decorator";
 
-export interface Pagination {
-    size: number,
-    page: number,
-    page_sizes: Array<number>,
-    total: number,
-}
-
 @Options({})
 export default class Table<T> extends Vue {
 
-    /** 表单数据 **/
+    /**
+     * 表单数据
+     */
     public table_data: Array<T> = [];
 
-    /** 分页数据 **/
+    /**
+     * 分页数据
+     */
     public pagination: Pagination = {
         size: 15,
         page: 1,
@@ -38,13 +35,12 @@ export default class Table<T> extends Vue {
         console.log(`当前页: ${val}`)
     }
 
+}
 
-    /**
-     * 处理表单数据
-     * @param data
-     */
-    public handleTableData(data: Array<T>) {
-        this.table_data = data;
-    }
-
+// 分页参数实体
+interface Pagination {
+    size: number,
+    page: number,
+    page_sizes: Array<number>,
+    total: number,
 }

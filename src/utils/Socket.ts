@@ -71,7 +71,7 @@ export default class Socket {
 
     private init(): void {
         if (!('WebSocket' in window)) {
-            console.error("当前浏览器不只是websocket");
+            console.error("当前浏览器不支持websocket");
             return;
         }
         // @formatter:off

@@ -66,10 +66,6 @@ export default class SystemService extends mixins(table) {
         }
     }
 
-    handleTableData(data: Array<any>) {
-        super.handleTableData(data);
-    }
-
     public handleShowDetails() {
         this.detailId = '1';
         this.detailsPopupShow = !this.detailsPopupShow;
