@@ -14,6 +14,7 @@ import persistedState from 'vuex-persistedstate';
 // 模块
 import SystemModule from "@/plugin/store/modules/system";
 import UserModule from "@/plugin/store/modules/user";
+import AppModule from "@/plugin/store/modules/app";
 
 const store = createStore<RootStateTypes>({
     devtools: true,
@@ -23,7 +24,8 @@ const store = createStore<RootStateTypes>({
     getters: {},
     modules: {
         SystemModule,
-        UserModule
+        UserModule,
+        AppModule
     },
     plugins: [
         persistedState({storage: window.sessionStorage})
