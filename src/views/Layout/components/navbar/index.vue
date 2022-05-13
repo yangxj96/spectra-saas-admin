@@ -1,14 +1,7 @@
 <template>
     <el-row>
         <el-col :span="4">
-            <img src="~@/assets/logo2.png" alt="logo" fit="fill" style="height: 56px"/>
-            <!--<el-image :src="require('@/assets/logo2.png')" :fit="'fill'" style="height: 56px">-->
-            <!--    <template #error>-->
-            <!--        <div class="image-slot">-->
-            <!--            <i class="el-icon-picture-outline"></i>-->
-            <!--        </div>-->
-            <!--    </template>-->
-            <!--</el-image>-->
+            <img src="~@/assets/logo2.png" alt="logo" style="height: 56px"/>
         </el-col>
         <el-col :span="19">
 
@@ -25,7 +18,7 @@
                         </el-dropdown-item>
                         <el-dropdown-item @click="handleModifyPasswordPopup">
                             <icon-font :icon-href="'icon-change-password'"
-                                       :icon-class="{width: '1.1em', height: '1.1em'}"/>
+                                       :icon-class="{width: '1.5em', height: '1.1em'}"/>
                             修改密码
                         </el-dropdown-item>
                         <el-dropdown-item @click="handleUserLogout">
@@ -37,7 +30,7 @@
             </el-dropdown>
         </el-col>
     </el-row>
-    <personal-popup        :visible="this.personal_visible"/>
+    <personal-popup        :visible="!this.personal_visible"/>
     <modify-password-popup :visible="this.modify_password_visible"/>
 </template>
 

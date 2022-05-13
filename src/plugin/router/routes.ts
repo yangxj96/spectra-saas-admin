@@ -12,7 +12,7 @@ import layout from '@/views/Layout/index.vue';
 
 export const routes: Array<RouteRecordRaw> = [
     {
-        path: '/login',
+        path: '/Login',
         name: '登录',
         component: () => import('@/views/Login/index.vue'),
         meta: {
@@ -70,6 +70,46 @@ export const routes: Array<RouteRecordRaw> = [
                 component: () => import('@/views/System/Dict/index.vue'),
                 meta: {
                     title: '字典管理'
+                }
+            }
+        ]
+    },
+    {
+        name:'用户相关',
+        path: '/User',
+        component: layout,
+        redirect:'user',
+        children: [
+            {
+                path: 'user',
+                name: '用户管理',
+                component: () => import('@/views/User/User/index.vue'),
+                meta: {
+                    title: '用户管理'
+                }
+            },
+            {
+                path: 'tenant',
+                name: '租户管理',
+                component: () => import('@/views/User/Tenant/index.vue'),
+                meta: {
+                    title: '租户管理'
+                }
+            },
+            {
+                path: 'role',
+                name: '角色管理',
+                component: () => import('@/views/User/Role/index.vue'),
+                meta: {
+                    title: '角色管理'
+                }
+            },
+            {
+                path: 'authority',
+                name: '权限管理',
+                component: () => import('@/views/User/Authority/index.vue'),
+                meta: {
+                    title: '权限管理'
                 }
             }
         ]

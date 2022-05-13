@@ -71,9 +71,9 @@ export default class Layout extends Vue {
         this.icon_class = newVal;
     }
 
+    // 监听当前路由变化,动态生成面包屑
     @Watch('$router.currentRoute.value.matched')
     private watchBreadcrumb(newVal:any[]){
-        console.log(newVal)
         this.breadcrumb_data = newVal;
     }
 

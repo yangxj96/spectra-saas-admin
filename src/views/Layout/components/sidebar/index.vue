@@ -15,19 +15,19 @@
                 <icon-font :icon-href="'icon-system-setting'"/>
                 <span>系统配置</span>
             </template>
-            <el-menu-item index="/system/service">
+            <el-menu-item index="/System/service">
                 <icon-font :icon-href="'icon-sub-menu'"/>
                 服务管理
             </el-menu-item>
-            <el-menu-item index="/system/module">
+            <el-menu-item index="/System/module">
                 <icon-font :icon-href="'icon-sub-menu'"/>
                 模块管理
             </el-menu-item>
-            <el-menu-item index="/system/menu">
+            <el-menu-item index="/System/menu">
                 <icon-font :icon-href="'icon-sub-menu'"/>
                 菜单管理
             </el-menu-item>
-            <el-menu-item index="/system/dict">
+            <el-menu-item index="/System/dict">
                 <icon-font :icon-href="'icon-sub-menu'"/>
                 字典管理
             </el-menu-item>
@@ -38,19 +38,19 @@
                 <icon-font :icon-href="'icon-user'"/>
                 <span>用户相关</span>
             </template>
-            <el-menu-item index="1-2">
+            <el-menu-item index="/User/tenant">
                 <icon-font :icon-href="'icon-sub-menu'"/>
                 租户管理
             </el-menu-item>
-            <el-menu-item index="1-2">
+            <el-menu-item index="/User/user">
                 <icon-font :icon-href="'icon-sub-menu'"/>
                 用户管理
             </el-menu-item>
-            <el-menu-item index="1-2">
+            <el-menu-item index="/User/role">
                 <icon-font :icon-href="'icon-sub-menu'"/>
                 角色管理
             </el-menu-item>
-            <el-menu-item index="1-2">
+            <el-menu-item index="/User/authority">
                 <icon-font :icon-href="'icon-sub-menu'"/>
                 权限管理
             </el-menu-item>

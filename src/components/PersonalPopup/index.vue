@@ -1,11 +1,11 @@
 <template>
-    <el-dialog v-model="this.is_show" destroy-on-close title="个人信息" width="30%">
+    <el-dialog v-model="is_show" destroy-on-close title="个人信息" width="30%">
 
         <el-avatar style="margin-left: 100px;margin-bottom: 10px"
                    src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"/>
         <el-form label-width="100px" style="max-width: 460px">
             <el-form-item label="用户名">
-                我是用户名
+                <el-input value="我是用户名" :disabled="true" placeholder="请输入用户名"/>
             </el-form-item>
             <el-form-item label="邮箱">
                 <el-input placeholder="请输入邮箱"/>
@@ -28,29 +28,29 @@
 </template>
 
 <script lang="ts">
+import {Vue, Options, Prop, Watch} from "vue-property-decorator";
 
-import {defineComponent} from "vue";
+@Options({})
+export default class PersonalPopup extends Vue {
 
-export default defineComponent({
-    name: 'popup-personal',
-    props: {
-        visible: {
-            require: true,
-            type: Boolean,
-            default: false
-        }
-    },
-    data() {
-        return {
-            is_show: false
-        }
-    },
-    watch: {
-        visible(val) {
-            this.is_show = val
-        }
+    @Prop({required: true})
+    public visible: Boolean = false
+
+    public is_show: Boolean = false;
+
+    @Watch('visible', {immediate: true})
+    public watchVisible(val: Boolean) {
+        console.log(val);
+        this.is_show = val;
     }
-})
+
+    public created() {
+        console.log('vi', this.visible);
+        console.log('sh', this.is_show);
+    }
+
+}
+
 </script>
 
 <style scoped>
