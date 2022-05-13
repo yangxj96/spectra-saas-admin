@@ -61,9 +61,6 @@ export default class Layout extends Vue {
         this.breadcrumb_data = this.$router.currentRoute.value.matched;
     }
 
-
-
-
     public handleChangeUnfold() {
         this.$store.dispatch("SystemModule/changeSidebarUnfold");
     }
@@ -72,6 +69,12 @@ export default class Layout extends Vue {
     @Watch('$store.state.SystemModule.sidebar_unfold', {immediate: true})
     private watchSidebarUnfold(newVal: boolean) {
         this.icon_class = newVal;
+    }
+
+    @Watch('$router.currentRoute.value.matched')
+    private watchBreadcrumb(newVal:any[]){
+        console.log(newVal)
+        this.breadcrumb_data = newVal;
     }
 
 }

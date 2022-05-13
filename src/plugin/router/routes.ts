@@ -13,7 +13,7 @@ import layout from '@/views/Layout/index.vue';
 export const routes: Array<RouteRecordRaw> = [
     {
         path: '/login',
-        name: 'login',
+        name: '登录',
         component: () => import('@/views/Login/index.vue'),
         meta: {
             title: '登录',
@@ -21,11 +21,12 @@ export const routes: Array<RouteRecordRaw> = [
     },
     {
         path: '',
+        name:'首页',
         component: layout,
         children: [
             {
                 path: '',
-                name: 'index',
+                name: '首页',
                 component: () => import('@/views/Home/index.vue'),
                 meta: {
                     title: '首页',
@@ -37,32 +38,30 @@ export const routes: Array<RouteRecordRaw> = [
         name:'系统配置',
         path: '/System',
         component: layout,
+        redirect:'service',
         children: [
             {
                 path: 'service',
-                name: 'service',
+                name: '服务管理',
                 component: () => import('@/views/System/Service/index.vue'),
                 meta: {
-                    // title: '服务管理'
-                    title: '测试1'
+                    title: '服务管理'
                 }
             },
             {
                 path: 'module',
-                name: 'module',
+                name: '模块管理',
                 component: () => import('@/views/System/Module/index.vue'),
                 meta: {
-                    // title: '模块管理'
-                    title: '测试2'
+                    title: '模块管理'
                 }
             },
             {
                 path: 'menu',
-                name: 'menu',
+                name: '菜单管理',
                 component: () => import('@/views/System/Menu/index.vue'),
                 meta: {
-                    // title: '菜单管理'
-                    title: '测试3'
+                    title: '菜单管理'
                 }
             },
             {
