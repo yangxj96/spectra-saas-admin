@@ -1,6 +1,6 @@
 <template>
     <el-row>
-        <el-form :inline="true" class="search-tool">
+        <el-form :inline="true">
             <el-form-item label="字典项名称">
                 <el-input placeholder="请输入字典项名称"/>
             </el-form-item>
@@ -22,7 +22,7 @@
             <el-tree ref="group_tree" :data="tree_data" :props="{children:'children',label:'name'}"/>
         </el-col>
         <!-- 字典项表格 -->
-        <el-col :span="20" class="table">
+        <el-col :span="20">
             <el-row style="height: 90.8%">
                 <el-table :data="table_data" style="width: 100%" stripe>
                     <el-table-column type="index" align="center" label="序号" width="80"/>
@@ -71,7 +71,6 @@ import Table from "@/mixins/Table";
 @Options({})
 export default class Dict extends mixins(Table) {
 
-
     // 树数据
     private tree_data: TreeData[] = [
         {
@@ -92,10 +91,7 @@ export default class Dict extends mixins(Table) {
         this.handleTableData([]);
     }
 
-    /**
-     * 处理表单数据
-     * @param data
-     */
+    // 处理表单数据
     public handleTableData(data: Array<TableData>) {
         // this.table_data = data;
         this.table_data = [];
@@ -106,6 +102,7 @@ export default class Dict extends mixins(Table) {
         }
     }
 
+    // 处理字典组新增
     public handleCreateDictGroup(){
         let el:any = this.$refs.group_tree;
         let node = el.getCurrentNode();
@@ -119,6 +116,7 @@ export default class Dict extends mixins(Table) {
         }
     }
 
+    // 处理字典项新增
     public handleCreateDictItem(){
         this.$message.success('开发中');
     }
@@ -145,16 +143,9 @@ interface TableData {
 </script>
 
 <style scoped lang="scss">
-.search-tool {
-    height: 5%;
-    width: 100%;
-
-    .el-form-item {
-        margin-bottom: 20px;
-    }
-}
 
 .box-content {
+
     height: 95%;
 
     .tree {

@@ -34,6 +34,7 @@ export const routes: Array<RouteRecordRaw> = [
         ]
     },
     {
+        name:'系统配置',
         path: '/System',
         component: layout,
         children: [
@@ -66,11 +67,10 @@ export const routes: Array<RouteRecordRaw> = [
             },
             {
                 path: 'dict',
-                name: 'dict',
+                name: '字典管理',
                 component: () => import('@/views/System/Dict/index.vue'),
                 meta: {
-                    // title: '字典管理'
-                    title: '测试4'
+                    title: '字典管理'
                 }
             }
         ]

@@ -13,13 +13,13 @@
                 <div style="height: 100%">
                     <el-row class="box-breadcrumb">
                         <i class="box-unfold-a" @click="handleChangeUnfold">
-                            <icon-font :icon-href="icon_class ? 'icon-close-menu' : 'icon-unfold-menu'"/>
+                            <el-icon v-if="icon_class"> <CaretLeft /></el-icon>
+                            <el-icon v-else> <CaretRight/></el-icon>
                         </i>
-                        <el-breadcrumb separator-class="el-icon-arrow-right">
-                            <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-                            <el-breadcrumb-item>活动管理</el-breadcrumb-item>
-                            <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-                            <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+                        <el-breadcrumb separator-class="el-icon-arrow-right"  >
+                            <el-breadcrumb-item v-for="(item,idx) in breadcrumb_data" :key="idx" :to="{path: item.path}">
+                                {{ item.name }}
+                            </el-breadcrumb-item>
                         </el-breadcrumb>
                     </el-row>
                     <div class="box-content">
@@ -46,7 +46,6 @@
 
 import Navbar from "@/views/Layout/components/navbar/index.vue";
 import Sidebar from "@/views/Layout/components/sidebar/index.vue";
-
 import {Watch, Options, Vue} from "vue-property-decorator";
 
 @Options({
@@ -54,25 +53,38 @@ import {Watch, Options, Vue} from "vue-property-decorator";
 })
 export default class Layout extends Vue {
 
-    public width: string = 'auto';
-
     public icon_class: boolean = true;
 
-    public handleChangeUnfold() {
-        this.$store.commit('SystemModule/CHANGE_SIDEBAR_UNFOLD');
+    public breadcrumb_data:any[] = [];
+
+    public created() {
+        this.breadcrumb_data = this.$router.currentRoute.value.matched;
     }
 
+
+
+
+    public handleChangeUnfold() {
+        this.$store.dispatch("SystemModule/changeSidebarUnfold");
+    }
+
+    // 监听vue中的变量
     @Watch('$store.state.SystemModule.sidebar_unfold', {immediate: true})
     private watchSidebarUnfold(newVal: boolean) {
         this.icon_class = newVal;
     }
 
 }
+
 </script>
 
 <style scoped lang="scss">
 ::v-deep(.el-aside) {
     width: auto;
+}
+
+::v-deep(.el-breadcrumb){
+    line-height: 1.5;
 }
 
 .box {
@@ -103,8 +115,11 @@ export default class Layout extends Vue {
 
     .box-breadcrumb {
         height: 25px;
-        line-height: 10px;
-        padding-bottom: 10px;
+        line-height: 25px;
+    }
+
+    .box-unfold-a{
+        margin-right: 5px;
     }
 
     .box-unfold-a:hover {
