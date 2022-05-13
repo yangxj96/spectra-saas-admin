@@ -11,7 +11,7 @@
             <el-table-column label="实例状态" prop="num" />
             <el-table-column label="操作"    fixed="right" width="120">
                 <template #default>
-                    <el-button type="text" @click="this.handleShowDetails" size="small">详情</el-button>
+                    <el-button text type="primary" @click="this.handleShowDetails">详情</el-button>
                 </template>
             </el-table-column>
         </el-table>

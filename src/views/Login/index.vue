@@ -36,6 +36,7 @@
 
 import {Options, Vue} from "vue-property-decorator";
 import Socket from "@/utils/Socket";
+import {MessageDefaultConfig} from "@/utils/DefaultConfig";
 
 @Options({})
 export default class Login extends Vue {
@@ -45,11 +46,11 @@ export default class Login extends Vue {
     // 组件创建钩子
     public created() {
         //  websocket
-        this.socket = new Socket('ws://127.0.0.1:8080/api/websocket/alarm', {
-            handleMessage(e: string) {
-                console.log(`外部定义的处理方式,消息是:${e}`)
-            }
-        });
+        // this.socket = new Socket('ws://127.0.0.1:8080/api/websocket/alarm', {
+        //     handleMessage(e: string) {
+        //         console.log(`外部定义的处理方式,消息是:${e}`)
+        //     }
+        // });
     }
 
     // 组件销毁钩子
@@ -60,8 +61,8 @@ export default class Login extends Vue {
     // 登录事件处理
     handleLogin() {
         this.$message.success({
+            ...MessageDefaultConfig,
             message: '测试',
-            duration: 500,
             onClose: () => {
                 this.$store.dispatch('UserModule/setToken', 'token');
                 this.$router.push({path: '/'});

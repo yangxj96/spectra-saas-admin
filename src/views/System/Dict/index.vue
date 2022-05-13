@@ -5,26 +5,27 @@
                 <el-input placeholder="请输入字典项名称"/>
             </el-form-item>
             <el-form-item>
-                <!--<el-button type="primary">查询</el-button>-->
                 <el-button-group>
-                    <el-button type="primary">查询</el-button>
-                    <el-button type="primary">新增字典组</el-button>
-                    <el-button type="primary">新增字典项</el-button>
+                    <el-button type="primary" icon="Search"     >查询</el-button>
+                    <el-button type="primary" icon="FolderAdd"   @click="handleCreateDictGroup">新增组</el-button>
+                    <el-button type="primary" icon="DocumentAdd" @click="handleCreateDictItem">新增项</el-button>
                 </el-button-group>
             </el-form-item>
         </el-form>
     </el-row>
+
+    <el-divider style="margin: 0" />
+
     <el-row class="box-content">
-
+        <!-- 字典组树 -->
         <el-col :span="4" class="tree">
-            <el-tree :data="tree_data" :props="{children:'children',label:'name'}"/>
+            <el-tree ref="group_tree" :data="tree_data" :props="{children:'children',label:'name'}"/>
         </el-col>
-
+        <!-- 字典项表格 -->
         <el-col :span="20" class="table">
             <el-row style="height: 90.8%">
                 <el-table :data="table_data" style="width: 100%" stripe>
                     <el-table-column type="index" align="center" label="序号" width="80"/>
-                    <el-table-column prop="code" align="center" label="code"/>
                     <el-table-column prop="name" align="center" label="名称"/>
                     <el-table-column prop="value" align="center" label="值"/>
                     <el-table-column label="是否启用" align="center">
@@ -41,7 +42,7 @@
                     </el-table-column>
                     <el-table-column label="操作" align="center">
                         <template #default="scope">
-                            <el-button type="text">修改</el-button>
+                            <el-button text type="primary" >修改</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -69,6 +70,7 @@ import Table from "@/mixins/Table";
 
 @Options({})
 export default class Dict extends mixins(Table) {
+
 
     // 树数据
     private tree_data: TreeData[] = [
@@ -99,11 +101,27 @@ export default class Dict extends mixins(Table) {
         this.table_data = [];
         for (let i = 0; i < 10; i++) {
             this.table_data.push(
-                {id: '100', code: 'xxxxxxx', name: '项目1', value: '1', internal: true, enable: true}
+                {id: '100', name: '项目1', value: '1', internal: true, enable: true}
             )
         }
     }
 
+    public handleCreateDictGroup(){
+        let el:any = this.$refs.group_tree;
+        let node = el.getCurrentNode();
+        console.log(node);
+        if (node){
+           // this.$confirm(`是否新建在${node.name}的下级`);
+            this.$confirm(`是否新建在${node.name}的下级`,'',{
+                cancelButtonText:'取消',
+                confirmButtonText:'确定'
+            });
+        }
+    }
+
+    public handleCreateDictItem(){
+        this.$message.success('开发中');
+    }
 }
 
 /**
@@ -117,7 +135,6 @@ interface TreeData {
 // 表格数据结构
 interface TableData {
     id: string,
-    code: string,
     name: string,
     value: string,
     internal: boolean,

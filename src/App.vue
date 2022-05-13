@@ -1,6 +1,6 @@
 <template>
     <div id="nav">
-        <el-config-provider>
+        <el-config-provider :message="messageDefaultConfig">
             <router-view/>
         </el-config-provider>
     </div>
@@ -13,6 +13,10 @@ import {Options, Vue} from "vue-property-decorator";
 
 @Options({})
 export default class App extends Vue {
+
+    public messageDefaultConfig = {
+        duration: 500,
+    }
 
     public created(){
         console.log('初始化');
