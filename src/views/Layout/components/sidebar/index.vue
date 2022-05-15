@@ -68,7 +68,7 @@ export default class LayoutSidebar extends Vue {
 
     public unfold: boolean = true;
 
-    @Watch("$store.state.SystemModule.sidebar_unfold", {immediate: true})
+    @Watch("$store.state.system.sidebar_unfold", {immediate: true})
     public watchSidebarUnfold(nv: boolean) {
         this.unfold = nv;
     }

@@ -14,7 +14,7 @@ export  interface SystemModuleTypes {
     sidebar_unfold: boolean;
 }
 
-const SystemModule: Module<SystemModuleTypes, RootStateTypes> = {
+const system: Module<SystemModuleTypes, RootStateTypes> = {
     namespaced: true,
     state: {
         sidebar_unfold: true,
@@ -36,4 +36,4 @@ const SystemModule: Module<SystemModuleTypes, RootStateTypes> = {
     }
 };
 
-export default SystemModule;
+export default system;

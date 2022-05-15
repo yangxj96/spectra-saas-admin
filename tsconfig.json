@@ -15,7 +15,8 @@
 		"types": [
 			"webpack-env",
 			"node",
-			"@element-plus/global"
+			"@element-plus/global",
+			"vite/client"
 		],
 		"paths": {
 			"@/*": [

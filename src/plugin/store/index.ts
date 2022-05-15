@@ -7,36 +7,32 @@
  */
 
 import {InjectionKey} from "vue";
-import {createStore, Store, useStore as baseUseStore} from "vuex";
-import RootStateTypes, {AllStateTypes} from "@/plugin/store/interface";
+import {createStore, Store} from "vuex";
+import RootStateTypes from "@/plugin/store/interface";
 // vuex存储到本地session
 import persistedState from 'vuex-persistedstate';
 // 模块
-import SystemModule from "@/plugin/store/modules/system";
-import UserModule from "@/plugin/store/modules/user";
-import AppModule from "@/plugin/store/modules/app";
+const files = import.meta.globEager('./modules/*.ts');
+// 注册所有模块
+let ms = Object.keys(files).reduce(
+    (modules: { [key: string]: any }, path: string) => {
+        const moduleName = path.replace(/^\.\/modules\/(.*)\.\w+$/, '$1')
+        modules[moduleName] = files[path]?.default
+        return modules
+    },
+    {}
+);
 
 const store = createStore<RootStateTypes>({
-    devtools: true,
-    state: {},
-    mutations: {},
-    actions: {},
-    getters: {},
-    modules: {
-        SystemModule,
-        UserModule,
-        AppModule
-    },
+    devtools: import.meta.env.MODE == 'development',
+    modules: ms,
     plugins: [
         persistedState({storage: window.sessionStorage})
     ]
 })
 
-export const key: InjectionKey<Store<RootStateTypes>> = Symbol('vue-store');
 
-export function useStore<T = AllStateTypes>() {
-    return baseUseStore<T>(key);
-}
+export const key: InjectionKey<Store<RootStateTypes>> = Symbol('vue-store');
 
 export default store;
 

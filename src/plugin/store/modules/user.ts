@@ -6,7 +6,7 @@ export  interface UserModuleTypes {
     token: string;
 }
 
-const UserModule: Module<UserModuleTypes, RootStateTypes> = {
+const user: Module<UserModuleTypes, RootStateTypes> = {
     namespaced: true,
     state: {
         token: ''
@@ -26,4 +26,4 @@ const UserModule: Module<UserModuleTypes, RootStateTypes> = {
     }
 }
 
-export default UserModule;
+export default user;

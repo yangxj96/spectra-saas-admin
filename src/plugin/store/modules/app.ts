@@ -6,7 +6,7 @@ export  interface AppModuleTypes {
     lang: string;
 }
 
-const AppModule: Module<AppModuleTypes, RootStateTypes> = {
+const app: Module<AppModuleTypes, RootStateTypes> = {
     namespaced: true,
     state: {
         lang: 'zh-cn',
@@ -24,4 +24,4 @@ const AppModule: Module<AppModuleTypes, RootStateTypes> = {
     }
 };
 
-export default AppModule;
+export default app;

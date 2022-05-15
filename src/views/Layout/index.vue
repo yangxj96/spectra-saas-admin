@@ -62,11 +62,11 @@ export default class Layout extends Vue {
     }
 
     public handleChangeUnfold() {
-        this.$store.dispatch("SystemModule/changeSidebarUnfold");
+        this.$store.dispatch("system/changeSidebarUnfold");
     }
 
     // 监听vue中的变量
-    @Watch('$store.state.SystemModule.sidebar_unfold', {immediate: true})
+    @Watch('$store.state.system.sidebar_unfold', {immediate: true})
     private watchSidebarUnfold(newVal: boolean) {
         this.icon_class = newVal;
     }
