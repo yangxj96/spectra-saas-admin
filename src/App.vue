@@ -17,11 +17,6 @@ export default class App extends Vue {
     public messageDefaultConfig = {
         duration: 500,
     }
-
-    public created(){
-        console.log('初始化');
-    }
-
 }
 
 </script>

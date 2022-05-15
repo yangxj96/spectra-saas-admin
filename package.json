@@ -1,10 +1,14 @@
 {
-	"name": "it100000-visual-admin",
+	"name": "it100000-saas-visual",
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
 		"serve": "vue-cli-service serve",
-		"build": "vue-cli-service build"
+		"build": "vue-cli-service build",
+		"dev": "vite",
+		"start": "vite",
+		"preview": "vite preview",
+		"vite-build": "vite build"
 	},
 	"dependencies": {
 		"@element-plus/icons-vue": "^1.1.4",
@@ -33,11 +37,14 @@
 		"@vue/cli-plugin-typescript": "^5.0.4",
 		"@vue/cli-plugin-vuex": "^5.0.4",
 		"@vue/cli-service": "^5.0.4",
-		"@vue/compiler-sfc": "^3.2.33",
+		"@vue/compiler-sfc": "^3.1.5",
 		"node-sass": "^7.0.1",
 		"sass": "^1.51.0",
 		"sass-loader": "12.6.0",
-		"typescript": "~4.6.4"
+		"typescript": "~4.6.4",
+		"vite": "2",
+		"@vitejs/plugin-legacy": "^1.4.4",
+		"@vitejs/plugin-vue": "latest"
 	},
 	"browserslist": [
 		"> 1%",
