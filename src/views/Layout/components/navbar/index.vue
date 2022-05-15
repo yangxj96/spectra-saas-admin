@@ -3,10 +3,8 @@
         <el-col :span="4">
             <img src="~@/assets/logo2.png" alt="logo" style="height: 56px"/>
         </el-col>
-        <el-col :span="19">
 
-        </el-col>
-        <el-col :span="1">
+        <el-col :span="1" :offset="19">
             <el-dropdown>
                 <el-avatar split-button class="avatar-image"
                            src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic_source%2Ff0%2F4b%2F31%2Ff04b31b61de3beb1d87898afc6d84760.jpeg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1644772664&t=82aba550cf7ee7fd169853007fc3ab0c"/>
@@ -30,34 +28,31 @@
             </el-dropdown>
         </el-col>
     </el-row>
-    <personal-popup        :visible="!this.personal_visible"/>
-    <modify-password-popup :visible="this.modify_password_visible"/>
+    <personal-details/>
+    <change-password/>
 </template>
 
 <script lang="ts">
 
-import PersonalPopup from "@/components/PersonalPopup/index.vue";
-import ModifyPasswordPopup from "@/components/ModifyPasswordPopup/index.vue";
+import PersonalDetails from "@/components/Props/PersonalDetails/index.vue";
+import ChangePassword from "@/components/Props/ChangePassword/index.vue";
 import {ElMessage} from 'element-plus';
 
 import {Vue, Options} from "vue-property-decorator";
 
 @Options({
-    components: {PersonalPopup, ModifyPasswordPopup}
+    components: {PersonalDetails, ChangePassword}
 })
 export default class LayoutNavbar extends Vue {
 
-    public personal_visible: boolean = false;
-    public modify_password_visible: boolean = false;
-
     /** 打开个人信息弹框 **/
     public handlePersonalPopup() {
-        this.personal_visible = !this.personal_visible;
+        this.$store.dispatch('props/togglePersonal');
     }
 
     /** 打开修改密码信息弹框 **/
     public handleModifyPasswordPopup() {
-        this.modify_password_visible = !this.modify_password_visible;
+        this.$store.dispatch('props/toggleChangePassword');
     }
 
     /** 处理用户登出消息 **/

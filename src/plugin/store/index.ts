@@ -25,12 +25,12 @@ let ms = Object.keys(files).reduce(
 
 const store = createStore<RootStateTypes>({
     devtools: import.meta.env.MODE == 'development',
+    strict: true,
     modules: ms,
     plugins: [
         persistedState({storage: window.sessionStorage})
     ]
 })
-
 
 export const key: InjectionKey<Store<RootStateTypes>> = Symbol('vue-store');
 

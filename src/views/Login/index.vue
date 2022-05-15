@@ -64,7 +64,7 @@ export default class Login extends Vue {
             ...MessageDefaultConfig,
             message: '测试',
             onClose: () => {
-                this.$store.dispatch('UserModule/setToken', 'token');
+                this.$store.dispatch('user/setToken', 'token');
                 this.$router.push({path: '/'});
             }
         })

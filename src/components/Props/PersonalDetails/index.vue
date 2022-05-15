@@ -1,5 +1,5 @@
 <template>
-    <el-dialog v-model="is_show" destroy-on-close title="个人信息" width="30%">
+    <el-dialog v-model="$store.state.props.personal_details" destroy-on-close title="个人信息" width="30%">
 
         <el-avatar style="margin-left: 100px;margin-bottom: 10px"
                    src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"/>
@@ -20,7 +20,7 @@
 
         <template #footer>
             <slot name="footer">
-                <el-button>关闭</el-button>
+                <el-button @click="handlePropsCancel">关闭</el-button>
                 <el-button type="primary">确定</el-button>
             </slot>
         </template>
@@ -28,25 +28,18 @@
 </template>
 
 <script lang="ts">
-import {Vue, Options, Prop, Watch} from "vue-property-decorator";
+import {Vue, Options} from "vue-property-decorator";
 
 @Options({})
-export default class PersonalPopup extends Vue {
-
-    @Prop({required: true})
-    public visible: Boolean = false
-
-    public is_show: Boolean = false;
-
-    @Watch('visible', {immediate: true})
-    public watchVisible(val: Boolean) {
-        console.log(val);
-        this.is_show = val;
-    }
+export default class PersonalDetails extends Vue {
 
     public created() {
-        console.log('vi', this.visible);
-        console.log('sh', this.is_show);
+
+    }
+
+    // 关闭弹窗
+    public handlePropsCancel(){
+        this.$store.dispatch('props/togglePersonal');
     }
 
 }

@@ -17,11 +17,6 @@ export default class App extends Vue {
     public messageDefaultConfig = {
         duration: 500,
     }
-
-    public created() {
-        // console.log('app lang',this.$store.getters['app/lang']);
-        console.log(this.$store.getters['app/lang']);
-    }
 }
 
 </script>

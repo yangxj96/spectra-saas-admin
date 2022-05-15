@@ -12,12 +12,16 @@
             <el-main class="box-main">
                 <div style="height: 100%">
                     <el-row class="box-breadcrumb">
-                        <i class="box-unfold-a" @click="handleChangeUnfold">
-                            <el-icon v-if="icon_class"> <CaretLeft /></el-icon>
-                            <el-icon v-else> <CaretRight/></el-icon>
+                        <i class="box-unfold-a" @click="()=>$store.dispatch('system/changeSidebarUnfold')">
+                            <el-icon v-if="$store.state.system.sidebar_unfold">
+                                <CaretLeft/>
+                            </el-icon>
+                            <el-icon v-else>
+                                <CaretRight/>
+                            </el-icon>
                         </i>
-                        <el-breadcrumb separator-class="el-icon-arrow-right"  >
-                            <el-breadcrumb-item v-for="(item,idx) in breadcrumb_data" :key="idx" :to="{path: item.path}">
+                        <el-breadcrumb separator-class="el-icon-arrow-right">
+                            <el-breadcrumb-item v-for="(item,idx) in $router.currentRoute.value.matched" :key="idx" :to="{path: item.path}">
                                 {{ item.name }}
                             </el-breadcrumb-item>
                         </el-breadcrumb>
@@ -46,37 +50,15 @@
 
 import Navbar from "@/views/Layout/components/navbar/index.vue";
 import Sidebar from "@/views/Layout/components/sidebar/index.vue";
-import {Watch, Options, Vue} from "vue-property-decorator";
+import {Options, Vue} from "vue-property-decorator";
 
 @Options({
     components: {Navbar, Sidebar}
 })
 export default class Layout extends Vue {
 
-    public icon_class: boolean = true;
-
-    public breadcrumb_data:any[] = [];
-
     public created() {
-        this.breadcrumb_data = this.$router.currentRoute.value.matched;
     }
-
-    public handleChangeUnfold() {
-        this.$store.dispatch("system/changeSidebarUnfold");
-    }
-
-    // 监听vue中的变量
-    @Watch('$store.state.system.sidebar_unfold', {immediate: true})
-    private watchSidebarUnfold(newVal: boolean) {
-        this.icon_class = newVal;
-    }
-
-    // 监听当前路由变化,动态生成面包屑
-    @Watch('$router.currentRoute.value.matched')
-    private watchBreadcrumb(newVal:any[]){
-        this.breadcrumb_data = newVal;
-    }
-
 }
 
 </script>
@@ -86,7 +68,7 @@ export default class Layout extends Vue {
     width: auto;
 }
 
-::v-deep(.el-breadcrumb){
+::v-deep(.el-breadcrumb) {
     line-height: 1.5;
 }
 
@@ -121,7 +103,7 @@ export default class Layout extends Vue {
         line-height: 25px;
     }
 
-    .box-unfold-a{
+    .box-unfold-a {
         margin-right: 5px;
     }
 

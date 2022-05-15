@@ -21,14 +21,14 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
-    console.debug('----解析守卫 begin -----------');
+    console.debug('[路由守卫] - 开始');
     // 切换标题
     if (to.meta.title) {
         // 强制转换成了string,后续优化
         document.title = String(to.meta.title);
     }
     // 判断token
-    let token = store.getters["UserModule/token"];
+    let token = store.getters['user/token'];
     if (token === '' && to.path !== '/Login') {
         next({
             path: '/Login'
@@ -36,7 +36,7 @@ router.beforeEach(async (to, from, next) => {
     } else {
         next();
     }
-    console.debug('----解析守卫 end -----------');
+    console.debug('[路由守卫] - 解析守卫结束');
 })
 
 export default router
