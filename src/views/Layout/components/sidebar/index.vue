@@ -50,10 +50,6 @@
                 <icon-font :icon-href="'icon-sub-menu'"/>
                 角色管理
             </el-menu-item>
-            <el-menu-item index="/User/authority">
-                <icon-font :icon-href="'icon-sub-menu'"/>
-                权限管理
-            </el-menu-item>
         </el-sub-menu>
 
     </el-menu>

@@ -103,14 +103,6 @@ export const routes: Array<RouteRecordRaw> = [
                 meta: {
                     title: '角色管理'
                 }
-            },
-            {
-                path: 'authority',
-                name: '权限管理',
-                component: () => import('@/views/User/Authority/index.vue'),
-                meta: {
-                    title: '权限管理'
-                }
             }
         ]
     }
