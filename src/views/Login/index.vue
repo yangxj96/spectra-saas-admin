@@ -37,6 +37,7 @@
 import {Options, Vue} from "vue-property-decorator";
 import Socket from "@/utils/Socket";
 import {MessageDefaultConfig} from "@/utils/DefaultConfig";
+import userApi from "@/api/UserApi";
 
 @Options({})
 export default class Login extends Vue {
@@ -60,14 +61,17 @@ export default class Login extends Vue {
 
     // 登录事件处理
     handleLogin() {
-        this.$message.success({
-            ...MessageDefaultConfig,
-            message: '测试',
-            onClose: () => {
-                this.$store.dispatch('user/setToken', 'token');
-                this.$router.push({path: '/'});
-            }
+        userApi.login("admin","admin").then(r => {
+            console.log(r);
         })
+        // this.$message.success({
+        //     ...MessageDefaultConfig,
+        //     message: '测试',
+        //     onClose: () => {
+        //         this.$store.dispatch('user/setToken', 'token');
+        //         this.$router.push({path: '/'});
+        //     }
+        // })
     }
 }
 

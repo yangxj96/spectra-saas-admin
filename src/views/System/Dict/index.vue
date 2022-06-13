@@ -87,9 +87,10 @@ export default class Dict extends mixins(Table) {
         }
     ];
 
-    created() {
+    public created() {
         this.handleTableData([]);
     }
+
 
     // 处理表单数据
     public handleTableData(data: Array<TableData>) {
