@@ -71,6 +71,14 @@ export const routes: Array<RouteRecordRaw> = [
                 meta: {
                     title: '字典管理'
                 }
+            },
+            {
+                path: 'config',
+                name: '配置管理',
+                component: () => import('@/views/System/Config/index.vue'),
+                meta: {
+                    title: '配置管理'
+                }
             }
         ]
     },

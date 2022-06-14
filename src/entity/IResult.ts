@@ -1,6 +1,7 @@
-export default interface IResult {
+
+export default interface IResult<T> {
     code: number,
     message: string,
-    data?: any
+    data?: T
 }
 

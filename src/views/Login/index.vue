@@ -62,19 +62,21 @@ export default class Login extends Vue {
 
     // 登录事件处理
     handleLogin() {
-        userApi.login("admin", "admin").then(r => {
-            console.log(typeof r);
-            if (r.code == 0) {
-                // this.$message.success({
-                //     ...MessageDefaultConfig,
-                //     message: '测试',
-                //     onClose: () => {
-                //         this.$store.dispatch('user/setToken', 'token');
-                //         this.$router.push({path: '/'});
-                //     }
-                // })
+        this.$message.success({
+            ...MessageDefaultConfig,
+            message: '测试',
+            onClose: () => {
+                this.$store.dispatch('user/setToken', 'token');
+                this.$router.push({path: '/'});
             }
         })
+
+        // userApi.login("admin", "admin").then(r => {
+        //     console.log(typeof r);
+        //     if (r.code == 0) {
+        //
+        //     }
+        // })
 
     }
 }

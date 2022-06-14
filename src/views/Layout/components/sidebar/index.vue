@@ -31,6 +31,10 @@
                 <icon-font :icon-href="'icon-sub-menu'"/>
                 字典管理
             </el-menu-item>
+            <el-menu-item index="/System/config">
+                <icon-font :icon-href="'icon-sub-menu'"/>
+                配置管理
+            </el-menu-item>
         </el-sub-menu>
 
         <el-sub-menu index="2">
