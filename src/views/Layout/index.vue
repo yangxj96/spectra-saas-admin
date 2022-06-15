@@ -12,8 +12,8 @@
             <el-main class="box-main">
                 <div style="height: 100%">
                     <el-row class="box-breadcrumb">
-                        <i class="box-unfold-a" @click="()=>$store.dispatch('system/changeSidebarUnfold')">
-                            <el-icon v-if="$store.state.system.sidebar_unfold">
+                        <i class="box-unfold-a" @click="()=>systemStore.setSidebarUnfold()">
+                            <el-icon v-if="systemStore.getSidebarUnfold">
                                 <CaretLeft/>
                             </el-icon>
                             <el-icon v-else>
@@ -51,11 +51,14 @@
 import Navbar from "@/views/Layout/components/navbar/index.vue";
 import Sidebar from "@/views/Layout/components/sidebar/index.vue";
 import {Options, Vue} from "vue-property-decorator";
+import {useSystemStore} from "@/plugin/store/system";
 
 @Options({
     components: {Navbar, Sidebar}
 })
 export default class Layout extends Vue {
+
+    public systemStore = useSystemStore();
 
     public created() {
     }

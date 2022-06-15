@@ -1,5 +1,5 @@
 <template>
-    <el-dialog v-model="$store.state.props.change_password" destroy-on-close title="修改密码" width="30%">
+    <el-dialog v-model="isShow" destroy-on-close title="修改密码" width="30%">
         <el-form v-model="form" :rules="rules" label-width="100px" style="max-width: 460px">
             <el-form-item label="旧密码" prop="old_password">
                 <el-input v-model="form.old_password" placeholder="请输入原来的密码"/>
@@ -23,9 +23,14 @@
 
 <script lang="ts">
 import {Vue, Options} from "vue-property-decorator";
+import {usePropsStore} from "@/plugin/store/props";
 
 @Options({})
 export default class ChangePassword extends Vue {
+
+    public propsStore = usePropsStore();
+
+    public isShow = this.propsStore.getChangePassword;
 
     public form: any = {
         old_password: '',
@@ -45,14 +50,17 @@ export default class ChangePassword extends Vue {
         ]
     }
 
-
     public created() {
-
+        this.propsStore.$subscribe((mutation, state) => {
+            if ((Array.isArray(mutation.events) ? mutation.events[0] : mutation.events).key === 'change_password'){
+                this.isShow = state.change_password;
+            }
+        });
     }
 
     // 关闭弹窗
     public handlePropsCancel() {
-        this.$store.dispatch('props/toggleChangePassword');
+        this.propsStore.setChangePassword(false);
     }
 
 }

@@ -37,6 +37,7 @@
 import PersonalDetails from "@/components/Props/PersonalDetails/index.vue";
 import ChangePassword from "@/components/Props/ChangePassword/index.vue";
 import {ElMessage} from 'element-plus';
+import {usePropsStore} from "@/plugin/store/props";
 
 import {Vue, Options} from "vue-property-decorator";
 
@@ -45,14 +46,16 @@ import {Vue, Options} from "vue-property-decorator";
 })
 export default class LayoutNavbar extends Vue {
 
+    public propsStore = usePropsStore();
+
     /** 打开个人信息弹框 **/
     public handlePersonalPopup() {
-        this.$store.dispatch('props/togglePersonal');
+        this.propsStore.setPersonalDetails(true);
     }
 
     /** 打开修改密码信息弹框 **/
     public handleModifyPasswordPopup() {
-        this.$store.dispatch('props/toggleChangePassword');
+        this.propsStore.setChangePassword(true);
     }
 
     /** 处理用户登出消息 **/

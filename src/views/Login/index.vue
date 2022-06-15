@@ -6,7 +6,7 @@
                    :show-close="false"
                    custom-class="dialog-login"
                    width="20%">
-            <template #title>
+            <template #header>
                 <p>
                     <icon-font :icon-href="'icon-login'"/>
                     用户登录
@@ -35,49 +35,24 @@
 <script lang="ts">
 
 import {Options, Vue} from "vue-property-decorator";
-import Socket from "@/utils/Socket";
 import {MessageDefaultConfig} from "@/utils/DefaultConfig";
-import userApi from "@/api/UserApi";
-import IResult from "@/entity/IResult";
+import {useUserStore} from "@/plugin/store/user";
 
 @Options({})
 export default class Login extends Vue {
 
-    private socket?: Socket | null;
-
-    // 组件创建钩子
-    public created() {
-        //  websocket
-        // this.socket = new Socket('ws://127.0.0.1:8080/api/websocket/alarm', {
-        //     handleMessage(e: string) {
-        //         console.log(`外部定义的处理方式,消息是:${e}`)
-        //     }
-        // });
-    }
-
-    // 组件销毁钩子
-    public unmounted() {
-        this.socket?.destroy();
-    }
+    public store = useUserStore();
 
     // 登录事件处理
-    handleLogin() {
+    public handleLogin() {
         this.$message.success({
             ...MessageDefaultConfig,
             message: '测试',
             onClose: () => {
-                this.$store.dispatch('user/setToken', 'token');
+                this.store.setToken('token');
                 this.$router.push({path: '/'});
             }
         })
-
-        // userApi.login("admin", "admin").then(r => {
-        //     console.log(typeof r);
-        //     if (r.code == 0) {
-        //
-        //     }
-        // })
-
     }
 }
 

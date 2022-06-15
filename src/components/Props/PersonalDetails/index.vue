@@ -1,5 +1,5 @@
 <template>
-    <el-dialog v-model="$store.state.props.personal_details" destroy-on-close title="个人信息" width="30%">
+    <el-dialog v-model="isShow" destroy-on-close title="个人信息" width="30%">
 
         <el-avatar style="margin-left: 100px;margin-bottom: 10px"
                    src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"/>
@@ -28,20 +28,39 @@
 </template>
 
 <script lang="ts">
-import {Vue, Options} from "vue-property-decorator";
+import {Options, Vue} from "vue-property-decorator";
+import {usePropsStore} from "@/plugin/store/props";
 
 @Options({})
 export default class PersonalDetails extends Vue {
 
-    public created() {
+    public propsStore = usePropsStore();
 
+    public isShow = false;
+
+    public created() {
+        this.propsStore.$subscribe((mutation, state) => {
+            /*
+             * mutation主要包含三个属性值：
+             *   events：当前state改变的具体数据，包括改变前的值和改变后的值等等数据
+             *   storeId：是当前store的id
+             *   type：用于记录这次数据变化是通过什么途径，主要有三个分别是
+             *         “direct” ：通过 action 变化的
+                       ”patch object“ ：通过 $patch 传递对象的方式改变的
+                       “patch function” ：通过 $patch 传递函数的方式改变的
+             *
+             * */
+            // 我们就可以在此处监听store中值的变化，当变化为某个值的时候，去做一些业务操作之类的
+            if ((Array.isArray(mutation.events) ? mutation.events[0] : mutation.events).key === 'personal_details') {
+                this.isShow = state.personal_details;
+            }
+        });
     }
 
     // 关闭弹窗
-    public handlePropsCancel(){
-        this.$store.dispatch('props/togglePersonal');
+    public handlePropsCancel() {
+        this.propsStore.setPersonalDetails(false);
     }
-
 }
 
 </script>

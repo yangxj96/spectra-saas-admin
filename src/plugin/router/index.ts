@@ -8,7 +8,8 @@
 
 import {createRouter, createWebHashHistory} from 'vue-router';
 import {routes} from '@/plugin/router/routes';
-import store from "@/plugin/store";
+import {useUserStore} from "@/plugin/store/user";
+
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -28,7 +29,7 @@ router.beforeEach(async (to, from, next) => {
         document.title = String(to.meta.title);
     }
     // 判断token
-    let token = store.getters['user/token'];
+    let token = useUserStore().getToken;
     if (token === '' && to.path !== '/Login') {
         next({
             path: '/Login'

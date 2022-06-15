@@ -3,7 +3,7 @@ import App from './App.vue';
 // 路由
 import router from './plugin/router';
 // 状态
-import store, {key} from './plugin/store/index';
+import {createPinia} from "pinia";
 // 事件
 import 'default-passive-events';
 // element
@@ -29,7 +29,7 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 app.config.globalProperties.$message = ElMessage;
 
 app.use(AuthDirective)
-    .use(store, key)
+    .use(createPinia())
     .use(router)
     .use(ElementPlus, {local: zhCn})
     // 挂在入组件
