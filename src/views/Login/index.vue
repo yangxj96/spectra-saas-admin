@@ -36,12 +36,12 @@
 
 import {Options, Vue} from "vue-property-decorator";
 import {MessageDefaultConfig} from "@/utils/DefaultConfig";
-import {useUserStore} from "@/plugin/store/user";
+import useStore from '@/plugin/store/index';
 
 @Options({})
 export default class Login extends Vue {
 
-    public store = useUserStore();
+    public userStore = useStore().user;
 
     // 登录事件处理
     public handleLogin() {
@@ -49,7 +49,7 @@ export default class Login extends Vue {
             ...MessageDefaultConfig,
             message: '测试',
             onClose: () => {
-                this.store.setToken('token');
+                this.userStore.setToken('token');
                 this.$router.push({path: '/'});
             }
         })

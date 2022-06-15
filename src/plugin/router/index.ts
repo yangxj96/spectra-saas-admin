@@ -1,15 +1,6 @@
-/*
- * Copyright (c) 2021.
- * 作者：杨新杰(Jack Young)
- * 邮箱：yangxj96@gmail.com
- * 日期：2021-11-28 02:57:27
- * Copyright (c) 2021.
- */
-
 import {createRouter, createWebHashHistory} from 'vue-router';
 import {routes} from '@/plugin/router/routes';
-import {useUserStore} from "@/plugin/store/user";
-
+import useStore from "@/plugin/store/index";
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -29,7 +20,7 @@ router.beforeEach(async (to, from, next) => {
         document.title = String(to.meta.title);
     }
     // 判断token
-    let token = useUserStore().getToken;
+    let token = useStore().user.getToken;
     if (token === '' && to.path !== '/Login') {
         next({
             path: '/Login'

@@ -61,18 +61,21 @@
 
 <script lang="ts">
 
-import {Vue, Options, Watch} from "vue-property-decorator";
+import {Vue, Options} from "vue-property-decorator";
+import useStore, {equalsKey} from '@/plugin/store/index';
 
 @Options({})
 export default class LayoutSidebar extends Vue {
 
     public unfold: boolean = true;
 
-    // @Watch("$store.state.system.sidebar_unfold", {immediate: true})
-    // public watchSidebarUnfold(nv: boolean) {
-    //     this.unfold = nv;
-    // }
-
+    public created(){
+        useStore().system.$subscribe((mutation, state)=>{
+            if (equalsKey('sidebar_unfold', mutation)){
+               this.unfold = state.sidebar_unfold;
+            }
+        })
+    }
 }
 
 </script>

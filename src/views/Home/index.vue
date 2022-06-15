@@ -18,3 +18,4 @@ export default class Home extends Vue {
 <style scoped>
 
 </style>
+

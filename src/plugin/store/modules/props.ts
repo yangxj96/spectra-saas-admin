@@ -1,6 +1,6 @@
 import {defineStore} from "pinia";
 
-export const usePropsStore = defineStore('props', {
+const usePropsStore = defineStore('props', {
     state() {
         return {
             personal_details: false,
@@ -15,14 +15,16 @@ export const usePropsStore = defineStore('props', {
         setPersonalDetails(val: boolean) {
             this.personal_details = val;
         },
-        togglePersonal(){
+        togglePersonal() {
             this.personal_details = !this.personal_details;
         },
         setChangePassword(val: boolean) {
             this.change_password = val;
         },
-        toggleChangePassword(){
+        toggleChangePassword() {
             this.change_password = !this.change_password;
         }
     }
 })
+
+export default usePropsStore;

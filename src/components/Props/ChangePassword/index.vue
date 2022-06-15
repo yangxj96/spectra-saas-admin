@@ -23,12 +23,12 @@
 
 <script lang="ts">
 import {Vue, Options} from "vue-property-decorator";
-import {usePropsStore} from "@/plugin/store/props";
+import useStore, {equalsKey} from '@/plugin/store/index'
 
 @Options({})
 export default class ChangePassword extends Vue {
 
-    public propsStore = usePropsStore();
+    public propsStore = useStore().props;
 
     public isShow = this.propsStore.getChangePassword;
 
@@ -52,7 +52,7 @@ export default class ChangePassword extends Vue {
 
     public created() {
         this.propsStore.$subscribe((mutation, state) => {
-            if ((Array.isArray(mutation.events) ? mutation.events[0] : mutation.events).key === 'change_password'){
+            if (equalsKey('change_password', mutation)) {
                 this.isShow = state.change_password;
             }
         });

@@ -1,9 +1,11 @@
 import {defineStore} from "pinia";
 
-export const useAppStore = defineStore('app', {
+const useAppStore = defineStore('app', {
     state() {
         return{
             lang:'zh-cn'
         }
     }
 })
+
+export default useAppStore;

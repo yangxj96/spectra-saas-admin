@@ -37,7 +37,7 @@
 import PersonalDetails from "@/components/Props/PersonalDetails/index.vue";
 import ChangePassword from "@/components/Props/ChangePassword/index.vue";
 import {ElMessage} from 'element-plus';
-import {usePropsStore} from "@/plugin/store/props";
+import useStore from "@/plugin/store/index";
 
 import {Vue, Options} from "vue-property-decorator";
 
@@ -46,7 +46,7 @@ import {Vue, Options} from "vue-property-decorator";
 })
 export default class LayoutNavbar extends Vue {
 
-    public propsStore = usePropsStore();
+    public propsStore = useStore().props;
 
     /** 打开个人信息弹框 **/
     public handlePersonalPopup() {

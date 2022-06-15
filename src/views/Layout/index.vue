@@ -51,14 +51,14 @@
 import Navbar from "@/views/Layout/components/navbar/index.vue";
 import Sidebar from "@/views/Layout/components/sidebar/index.vue";
 import {Options, Vue} from "vue-property-decorator";
-import {useSystemStore} from "@/plugin/store/system";
+import useStore from "@/plugin/store/index";
 
 @Options({
     components: {Navbar, Sidebar}
 })
 export default class Layout extends Vue {
 
-    public systemStore = useSystemStore();
+    public systemStore = useStore().system;
 
     public created() {
     }

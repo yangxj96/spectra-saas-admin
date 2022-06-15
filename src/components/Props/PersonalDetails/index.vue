@@ -29,12 +29,12 @@
 
 <script lang="ts">
 import {Options, Vue} from "vue-property-decorator";
-import {usePropsStore} from "@/plugin/store/props";
+import useStore, {equalsKey} from "@/plugin/store/index";
 
 @Options({})
 export default class PersonalDetails extends Vue {
 
-    public propsStore = usePropsStore();
+    public propsStore = useStore().props;
 
     public isShow = false;
 
@@ -51,7 +51,7 @@ export default class PersonalDetails extends Vue {
              *
              * */
             // 我们就可以在此处监听store中值的变化，当变化为某个值的时候，去做一些业务操作之类的
-            if ((Array.isArray(mutation.events) ? mutation.events[0] : mutation.events).key === 'personal_details') {
+            if (equalsKey('personal_details', mutation)) {
                 this.isShow = state.personal_details;
             }
         });

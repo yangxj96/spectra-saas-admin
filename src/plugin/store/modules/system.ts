@@ -1,6 +1,6 @@
 import {defineStore} from "pinia";
 
-export const useSystemStore = defineStore('system', {
+const useSystemStore = defineStore('system', {
     state() {
         return {
             // 左侧菜单是否展开
@@ -16,3 +16,5 @@ export const useSystemStore = defineStore('system', {
         }
     }
 })
+
+export default useSystemStore;
