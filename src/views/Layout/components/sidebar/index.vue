@@ -1,7 +1,7 @@
 <template>
     <el-menu :router="true"
              :default-active="$route.path"
-             :collapse="!this.unfold"
+             :collapse="!unfold"
              class="box-menu"
              :collapse-transition="true"
              :unique-opened="true"

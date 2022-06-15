@@ -1,5 +1,5 @@
 <template>
-    <el-dialog v-model="this.is_show" title="我是标题" width="30%">
+    <el-dialog v-model="is_show" title="我是标题" width="30%">
     <span>
         It should be noted that the content will not be aligned in center bydefault
     </span>
