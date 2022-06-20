@@ -17,6 +17,7 @@ export default class App extends Vue {
     public messageDefaultConfig = {
         duration: 500,
     }
+
 }
 
 </script>
