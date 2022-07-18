@@ -6,9 +6,10 @@
  * Copyright (c) 2021.
  */
 
-import axios from "axios";
+import axios, {AxiosRequestConfig, AxiosResponse} from "axios";
 import {hideLoading, showLoading} from "@/plugin/element/loading";
-import IResult from "@/entity/IResult";
+import {ElMessage} from "element-plus/es";
+import {MessageDefaultConfig} from "@/utils/DefaultConfig";
 
 const http = axios.create({
     baseURL: import.meta.env.BASE_URL,
@@ -19,10 +20,15 @@ const http = axios.create({
     }
 });
 
+export interface IResult {
+    code: number,
+    message: string,
+    data?: any
+}
 
 // 请求拦截器
 http.interceptors.request.use(
-    config => {
+    (config: AxiosRequestConfig) => {
         showLoading();
         return config;
     },
@@ -34,13 +40,17 @@ http.interceptors.request.use(
 
 // 响应拦截器
 http.interceptors.response.use(
-    response => {
+    (response: AxiosResponse<IResult>) => {
         hideLoading();
-
         return response.data;
     },
     error => {
         hideLoading();
+        ElMessage.success({
+            ...MessageDefaultConfig,
+            type: 'error',
+            message: error.message
+        })
         return Promise.reject(error);
     }
 )

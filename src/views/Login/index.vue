@@ -13,12 +13,12 @@
                 </p>
             </template>
             <div>
-                <el-form label-width="60px">
-                    <el-form-item label="用户名">
-                        <el-input/>
+                <el-form label-width="60px" :model="user">
+                    <el-form-item label="账号">
+                        <el-input v-model="user.username" placeholder="请输入账号"/>
                     </el-form-item>
                     <el-form-item label="密码">
-                        <el-input/>
+                        <el-input v-model="user.password" placeholder="请输入密码" show-password/>
                     </el-form-item>
                 </el-form>
             </div>
@@ -37,23 +37,39 @@
 import {Options, Vue} from "vue-property-decorator";
 import {MessageDefaultConfig} from "@/utils/DefaultConfig";
 import useStore from '@/plugin/store/index';
+import UserApi from "@/api/UserApi";
+import {Token} from "@/plugin/store/modules/user";
 
 @Options({})
 export default class Login extends Vue {
 
     public userStore = useStore().user;
 
+    public user: User = {
+        username: '',
+        password: ''
+    }
+
     // 登录事件处理
     public handleLogin() {
-        this.$message.success({
-            ...MessageDefaultConfig,
-            message: '测试',
-            onClose: () => {
-                this.userStore.setToken('token');
-                this.$router.push({path: '/'});
-            }
+        UserApi.login(this.user.username, this.user.password).then((r: any) => {
+            let res = r as Token;
+            console.log(`access_token:${res.access_token}`);
+            this.$message.success({
+                ...MessageDefaultConfig,
+                message: '测试',
+                onClose: () => {
+                    this.userStore.setToken(r);
+                    this.$router.push({path: '/'});
+                }
+            })
         })
     }
+}
+
+interface User {
+    username: string,
+    password: string
 }
 
 </script>

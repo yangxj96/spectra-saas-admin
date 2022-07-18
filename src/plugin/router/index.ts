@@ -21,7 +21,7 @@ router.beforeEach(async (to, from, next) => {
     }
     // 判断token
     let token = useStore().user.getToken;
-    if (token === '' && to.path !== '/Login') {
+    if (token.access_token === undefined && to.path !== '/Login') {
         next({
             path: '/Login'
         });
