@@ -13,17 +13,17 @@
                 </p>
             </template>
             <div>
-                <el-form label-width="60px" :model="user">
-                    <el-form-item label="账号">
+                <el-form ref="ruleFormRef" label-width="60px" :model="user" :rules="rules">
+                    <el-form-item label="账号" prop="username">
                         <el-input v-model="user.username" placeholder="请输入账号"/>
                     </el-form-item>
-                    <el-form-item label="密码">
+                    <el-form-item label="密码" prop="password">
                         <el-input v-model="user.password" placeholder="请输入密码" show-password/>
                     </el-form-item>
                 </el-form>
             </div>
             <template #footer>
-                <el-button type="primary" @click="handleLogin">
+                <el-button type="primary" @click="handleLogin(ruleFormRef)">
                     <icon-font :icon-href="'icon-login-btn'"/>
                     登录
                 </el-button>
@@ -39,6 +39,8 @@ import {MessageDefaultConfig} from "@/utils/DefaultConfig";
 import useStore from '@/plugin/store/index';
 import UserApi from "@/api/UserApi";
 import {Token} from "@/plugin/store/modules/user";
+import {reactive, ref} from "vue";
+import type {FormInstance, FormRules} from "element-plus";
 
 @Options({})
 export default class Login extends Vue {
@@ -50,20 +52,45 @@ export default class Login extends Vue {
         password: ''
     }
 
+    // 名字需要对应表单上的ref
+    public ruleFormRef = ref<FormInstance>();
+
+    // 表单检查规则
+    public rules = reactive<FormRules>({
+        username: [
+            {required: true, message: '请输入用户名', trigger: 'blur'}
+        ],
+        password: [
+            {required: true, message: '请输入密码', trigger: 'blur'}
+        ]
+    });
+
     // 登录事件处理
-    public handleLogin() {
-        UserApi.login(this.user.username, this.user.password).then((r: any) => {
-            let res = r as Token;
-            console.log(`access_token:${res.access_token}`);
-            this.$message.success({
-                ...MessageDefaultConfig,
-                message: '测试',
-                onClose: () => {
-                    this.userStore.setToken(r);
-                    this.$router.push({path: '/'});
-                }
-            })
-        })
+    public async handleLogin(formEl: FormInstance | undefined) {
+        if (!formEl) {
+            return;
+        }
+        await formEl.validate((valid, fields) => {
+            if (valid) {
+                UserApi.login(this.user.username, this.user.password).then((r: any) => {
+                    let res = r as Token;
+                    let msg = res ? '登录成功' : '登录失败';
+                    this.$message.success({
+                        ...MessageDefaultConfig,
+                        message: msg,
+                        onClose: () => {
+                            this.userStore.setToken(r);
+                            this.$router.push({path: '/'});
+                        }
+                    })
+                });
+            } else {
+                this.$message.error({
+                    ...MessageDefaultConfig,
+                    message: '请检查输入'
+                })
+            }
+        });
     }
 }
 
