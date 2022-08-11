@@ -1,19 +1,19 @@
 <template>
-    <el-row style="height: 5%">
+    <el-row style="height: 50px">
         <el-form :inline="true" :model="condition">
             <el-form-item label="用户名">
                 <el-input v-model="condition.username" placeholder="请输入用户名" clearable/>
             </el-form-item>
             <el-form-item label="组织机构">
                 <el-select v-model="condition.org_id" placeholder="请选择组织机构" clearable>
-                    <el-option label="云南省" value="云南省" />
-                    <el-option label="保山市" value="保山市" />
+                    <el-option label="云南省" value="云南省"/>
+                    <el-option label="保山市" value="保山市"/>
                 </el-select>
             </el-form-item>
             <el-form-item label="启用状态">
                 <el-select v-model="condition.enable" placeholder="请选择启用状态" clearable>
-                    <el-option label="启用"  :value="true" />
-                    <el-option label="禁用"  :value="false"/>
+                    <el-option label="启用" :value="true"/>
+                    <el-option label="禁用" :value="false"/>
                 </el-select>
             </el-form-item>
             <el-form-item>
@@ -24,7 +24,7 @@
         </el-form>
     </el-row>
 
-    <el-row style="height: 87%">
+    <el-row style="height: calc(100% - 100px)">
         <!-- @formatter:off -->
         <el-table :data="table_data" stripe border  height="100%" style="width: 100%">
             <el-table-column label="ID"        prop="id" width="140"/>
@@ -49,7 +49,7 @@
         <!-- @formatter:on -->
     </el-row>
 
-    <el-row style="float: right;height: 8%">
+    <el-row style="float: right;height: 50px">
         <el-pagination
             v-model:currentPage="pagination.page"
             hide-on-single-page
@@ -68,18 +68,18 @@
 
 import {Options, mixins} from "vue-property-decorator";
 import table from "@/mixins/Table";
+import UserApi from "@/api/UserApi";
 
-// 分页参数实体
+// 表单实体接口
 interface TableData {
-    id : number,
+    id: number,
     username: string,
     password: string,
     org_name: string,
     last_login_time: string,
     last_login_ip: string,
-    enable  : boolean,
+    enable: boolean,
 }
-
 
 @Options({})
 export default class User extends mixins(table<TableData>) {
@@ -87,22 +87,14 @@ export default class User extends mixins(table<TableData>) {
     // 搜索条件
     public condition = {
         username: '',
-        org_id  : '云南省',
-        enable  : true
+        org_id: undefined,
+        enable: undefined
     }
 
-    public created() {
-        for (let i = 0; i < 13; i++) {
-            this.table_data.push({
-                id : 1000000000000 + i,
-                username: 'username' + i,
-                password: 'password' + i,
-                org_name: '我是组织' + i,
-                last_login_time: '2022-8-12 00:36:05',
-                last_login_ip: '127.0.0.' + i,
-                enable  : true
-            })
-        }
+    public mounted() {
+        UserApi.getUserList().then((r: any) => {
+            this.table_data = r;
+        })
     }
 
 }

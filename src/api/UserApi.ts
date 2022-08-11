@@ -1,15 +1,14 @@
-import request, {IResult} from "@/plugin/request";
+import request from "@/plugin/request";
 
 export default {
     login(username: string, password: string) {
         return request.post('/api/auth/login', {
             username: username,
             password: password
-        }).then((r: any) => {
-            let res = r as IResult;
-            if (res.code == 0) {
-                return r.data;
-            }
-        })
+        });
+    },
+    // 获取用户列表
+    getUserList() {
+        return request.get(`/api/user/getUserList`);
     }
 }

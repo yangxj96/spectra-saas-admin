@@ -17,7 +17,6 @@ export default class Home extends Vue {
     private echartsObj: any;
 
     public mounted() {
-        console.log('ref:', this.echartsBox);
         this.echartsObj = echarts.init(this.echartsBox);
         let option = {
             graphic: {

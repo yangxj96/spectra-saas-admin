@@ -42,7 +42,15 @@ http.interceptors.request.use(
 http.interceptors.response.use(
     (response: AxiosResponse<IResult>) => {
         hideLoading();
-        return response.data;
+        if (response.status >= 200 && response.status < 300 && response.data.code == 0) {
+            return response.data.data;
+        } else {
+            ElMessage.success({
+                ...MessageDefaultConfig,
+                type: 'error',
+                message: response.data.message
+            })
+        }
     },
     error => {
         hideLoading();
