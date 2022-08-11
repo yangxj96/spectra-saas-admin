@@ -14,7 +14,8 @@ const useSystemStore = defineStore('system', {
         setSidebarUnfold() {
             this.sidebar_unfold = !this.sidebar_unfold;
         }
-    }
+    },
+    persist: true
 })
 
 export default useSystemStore;

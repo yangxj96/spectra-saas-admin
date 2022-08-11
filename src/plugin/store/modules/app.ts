@@ -5,7 +5,8 @@ const useAppStore = defineStore('app', {
         return{
             lang:'zh-cn'
         }
-    }
+    },
+    persist: true
 })
 
 export default useAppStore;

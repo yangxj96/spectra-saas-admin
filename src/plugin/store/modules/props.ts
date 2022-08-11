@@ -24,7 +24,8 @@ const usePropsStore = defineStore('props', {
         toggleChangePassword() {
             this.change_password = !this.change_password;
         }
-    }
+    },
+    persist: true
 })
 
 export default usePropsStore;

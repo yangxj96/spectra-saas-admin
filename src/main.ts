@@ -4,6 +4,7 @@ import App from './App.vue';
 import router from './plugin/router';
 // 状态
 import {createPinia} from "pinia";
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 // 事件
 import 'default-passive-events';
 // element
@@ -37,8 +38,11 @@ Vue.component("IconFont",iconFont);
 // 注册指令
 Vue.directive("auth",AuthDirective);
 
+const store = createPinia();
+store.use(piniaPluginPersistedstate)
+
 app
-    .use(createPinia())
+    .use(store)
     .use(router)
     .use(ElementPlus, {local: zhCn})
     .mixin(GlobalMixinDemo)

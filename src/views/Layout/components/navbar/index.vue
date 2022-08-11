@@ -65,7 +65,7 @@ export default class LayoutNavbar extends Vue {
             duration: 500,
             onClose() {
                 // 清空storage后强制刷新下,防止缓存
-                window.sessionStorage.clear();
+                window.localStorage.clear();
                 location.reload();
             }
         })
