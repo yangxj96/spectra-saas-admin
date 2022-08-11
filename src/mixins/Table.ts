@@ -6,7 +6,7 @@ export default class Table<T> extends Vue {
     /**
      * 表单数据
      */
-    public table_data: Array<T> = [];
+    public table_data: T[] = [];
 
     /**
      * 分页数据

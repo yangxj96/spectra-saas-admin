@@ -62,10 +62,6 @@ export default class Role extends Vue {
         }
     ]
 
-    created() {
-    }
-
-
     // 处理角色新增
     public handleCreateRole() {
         let el: any = this.$refs.group_tree;

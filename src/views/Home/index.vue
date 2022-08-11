@@ -70,10 +70,6 @@ export default class Home extends Vue {
         this.echartsObj.setOption(option)
     }
 
-    public click() {
-        console.log(this.echartsBox)
-    }
-
 }
 </script>
 
