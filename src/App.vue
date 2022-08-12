@@ -18,6 +18,10 @@ export default class App extends Vue {
         duration: 500,
     }
 
+    created(){
+    }
+
+
 }
 
 </script>

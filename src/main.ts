@@ -3,12 +3,12 @@ import App from './App.vue';
 // 路由
 import router from './plugin/router';
 // 状态
-import {createPinia} from "pinia";
-import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
+import {createStore} from "@/plugin/store";
+
 // 事件
 import 'default-passive-events';
 // element
-import ElementPlus, {ElMessage} from 'element-plus';
+import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
@@ -27,22 +27,18 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
 }
 
-app.config.globalProperties.$message = ElMessage;
-
 // 以下用到Vue的地方是为能让Webstorm能自动识别我们的vue组件之类的
 const Vue = app;
 
 // 注册组件
-Vue.component("IconFont",iconFont);
+Vue.component("IconFont", iconFont);
 
 // 注册指令
-Vue.directive("auth",AuthDirective);
+Vue.directive("auth", AuthDirective);
 
-const store = createPinia();
-store.use(piniaPluginPersistedstate)
 
 app
-    .use(store)
+    .use(createStore())
     .use(router)
     .use(ElementPlus, {local: zhCn})
     .mixin(GlobalMixinDemo)
