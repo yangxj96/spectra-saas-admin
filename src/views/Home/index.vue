@@ -69,6 +69,12 @@ export default class Home extends Vue {
         this.echartsObj.setOption(option)
     }
 
+
+    public unmounted(){
+        console.log('销毁echarts');
+        this.echartsObj.dispose();
+    }
+
 }
 </script>
 
