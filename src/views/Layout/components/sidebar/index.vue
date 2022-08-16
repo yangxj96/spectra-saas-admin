@@ -59,24 +59,22 @@
     </el-menu>
 </template>
 
-<script lang="ts">
-
-import {Vue, Options} from "vue-property-decorator";
+<script setup lang="ts">
 import useStore, {equalsKey} from '@/plugin/store/index';
+import {onMounted} from "vue";
 
-@Options({})
-export default class LayoutSidebar extends Vue {
+let unfold = true;
 
-    public unfold: boolean = true;
-
-    public created(){
-        useStore().system.$subscribe((mutation, state)=>{
-            if (equalsKey('sidebar_unfold', mutation)){
-               this.unfold = state.sidebar_unfold;
-            }
-        })
-    }
-}
+onMounted(() => {
+    // 赋值
+    unfold = useStore().system.getSidebarUnfold;
+    // 订阅
+    useStore().system.$subscribe((mutation, state) => {
+        if (equalsKey('sidebar_unfold', mutation)) {
+            unfold = state.sidebar_unfold;
+        }
+    })
+})
 
 </script>
 

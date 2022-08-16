@@ -32,66 +32,60 @@
     </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 
-import {Options, Vue} from "vue-property-decorator";
-import {MessageDefaultConfig} from "@/utils/DefaultConfig";
-import useStore from '@/plugin/store/index';
+import {ref, reactive, getCurrentInstance} from "vue";
+import useStore from "@/plugin/store";
+import type {FormInstance, FormRules} from "element-plus";
 import UserApi from "@/api/UserApi";
 import {Token} from "@/plugin/store/modules/user";
-import {reactive, ref} from "vue";
-import type {FormInstance, FormRules} from "element-plus";
+import {MessageDefaultConfig} from "@/utils/DefaultConfig";
 
-@Options({})
-export default class Login extends Vue {
+const userStore = useStore().user;
 
-    public userStore = useStore().user;
+const {proxy} = getCurrentInstance() as any;
 
-    public user: User = {
-        username: '',
-        password: ''
+let user: User = {
+    username: '',
+    password: ''
+}
+
+let ruleFormRef = ref<FormInstance>();
+
+let rules = reactive<FormRules>({
+    username: [
+        {required: true, message: '请输入用户名', trigger: 'blur'}
+    ],
+    password: [
+        {required: true, message: '请输入密码', trigger: 'blur'}
+    ]
+});
+
+async function handleLogin(formEl: FormInstance | undefined) {
+    if (!formEl) {
+        return;
     }
-
-    // 名字需要对应表单上的ref
-    public ruleFormRef = ref<FormInstance>();
-
-    // 表单检查规则
-    public rules = reactive<FormRules>({
-        username: [
-            {required: true, message: '请输入用户名', trigger: 'blur'}
-        ],
-        password: [
-            {required: true, message: '请输入密码', trigger: 'blur'}
-        ]
-    });
-
-    // 登录事件处理
-    public async handleLogin(formEl: FormInstance | undefined) {
-        if (!formEl) {
-            return;
-        }
-        await formEl.validate((valid, fields) => {
-            if (valid) {
-                UserApi.login(this.user.username, this.user.password).then((r: any) => {
-                    let res = r as Token;
-                    let msg = res ? '登录成功' : '登录失败';
-                    this.$message.success({
-                        ...MessageDefaultConfig,
-                        message: msg,
-                        onClose: () => {
-                            this.userStore.setToken(r);
-                            this.$router.push({path: '/'});
-                        }
-                    })
-                });
-            } else {
-                this.$message.error({
+    await formEl.validate((valid, fields) => {
+        if (valid) {
+            UserApi.login(user.username, user.password).then((r: any) => {
+                let res = r as Token;
+                let msg = res ? '登录成功' : '登录失败';
+                proxy.$message.success({
                     ...MessageDefaultConfig,
-                    message: '请检查输入'
+                    message: msg,
+                    onClose: () => {
+                        userStore.setToken(r);
+                        proxy.$router.push({path: '/'});
+                    }
                 })
-            }
-        });
-    }
+            });
+        } else {
+            proxy.$message.error({
+                ...MessageDefaultConfig,
+                message: '请检查输入'
+            })
+        }
+    });
 }
 
 interface User {

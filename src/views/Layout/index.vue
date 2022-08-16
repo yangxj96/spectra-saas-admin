@@ -21,7 +21,8 @@
                             </el-icon>
                         </i>
                         <el-breadcrumb separator-class="el-icon-arrow-right">
-                            <el-breadcrumb-item v-for="(item,idx) in $router.currentRoute.value.matched" :key="idx" :to="{path: item.path}">
+                            <el-breadcrumb-item v-for="(item,idx) in $router.currentRoute.value.matched" :key="idx"
+                                                :to="{path: item.path}">
                                 {{ item.name }}
                             </el-breadcrumb-item>
                         </el-breadcrumb>
@@ -48,21 +49,22 @@
 
 <script lang="ts">
 
+import {defineComponent} from "vue";
 import Navbar from "@/views/Layout/components/navbar/index.vue";
 import Sidebar from "@/views/Layout/components/sidebar/index.vue";
-import {Options, Vue} from "vue-property-decorator";
 import useStore from "@/plugin/store/index";
 
-@Options({
-    components: {Navbar, Sidebar}
-})
-export default class Layout extends Vue {
-
-    public systemStore = useStore().system;
-
-    public created() {
+export default defineComponent({
+    name: 'layout-index',
+    components: {
+        Navbar, Sidebar
+    },
+    data() {
+        return {
+            systemStore: useStore().system
+        }
     }
-}
+})
 
 </script>
 

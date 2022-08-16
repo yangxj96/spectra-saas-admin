@@ -32,44 +32,34 @@
     <change-password/>
 </template>
 
-<script lang="ts">
-
+<script setup lang="ts">
 import PersonalDetails from "@/components/Props/PersonalDetails/index.vue";
 import ChangePassword from "@/components/Props/ChangePassword/index.vue";
-import {ElMessage} from 'element-plus';
-import useStore from "@/plugin/store/index";
+import useStore from "@/plugin/store";
+import {getCurrentInstance} from "vue";
 
-import {Vue, Options} from "vue-property-decorator";
+const propsStore = useStore().props;
 
-@Options({
-    components: {PersonalDetails, ChangePassword}
-})
-export default class LayoutNavbar extends Vue {
+// 打开个人信息弹框
+function handlePersonalPopup(){
+    propsStore.setPersonalDetails(true);
+}
 
-    public propsStore = useStore().props;
+// 打开修改密码信息弹框
+function handleModifyPasswordPopup(){
+    propsStore.setChangePassword(true);
+}
 
-    /** 打开个人信息弹框 **/
-    public handlePersonalPopup() {
-        this.propsStore.setPersonalDetails(true);
-    }
-
-    /** 打开修改密码信息弹框 **/
-    public handleModifyPasswordPopup() {
-        this.propsStore.setChangePassword(true);
-    }
-
-    /** 处理用户登出消息 **/
-    public handleUserLogout() {
-        ElMessage.success({
-            message: '登出成功',
-            duration: 500,
-            onClose() {
-                // 清空storage后强制刷新下,防止缓存
-                window.localStorage.clear();
-                location.reload();
-            }
-        })
-    }
+// 处理用户登出消息
+function handleUserLogout(){
+    getCurrentInstance()?.proxy?.$message.success({
+        message: '登出成功',
+        duration: 500,
+        onClose(){
+            window.localStorage.clear();
+            location.reload();
+        }
+    })
 }
 
 </script>

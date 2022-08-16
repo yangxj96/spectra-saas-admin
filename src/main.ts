@@ -9,6 +9,7 @@ import {createStore} from "@/plugin/store";
 import 'default-passive-events';
 // element
 import ElementPlus from 'element-plus';
+import type {ElMessage, ElNotification, ElMessageBox, ElLoadingService} from "element-plus";
 import 'element-plus/dist/index.css';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
@@ -43,3 +44,18 @@ app
     .use(ElementPlus, {local: zhCn})
     .mixin(GlobalMixinDemo)
     .mount('#app');
+
+
+declare module '@vue/runtime-core' {
+
+    export interface ComponentCustomProperties {
+        $message: typeof ElMessage
+        $notify: typeof ElNotification
+        $msgbox: typeof ElMessageBox
+        $messageBox: typeof ElMessageBox
+        $alert: typeof ElMessageBox.alert
+        $confirm: typeof ElMessageBox.confirm
+        $prompt: typeof ElMessageBox.prompt
+        $loading: typeof ElLoadingService
+    }
+}

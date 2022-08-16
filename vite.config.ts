@@ -1,4 +1,4 @@
-import {UserConfigExport, ConfigEnv, defineConfig} from 'vite'
+import {ConfigEnv, UserConfigExport} from 'vite'
 import {viteMockServe} from "vite-plugin-mock";
 import vue from '@vitejs/plugin-vue'
 import * as path from "path";
