@@ -8,22 +8,19 @@
 </template>
 
 <script lang="ts">
-// "vue-class-component": "8.0.0-rc.1",
-// "vue-property-decorator": "10.0.0-rc.3",
-import {Options, Vue} from "vue-property-decorator";
 
-@Options({})
-export default class App extends Vue {
+import {defineComponent} from "vue";
 
-    public messageDefaultConfig = {
-        duration: 500,
+export default defineComponent({
+    name: 'app',
+    data() {
+        return {
+            messageDefaultConfig: {
+                duration: 500,
+            }
+        }
     }
-
-    created(){
-    }
-
-
-}
+})
 
 </script>
 

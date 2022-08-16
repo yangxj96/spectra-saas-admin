@@ -66,9 +66,30 @@
 
 <script lang="ts">
 
-import {Options, mixins} from "vue-property-decorator";
-import table from "@/mixins/Table";
+import {defineComponent} from "vue";
+import Table from "@/mixins/Table";
 import UserApi from "@/api/UserApi";
+
+export default defineComponent({
+    name: 'user',
+    mixins: [Table],
+    created() {
+        UserApi.getUserList().then((r: any) => {
+            this.table_data = r;
+        })
+    },
+    data() {
+        const table_data: TableData[] = [];
+        return {
+            table_data: table_data,
+            condition: {
+                username: '',
+                org_id: undefined,
+                enable: undefined
+            }
+        }
+    }
+})
 
 // 表单实体接口
 interface TableData {
@@ -81,25 +102,8 @@ interface TableData {
     enable: boolean,
 }
 
-@Options({})
-export default class User extends mixins(table<TableData>) {
-
-    // 搜索条件
-    public condition = {
-        username: '',
-        org_id: undefined,
-        enable: undefined
-    }
-
-    public mounted() {
-        UserApi.getUserList().then((r: any) => {
-            this.table_data = r;
-        })
-    }
-
-}
-
 </script>
+
 
 <style scoped>
 

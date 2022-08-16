@@ -41,22 +41,17 @@
 <script lang="ts">
 
 import table from "@/mixins/Table";
+import {defineComponent} from "vue";
 import ServiceDetails from './components/details.vue';
 
-import {Options, mixins} from "vue-property-decorator";
 
-@Options({
+export default defineComponent({
+    name: 'service',
     components: {
         ServiceDetails
-    }
-})
-export default class SystemService extends mixins(table) {
-
-    public detailId: string = '1';
-
-    public detailsPopupShow: boolean = false;
-
-    public created() {
+    },
+    mixins: [table],
+    created() {
         for (let i = 0; i < 17; i++) {
             this.table_data.push({
                 date: '用户服务',
@@ -64,18 +59,30 @@ export default class SystemService extends mixins(table) {
                 num: 8
             })
         }
+    },
+    data() {
+        const table_data: TableData[] = []
+        return {
+            table_data: table_data,
+            detailId: '',
+            detailsPopupShow: false
+        }
+    },
+    methods: {
+        handleShowDetails() {
+            this.detailId = '1';
+            this.detailsPopupShow = !this.detailsPopupShow;
+        },
+        handleSubmitDetails() {
+            this.detailsPopupShow = false;
+        }
     }
+})
 
-    public handleShowDetails() {
-        this.detailId = '1';
-        this.detailsPopupShow = !this.detailsPopupShow;
-    }
-
-    public handleSubmitDetails(param: any) {
-        console.log('父类接受到子类emit事件', param)
-        this.detailsPopupShow = false;
-    }
-
+interface TableData {
+    date: String,
+    name: String,
+    num: Number
 }
 
 </script>

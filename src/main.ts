@@ -14,8 +14,6 @@ import 'element-plus/dist/index.css';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 
-// 全局混入
-import GlobalMixinDemo from "@/mixins/GlobalMixinDemo";
 // 自定义指令
 import AuthDirective from "@/directive/Auth";
 // 全局字体图标
@@ -42,7 +40,6 @@ app
     .use(createStore())
     .use(router)
     .use(ElementPlus, {local: zhCn})
-    .mixin(GlobalMixinDemo)
     .mount('#app');
 
 

@@ -6,15 +6,15 @@
             </el-form-item>
             <el-form-item>
                 <el-button-group>
-                    <el-button type="primary" icon="Search"     >查询</el-button>
-                    <el-button type="primary" icon="FolderAdd"   @click="handleCreateDictGroup">新增组</el-button>
+                    <el-button type="primary" icon="Search">查询</el-button>
+                    <el-button type="primary" icon="FolderAdd" @click="handleCreateDictGroup">新增组</el-button>
                     <el-button type="primary" icon="DocumentAdd" @click="handleCreateDictItem">新增项</el-button>
                 </el-button-group>
             </el-form-item>
         </el-form>
     </el-row>
 
-    <el-divider style="margin: 0" />
+    <el-divider style="margin: 0"/>
 
     <el-row class="box-content">
         <!-- 字典组树 -->
@@ -42,7 +42,7 @@
                     </el-table-column>
                     <el-table-column label="操作" align="center">
                         <template #default="scope">
-                            <el-button text type="primary" >修改</el-button>
+                            <el-button text type="primary">修改</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -64,68 +64,68 @@
 </template>
 
 <script lang="ts">
-
-import {Options, mixins} from "vue-property-decorator";
+import {defineComponent} from "vue";
 import Table from "@/mixins/Table";
 
-@Options({})
-export default class Dict extends mixins(Table) {
-
-    // 树数据
-    private tree_data: TreeData[] = [
-        {
-            name: '人物',
-            children: [{name: '性别'}, {name: '学历'}],
+export default defineComponent({
+    name: 'dict',
+    mixins: [Table],
+    data() {
+        const tree_data: TreeData[] = [
+            {
+                name: '人物',
+                children: [{name: '性别'}, {name: '学历'}],
+            },
+            {
+                name: '层级2',
+                children: [{name: '层级2-1', children: [{name: '层级2-1-1',}]}],
+            },
+            {
+                name: '层级3',
+                children: [{name: '层级3-1', children: [{name: '层级3-1-1',}]}],
+            }
+        ];
+        const table_data: TableData[] = [];
+        return {
+            tree_data: tree_data,
+            table_data: table_data,
+        }
+    },
+    created() {
+        this.handleTableData();
+    },
+    methods: {
+        handleTableData() {
+            this.table_data = [];
+            for (let i = 0; i < 10; i++) {
+                this.table_data.push({
+                    id: '100',
+                    name: '项目1',
+                    value: '1',
+                    internal: true,
+                    enable: true
+                })
+            }
         },
-        {
-            name: '层级2',
-            children: [{name: '层级2-1', children: [{name: '层级2-1-1',}]}],
+        handleCreateDictGroup() {
+            let el: any = this.$refs.group_tree;
+            let node = el.getCurrentNode();
+            console.log(node);
+            if (node) {
+                // this.$confirm(`是否新建在${node.name}的下级`);
+                this.$confirm(`是否新建在${node.name}的下级`, '', {
+                    cancelButtonText: '取消',
+                    confirmButtonText: '确定'
+                });
+            }
         },
-        {
-            name: '层级3',
-            children: [{name: '层级3-1', children: [{name: '层级3-1-1',}]}],
-        }
-    ];
-
-    public created() {
-        this.handleTableData([]);
-    }
-
-
-    // 处理表单数据
-    public handleTableData(data: Array<TableData>) {
-        // this.table_data = data;
-        this.table_data = [];
-        for (let i = 0; i < 10; i++) {
-            this.table_data.push(
-                {id: '100', name: '项目1', value: '1', internal: true, enable: true}
-            )
+        handleCreateDictItem() {
+            this.$message.success('开发中');
         }
     }
+})
 
-    // 处理字典组新增
-    public handleCreateDictGroup(){
-        let el:any = this.$refs.group_tree;
-        let node = el.getCurrentNode();
-        console.log(node);
-        if (node){
-           // this.$confirm(`是否新建在${node.name}的下级`);
-            this.$confirm(`是否新建在${node.name}的下级`,'',{
-                cancelButtonText:'取消',
-                confirmButtonText:'确定'
-            });
-        }
-    }
-
-    // 处理字典项新增
-    public handleCreateDictItem(){
-        this.$message.success('开发中');
-    }
-}
-
-/**
- * 树结构
- */
+// 树结构
 interface TreeData {
     name: string
     children?: TreeData[]
@@ -139,7 +139,6 @@ interface TableData {
     internal: boolean,
     enable: boolean
 }
-
 
 </script>
 

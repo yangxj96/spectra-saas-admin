@@ -45,10 +45,10 @@ const userStore = useStore().user;
 
 const {proxy} = getCurrentInstance() as any;
 
-let user: User = {
+let user: User = reactive({
     username: '',
     password: ''
-}
+})
 
 let ruleFormRef = ref<FormInstance>();
 

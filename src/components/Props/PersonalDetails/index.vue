@@ -1,8 +1,7 @@
 <template>
     <el-dialog v-model="isShow" destroy-on-close title="个人信息" width="30%">
 
-        <el-avatar style="margin-left: 100px;margin-bottom: 10px"
-                   src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"/>
+        <el-avatar style="margin-left: 100px;margin-bottom: 10px" src="/img/default-avatar.png"/>
         <el-form label-width="100px" style="max-width: 460px">
             <el-form-item label="用户名">
                 <el-input value="我是用户名" :disabled="true" placeholder="请输入用户名"/>
@@ -28,40 +27,42 @@
 </template>
 
 <script lang="ts">
-import {Options, Vue} from "vue-property-decorator";
-import useStore, {equalsKey} from "@/plugin/store/index";
 
-@Options({})
-export default class PersonalDetails extends Vue {
+import {defineComponent} from "vue";
+import useStore, {equalsKey} from "@/plugin/store";
 
-    public propsStore = useStore().props;
-
-    public isShow = false;
-
-    public created() {
-        this.propsStore.$subscribe((mutation, state) => {
+export default defineComponent({
+    name: 'prop-personal-details',
+    created() {
+        useStore().props.$subscribe((mutation, state) => {
             /*
-             * mutation主要包含三个属性值：
-             *   events：当前state改变的具体数据，包括改变前的值和改变后的值等等数据
-             *   storeId：是当前store的id
-             *   type：用于记录这次数据变化是通过什么途径，主要有三个分别是
-             *         “direct” ：通过 action 变化的
-                       ”patch object“ ：通过 $patch 传递对象的方式改变的
-                       “patch function” ：通过 $patch 传递函数的方式改变的
-             *
-             * */
+            * mutation主要包含三个属性值：
+            *   events：当前state改变的具体数据，包括改变前的值和改变后的值等等数据
+            *   storeId：是当前store的id
+            *   type：用于记录这次数据变化是通过什么途径，主要有三个分别是
+            *         “direct” ：通过 action 变化的
+                      ”patch object“ ：通过 $patch 传递对象的方式改变的
+                      “patch function” ：通过 $patch 传递函数的方式改变的
+            *
+            * */
             // 我们就可以在此处监听store中值的变化，当变化为某个值的时候，去做一些业务操作之类的
             if (equalsKey('personal_details', mutation)) {
                 this.isShow = state.personal_details;
             }
-        });
+        })
+    },
+    data() {
+        return {
+            isShow: useStore().props.getPersonalDetails
+        }
+    },
+    methods: {
+        // 关闭弹窗
+        handlePropsCancel() {
+            useStore().props.setPersonalDetails(false);
+        }
     }
-
-    // 关闭弹窗
-    public handlePropsCancel() {
-        this.propsStore.setPersonalDetails(false);
-    }
-}
+})
 
 </script>
 

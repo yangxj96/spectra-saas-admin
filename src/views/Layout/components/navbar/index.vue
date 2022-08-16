@@ -39,6 +39,7 @@ import useStore from "@/plugin/store";
 import {getCurrentInstance} from "vue";
 
 const propsStore = useStore().props;
+const {proxy} = getCurrentInstance() as any;
 
 // 打开个人信息弹框
 function handlePersonalPopup(){
@@ -52,7 +53,7 @@ function handleModifyPasswordPopup(){
 
 // 处理用户登出消息
 function handleUserLogout(){
-    getCurrentInstance()?.proxy?.$message.success({
+    proxy.$message.success({
         message: '登出成功',
         duration: 500,
         onClose(){

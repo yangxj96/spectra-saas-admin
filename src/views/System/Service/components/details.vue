@@ -1,7 +1,7 @@
 <template>
-    <el-dialog v-model="is_show" title="我是标题" width="30%">
+    <el-dialog v-model="is_show" title="我是标题" width="30%" destroy-on-close>
     <span>
-        It should be noted that the content will not be aligned in center bydefault
+        It should be noted that the content will not be aligned in center default
     </span>
         <template #footer>
             <slot name="footer">
@@ -12,48 +12,48 @@
     </el-dialog>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 
-import {Vue, Options, Watch, Prop, Emit} from "vue-property-decorator";
+import {defineEmits, defineProps, watch, ref} from "vue";
 
-@Options({})
-export default class SystemServiceDetails extends Vue {
-
-    @Prop({default: ''})
-    public id!: string;
-
-    @Prop({default: false})
-    public visible!: boolean;
-
-    public is_show: boolean = false;
-
-    /** 获取数据详情 **/
-    public getServiceDetails() {
-
+const props = defineProps({
+    id: {
+        type: String,
+        default: ''
+    },
+    visible: {
+        type: Boolean,
+        default: false
     }
+})
 
-    /** 销毁当前组件 **/
-    public handleDestroyDialog() {
-        this.is_show = false;
-    }
+const emits = defineEmits(['submit'])
 
-    @Emit('submit')
-    public handleSubmit(param:any){
-        console.log('submit事件提交之前执行~');
-        param.k = 1;
-    }
+let is_show = ref(false);
 
-    @Watch('id', {immediate: true})
-    public watchId(nv: string) {
-        this.getServiceDetails();
-    }
+function handleSubmit(param: any) {
+    param.k = 1;
+    handleDestroyDialog(param);
+}
 
-    @Watch('visible')
-    public watchVisible(nv: boolean) {
-        this.is_show = nv;
-    }
+function getServiceDetails() {
 
 }
+
+// 销毁当前组件
+function handleDestroyDialog(param: any) {
+    emits('submit', param);
+}
+
+///////////// 属性监听
+watch(() => props.id, (value, oldValue, onCleanup) => {
+    getServiceDetails();
+})
+
+watch(() => props.visible, (value, oldValue, onCleanup) => {
+    is_show.value = value;
+})
+
 
 </script>
 

@@ -32,53 +32,51 @@
 </template>
 
 <script lang="ts">
+import {defineComponent} from "vue";
 
-import {Options, Vue} from "vue-property-decorator";
-
-@Options({})
-export default class Role extends Vue {
-
-    // 树数据
-    private tree_data: TreeData[] = [
-        {
-            name: '管理员',
-            children: [{name: '子管理员1'}, {name: '子管理员2'}],
+export default defineComponent({
+    data() {
+        const tree_data: TreeData[] = [
+            {
+                name: '管理员',
+                children: [{name: '子管理员1'}, {name: '子管理员2'}],
+            }
+        ];
+        const authority_data: TreeData[] = [
+            {
+                name: '人员管理',
+                children: [{name: '新增'}, {name: '修改'}, {name: '删除'}, {name: '查询'}],
+            },
+            {
+                name: '组织机构管理',
+                children: [{name: '新增'}, {name: '修改'}, {name: '删除'}, {name: '查询'}],
+            },
+            {
+                name: '菜单管理',
+                children: [{name: '新增'}, {name: '修改'}, {name: '删除'}, {name: '查询'}],
+            }
+        ]
+        return {
+            tree_data: tree_data,
+            authority_data: authority_data
         }
-    ];
-
-    // 权限列表
-    private authority_data: TreeData[] = [
-        {
-            name: '人员管理',
-            children: [{name: '新增'}, {name: '修改'}, {name: '删除'}, {name: '查询'}],
-        },
-        {
-            name: '组织机构管理',
-            children: [{name: '新增'}, {name: '修改'}, {name: '删除'}, {name: '查询'}],
-        },
-        {
-            name: '菜单管理',
-            children: [{name: '新增'}, {name: '修改'}, {name: '删除'}, {name: '查询'}],
-        }
-    ]
-
-    // 处理角色新增
-    public handleCreateRole() {
-        let el: any = this.$refs.group_tree;
-        let node = el.getCurrentNode();
-        if (node) {
-            this.$confirm(`是否新建在<<${node.name}>>的下级`, '', {
-                cancelButtonText: '否',
-                confirmButtonText: '是'
-            });
+    },
+    methods: {
+        // 处理角色新增
+        handleCreateRole() {
+            let el: any = this.$refs.group_tree;
+            let node = el.getCurrentNode();
+            if (node) {
+                this.$confirm(`是否新建在<<${node.name}>>的下级`, '', {
+                    cancelButtonText: '否',
+                    confirmButtonText: '是'
+                });
+            }
         }
     }
+})
 
-}
-
-/**
- * 树结构
- */
+// 树结构
 interface TreeData {
     name: string
     children?: TreeData[]
@@ -93,8 +91,8 @@ interface TableData {
     enable: boolean
 }
 
-
 </script>
+
 
 <style scoped lang="scss">
 

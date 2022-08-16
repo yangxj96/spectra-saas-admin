@@ -22,48 +22,46 @@
 </template>
 
 <script lang="ts">
-import {Vue, Options} from "vue-property-decorator";
-import useStore, {equalsKey} from '@/plugin/store/index'
 
-@Options({})
-export default class ChangePassword extends Vue {
+import {defineComponent} from "vue";
+import useStore, {equalsKey} from "@/plugin/store";
 
-    public propsStore = useStore().props;
-
-    public isShow = this.propsStore.getChangePassword;
-
-    public form: any = {
-        old_password: '',
-        new_password: '',
-        verify_password: ''
-    }
-
-    public rules: any = {
-        old_password: [
-            {required: true, message: '请输入旧密码', trigger: 'blur'}
-        ],
-        new_password: [
-            {required: true, message: '请输入新密码', trigger: 'blur'}
-        ],
-        verify_password: [
-            {required: true, message: '请重复输入新密码', trigger: 'blur'}
-        ]
-    }
-
-    public created() {
-        this.propsStore.$subscribe((mutation, state) => {
+export default defineComponent({
+    name: 'prop-change-password',
+    created() {
+        useStore().props.$subscribe((mutation, state) => {
             if (equalsKey('change_password', mutation)) {
                 this.isShow = state.change_password;
             }
         });
+    },
+    data() {
+        return {
+            isShow: useStore().props.getChangePassword,
+            form: {
+                old_password: '',
+                new_password: '',
+                verify_password: ''
+            },
+            rules: {
+                old_password: [
+                    {required: true, message: '请输入旧密码', trigger: 'blur'}
+                ],
+                new_password: [
+                    {required: true, message: '请输入新密码', trigger: 'blur'}
+                ],
+                verify_password: [
+                    {required: true, message: '请重复输入新密码', trigger: 'blur'}
+                ]
+            }
+        }
+    },
+    methods: {
+        handlePropsCancel() {
+            useStore().props.setChangePassword(false);
+        }
     }
-
-    // 关闭弹窗
-    public handlePropsCancel() {
-        this.propsStore.setChangePassword(false);
-    }
-
-}
+})
 
 </script>
 

@@ -20,7 +20,8 @@ export default ({command}: ConfigEnv): UserConfigExport => {
             alias: {
                 '@': path.resolve(__dirname, './src'),
 //             // 这里是为了scss使用~@/读取目录
-                '~@': path.resolve(__dirname, './src')
+                '~@': path.resolve(__dirname, './src'),
+                '/img': 'src/assets/images'
             }
         },
         build: {

@@ -21,21 +21,7 @@
     </el-row>
 </template>
 
-<script lang="ts">
-
-import {Options, Vue} from "vue-property-decorator";
-
-@Options({})
-export default class Config extends Vue {
-
-    public created() {
-    }
-
-    public mounted() {
-
-    }
-
-}
+<script lang="ts" setup>
 
 </script>
 
@@ -55,16 +41,17 @@ export default class Config extends Vue {
     position: relative;
 }
 
-.yaml-editor > > > .CodeMirror {
+:deep(.yaml-editor > .CodeMirror ) {
     height: auto;
     min-height: 300px;
 }
 
-.yaml-editor > > > .CodeMirror-scroll {
+
+:deep(.yaml-editor  > .CodeMirror-scroll ) {
     min-height: 300px;
 }
 
-.yaml-editor > > > .cm-s-rubyblue span.cm-string {
+:deep(.yaml-editor > .cm-s-rubyblue span.cm-string) {
     color: #F08047;
 }
 

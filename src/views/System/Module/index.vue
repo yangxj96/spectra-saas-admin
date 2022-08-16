@@ -6,14 +6,12 @@
 
 <script lang="ts">
 
-import {Options, Vue} from "vue-property-decorator";
+import {defineComponent} from "vue";
 import demo from "@/utils/demo";
 
 import * as xlsx from 'xlsx';
 
-@Options({})
-export default class Module extends Vue {
-
+export default defineComponent({
     created() {
         let data: XlsxData[] = [];
         for (let i = 0; i < demo.length; i++) {
@@ -34,8 +32,7 @@ export default class Module extends Vue {
         // 导出到文件
         // xlsx.writeFile(wb, '导出.xlsx')
     }
-
-}
+})
 
 interface XlsxData {
     Shape_Type: string,
