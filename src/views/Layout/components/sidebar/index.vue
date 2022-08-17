@@ -63,25 +63,25 @@
 
 <script setup lang="ts">
 import useStore, {equalsKey} from '@/plugin/store/index';
-import {onMounted} from "vue";
+import {onMounted, ref} from "vue";
 
-let unfold = true;
+let unfold = ref(true);
 
-let itemDisabled = false;
+let itemDisabled = ref(false);
 
 onMounted(() => {
     // 赋值
-    unfold = useStore().system.getSidebarUnfold;
+    unfold.value = useStore().system.getSidebarUnfold;
 
-    itemDisabled = useStore().system.getItemDisabled;
+    itemDisabled.value = useStore().system.getItemDisabled;
 
     // 订阅
     useStore().system.$subscribe((mutation, state) => {
         if (equalsKey('sidebar_unfold', mutation)) {
-            unfold = state.sidebar_unfold;
+            unfold.value = state.sidebar_unfold;
         }
         if (equalsKey('item_disabled', mutation)) {
-            itemDisabled = state.item_disabled;
+            itemDisabled.value = state.item_disabled;
         }
     })
 })
