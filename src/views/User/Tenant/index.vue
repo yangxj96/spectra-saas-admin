@@ -1,10 +1,15 @@
 <template>
-    <el-row style="height: 100%;width: 100%">
-        <div ref="echartsBox" style="height: 100%;width: 100%"></div>
+    <el-row>
     </el-row>
 </template>
 
 <script lang="ts">
+import {defineComponent} from "vue";
+
+
+export default defineComponent({
+    name: 'user-tenant'
+})
 
 </script>
 

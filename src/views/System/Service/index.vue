@@ -11,7 +11,7 @@
             <el-table-column label="实例状态" prop="num" />
             <el-table-column label="操作"    fixed="right" width="120">
                 <template #default>
-                    <el-button text type="primary" @click="this.handleShowDetails">详情</el-button>
+                    <el-button text type="primary" @click="handleShowDetails">详情</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -31,7 +31,7 @@
         />
     </el-row>
 
-    <service-details :id="detailId" :visible="detailsPopupShow" @submit="this.handleSubmitDetails">
+    <service-details :id="detailId" :visible="detailsPopupShow" @submit="handleSubmitDetails">
         <!--<template v-slot:footer>-->
         <!--    我是插槽内容-->
         <!--</template>-->

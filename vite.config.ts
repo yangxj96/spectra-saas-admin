@@ -10,17 +10,21 @@ export default ({command}: ConfigEnv): UserConfigExport => {
             vue(),
             viteMockServe({
                 mockPath: 'mock',
-                localEnabled: command === 'serve'
+                logger: true,
+                // 设置是否启用本地 xxx.ts 文件，不要在生产环境中打开它.设置为 false 将禁用 mock 功能
+                localEnabled: command === 'serve',
+                // 设置打包是否启用 mock 功能
+                prodEnabled: command !== 'serve',
+                injectCode: `
+                 import {setupProdMockServer} from "../mock/MockProdServer";
+                 setupProdMockServer();
+                 `
             })
         ],
-        define: {
-            'process.env': {}
-        },
         resolve: {
             alias: {
-                '@': path.resolve(__dirname, './src'),
-//             // 这里是为了scss使用~@/读取目录
-                '~@': path.resolve(__dirname, './src'),
+                '@': path.resolve(__dirname, 'src'),
+                '~@': path.resolve(__dirname, 'src'),
                 '/img': 'src/assets/images'
             }
         },

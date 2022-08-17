@@ -2,7 +2,7 @@ import {MockMethod} from "vite-plugin-mock";
 
 export default <MockMethod[]>[
     {
-        url: '/api/auth/login',
+        url: `${import.meta.env.BASE_URL}api/auth/login`,
         method: 'post',
         statusCode: 200,
         response: () => {
@@ -22,7 +22,7 @@ export default <MockMethod[]>[
         }
     },
     {
-        url: '/api/user/getUserList',
+        url: `${import.meta.env.BASE_URL}api/user/getUserList`,
         method: 'get',
         statusCode: 200,
         response: () => {
@@ -31,31 +31,31 @@ export default <MockMethod[]>[
                 message: '操作成功',
                 data: [
                     {
-                        id : 1000000000000,
+                        id: 1000000000000,
                         username: 'sysadmin',
                         password: 'password',
                         org_name: '我是组织',
                         last_login_time: '2022-8-12 00:36:05',
                         last_login_ip: '127.0.0.1',
-                        enable  : true
+                        enable: true
                     },
                     {
-                        id : 1000000000002,
+                        id: 1000000000002,
                         username: 'devadmin',
                         password: 'password',
                         org_name: '我是组织',
                         last_login_time: '2022-8-12 00:36:05',
                         last_login_ip: '127.0.0.1',
-                        enable  : true
+                        enable: true
                     },
                     {
-                        id : 1000000000003,
+                        id: 1000000000003,
                         username: 'oldadmin',
                         password: 'password',
                         org_name: '我是组织',
                         last_login_time: '2022-8-12 00:36:05',
                         last_login_ip: '127.0.0.1',
-                        enable  : true
+                        enable: true
                     }
                 ]
             }
