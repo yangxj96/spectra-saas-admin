@@ -2,7 +2,7 @@ import {MockMethod} from "vite-plugin-mock";
 
 export default <MockMethod[]>[
     {
-        url: `${import.meta.env.BASE_URL}api/auth/login`,
+        url: `/api/auth/login`,
         method: 'post',
         statusCode: 200,
         response: () => {
@@ -22,7 +22,7 @@ export default <MockMethod[]>[
         }
     },
     {
-        url: `${import.meta.env.BASE_URL}api/user/getUserList`,
+        url: `/api/user/getUserList`,
         method: 'get',
         statusCode: 200,
         response: () => {

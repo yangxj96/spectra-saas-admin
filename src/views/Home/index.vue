@@ -18,7 +18,7 @@ const option = {
                 left: 'center',
                 top: 'center',
                 style: {
-                    text: 'IT十万  IT100000.com',
+                    text: 'yangxj96.github.io',
                     fontSize: 100,
                     fontWeight: 'bold',
                     lineDash: [0, 200],
@@ -63,7 +63,7 @@ let echartsObj: echarts.ECharts | null = null;
 
 onMounted(() => {
     echartsObj = echarts.init(proxy.$refs['echarts-box'] as HTMLElement);
-    echartsObj.setOption(option)
+    echartsObj.setOption(option);
 })
 
 onUnmounted(() => {

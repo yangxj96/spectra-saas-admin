@@ -27,15 +27,15 @@
                             </el-breadcrumb-item>
                         </el-breadcrumb>
                     </el-row>
-                    <div class="box-content">
+                    <div class="box-content loading-box">
                         <router-view/>
                     </div>
                     <el-row>
                         <el-footer class="footer">
                             Copyright © 2018-2022
-                            <strong><a href="//www.it100000.com/" target="_blank">IT十万</a></strong>
+                            <strong><a href="//yangxj96.github.io/" target="_blank">yangxj96</a></strong>
                             &nbsp;
-                            <strong><a href="//www.it100000.com/" target="_blank">it100000.com</a></strong>
+                            <strong><a href="//yangxj96.github.io/" target="_blank">yangxj96.github.io</a></strong>
                             All Rights Reserved. 备案号：
                             <a target="_blank" rel="nofollow" href="https://beian.miit.gov.cn/">滇ICP备17009249号-2</a>
                         </el-footer>

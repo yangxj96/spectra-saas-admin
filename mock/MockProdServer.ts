@@ -3,5 +3,9 @@ import {createProdMockServer} from "vite-plugin-mock/es/createProdMockServer";
 import UserApiMock from "./UserApiMock";
 
 export function setupProdMockServer() {
-    createProdMockServer([...UserApiMock]);
+    let data = [...UserApiMock];
+    for (let datum of data) {
+        datum.url = import.meta.env.BASE_URL + datum.url;
+    }
+    createProdMockServer(data);
 }

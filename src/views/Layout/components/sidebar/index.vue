@@ -6,11 +6,13 @@
              :collapse-transition="true"
              :unique-opened="true"
     >
-        <el-menu-item index="/">
+
+        <el-menu-item index="/" :disabled="itemDisabled">
             <icon-font :icon-href="'icon-home'"/>
             <template #title>首页</template>
         </el-menu-item>
-        <el-sub-menu index="1">
+
+        <el-sub-menu index="1" :disabled="itemDisabled">
             <template #title>
                 <icon-font :icon-href="'icon-system-setting'"/>
                 <span>系统配置</span>
@@ -37,7 +39,7 @@
             </el-menu-item>
         </el-sub-menu>
 
-        <el-sub-menu index="2">
+        <el-sub-menu index="2" :disabled="itemDisabled">
             <template #title>
                 <icon-font :icon-href="'icon-user'"/>
                 <span>用户相关</span>
@@ -65,13 +67,21 @@ import {onMounted} from "vue";
 
 let unfold = true;
 
+let itemDisabled = false;
+
 onMounted(() => {
     // 赋值
     unfold = useStore().system.getSidebarUnfold;
+
+    itemDisabled = useStore().system.getItemDisabled;
+
     // 订阅
     useStore().system.$subscribe((mutation, state) => {
         if (equalsKey('sidebar_unfold', mutation)) {
             unfold = state.sidebar_unfold;
+        }
+        if (equalsKey('item_disabled', mutation)) {
+            itemDisabled = state.item_disabled;
         }
     })
 })

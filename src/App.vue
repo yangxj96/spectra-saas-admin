@@ -19,6 +19,9 @@ export default defineComponent({
                 duration: 500,
             }
         }
+    },
+    mounted() {
+
     }
 })
 
