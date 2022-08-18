@@ -1,5 +1,6 @@
 <template>
     <el-row>
+
     </el-row>
 </template>
 
@@ -8,7 +9,7 @@ import {defineComponent} from "vue";
 
 
 export default defineComponent({
-    name: 'user-tenant'
+    name: 'user-tenant',
 })
 
 </script>
