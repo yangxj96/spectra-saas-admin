@@ -7,6 +7,5 @@ export function setupProdMockServer() {
     for (let datum of data) {
         datum.url = import.meta.env.BASE_URL + datum.url.substring(1);
     }
-    console.log(data);
     createProdMockServer(data);
 }
