@@ -10,6 +10,7 @@ export default ({command}: ConfigEnv): UserConfigExport => {
             vue(),
             viteMockServe({
                 mockPath: 'mock',
+                watchFiles: true,
                 logger: true,
                 // 设置是否启用本地 xxx.ts 文件，不要在生产环境中打开它.设置为 false 将禁用 mock 功能
                 localEnabled: command === 'serve',
