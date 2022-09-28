@@ -1,14 +1,12 @@
 import {defineStore} from "pinia";
 
 const useSystemStore = defineStore('system', {
-    state() {
-        return {
-            // 左侧菜单是否展开
-            sidebar_unfold: true,
-            // 是否禁用菜单项
-            item_disabled: false
-        }
-    },
+    state: () => ({
+        // 左侧菜单是否展开
+        sidebar_unfold: true,
+        // 是否禁用菜单项
+        item_disabled: false
+    }),
     getters: {
         getSidebarUnfold: state => state.sidebar_unfold,
         getItemDisabled: state => state.item_disabled

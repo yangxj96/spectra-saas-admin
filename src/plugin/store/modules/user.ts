@@ -13,8 +13,8 @@ export interface Token {
 }
 
 const useUserStore = defineStore('user', {
-    state() {
-        return <UserState>{
+    state: () => {
+        return <UserState> {
             token: {}
         }
     },

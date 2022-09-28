@@ -24,15 +24,13 @@
 <script lang="ts">
 
 import {defineComponent} from "vue";
-import useStore, {equalsKey} from "@/plugin/store";
+import useStore from "@/plugin/store";
 
 export default defineComponent({
     name: 'prop-change-password',
     created() {
         useStore().props.$subscribe((mutation, state) => {
-            if (equalsKey('change_password', mutation)) {
-                this.isShow = state.change_password;
-            }
+            this.isShow = state.change_password;
         });
     },
     data() {

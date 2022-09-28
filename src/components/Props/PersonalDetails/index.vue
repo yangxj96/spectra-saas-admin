@@ -29,7 +29,7 @@
 <script lang="ts">
 
 import {defineComponent} from "vue";
-import useStore, {equalsKey} from "@/plugin/store";
+import useStore from "@/plugin/store";
 
 export default defineComponent({
     name: 'prop-personal-details',
@@ -46,9 +46,7 @@ export default defineComponent({
             *
             * */
             // 我们就可以在此处监听store中值的变化，当变化为某个值的时候，去做一些业务操作之类的
-            if (equalsKey('personal_details', mutation)) {
-                this.isShow = state.personal_details;
-            }
+            this.isShow = state.personal_details;
         })
     },
     data() {

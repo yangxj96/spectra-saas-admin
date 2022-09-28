@@ -7,8 +7,10 @@ import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 
 /**
  * 检查key是否是对应的
+ * @since 1.0
  * @param key 需要进行对比的key
  * @param mutation mutation
+ * @deprecated  新版本中打包后mutation.events变成了undefined,暂时弃用
  */
 export function equalsKey(key: string, mutation: SubscriptionCallbackMutation<any>): boolean {
     return (Array.isArray(mutation.events) ? mutation.events[0] : mutation.events).key === key;

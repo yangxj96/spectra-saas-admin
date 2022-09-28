@@ -1,12 +1,10 @@
 import {defineStore} from "pinia";
 
 const usePropsStore = defineStore('props', {
-    state() {
-        return {
-            personal_details: false,
-            change_password: false
-        }
-    },
+    state: () => ({
+        personal_details: false,
+        change_password: false
+    }),
     getters: {
         getPersonalDetails: state => state.personal_details,
         getChangePassword: state => state.change_password,
