@@ -4,7 +4,7 @@
                    :close-on-click-modal="false"
                    :close-on-press-escape="false"
                    :show-close="false"
-                   custom-class="dialog-login"
+                   class="dialog-login"
                    width="20%">
             <template #header>
                 <p>

@@ -58,6 +58,7 @@ function handleUserLogout(){
         duration: 500,
         onClose(){
             window.localStorage.clear();
+            window.sessionStorage.clear();
             location.reload();
         }
     })

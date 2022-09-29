@@ -3,7 +3,7 @@ import usePropsStore from "@/plugin/store/modules/props";
 import useSystemStore from "@/plugin/store/modules/system";
 import useUserStore from "@/plugin/store/modules/user";
 import {SubscriptionCallbackMutation, createPinia} from "pinia";
-import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
+import {createPersistedState} from "pinia-plugin-persistedstate";
 
 /**
  * 检查key是否是对应的
@@ -16,9 +16,17 @@ export function equalsKey(key: string, mutation: SubscriptionCallbackMutation<an
     return (Array.isArray(mutation.events) ? mutation.events[0] : mutation.events).key === key;
 }
 
-export function createStore(){
+export function createStore() {
     let pinia = createPinia();
-    pinia.use(piniaPluginPersistedstate);
+    pinia.use(createPersistedState({
+        storage: sessionStorage,
+        beforeRestore: ctx => {
+            console.debug(`恢复之前执行: ${ctx.store.$id}`, ctx);
+        },
+        afterRestore: ctx => {
+            console.debug(`恢复之后执行: ${ctx.store.$id}`, ctx);
+        }
+    }));
 
     return pinia;
 }
