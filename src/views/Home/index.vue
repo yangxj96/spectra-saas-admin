@@ -18,7 +18,7 @@ const option = {
                 left: 'center',
                 top: 'center',
                 style: {
-                    text: 'yangxj96.github.io',
+                    text: document.domain,
                     fontSize: 100,
                     fontWeight: 'bold',
                     lineDash: [0, 200],
