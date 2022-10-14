@@ -38,7 +38,7 @@
                     <el-switch v-model="scope.enable" />
                 </template>
             </el-table-column>
-            <el-table-column label="操作"     fixed="right" width="280">
+            <el-table-column label="操作" width="280">
                 <template #default>
                     <el-button text type="primary" >详情</el-button>
                     <el-button text type="primary" >重置密码</el-button>
