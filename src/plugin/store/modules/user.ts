@@ -1,15 +1,9 @@
 import {defineStore} from "pinia";
+import {Token} from "@/api/UserApi";
+
 
 export interface UserState {
     token: Token
-}
-
-export interface Token {
-    username: string;
-    access_token: string;
-    refresh_token: string;
-    authorities: string[],
-    expiration_time: string
 }
 
 const useUserStore = defineStore('user', {

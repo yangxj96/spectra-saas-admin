@@ -12,10 +12,10 @@ const http = axios.create({
     }
 });
 
-export interface IResult {
+export interface IResult<T = any> {
     code: number,
     message: string,
-    data?: any
+    data: T
 }
 
 // 请求拦截器
@@ -32,21 +32,23 @@ http.interceptors.request.use(
 
 // 响应拦截器
 http.interceptors.response.use(
+    // 在2xx范围内的任何状态代码都会触发此函数，这里主要用于处理响应数据
     (response: AxiosResponse<IResult>) => {
         hideLoading();
-        if (response.status >= 200 && response.status < 300 && response.data.code == 0) {
-            return response.data.data;
-        } else {
-            ElMessage.success({
+        if (response.data.code != 0) {
+            ElMessage.error({
                 ...MessageDefaultConfig,
                 type: 'error',
                 message: response.data.message
             })
+            throw new Error(`请求失败:${response.data.message}`);
         }
+        return response;
     },
+    // 任何超出2xx范围的状态码都会触发此函数，这里主要用于处理响应错误
     error => {
         hideLoading();
-        ElMessage.success({
+        ElMessage.error({
             ...MessageDefaultConfig,
             type: 'error',
             message: error.message

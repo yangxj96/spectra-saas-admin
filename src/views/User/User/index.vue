@@ -55,7 +55,7 @@
             hide-on-single-page
             background
             :page-sizes="pagination.page_sizes"
-            layout="sizes,prev, pager, next"
+            :layout="'sizes,prev, pager, next'"
             :total="pagination.total"
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
@@ -68,39 +68,37 @@
 
 import {defineComponent} from "vue";
 import Table from "@/mixins/Table";
-import UserApi from "@/api/UserApi";
+import UserApi, {UserList} from "@/api/UserApi";
+import {AxiosResponse} from "axios";
+import {IResult} from "@/plugin/request";
 
 export default defineComponent({
     name: 'user',
     mixins: [Table],
-    created() {
-        UserApi.getUserList().then((r: any) => {
-            this.table_data = r;
-        })
-    },
     data() {
-        const table_data: TableData[] = [];
         return {
-            table_data: table_data,
             condition: {
                 username: '',
                 org_id: undefined,
-                enable: undefined
+                enable: true
             }
+        }
+    },
+    created() {
+        UserApi.getUserList()
+            .then((response: AxiosResponse<IResult<UserList[]>>) => {
+                this.table_data = response.data.data;
+            })
+    },
+    methods:{
+        handleSizeChange(val: number) {
+            console.log(`minix重写每页数量: ${val}`)
+        },
+        handleCurrentChange(val: number) {
+            console.log(`minix重写当前页: ${val}`)
         }
     }
 })
-
-// 表单实体接口
-interface TableData {
-    id: number,
-    username: string,
-    password: string,
-    org_name: string,
-    last_login_time: string,
-    last_login_ip: string,
-    enable: boolean,
-}
 
 </script>
 

@@ -37,9 +37,10 @@
 import {ref, reactive, getCurrentInstance} from "vue";
 import useStore from "@/plugin/store";
 import type {FormInstance, FormRules} from "element-plus";
-import UserApi from "@/api/UserApi";
-import {Token} from "@/plugin/store/modules/user";
+import UserApi, {Token} from "@/api/UserApi";
 import {MessageDefaultConfig} from "@/utils/DefaultConfig";
+import {AxiosResponse} from "axios";
+import {IResult} from "@/plugin/request";
 
 const userStore = useStore().user;
 
@@ -65,20 +66,21 @@ async function handleLogin(formEl: FormInstance | undefined) {
     if (!formEl) {
         return;
     }
-    await formEl.validate((valid, fields) => {
+    await formEl.validate((valid) => {
         if (valid) {
-            UserApi.login(user.username, user.password).then((r: any) => {
-                let res = r as Token;
-                let msg = res ? '登录成功' : '登录失败';
-                proxy.$message.success({
-                    ...MessageDefaultConfig,
-                    message: msg,
-                    onClose: () => {
-                        userStore.setToken(r);
-                        proxy.$router.push({path: '/'});
+            UserApi.login(user.username, user.password)
+                .then((response: AxiosResponse<IResult<Token>>) => {
+                        let result = response.data.data;
+                        proxy.$message.success({
+                            ...MessageDefaultConfig,
+                            message: `登录成功`,
+                            onClose: () => {
+                                userStore.setToken(result);
+                                proxy.$router.push({path: '/'});
+                            }
+                        })
                     }
-                })
-            });
+                );
         } else {
             proxy.$message.error({
                 ...MessageDefaultConfig,

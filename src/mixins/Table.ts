@@ -9,7 +9,7 @@ export default defineComponent({
             total: 1000
         }
         return {
-            table_data: [],
+            table_data: [] as any[],
             pagination: pagination
         }
     },
@@ -24,7 +24,7 @@ export default defineComponent({
 })
 
 // 分页参数实体
-interface Pagination {
+export interface Pagination {
     size: number,
     page: number,
     page_sizes: Array<number>,

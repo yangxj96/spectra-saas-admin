@@ -7,6 +7,7 @@
 <script setup lang="ts">
 import {onMounted, onUnmounted, getCurrentInstance, ComponentInternalInstance, ComponentPublicInstance} from 'vue';
 import * as echarts from "echarts";
+import UserApi from "@/api/UserApi";
 
 const proxy = (getCurrentInstance() as ComponentInternalInstance).proxy as ComponentPublicInstance;
 
