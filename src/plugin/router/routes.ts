@@ -21,7 +21,7 @@ export const routes: Array<RouteRecordRaw> = [
     },
     {
         path: '',
-        name:'首页',
+        name: '首页',
         component: layout,
         children: [
             {
@@ -35,10 +35,10 @@ export const routes: Array<RouteRecordRaw> = [
         ]
     },
     {
-        name:'系统配置',
+        name: '系统配置',
         path: '/System',
         component: layout,
-        redirect:'service',
+        redirect: 'service',
         children: [
             {
                 path: 'service',
@@ -83,10 +83,10 @@ export const routes: Array<RouteRecordRaw> = [
         ]
     },
     {
-        name:'用户相关',
+        name: '用户相关',
         path: '/User',
         component: layout,
-        redirect:'user',
+        redirect: 'user',
         children: [
             {
                 path: 'user',
@@ -105,11 +105,27 @@ export const routes: Array<RouteRecordRaw> = [
                 }
             },
             {
-                path: 'role',
-                name: '角色管理',
-                component: () => import('@/views/User/Role/index.vue'),
+                path: 'authority',
+                name: '权限管理',
+                component: () => import('@/views/User/Authority/index.vue'),
                 meta: {
-                    title: '角色管理'
+                    title: '权限管理'
+                }
+            }
+        ]
+    },
+    {
+        name: 'error',
+        path: '/error',
+        component: layout,
+        redirect: '404',
+        children: [
+            {
+                path: '/404',
+                name: '未匹配到页面',
+                component: () => import('@/views/Error/404/index.vue'),
+                meta: {
+                    title: '未匹配到页面'
                 }
             }
         ]

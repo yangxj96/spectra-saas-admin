@@ -28,7 +28,15 @@
                         </el-breadcrumb>
                     </el-row>
                     <div class="box-content loading-box">
-                        <router-view/>
+
+                        <!--<router-view/>-->
+
+                        <router-view v-slot="{ Component }">
+                            <transition mode="out-in" name="el-zoom-in-top" >
+                                <component :is="Component"/>
+                            </transition>
+                        </router-view>
+
                     </div>
                     <el-row>
                         <el-footer class="footer">
@@ -69,6 +77,7 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
+
 ::v-deep(.el-aside) {
     width: auto;
 }
@@ -129,6 +138,4 @@ export default defineComponent({
         }
     }
 }
-
-
 </style>

@@ -1,7 +1,7 @@
 <template>
-    <el-row>
-
-    </el-row>
+    <div style="height: 100%">
+        租户管理
+    </div>
 </template>
 
 <script lang="ts">

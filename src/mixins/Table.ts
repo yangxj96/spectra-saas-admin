@@ -5,7 +5,8 @@ export default defineComponent({
         const pagination: Pagination = {
             size: 15,
             page: 1,
-            page_sizes: [100, 200, 300, 400],
+            page_sizes: [10, 50, 100, 150, 300],
+            default_page_size: 10,
             total: 1000
         }
         return {
@@ -28,5 +29,6 @@ export interface Pagination {
     size: number,
     page: number,
     page_sizes: Array<number>,
+    default_page_size: number,
     total: number,
 }

@@ -1,49 +1,52 @@
 <template>
-    <el-dialog v-model="options.isShow" destroy-on-close @close="handleCancel" title="用户日志" width="80%">
+    <div style="height: 100%">
+        <el-dialog :model-value="true" destroy-on-close @close="handleCancel" :title="`用户[${options.user.username}]日志`"
+                   width="80%">
 
-        <el-row style="height: calc(100% - 100px)">
-            <!-- @formatter:off -->
-            <el-table :data="table_data" stripe border  height="100%" style="width: 100%">
-                <el-table-column type="expand">
-                    <template #default="datum">
-                        <pre>{{  JSON.stringify(JSON.parse(datum.row.response_result),null,4)  }}</pre>
-                    </template>
-                </el-table-column>
-                <el-table-column label="操作ID"  prop="id"              align="center" width="140"/>
-                <el-table-column label="请求时间" prop="created_time"    align="center" width="180"/>
-                <el-table-column label="响应状态" prop="response_status" align="center" width="90">
-                    <template #default="datum">
-                        <el-tag  :type="handleChooseResponseStatusTagType(datum.row.response_status)">
-                            {{datum.row.response_status}}
-                        </el-tag>
-                    </template>
-                </el-table-column>
-                <el-table-column label="操作IP"  prop="ip"     align="center" width="135"/>
-                <el-table-column label="请求URL" prop="url"    header-align="center"/>
-                <el-table-column label="备注"    prop="remark" align="center" width="200" :show-overflow-tooltip="true"/>
-            </el-table>
-            <!-- @formatter:on -->
-        </el-row>
+            <el-row style="height: 60vh">
+                <!-- @formatter:off -->
+                <el-table :data="table_data" stripe border  height="100%" style="width: 100%">
+                    <el-table-column type="expand">
+                        <template #default="datum">
+                            <pre>{{  JSON.stringify(JSON.parse(datum.row.response_result),null,4)  }}</pre>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="操作ID"  prop="id"              align="center" width="140"/>
+                    <el-table-column label="请求时间" prop="created_time"    align="center" width="180"/>
+                    <el-table-column label="响应状态" prop="response_status" align="center" width="90">
+                        <template #default="datum">
+                            <el-tag  :type="handleChooseResponseStatusTagType(datum.row.response_status)">
+                                {{datum.row.response_status}}
+                            </el-tag>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="操作IP"  prop="ip"     align="center" width="135"/>
+                    <el-table-column label="请求URL" prop="url"    header-align="center"/>
+                    <el-table-column label="备注"    prop="remark" align="center" width="200" :show-overflow-tooltip="true"/>
+                </el-table>
+                <!-- @formatter:on -->
+            </el-row>
 
-        <el-row style="float: right;height: 50px">
-            <el-pagination
-                v-model:currentPage="pagination.page"
-                hide-on-single-page
-                background
-                :page-sizes="pagination.page_sizes"
-                :layout="'sizes,prev, pager, next'"
-                :total="pagination.total"
-                @size-change="handleSizeChange"
-                @current-change="handleCurrentChange"
-            />
-        </el-row>
+            <el-row style="float: right;height: 50px">
+                <el-pagination
+                    v-model:currentPage="pagination.page"
+                    hide-on-single-page
+                    background
+                    :page-sizes="pagination.page_sizes"
+                    :layout="'sizes,prev, pager, next'"
+                    :total="pagination.total"
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange"
+                />
+            </el-row>
 
-        <template #footer>
-            <slot name="footer">
-                <!--<el-button type="primary" @click="handlePropsCancel">确定</el-button>-->
-            </slot>
-        </template>
-    </el-dialog>
+            <template #footer>
+                <slot name="footer">
+                    <!--<el-button type="primary" @click="handlePropsCancel">确定</el-button>-->
+                </slot>
+            </template>
+        </el-dialog>
+    </div>
 </template>
 
 <script lang="ts">
@@ -64,20 +67,20 @@ export default defineComponent({
     name: 'user-log',
     mixins: [Table],
     props: {
-        show: {
-            type: Boolean,
+        user: {
+            type: Object,
             required: true
         }
     },
     data() {
         return {
             options: {
-                isShow: false
+                user: {},
             }
         }
     },
     created() {
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 30; i++) {
             let datum: TableData = {
                 id: 10000000 + i,
                 created_time: '2022-12-12 00:00:00',
@@ -88,15 +91,15 @@ export default defineComponent({
             }
             this.table_data.push(datum)
         }
+
     },
     methods: {
         handleCancel() {
-            this.options.isShow = false;
             this.$emit('close', false);
         },
         // 处理状态颜色的选择
-        handleChooseResponseStatusTagType(val:number){
-            if (val >= 200 && val <= 300){
+        handleChooseResponseStatusTagType(val: number) {
+            if (val >= 200 && val <= 300) {
                 return 'success';
             } else {
                 return 'danger';
@@ -104,8 +107,11 @@ export default defineComponent({
         }
     },
     watch: {
-        show(nv) {
-            this.options.isShow = nv;
+        user: {
+            handler(nv) {
+                this.options.user = nv;
+            },
+            immediate: true
         }
     }
 })

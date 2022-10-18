@@ -1,66 +1,68 @@
 <template>
-    <el-row>
-        <el-form :inline="true">
-            <el-form-item label="字典项名称">
-                <el-input placeholder="请输入字典项名称"/>
-            </el-form-item>
-            <el-form-item>
-                <el-button-group>
-                    <el-button type="primary" icon="Search">查询</el-button>
-                    <el-button type="primary" icon="FolderAdd" @click="handleCreateDictGroup">新增组</el-button>
-                    <el-button type="primary" icon="DocumentAdd" @click="handleCreateDictItem">新增项</el-button>
-                </el-button-group>
-            </el-form-item>
-        </el-form>
-    </el-row>
+    <div style="height: 100%">
+        <el-row>
+            <el-form :inline="true">
+                <el-form-item label="字典项名称">
+                    <el-input placeholder="请输入字典项名称"/>
+                </el-form-item>
+                <el-form-item>
+                    <el-button-group>
+                        <el-button type="primary" icon="Search">查询</el-button>
+                        <el-button type="primary" icon="FolderAdd" @click="handleCreateDictGroup">新增组</el-button>
+                        <el-button type="primary" icon="DocumentAdd" @click="handleCreateDictItem">新增项</el-button>
+                    </el-button-group>
+                </el-form-item>
+            </el-form>
+        </el-row>
 
-    <el-divider style="margin: 0"/>
+        <el-divider style="margin: 0"/>
 
-    <el-row class="box-content">
-        <!-- 字典组树 -->
-        <el-col :span="4" class="tree">
-            <el-tree ref="group_tree" :data="tree_data" :props="{children:'children',label:'name'}"/>
-        </el-col>
-        <!-- 字典项表格 -->
-        <el-col :span="20">
-            <el-row style="height: 90.8%">
-                <el-table :data="table_data" style="width: 100%" stripe>
-                    <el-table-column type="index" align="center" label="序号" width="80"/>
-                    <el-table-column prop="name" align="center" label="名称"/>
-                    <el-table-column prop="value" align="center" label="值"/>
-                    <el-table-column label="是否启用" align="center">
-                        <template #default="scope">
-                            <el-switch v-model="scope.row.enable"/>
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="系统内置" align="center">
-                        <template #default="scope">
-                            <el-tag :type="scope.row.internal ? 'success' : 'danger'">
-                                {{ scope.row.internal ? '是' : '否' }}
-                            </el-tag>
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="操作" align="center">
-                        <template #default="scope">
-                            <el-button text type="primary">修改</el-button>
-                        </template>
-                    </el-table-column>
-                </el-table>
-            </el-row>
-            <el-row style="float: right;height: 8%">
-                <el-pagination
-                    v-model:currentPage="pagination.page"
-                    hide-on-single-page
-                    background
-                    :page-sizes="pagination.page_sizes"
-                    layout="sizes,prev, pager, next"
-                    :total="pagination.total"
-                    @size-change="handleSizeChange"
-                    @current-change="handleCurrentChange"
-                />
-            </el-row>
-        </el-col>
-    </el-row>
+        <el-row class="box-content">
+            <!-- 字典组树 -->
+            <el-col :span="4" class="tree">
+                <el-tree ref="group_tree" :data="tree_data" :props="{children:'children',label:'name'}"/>
+            </el-col>
+            <!-- 字典项表格 -->
+            <el-col :span="20">
+                <el-row style="height: 90.8%">
+                    <el-table :data="table_data" style="width: 100%" stripe>
+                        <el-table-column type="index" align="center" label="序号" width="80"/>
+                        <el-table-column prop="name" align="center" label="名称"/>
+                        <el-table-column prop="value" align="center" label="值"/>
+                        <el-table-column label="是否启用" align="center">
+                            <template #default="scope">
+                                <el-switch v-model="scope.row.enable"/>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="系统内置" align="center">
+                            <template #default="scope">
+                                <el-tag :type="scope.row.internal ? 'success' : 'danger'">
+                                    {{ scope.row.internal ? '是' : '否' }}
+                                </el-tag>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="操作" align="center">
+                            <template #default="scope">
+                                <el-button text type="primary">修改</el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                </el-row>
+                <el-row style="float: right;height: 8%">
+                    <el-pagination
+                        v-model:currentPage="pagination.page"
+                        hide-on-single-page
+                        background
+                        :page-sizes="pagination.page_sizes"
+                        :layout="'sizes,prev,pager,next'"
+                        :total="pagination.total"
+                        @size-change="handleSizeChange"
+                        @current-change="handleCurrentChange"
+                    />
+                </el-row>
+            </el-col>
+        </el-row>
+    </div>
 </template>
 
 <script lang="ts">

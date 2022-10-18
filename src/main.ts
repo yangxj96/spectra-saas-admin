@@ -39,7 +39,7 @@ Vue.directive("auth", AuthDirective);
 app
     .use(createStore())
     .use(router)
-    .use(ElementPlus, {local: zhCn})
+    .use(ElementPlus, {locale: zhCn})
     .mount('#app');
 
 

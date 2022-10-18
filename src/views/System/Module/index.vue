@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="height: 100%">
         模块管理
     </div>
 </template>

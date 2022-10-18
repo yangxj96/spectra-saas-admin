@@ -35,8 +35,9 @@ export default <MockMethod[]>[
                         username: 'sysadmin',
                         password: 'password',
                         org_name: '我是组织',
-                        last_login_time: '2022-8-12 00:36:05',
+                        last_login_time: '2022-08-12 00:36:05',
                         last_login_ip: '127.0.0.1',
+                        lock: false,
                         enable: true
                     },
                     {
@@ -44,8 +45,9 @@ export default <MockMethod[]>[
                         username: 'devadmin',
                         password: 'password',
                         org_name: '我是组织',
-                        last_login_time: '2022-8-12 00:36:05',
+                        last_login_time: '2022-08-12 00:36:05',
                         last_login_ip: '127.0.0.1',
+                        lock: false,
                         enable: true
                     },
                     {
@@ -53,8 +55,9 @@ export default <MockMethod[]>[
                         username: 'oldadmin',
                         password: 'password',
                         org_name: '我是组织',
-                        last_login_time: '2022-8-12 00:36:05',
+                        last_login_time: '2022-08-12 00:36:05',
                         last_login_ip: '127.0.0.1',
+                        lock: true,
                         enable: true
                     }
                 ]

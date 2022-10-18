@@ -16,6 +16,7 @@ export interface UserList {
     org_name: string,
     last_login_time: string,
     last_login_ip: string,
+    lock: boolean,
     enable: boolean,
 }
 

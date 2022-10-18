@@ -44,17 +44,17 @@
                 <icon-font :icon-href="'icon-user'"/>
                 <span>用户相关</span>
             </template>
-            <el-menu-item index="/User/tenant">
-                <icon-font :icon-href="'icon-sub-menu'"/>
-                租户管理
-            </el-menu-item>
             <el-menu-item index="/User/user">
                 <icon-font :icon-href="'icon-sub-menu'"/>
                 用户管理
             </el-menu-item>
-            <el-menu-item index="/User/role">
+            <el-menu-item index="/User/tenant">
                 <icon-font :icon-href="'icon-sub-menu'"/>
-                角色管理
+                租户管理
+            </el-menu-item>
+            <el-menu-item index="/User/authority">
+                <icon-font :icon-href="'icon-sub-menu'"/>
+                权限管理
             </el-menu-item>
         </el-sub-menu>
 

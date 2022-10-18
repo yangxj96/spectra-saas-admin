@@ -1,40 +1,43 @@
 <template>
-    <el-row>
-        <el-form :inline="true">
-            <el-form-item label="角色名称">
-                <el-input placeholder="请输入角色名称"/>
-            </el-form-item>
-            <el-form-item>
-                <el-button-group>
-                    <el-button type="primary" icon="Search">查询</el-button>
-                    <el-button type="primary" icon="FolderAdd" @click="handleCreateRole">新增角色</el-button>
-                </el-button-group>
-            </el-form-item>
-        </el-form>
-    </el-row>
+    <div style="height: 100%">
+       <el-row>
+           <el-form :inline="true">
+               <el-form-item label="角色名称">
+                   <el-input placeholder="请输入角色名称"/>
+               </el-form-item>
+               <el-form-item>
+                   <el-button-group>
+                       <el-button type="primary" icon="Search">查询</el-button>
+                       <el-button type="primary" icon="FolderAdd" @click="handleCreateRole">新增角色</el-button>
+                   </el-button-group>
+               </el-form-item>
+           </el-form>
+       </el-row>
 
-    <el-divider style="margin: 0"/>
+       <el-divider style="margin: 0"/>
 
-    <el-row class="box-content">
-        <!-- 字典组树 -->
-        <el-col :span="4" class="tree">
-            <el-tree ref="group_tree" :data="tree_data" :props="{children:'children',label:'name'}"/>
-        </el-col>
-        <!-- 字典项表格 -->
-        <el-col :span="10">
-            <el-tree :data="authority_data" show-checkbox :props="{children:'children',label:'name'}"/>
-        </el-col>
-        <!-- 说明 -->
-        <el-col :span="10">
+       <el-row class="box-content">
+           <!-- 字典组树 -->
+           <el-col :span="4" class="tree">
+               <el-tree ref="group_tree" :data="tree_data" :props="{children:'children',label:'name'}"/>
+           </el-col>
+           <!-- 字典项表格 -->
+           <el-col :span="10">
+               <el-tree :data="authority_data" show-checkbox :props="{children:'children',label:'name'}"/>
+           </el-col>
+           <!-- 说明 -->
+           <el-col :span="10">
 
-        </el-col>
-    </el-row>
+           </el-col>
+       </el-row>
+   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from "vue";
 
 export default defineComponent({
+    name: 'user-authority',
     data() {
         const tree_data: TreeData[] = [
             {
