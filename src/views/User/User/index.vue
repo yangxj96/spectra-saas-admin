@@ -1,17 +1,18 @@
 <template>
+    <!-- 查询条件 -->
     <el-row style="height: 50px">
         <el-form :inline="true" :model="condition">
             <el-form-item label="用户名">
-                <el-input v-model="condition.username" placeholder="请输入用户名" clearable/>
+                <el-input v-model="condition.username" placeholder="请输入用户名" :clearable="true"/>
             </el-form-item>
             <el-form-item label="组织机构">
-                <el-select v-model="condition.org_id" placeholder="请选择组织机构" clearable>
+                <el-select v-model="condition.org_id" placeholder="请选择组织机构" :clearable="true">
                     <el-option label="云南省" value="云南省"/>
                     <el-option label="保山市" value="保山市"/>
                 </el-select>
             </el-form-item>
             <el-form-item label="启用状态">
-                <el-select v-model="condition.enable" placeholder="请选择启用状态" clearable>
+                <el-select v-model="condition.enable" placeholder="请选择启用状态" :clearable="true">
                     <el-option label="启用" :value="true"/>
                     <el-option label="禁用" :value="false"/>
                 </el-select>
@@ -23,7 +24,7 @@
             </el-form-item>
         </el-form>
     </el-row>
-
+    <!-- 表格 -->
     <el-row style="height: calc(100% - 100px)">
         <!-- @formatter:off -->
         <el-table :data="table_data" stripe border  height="100%" style="width: 100%">
@@ -39,16 +40,16 @@
                 </template>
             </el-table-column>
             <el-table-column label="操作" width="280">
-                <template #default>
+                <template #default="datum">
                     <el-button text type="primary" >详情</el-button>
-                    <el-button text type="primary" >重置密码</el-button>
-                    <el-button text type="primary" >操作日志</el-button>
+                    <el-button text type="primary" @click="handleResetPassword(datum.row)">重置密码</el-button>
+                    <el-button text type="primary" @click="showLog" >操作日志</el-button>
                 </template>
             </el-table-column>
         </el-table>
         <!-- @formatter:on -->
     </el-row>
-
+    <!-- 分页 -->
     <el-row style="float: right;height: 50px">
         <el-pagination
             v-model:currentPage="pagination.page"
@@ -62,6 +63,9 @@
         />
     </el-row>
 
+    <!-- 组件区 -->
+    <Log :show="options.log.show" @close="options.log.show = false"/>
+
 </template>
 
 <script lang="ts">
@@ -71,16 +75,25 @@ import Table from "@/mixins/Table";
 import UserApi, {UserList} from "@/api/UserApi";
 import {AxiosResponse} from "axios";
 import {IResult} from "@/plugin/request";
+import Log from './components/Log/index.vue';
 
 export default defineComponent({
     name: 'user',
     mixins: [Table],
+    components: {
+        Log
+    },
     data() {
         return {
             condition: {
                 username: '',
                 org_id: undefined,
                 enable: true
+            },
+            options: {
+                log: {
+                    show: false
+                }
             }
         }
     },
@@ -90,12 +103,26 @@ export default defineComponent({
                 this.table_data = response.data.data;
             })
     },
-    methods:{
+    methods: {
         handleSizeChange(val: number) {
             console.log(`minix重写每页数量: ${val}`)
         },
         handleCurrentChange(val: number) {
             console.log(`minix重写当前页: ${val}`)
+        },
+        showLog() {
+            this.options.log.show = !this.options.log.show;
+        },
+        handleResetPassword(row: any) {
+            this.$confirm(`是否重置${row.username}的密码`, '重置密码', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'info'
+            }).then(() => {
+                console.log('ok');
+            }).catch(() => {
+                console.log('点击取消')
+            })
         }
     }
 })
