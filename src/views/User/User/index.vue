@@ -98,7 +98,6 @@ export default defineComponent({
             },
             options: {
                 log: {
-                    show: false,
                     user: null
                 }
             }
@@ -118,7 +117,6 @@ export default defineComponent({
             console.log(`minix重写当前页: ${val}`)
         },
         showLog(row: any) {
-            this.options.log.show = true;
             this.options.log.user = row
         },
         handleResetPassword(row: any) {
