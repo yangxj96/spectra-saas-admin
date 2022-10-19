@@ -16,6 +16,7 @@ import zhCn from 'element-plus/es/locale/lang/zh-cn'
 
 // 自定义指令
 import AuthDirective from "@/directive/Auth";
+import FocusDirective from "@/directive/Focus";
 // 全局字体图标
 import iconFont from "@/components/IconFont/index.vue";
 
@@ -34,7 +35,7 @@ Vue.component("IconFont", iconFont);
 
 // 注册指令
 Vue.directive("auth", AuthDirective);
-
+Vue.directive('focus',FocusDirective)
 
 app
     .use(createStore())
