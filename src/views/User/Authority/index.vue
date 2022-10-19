@@ -1,29 +1,29 @@
 <template>
     <div style="height: 100%">
-       <el-row>
-           <el-form :inline="true">
-               <el-form-item label="角色名称">
-                   <el-input placeholder="请输入角色名称"/>
-               </el-form-item>
-               <el-form-item>
-                   <el-button-group>
-                       <el-button type="primary" icon="Search">查询</el-button>
-                       <el-button type="primary" icon="FolderAdd" @click="handleCreateRole">新增角色</el-button>
-                   </el-button-group>
-               </el-form-item>
-           </el-form>
-       </el-row>
+       <!--<el-row>-->
+       <!--    <el-form :inline="true">-->
+       <!--        <el-form-item label="角色名称">-->
+       <!--            <el-input placeholder="请输入角色名称"/>-->
+       <!--        </el-form-item>-->
+       <!--        <el-form-item>-->
+       <!--            <el-button-group>-->
+       <!--                <el-button type="primary" icon="Search">查询</el-button>-->
+       <!--                <el-button type="primary" icon="FolderAdd" @click="handleCreateRole">新增角色</el-button>-->
+       <!--            </el-button-group>-->
+       <!--        </el-form-item>-->
+       <!--    </el-form>-->
+       <!--</el-row>-->
 
        <el-divider style="margin: 0"/>
 
        <el-row class="box-content">
            <!-- 字典组树 -->
            <el-col :span="4" class="tree">
-               <el-tree ref="group_tree" :data="tree_data" :props="{children:'children',label:'name'}"/>
+               <el-tree ref="group_tree" :default-expand-all="true" :data="tree_data" :props="{children:'children',label:'name'}"/>
            </el-col>
            <!-- 字典项表格 -->
            <el-col :span="10">
-               <el-tree :data="authority_data" show-checkbox :props="{children:'children',label:'name'}"/>
+               <el-tree :data="authority_data" :default-expand-all="true" show-checkbox :props="{children:'children',label:'name'}"/>
            </el-col>
            <!-- 说明 -->
            <el-col :span="10">
@@ -41,8 +41,21 @@ export default defineComponent({
     data() {
         const tree_data: TreeData[] = [
             {
-                name: '管理员',
-                children: [{name: '子管理员1'}, {name: '子管理员2'}],
+                name: '顶级管理员',
+                children: [
+                    {
+                        name: '租户管理员',
+                        children: [
+                            {name:'总经理'},
+                            {name:'副总经理'},
+                            {name:'主管'},
+                            {name:'经理'},
+                            {name:'职员'},
+                        ]
+                    },
+                    {name: '开发人员'},
+                    {name: '运维人员'}
+                ],
             }
         ];
         const authority_data: TreeData[] = [
@@ -70,7 +83,7 @@ export default defineComponent({
             let el: any = this.$refs.group_tree;
             let node = el.getCurrentNode();
             if (node) {
-                this.$confirm(`是否新建在<<${node.name}>>的下级`, '', {
+                this.$confirm(`是否新建在[${node.name}]的下级`, '', {
                     cancelButtonText: '否',
                     confirmButtonText: '是'
                 });
@@ -83,15 +96,6 @@ export default defineComponent({
 interface TreeData {
     name: string
     children?: TreeData[]
-}
-
-// 表格数据结构
-interface TableData {
-    id: string,
-    name: string,
-    value: string,
-    internal: boolean,
-    enable: boolean
 }
 
 </script>

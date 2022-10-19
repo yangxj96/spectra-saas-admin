@@ -84,7 +84,7 @@ import {IResult} from "@/plugin/request";
 import Log from './components/Log/index.vue';
 
 export default defineComponent({
-    name: 'user',
+    name: 'user-user',
     mixins: [Table],
     components: {
         Log
