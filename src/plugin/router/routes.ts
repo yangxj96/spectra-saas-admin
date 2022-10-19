@@ -121,7 +121,7 @@ export const routes: Array<RouteRecordRaw> = [
         redirect: '404',
         children: [
             {
-                path: '/404',
+                path: '404',
                 name: '未匹配到页面',
                 component: () => import('@/views/Error/404/index.vue'),
                 meta: {

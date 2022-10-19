@@ -32,7 +32,14 @@ router.beforeEach(async (to, from, next) => {
             background: 'rgba(0,0,0,.6)'
         });
         useStore().system.setItemDisabled(true);
-        next();
+        if (to.matched.length <= 0) {
+            loading.close();
+            next({
+                path: '/error/404'
+            })
+        } else {
+            next();
+        }
     }
     console.debug('[路由守卫 - 前置] - 解析守卫结束');
 })

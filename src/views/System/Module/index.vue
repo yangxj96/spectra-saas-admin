@@ -1,6 +1,7 @@
 <template>
     <div style="height: 100%">
         模块管理
+        <el-button @click="handleGo">跳转</el-button>
     </div>
 </template>
 
@@ -31,6 +32,13 @@ export default defineComponent({
         wb.Sheets['bk1'] = ws;
         // 导出到文件
         // xlsx.writeFile(wb, '导出.xlsx')
+    },
+    methods:{
+        handleGo(){
+            this.$router.push({
+                path: '/123233'
+            })
+        }
     }
 })
 
