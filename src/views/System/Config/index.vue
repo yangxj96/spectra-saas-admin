@@ -3,14 +3,11 @@
         <!-- 查询条件 -->
         <el-row style="height: 50px">
             <el-form :inline="true" :model="condition">
-                <el-form-item label="公司名称">
-                    <el-input v-model="condition.company_name" placeholder="请输入公司名称" :clearable="true"/>
+                <el-form-item label="配置键">
+                    <el-input v-model="condition.key" placeholder="请输入配置键" :clearable="true"/>
                 </el-form-item>
-                <el-form-item label="冻结状态">
-                    <el-select v-model="condition.enable" placeholder="请选择冻结状态" :clearable="true">
-                        <el-option label="正常" :value="true"/>
-                        <el-option label="冻结" :value="false"/>
-                    </el-select>
+                <el-form-item label="配置值">
+                    <el-input v-model="condition.value" placeholder="请输入配置键" :clearable="true"/>
                 </el-form-item>
                 <el-form-item>
                     <el-button-group>
@@ -19,35 +16,25 @@
                 </el-form-item>
             </el-form>
         </el-row>
+
         <!-- 表格 -->
         <el-row style="height: calc(100% - 100px)">
             <!-- @formatter:off -->
-            <el-table :data="table_data" stripe border  height="100%" style="width: 100%" @cell-dblclick="onTableCellDbClick">
+            <el-table :data="table_data" stripe border  height="100%" style="width: 100%" >
+
                 <el-table-column label="ID"    prop="id" width="140" align="center"/>
                 <el-table-column label="配置键" prop="key" align="center"/>
-                <el-table-column label="配置值" align="center">
+                <el-table-column label="配置值" prop="value_str" align="center"/>
+                <el-table-column label="说明"   prop="remark" align="center"/>
+                <el-table-column label="操作" width="130" align="center">
                     <template #default="datum">
-                        <div v-if="form.row === datum.row.id && form.col === datum.column.id">
-                            <el-input v-model="form.temp.value" v-focus @keyup.enter="onTableCellInputEnter"  @blur="onUpdateConfig"/>
-                        </div>
-                        <div v-else>
-                            {{datum.row.value}}
-                        </div>
-                    </template>
-                </el-table-column>
-                <el-table-column label="说明" align="center">
-                    <template #default="datum">
-                        <div v-if="form.row === datum.row.id && form.col === datum.column.id">
-                            <el-input v-model="form.temp.remark" v-focus @keyup.enter="onTableCellInputEnter"  @blur="onUpdateConfig"/>
-                        </div>
-                        <div v-else>
-                            {{datum.row.remark}}
-                        </div>
+                        <el-button :icon="'Edit'" text type="primary" @click="onEditorConfig(datum.row)">编辑</el-button>
                     </template>
                 </el-table-column>
             </el-table>
             <!-- @formatter:on -->
         </el-row>
+
         <!-- 分页 -->
         <el-row style="float: right;height: 50px">
             <el-pagination
@@ -61,27 +48,36 @@
                 @current-change="handleCurrentChange"
             />
         </el-row>
+
+        <Editor v-if="options.editor.datum" :datum="options.editor.datum" @close="()=>{options.editor.datum = null;this.initData()}"/>
+
     </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
 import table from "@/mixins/Table";
+import SystemApi, {SystemConfig} from "@/api/SystemApi";
+import {AxiosResponse} from "axios";
+import {IResult} from "@/plugin/request";
+import Editor from "@/views/System/Config/components/Editor/index.vue";
 
 export default defineComponent({
     name: 'system-config',
     mixins: [table],
+    components: {
+        Editor
+    },
     data() {
         return {
             condition: {
-                company_name: '',
-                enable: undefined
+                key: '',
+                value: undefined
             },
-            options: {},
-            form: {
-                row: '',
-                col: '',
-                temp: {}
+            options: {
+                editor: {
+                    datum: null
+                }
             }
         }
     },
@@ -89,45 +85,17 @@ export default defineComponent({
         this.initData();
     },
     methods: {
-        initData(){
-            this.table_data = [];
-            for (let i = 0; i < 14; i++) {
-                let datum: TableData = {
-                    id: 10000000000 + i,
-                    key: 'sys.default.password',
-                    value: '123456',
-                    remark: '默认密码'
-                }
-                this.table_data.push(datum);
-            }
+        initData() {
+            SystemApi.getSystemConfig().then((response: AxiosResponse<IResult<SystemConfig[]>>) => {
+                this.table_data = response.data.data;
+            })
         },
-        // 解决cell编辑完后点击回车会导致出发两次,应为blur事件也是同样的处理方式
-        // 网上的根据$event.target.blur不适用,可能是js和ts环境的问题
-        onTableCellInputEnter(e:InputEvent){
-            (e.target as HTMLElement).blur();
-        },
-        onTableCellDbClick(row: any, column: any) {
-            this.form.row = row.id;
-            this.form.col = column.id;
-            this.form.temp = row;
-        },
-        onUpdateConfig() {
-            console.log('临时数据',this.form.temp)
-            this.initData();
-            //清空数据
-            this.form.temp = {}
-            this.form.row = ''
-            this.form.col = ''
+        onEditorConfig(row: any) {
+            this.options.editor.datum = row;
         }
+
     }
 })
-
-interface TableData {
-    id: number,
-    key: string,
-    value: string,
-    remark?: string
-}
 
 </script>
 
