@@ -8,6 +8,7 @@ export default <MockMethod[]> [
         url: `/api/system/config`,
         method: 'get',
         statusCode: 200,
+        timeout: CommonUtils.getRandom(50, 100),
         response: () => {
             return <IResult<SystemConfig[]>>{
                 code: 0,
@@ -63,6 +64,7 @@ export default <MockMethod[]> [
         url: `/api/system/config/11111`,
         method: 'post',
         statusCode: 200,
+        timeout: CommonUtils.getRandom(50, 100),
         response: () => {
             return <IResult>{
                 code: 0,

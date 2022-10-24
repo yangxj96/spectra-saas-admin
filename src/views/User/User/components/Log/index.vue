@@ -1,7 +1,7 @@
 <template>
     <div style="height: 100%">
-        <el-dialog :model-value="true" destroy-on-close @close="handleCancel" :title="`用户[${options.user.username}]日志`"
-                   width="80%">
+        <el-dialog :model-value="true" destroy-on-close @close="onCancel" :title="`用户[${options.user.username}]日志`"
+                   width="80%" class="loading-box">
 
             <el-row style="height: 60vh">
                 <!-- @formatter:off -->
@@ -52,16 +52,9 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import Table from "@/mixins/Table";
-
-interface TableData {
-    id: number,
-    created_time: string,
-    url: string,
-    response_status: number,
-    response_result: string,
-    ip: string,
-    remark?: string
-}
+import UserApi, { UserList } from '@/api/UserApi';
+import {AxiosResponse} from "axios";
+import {IResult} from "@/plugin/request";
 
 export default defineComponent({
     name: 'user-log',
@@ -75,26 +68,20 @@ export default defineComponent({
     data() {
         return {
             options: {
-                user: {},
+                user: {} as UserList,
             }
         }
     },
     created() {
-        for (let i = 0; i < 30; i++) {
-            let datum: TableData = {
-                id: 10000000 + i,
-                created_time: '2022-12-12 00:00:00',
-                url: '/baidu.com',
-                response_status: Math.floor(Math.random() * 200) + 100,
-                response_result: JSON.stringify({code: 0, message: '操作成功'}),
-                ip: '127.0.0.1',
-            }
-            this.table_data.push(datum)
-        }
-
+        this.onInit();
     },
     methods: {
-        handleCancel() {
+        onInit(){
+          UserApi.getUserLogById(this.options.user.id).then((response: AxiosResponse<IResult<UserList[]>>) => {
+              this.table_data = response.data.data;
+          })
+        },
+        onCancel() {
             this.$emit('close', false);
         },
         // 处理状态颜色的选择

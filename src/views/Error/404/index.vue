@@ -15,7 +15,7 @@ export default defineComponent({
     name: "error-404",
     data(){
         return{
-            time: -1
+            time: {} as NodeJS.Timer
         }
     },
     created() {

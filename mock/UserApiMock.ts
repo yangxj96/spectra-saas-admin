@@ -1,10 +1,14 @@
 import {MockMethod} from "vite-plugin-mock";
+import CommonUtils from "../src/utils/CommonUtils";
+import {IResult} from "../src/plugin/request";
+import {UserOperateLog} from "../src/api/UserApi";
 
 export default <MockMethod[]>[
     {
         url: `/api/auth/login`,
         method: 'post',
         statusCode: 200,
+        timeout: CommonUtils.getRandom(50, 100),
         response: () => {
             return {
                 code: 0,
@@ -25,6 +29,7 @@ export default <MockMethod[]>[
         url: `/api/user/getUserList`,
         method: 'get',
         statusCode: 200,
+        timeout: CommonUtils.getRandom(50, 100),
         response: () => {
             return {
                 code: 0,
@@ -61,6 +66,31 @@ export default <MockMethod[]>[
                         enable: true
                     }
                 ]
+            }
+        }
+    },
+    {
+        url: `/api/user/getUserLogById`,
+        method: 'get',
+        statusCode: 200,
+        timeout: CommonUtils.getRandom(50, 100),
+        response: () => {
+            let data:UserOperateLog[] = [];
+            for (let i = 0; i < 10; i++) {
+                data.push({
+                    id: CommonUtils.getRandom(10000000,99999999),
+                    created_time: '2022-12-12 00:00:00',
+                    url: '/baidu.com',
+                    response_status: Math.floor(Math.random() * 200) + 100,
+                    response_result: JSON.stringify({code: 0, message: '操作成功'}),
+                    ip: '127.0.0.1',
+                })
+            }
+
+            return <IResult<UserOperateLog[]>>{
+                code: 0,
+                message: '操作成功',
+                data: data
             }
         }
     }

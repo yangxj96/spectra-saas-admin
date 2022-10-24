@@ -49,7 +49,7 @@
             />
         </el-row>
 
-        <Editor v-if="options.editor.datum" :datum="options.editor.datum" @close="()=>{options.editor.datum = null;this.initData()}"/>
+        <Editor v-if="options.editor.datum.id" :datum="options.editor.datum" @close="initData"/>
 
     </div>
 </template>
@@ -76,7 +76,7 @@ export default defineComponent({
             },
             options: {
                 editor: {
-                    datum: null
+                    datum: {} as SystemConfig
                 }
             }
         }
@@ -86,11 +86,12 @@ export default defineComponent({
     },
     methods: {
         initData() {
+            this.options.editor.datum = {} as SystemConfig;
             SystemApi.getSystemConfig().then((response: AxiosResponse<IResult<SystemConfig[]>>) => {
                 this.table_data = response.data.data;
             })
         },
-        onEditorConfig(row: any) {
+        onEditorConfig(row: SystemConfig) {
             this.options.editor.datum = row;
         }
 

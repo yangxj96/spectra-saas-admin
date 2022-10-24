@@ -1,4 +1,4 @@
-import axios, {AxiosRequestConfig, AxiosResponse} from "axios";
+import axios, {AxiosRequestConfig, AxiosResponse, Canceler} from "axios";
 import {hideLoading, showLoading} from "@/plugin/element/loading";
 import {ElMessage} from "element-plus/es";
 import {MessageDefaultConfig} from "@/utils/DefaultConfig";
@@ -18,10 +18,15 @@ export interface IResult<T = any> {
     data: T
 }
 
+export const clean:Canceler[] = [];
+
 // 请求拦截器
 http.interceptors.request.use(
     (config: AxiosRequestConfig) => {
         showLoading();
+        config.cancelToken =  new axios.CancelToken(function executor(c){
+            clean.push(c);
+        })
         return config;
     },
     error => {
@@ -47,7 +52,11 @@ http.interceptors.response.use(
     },
     // 任何超出2xx范围的状态码都会触发此函数，这里主要用于处理响应错误
     error => {
+        console.log(error)
         hideLoading();
+        if (error.name === 'CanceledError'){
+            return Promise.reject(error);
+        }
         ElMessage.error({
             ...MessageDefaultConfig,
             type: 'error',

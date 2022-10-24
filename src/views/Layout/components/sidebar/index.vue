@@ -7,7 +7,7 @@
              :unique-opened="true"
     >
 
-        <el-menu-item index="/" :disabled="itemDisabled">
+        <el-menu-item index="/" :disabled="itemDisabled" @click="onMenuItemClick">
             <icon-font :icon-href="'icon-home'"/>
             <template #title>首页</template>
         </el-menu-item>
@@ -64,10 +64,19 @@
 <script setup lang="ts">
 import useStore from '@/plugin/store/index';
 import {onMounted, ref} from "vue";
+import {clean} from "@/plugin/request";
 
 let unfold = ref(true);
 
 let itemDisabled = ref(false);
+
+function onMenuItemClick(el: any) {
+    if (clean.length > 0){
+        for (let canceler of clean) {
+            canceler('取消请求');
+        }
+    }
+}
 
 onMounted(() => {
     // 赋值

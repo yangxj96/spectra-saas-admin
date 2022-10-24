@@ -1,7 +1,7 @@
 <template>
     <div style="height: 100%">
-        <el-dialog :model-value="true" destroy-on-close @close="handleCancel" :title="`编辑[${options.datum.key}]`"
-                   width="25%">
+        <el-dialog :model-value="true" destroy-on-close @close="onCancel" :title="`编辑[${options.datum.key}]`"
+                   width="25%" class="loading-box">
 
             <el-form ref="ruleForm" :model="options.datum" :rules="form.rules" label-width="70px">
                 <el-form-item label="id">
@@ -63,31 +63,32 @@ export default defineComponent({
     data() {
         return {
             options: {
-                datum: <SystemConfig>{},
+                datum: {} as SystemConfig,
             },
             form: {
-                rules: <FormRules>{
+                obj:{} as SystemConfig,
+                rules: {
                     value: [
                         {required: true, message: '请输入或选择值', trigger: 'blur'}
                     ]
-                }
+                } as FormRules
             }
         }
     },
     methods: {
-        handleCancel() {
+        onCancel() {
             this.$emit('close', false);
         },
         async onSave() {
             await (this.$refs.ruleForm as FormInstance).validate((valid) => {
                 if (valid) {
-                    systemApi.saveSystemConfig(this.options.datum).then((response: AxiosResponse<IResult>) => {
+                    systemApi.saveSystemConfig(this.formatParams()).then((response: AxiosResponse<IResult>) => {
                         this.$message({
                             ...MessageDefaultConfig,
                             message: response.data.message,
                             type: 'success',
                             onClose: () => {
-                                this.handleCancel();
+                                this.onCancel();
                             }
                         })
 
@@ -95,6 +96,18 @@ export default defineComponent({
                 }
             })
 
+        },
+        formatParams(){
+            this.form.obj = Object.assign({},this.options.datum);
+            if (this.form.obj.type === 3){
+                let v = '';
+                for (let item of this.form.obj.value) {
+                    v += item + ',';
+                }
+                v = v.substring(0,v.length - 1);
+                this.form.obj.value = v;
+            }
+            return this.form.obj;
         }
     },
     watch: {
