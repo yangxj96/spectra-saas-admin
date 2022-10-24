@@ -75,13 +75,14 @@ export default <MockMethod[]>[
         statusCode: 200,
         timeout: CommonUtils.getRandom(50, 100),
         response: () => {
-            let data:UserOperateLog[] = [];
+            let data: UserOperateLog[] = [];
+            let status: number[] = [200, 204, 206, 301, 302, 303, 304, 400, 401, 403, 404, 500, 503]
             for (let i = 0; i < 10; i++) {
                 data.push({
-                    id: CommonUtils.getRandom(10000000,99999999),
+                    id: CommonUtils.getRandom(10000000, 99999999),
                     created_time: '2022-12-12 00:00:00',
                     url: '/baidu.com',
-                    response_status: Math.floor(Math.random() * 200) + 100,
+                    response_status: status[CommonUtils.getRandom(1, status.length)],
                     response_result: JSON.stringify({code: 0, message: '操作成功'}),
                     ip: '127.0.0.1',
                 })
