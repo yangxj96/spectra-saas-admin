@@ -1,6 +1,6 @@
 import {MockMethod} from "vite-plugin-mock";
 import CommonUtils from "../src/utils/CommonUtils";
-import {SystemConfig} from '@/api/SystemApi'
+import {FileSave, SystemConfig} from '@/api/SystemApi'
 import {IResult} from "../src/plugin/request";
 
 export default <MockMethod[]> [
@@ -69,6 +69,25 @@ export default <MockMethod[]> [
             return <IResult>{
                 code: 0,
                 message: '操作成功'
+            }
+        }
+    },
+    {
+        url: `/api/system/fileSave`,
+        method: 'get',
+        statusCode: 200,
+        timeout: CommonUtils.getRandom(50, 100),
+        response: () => {
+            return <IResult<FileSave>>{
+                code: 0,
+                message: '操作成功',
+                data: {
+                    type: 0,
+                    locale: '/opt/file/img',
+                    access_id: 'access_id',
+                    access_secret: 'access_secret',
+                    bucket: 'bucket'
+                }
             }
         }
     },

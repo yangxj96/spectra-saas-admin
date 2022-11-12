@@ -79,7 +79,15 @@ export const routes: Array<RouteRecordRaw> = [
                 meta: {
                     title: '配置管理'
                 }
-            }
+            },
+            {
+                path: 'file_save',
+                name: '文件存储管理',
+                component: () => import('@/views/System/FileSave/index.vue'),
+                meta: {
+                    title: '文件存储管理'
+                }
+            },
         ]
     },
     {

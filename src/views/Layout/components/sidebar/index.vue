@@ -37,6 +37,10 @@
                 <icon-font :icon-href="'icon-sub-menu'"/>
                 配置管理
             </el-menu-item>
+            <el-menu-item index="/System/file_save">
+                <icon-font :icon-href="'icon-sub-menu'"/>
+                文件存储管理
+            </el-menu-item>
         </el-sub-menu>
 
         <el-sub-menu index="2" :disabled="itemDisabled">
