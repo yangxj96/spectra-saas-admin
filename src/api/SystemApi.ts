@@ -1,5 +1,6 @@
 import request from "@/plugin/request";
 
+// 系统配置实体
 export interface SystemConfig {
     id: number,
     key: string,
@@ -19,6 +20,15 @@ export interface SystemDictGroup {
     children?: SystemDictGroup[]
 }
 
+// 文件存储配置
+export interface FileSave {
+    type: number,
+    locale: string,
+    access_id: string,
+    access_secret: string,
+    bucket: string
+}
+
 export default {
     // --------------- 系统配置项相关
     getSystemConfig() {
@@ -35,5 +45,9 @@ export default {
     // 根据组ID获取
     getDictItemByGroupId(id: number) {
         return request.get(`/api/system/dict/item/getByGroupId?id=${id}`)
+    },
+    //---------------- 文件存储相关
+    getFileSave() {
+        return request.get(`/api/system/fileSave`)
     }
 }
