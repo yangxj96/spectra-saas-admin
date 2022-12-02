@@ -13,6 +13,11 @@ export interface SystemConfig {
     }[]
 }
 
+export interface SystemDictGroup {
+    id: number,
+    name: string,
+    children?: SystemDictGroup[]
+}
 
 export default {
     // --------------- 系统配置项相关
@@ -21,5 +26,14 @@ export default {
     },
     saveSystemConfig(params: SystemConfig) {
         return request.post(`/api/system/config/11111`, params)
+    },
+
+    // --------------- 字典
+    getDictGroupAll() {
+        return request.get('/api/system/dict/group')
+    },
+    // 根据组ID获取
+    getDictItemByGroupId(id: number) {
+        return request.get(`/api/system/dict/item/getByGroupId?id=${id}`)
     }
 }

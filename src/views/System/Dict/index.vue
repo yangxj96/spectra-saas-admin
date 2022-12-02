@@ -20,7 +20,11 @@
         <el-row class="box-content">
             <!-- 字典组树 -->
             <el-col :span="4" class="tree">
-                <el-tree ref="group_tree" :data="tree_data" :props="{children:'children',label:'name'}"/>
+                <el-tree ref="group_tree"
+                         :data="tree_data"
+                         :props="{children:'children',label:'name'}"
+                         @node-click="onDictGroupClick"
+                />
             </el-col>
             <!-- 字典项表格 -->
             <el-col :span="20">
@@ -68,35 +72,30 @@
 <script lang="ts">
 import {defineComponent} from "vue";
 import Table from "@/mixins/Table";
+import SystemApi, {SystemDictGroup} from "@/api/SystemApi";
+import {AxiosResponse} from "axios";
+import {IResult} from "@/plugin/request";
 
 export default defineComponent({
     name: 'dict',
     mixins: [Table],
     data() {
-        const tree_data: TreeData[] = [
-            {
-                name: '人物',
-                children: [{name: '性别'}, {name: '学历'}],
-            },
-            {
-                name: '层级2',
-                children: [{name: '层级2-1', children: [{name: '层级2-1-1',}]}],
-            },
-            {
-                name: '层级3',
-                children: [{name: '层级3-1', children: [{name: '层级3-1-1',}]}],
-            }
-        ];
         const table_data: TableData[] = [];
         return {
-            tree_data: tree_data,
+            tree_data: [] as SystemDictGroup[],
             table_data: table_data,
         }
     },
     created() {
         this.handleTableData();
+        this.initData()
     },
     methods: {
+        initData(){
+          SystemApi.getDictGroupAll().then((response: AxiosResponse<IResult<SystemDictGroup[]>>) =>{
+              this.tree_data = response.data.data
+          })
+        },
         handleTableData() {
             this.table_data = [];
             for (let i = 0; i < 10; i++) {
@@ -123,6 +122,13 @@ export default defineComponent({
         },
         handleCreateDictItem() {
             this.$message.success('开发中');
+        },
+        // 字典组被单击事件
+        onDictGroupClick(o: any, node: any, tn: any, e: PointerEvent) {
+            console.log(`o`,o)
+            console.log(`node`,node)
+            console.log(`tn`,tn)
+            console.log(`e`,e)
         }
     }
 })

@@ -1,6 +1,6 @@
 import {MockMethod} from "vite-plugin-mock";
 import CommonUtils from "../src/utils/CommonUtils";
-import {SystemConfig} from '@/api/SystemApi'
+import {SystemConfig,SystemDictGroup} from '@/api/SystemApi'
 import {IResult} from "../src/plugin/request";
 
 export default <MockMethod[]> [
@@ -69,6 +69,60 @@ export default <MockMethod[]> [
             return <IResult>{
                 code: 0,
                 message: '操作成功'
+            }
+        }
+    },{
+        url: `/api/system/dict/group`,
+        method: 'get',
+        statusCode: 200,
+        timeout: CommonUtils.getRandom(50, 100),
+        response: () => {
+            return <IResult<SystemDictGroup[]>>{
+                code: 0,
+                message: '操作成功',
+                data: [
+                    {
+                        id: CommonUtils.getRandom(10000000, 99999999),
+                        name: '人物',
+                        children: [
+                            {
+                                id: CommonUtils.getRandom(10000000, 99999999),
+                                name: '性别'
+                            },
+                            {
+                                id: CommonUtils.getRandom(10000000, 99999999),
+                                name: '学历'
+                            }
+                        ]
+                    },{
+                        id: CommonUtils.getRandom(10000000, 99999999),
+                        name: '人物',
+                        children: [
+                            {
+                                id: CommonUtils.getRandom(10000000, 99999999),
+                                name: '性别'
+                            },
+                            {
+                                id: CommonUtils.getRandom(10000000, 99999999),
+                                name: '学历'
+                            }
+                        ]
+                    },{
+                        id: CommonUtils.getRandom(10000000, 99999999),
+                        name: '人物',
+                        children: [
+                            {
+                                id: CommonUtils.getRandom(10000000, 99999999),
+                                name: '性别'
+                            },
+                            {
+                                id: CommonUtils.getRandom(10000000, 99999999),
+                                name: '学历'
+                            }
+                        ]
+                    }
+
+                ]
             }
         }
     },
