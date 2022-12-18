@@ -17,9 +17,11 @@ let loading: {
     close: () => void;
 }
 
+// 路由前置守卫
 router.beforeEach(async (to, from, next) => {
     console.debug('[路由守卫 - 前置] - 开始');
     // 判断token
+    console.log(`to`, to)
     let token = useStore().user.getToken;
     if (token.access_token === undefined && to.path !== '/Login') {
         next({
@@ -43,7 +45,7 @@ router.beforeEach(async (to, from, next) => {
     }
     console.debug('[路由守卫 - 前置] - 解析守卫结束');
 })
-
+// 路由后置守卫
 router.afterEach((to, from) => {
     console.debug('[路由守卫 - 后置] - 开始');
     // 切换标题
@@ -57,5 +59,14 @@ router.afterEach((to, from) => {
     }
     console.debug('[路由守卫 - 后置] - 解析守卫结束');
 })
+
+declare module 'vue-router' {
+    interface RouteMeta {
+        /** 修改的标题 */
+        title?: string,
+        /** 所需权限集合 */
+        authority?: string[],
+    }
+}
 
 export default router

@@ -17,6 +17,7 @@ export const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/Login/index.vue'),
         meta: {
             title: '登录',
+            authority: []
         }
     },
     {
@@ -30,6 +31,7 @@ export const routes: Array<RouteRecordRaw> = [
                 component: () => import('@/views/Home/index.vue'),
                 meta: {
                     title: '首页',
+                    authority: []
                 }
             }
         ]
@@ -39,6 +41,9 @@ export const routes: Array<RouteRecordRaw> = [
         path: '/System',
         component: layout,
         redirect: 'service',
+        meta: {
+            authority: ["ROLE_SYSADMIN"]
+        },
         children: [
             {
                 path: 'service',
@@ -95,13 +100,17 @@ export const routes: Array<RouteRecordRaw> = [
         path: '/User',
         component: layout,
         redirect: 'user',
+        meta: {
+            authority: ["ROLE_SYSADMIN"]
+        },
         children: [
             {
                 path: 'user',
                 name: '用户管理',
                 component: () => import('@/views/User/User/index.vue'),
                 meta: {
-                    title: '用户管理'
+                    title: '用户管理',
+                    authority: ['USER_INSERT']
                 }
             },
             {
@@ -127,6 +136,7 @@ export const routes: Array<RouteRecordRaw> = [
         path: '/error',
         component: layout,
         redirect: '404',
+        meta: {},
         children: [
             {
                 path: '404',
