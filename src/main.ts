@@ -57,15 +57,4 @@ declare module '@vue/runtime-core' {
         $loading: typeof ElLoadingService
     }
 }
-// const modules = import.meta.globEager('./../mock/*.ts');
-// console.log(modules)
-// const mockModules: any = [];
-// Object.keys(modules).forEach((key)=>{
-//     console.log(key)
-//     if (key.includes('MockProdServer')){
-//         return;
-//     }
-//     // @ts-ignore
-//     mockModules.push(...modules[key].default);
-// })
-// console.log(mockModules);
+
