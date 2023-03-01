@@ -30,7 +30,7 @@ export default ({command}: ConfigEnv): UserConfigExport => {
             }
         },
         build: {
-            chunkSizeWarningLimit: 650,
+            chunkSizeWarningLimit: 500,
             rollupOptions: {
                 output: {
                     manualChunks(id) {
