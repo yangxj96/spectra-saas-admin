@@ -19,9 +19,6 @@ export default defineComponent({
                 duration: 500,
             }
         }
-    },
-    created() {
-        console.log(import.meta.env)
     }
 })
 

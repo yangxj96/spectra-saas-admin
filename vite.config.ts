@@ -6,6 +6,11 @@ import * as path from "path";
 export default ({command}: ConfigEnv): UserConfigExport => {
     return {
         base: './',
+        server: {
+          watch: {
+              usePolling: true
+          }
+        },
         plugins: [
             vue(),
             viteMockServe({

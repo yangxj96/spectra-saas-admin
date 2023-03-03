@@ -21,7 +21,6 @@ let loading: {
 router.beforeEach(async (to, from, next) => {
     console.debug('[路由守卫 - 前置] - 开始');
     // 判断token
-    console.log(`to`, to)
     let token = useStore().user.getToken;
     if (token.access_token === undefined && to.path !== '/Login') {
         next({
