@@ -9,6 +9,7 @@
     },
     "dependencies": {
         "@element-plus/icons-vue": "^2.0.10",
+        "@stomp/stompjs": "^7.0.0",
         "@types/echarts": "^4.9.16",
         "axios": "^1.1.2",
         "default-passive-events": "^2.0.0",
