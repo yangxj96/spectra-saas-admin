@@ -6,6 +6,11 @@ import * as path from "path";
 export default ({command}: ConfigEnv): UserConfigExport => {
     return {
         base: './',
+        server: {
+          watch: {
+              usePolling: true
+          }
+        },
         plugins: [
             vue(),
             viteMockServe({
@@ -30,7 +35,7 @@ export default ({command}: ConfigEnv): UserConfigExport => {
             }
         },
         build: {
-            chunkSizeWarningLimit: 650,
+            chunkSizeWarningLimit: 500,
             rollupOptions: {
                 output: {
                     manualChunks(id) {

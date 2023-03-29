@@ -74,8 +74,6 @@ let unfold = ref(true);
 
 let itemDisabled = ref(false);
 
-console.log('菜单初始化')
-
 function onMenuItemClick(el: any) {
     if (clean.length > 0){
         for (let canceler of clean) {
