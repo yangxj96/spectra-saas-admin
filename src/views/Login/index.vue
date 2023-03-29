@@ -24,7 +24,7 @@
             </div>
             <template #footer>
                 <el-button type="primary" @click="handleLogin(ruleFormRef)">
-                    <icon-font :icon-href="'icon-login-btn'"/>
+                        <icon-font :icon-href="'icon-login-btn'"/>
                     登录
                 </el-button>
             </template>
