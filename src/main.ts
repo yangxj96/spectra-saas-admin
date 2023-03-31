@@ -4,16 +4,13 @@ import App from './App.vue';
 import router from './plugin/router';
 // 状态
 import {createStore} from "@/plugin/store";
-
 // 事件
 import 'default-passive-events';
 // element
 import ElementPlus from 'element-plus';
-import type {ElMessage, ElNotification, ElMessageBox, ElLoadingService} from "element-plus";
 import 'element-plus/dist/index.css';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
-
 // 自定义指令
 import AuthDirective from "@/directive/Auth";
 import FocusDirective from "@/directive/Focus";
@@ -43,18 +40,4 @@ app
     .use(ElementPlus, {locale: zhCn})
     .mount('#app');
 
-
-declare module '@vue/runtime-core' {
-
-    export interface ComponentCustomProperties {
-        $message: typeof ElMessage
-        $notify: typeof ElNotification
-        $msgbox: typeof ElMessageBox
-        $messageBox: typeof ElMessageBox
-        $alert: typeof ElMessageBox.alert
-        $confirm: typeof ElMessageBox.confirm
-        $prompt: typeof ElMessageBox.prompt
-        $loading: typeof ElLoadingService
-    }
-}
 

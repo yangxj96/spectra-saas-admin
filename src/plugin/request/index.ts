@@ -1,4 +1,4 @@
-import axios, {AxiosRequestConfig, AxiosResponse, Canceler} from "axios";
+import axios, {AxiosResponse, Canceler, InternalAxiosRequestConfig} from "axios";
 import {hideLoading, showLoading} from "@/plugin/element/loading";
 import {ElMessage} from "element-plus/es";
 import {MessageDefaultConfig} from "@/utils/DefaultConfig";
@@ -23,7 +23,7 @@ export const clean: Canceler[] = [];
 
 // 请求拦截器
 http.interceptors.request.use(
-    (config: AxiosRequestConfig) => {
+    (config: InternalAxiosRequestConfig) => {
         showLoading();
         config.cancelToken = new axios.CancelToken(function executor(c) {
             clean.push(c);
