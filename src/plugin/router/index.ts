@@ -1,11 +1,13 @@
-import {createRouter, createWebHashHistory} from 'vue-router';
-import {routes} from '@/plugin/router/routes';
+import {createRouter, createWebHashHistory, RouteRecordRaw} from 'vue-router';
 import useStore from "@/plugin/store/index";
 import {ElLoading} from "element-plus";
+import base from "@/plugin/router/router/base";
+import platform from "@/plugin/router/router/platform";
+
 
 const router = createRouter({
     history: createWebHashHistory(),
-    routes,
+    routes: [...base,...platform],
     scrollBehavior(to, from, savedPosition) {
         return {
             top: 0

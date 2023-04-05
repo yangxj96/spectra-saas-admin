@@ -1,41 +1,10 @@
-/*
- * Copyright (c) 2021.
- * 作者：杨新杰(Jack Young)
- * 邮箱：yangxj96@gmail.com
- * 日期：2021-11-28 02:57:27
- * Copyright (c) 2021.
- */
-
 import {RouteRecordRaw} from "vue-router";
+import layout from "@/views/Layout/index.vue";
 
-import layout from '@/views/Layout/index.vue';
-
-export const routes: Array<RouteRecordRaw> = [
-    {
-        path: '/Login',
-        name: '登录',
-        component: () => import('@/views/Login/index.vue'),
-        meta: {
-            title: '登录',
-            authority: []
-        }
-    },
-    {
-        path: '',
-        name: '首页',
-        component: layout,
-        children: [
-            {
-                path: '',
-                name: '首页',
-                component: () => import('@/views/Home/index.vue'),
-                meta: {
-                    title: '首页',
-                    authority: []
-                }
-            }
-        ]
-    },
+/**
+ * 平台用户才能有的
+ */
+export default [
     {
         name: '系统配置',
         path: '/System',
@@ -130,22 +99,5 @@ export const routes: Array<RouteRecordRaw> = [
                 }
             }
         ]
-    },
-    {
-        name: 'error',
-        path: '/error',
-        component: layout,
-        redirect: '404',
-        meta: {},
-        children: [
-            {
-                path: '404',
-                name: '未匹配到页面',
-                component: () => import('@/views/Error/404/index.vue'),
-                meta: {
-                    title: '未匹配到页面'
-                }
-            }
-        ]
     }
-]
+] as Array<RouteRecordRaw>
