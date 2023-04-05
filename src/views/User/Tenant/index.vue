@@ -15,6 +15,7 @@
                 <el-form-item>
                     <el-button-group>
                         <el-button type="primary" icon="Search">查询</el-button>
+                        <el-button type="primary" icon="Plus">注册</el-button>
                     </el-button-group>
                 </el-form-item>
             </el-form>
@@ -22,24 +23,24 @@
         <!-- 表格 -->
         <el-row style="height: calc(100% - 100px)">
             <!-- @formatter:off -->
-            <el-table :data="table_data" stripe border  height="100%" style="width: 100%">
-                <el-table-column label="租户编号"   prop="id" width="140" align="center"/>
-                <el-table-column label="公司名称"   prop="company_name" align="center" show-overflow-tooltip/>
+            <el-table :data="table_data" highlight-current-row stripe border  height="100%" style="width: 100%">
+                <el-table-column label="租户编号"   prop="id" width="140" align="center" show-overflow-tooltip="true"/>
+                <el-table-column label="公司名称"   prop="company_name" align="center" show-overflow-tooltip="true"/>
                 <el-table-column label="管理账号" align="center">
                     <template #default="datum">
                         <el-button type="primary" link>{{ datum.row.admin.username }}</el-button>
                     </template>
                 </el-table-column>
                 <el-table-column label="联系方式" prop="contact" align="center" width="120"/>
-                <el-table-column label="公司地址" prop="address" align="center" show-overflow-tooltip/>
-                <el-table-column label="已购模块" prop="modules" align="center" show-overflow-tooltip/>
+                <el-table-column label="公司地址" prop="address" align="center" show-overflow-tooltip="true"/>
+                <el-table-column label="已购模块" prop="modules" align="center" show-overflow-tooltip="true"/>
                 <el-table-column label="创建时间" prop="created_time"    align="center"/>
                 <el-table-column label="到期时间" prop="expiration_time" align="center"/>
                 <el-table-column label="剩余时间" prop="remaining_time"  align="center"/>
-                <el-table-column label="操作" width="200">
+                <el-table-column label="操作" width="150">
                     <template #default="datum">
-                        <el-button text type="primary" @click="handleLockTenant(datum.row)">冻结</el-button>
-                        <el-button text type="primary" >赠送时长</el-button>
+                        <el-button link type="primary" @click="handleLockTenant(datum.row)">冻结</el-button>
+                        <el-button link type="primary">详情</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -90,8 +91,8 @@ export default defineComponent({
                 contact: '131xxxx2222',
                 address: '云南省昆明市西山区XXX街道XX大厦XX栋XX层1111',
                 modules: '基础模块,OA协同,审核模块',
-                created_time: DateUtils.formatting(new Date()),
-                expiration_time: DateUtils.formatting(new Date()),
+                created_time: DateUtils.formatting(new Date(),'yyyy-MM-dd'),
+                expiration_time: DateUtils.formatting(new Date(),'yyyy-MM-dd'),
                 remaining_time: Math.round(Math.random() * 10) + i
             }
             this.table_data.push(datum);
