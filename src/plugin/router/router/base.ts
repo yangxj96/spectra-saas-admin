@@ -44,6 +44,14 @@ export default [
                 meta: {
                     title: '未匹配到页面'
                 }
+            },
+            {
+                path: '401',
+                name: '无权访问',
+                component: () => import('@/views/Error/401/index.vue'),
+                meta: {
+                    title: '无权访问'
+                }
             }
         ]
     }
