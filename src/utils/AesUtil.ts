@@ -5,6 +5,7 @@
  * 日期：2021-11-28 02:11:05
  * Copyright (c) 2021.
  */
+import CryptoJS from "crypto-js";
 
 export default {
 
@@ -38,8 +39,19 @@ export default {
         for (let i = 0; i < array.length; i++) {
             array[i] = atob.charCodeAt(i + key.length + iv.length)
         }
-        console.log(key)
-        console.log(iv)
-        console.log(array);
+
+        let decrypt = CryptoJS.AES.decrypt(this.uint8ArrayToBase64(array), CryptoJS.enc.Base64.parse(this.uint8ArrayToBase64(key)), {
+            iv: CryptoJS.enc.Base64.parse(this.uint8ArrayToBase64(iv)),
+            mode: CryptoJS.mode.CBC,
+            padding: CryptoJS.pad.Pkcs7
+        })
+        return decrypt.toString(CryptoJS.enc.Utf8)
+    },
+    uint8ArrayToBase64(array: Uint8Array) {
+        let binary = "";
+        for (let len = array.byteLength, i = 0; i < len; i++) {
+            binary += String.fromCharCode(array[i]);
+        }
+        return window.btoa(binary);
     }
 }

@@ -2,10 +2,11 @@ import axios, {AxiosResponse, Canceler, InternalAxiosRequestConfig} from "axios"
 import {hideLoading, showLoading} from "@/plugin/element/loading";
 import {ElMessage} from "element-plus/es";
 import {MessageDefaultConfig} from "@/utils/DefaultConfig";
+import AesUtil from "@/utils/AesUtil";
 
 const http = axios.create({
-    // baseURL: import.meta.env.VITE_API_URL,
-    baseURL: import.meta.env.BASE_URL,
+    baseURL: import.meta.env.VITE_API_URL,
+    // baseURL: import.meta.env.BASE_URL,
     timeout: 3 * 1000,
     withCredentials: false,
     headers: {
@@ -15,7 +16,7 @@ const http = axios.create({
 
 export interface IResult<T = any> {
     code: number,
-    message: string,
+    msg: string,
     data: T
 }
 
@@ -45,9 +46,12 @@ http.interceptors.response.use(
             ElMessage.error({
                 ...MessageDefaultConfig,
                 type: 'error',
-                message: response.data.message
+                message: response.data.msg
             })
-            throw new Error(`请求失败:${response.data.message}`);
+            throw new Error(`请求失败:${response.data.msg}`);
+        }
+        if (response.data.data) {
+            response.data.data = JSON.parse(AesUtil.decrypt(response.data.data))
         }
         return response;
     },
