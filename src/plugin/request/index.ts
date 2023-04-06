@@ -32,6 +32,10 @@ http.interceptors.request.use(
         if (config.method == "POST" || config.method == 'post') {
             config.data = AesUtil.encrypt(JSON.stringify(config.data));
         }
+        if (config.method === "GET" || config.method === "get") {
+            console.log(config.params);
+            config.params = {args: AesUtil.encrypt(JSON.stringify(config.params))}
+        }
         return config;
     },
     error => {

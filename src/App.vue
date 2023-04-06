@@ -11,6 +11,7 @@
 
 import {defineComponent} from "vue";
 import AesUtil from "@/utils/AesUtil";
+import DemoApi from "@/api/DemoApi";
 
 export default defineComponent({
     name: 'app',
@@ -22,14 +23,15 @@ export default defineComponent({
         }
     },
     created() {
-        let obj = {
-            k1: 'value'
-        }
-
-        let encrypt = AesUtil.encrypt('{"username":"sysadmin","password":"sysadmin"}');
-        console.log('秘钥', encrypt)
-        let decrypt = AesUtil.decrypt(encrypt);
-        console.log('秘钥2',decrypt)
+        DemoApi.demoGet();
+        // let obj = {
+        //     k1: 'value'
+        // }
+        //
+        // let encrypt = AesUtil.encrypt('{"username":"sysadmin","password":"sysadmin"}');
+        // console.log('秘钥', encrypt)
+        // let decrypt = AesUtil.decrypt(encrypt);
+        // console.log('秘钥2',decrypt)
     }
 })
 
