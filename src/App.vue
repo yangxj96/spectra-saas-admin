@@ -28,8 +28,9 @@ export default defineComponent({
         }
     },
     created() {
-        console.log(AesUtil.decrypt(this.aes.str2));
-        // console.log(AesUtil.decrypt2(this.aes.str, this.aes.key, this.aes.iv));
+        let encrypt = AesUtil.encrypt(JSON.stringify({k1: "v1"}));
+        console.log(encrypt);
+        console.log(AesUtil.decrypt(encrypt));
     }
 })
 
