@@ -6,6 +6,7 @@
  * Copyright (c) 2021.
  */
 import CryptoJS from "crypto-js";
+import {Key} from "@element-plus/icons-vue";
 
 export default {
 
@@ -15,7 +16,12 @@ export default {
      * @return 加密后的数据
      */
     encrypt(origin: string) {
-
+        let encrypt = CryptoJS.AES.encrypt(origin, `Key`, {
+            iv: CryptoJS.enc.Base64.parse('iv'),
+            mode: CryptoJS.mode.CBC,
+            padding: CryptoJS.pad.Pkcs7
+        });
+        return encrypt.ciphertext.toString(CryptoJS.enc.Utf8)
     },
     /**
      * 解密
