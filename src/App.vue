@@ -18,19 +18,18 @@ export default defineComponent({
         return {
             messageDefaultConfig: {
                 duration: 500,
-            },
-            aes: {
-                key: 'agt7QDmSlW+2V2YaDT9g6sDesu0xKPMKYOfyQsTcFpQ=',
-                iv: 'AV1UVAnnP21vIKNHf3pfHw==',
-                str: '8VwIeTF0oqFVo3Psek0MOg==',
-                str2: 'agt7QDmSlW+2V2YaDT9g6sDesu0xKPMKYOfyQsTcFpQBXVRUCec/bW8go0d/el8f8VwIeTF0oqFVo3Psek0MOg=='
             }
         }
     },
     created() {
-        let encrypt = AesUtil.encrypt(JSON.stringify({k1: "v1"}));
-        console.log(encrypt);
-        console.log(AesUtil.decrypt(encrypt));
+        let obj = {
+            k1: 'value'
+        }
+
+        let encrypt = AesUtil.encrypt('{"username":"sysadmin","password":"sysadmin"}');
+        console.log('秘钥', encrypt)
+        let decrypt = AesUtil.decrypt(encrypt);
+        console.log('秘钥2',decrypt)
     }
 })
 

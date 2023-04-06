@@ -24,7 +24,7 @@
             </div>
             <template #footer>
                 <el-button type="primary" @click="handleLogin(ruleFormRef)">
-                        <icon-font :icon-href="'icon-login-btn'"/>
+                    <icon-font :icon-href="'icon-login-btn'"/>
                     登录
                 </el-button>
             </template>
@@ -68,19 +68,19 @@ async function handleLogin(formEl: FormInstance | undefined) {
     }
     await formEl.validate((valid) => {
         if (valid) {
-            UserApi.login(user.username, user.password)
-                .then((response: AxiosResponse<IResult<Token>>) => {
-                        let result = response.data.data;
-                        proxy.$message.success({
-                            ...MessageDefaultConfig,
-                            message: `登录成功`,
-                            onClose: () => {
-                                userStore.setToken(result);
-                                proxy.$router.push({path: '/'});
-                            }
-                        })
-                    }
-                );
+            UserApi.login(user.username, user.password).then((response: AxiosResponse<IResult<Token>>) => {
+                    let result = response.data.data;
+                    console.log(response.data)
+                    proxy.$message.success({
+                        ...MessageDefaultConfig,
+                        message: `登录成功`,
+                        onClose: () => {
+                            userStore.setToken(result);
+                            // proxy.$router.push({path: '/'});
+                        }
+                    })
+                }
+            );
         } else {
             proxy.$message.error({
                 ...MessageDefaultConfig,

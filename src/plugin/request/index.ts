@@ -29,6 +29,9 @@ http.interceptors.request.use(
         config.cancelToken = new axios.CancelToken(function executor(c) {
             clean.push(c);
         })
+        if (config.method == "POST" || config.method == 'post') {
+            config.data = AesUtil.encrypt(JSON.stringify(config.data));
+        }
         return config;
     },
     error => {

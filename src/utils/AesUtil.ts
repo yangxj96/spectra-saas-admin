@@ -20,16 +20,17 @@ export default class AesUtil {
     static encrypt(origin: string) {
         let key = this.getRandomKey();
         let iv  = this.getRandomIv();
-
+        // 加密
         let encrypt = CryptoJS.AES.encrypt(origin, CryptoJS.enc.Base64.parse(this.uint8ArrayToBase64(key)), {
-            iv:  CryptoJS.enc.Base64.parse(this.uint8ArrayToBase64(iv)),
+            iv: CryptoJS.enc.Base64.parse(this.uint8ArrayToBase64(iv)),
             mode: CryptoJS.mode.CBC,
             padding: CryptoJS.pad.Pkcs7
         });
+
         let string = encrypt.ciphertext.toString(CryptoJS.enc.Base64);
         let bytes = this.base64ToUint8Array(string);
 
-        let result = new Uint8Array(key.byteLength + iv.byteLength + bytes.byteLength);
+        let result = new Uint8Array(32 + 16 + bytes.byteLength);
         for (let i = 0; i < key.byteLength; i++) {
             result[i] = key[i]
         }
@@ -38,7 +39,7 @@ export default class AesUtil {
             result[i + key.byteLength] = iv[i]
         }
 
-        for (let i = 0; i < key.byteLength; i++) {
+        for (let i = 0; i < bytes.byteLength; i++) {
             result[i + key.byteLength + iv.byteLength] = bytes[i]
         }
 
@@ -53,7 +54,7 @@ export default class AesUtil {
     static decrypt(ciphertext: string) {
         let atob = window.atob(ciphertext);
         let key = new Uint8Array(32);
-        let iv = new Uint8Array(16);
+        let iv  = new Uint8Array(16);
         let array = new Uint8Array(atob.length - key.length - iv.length);
 
         for (let i = 0; i < key.length; i++) {
@@ -131,8 +132,8 @@ export default class AesUtil {
         try {
             let padding = '='.repeat((4 - origin.length % 4) % 4);
             let base64 = (origin + padding)
-                .replace(/\-/g, '+')
-                .replace(/_/g, '/');
+                // .replace(/\-/g, '+')
+                // .replace(/_/g, '/');
             let rawData = atob(base64);
             let outputArray = new Uint8Array(rawData.length);
             for (let i = 0; i < rawData.length; ++i) {
