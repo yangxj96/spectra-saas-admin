@@ -22,6 +22,7 @@ export interface IResult<T = any> {
 
 export const clean: Canceler[] = [];
 
+
 // 请求拦截器
 http.interceptors.request.use(
     (config: InternalAxiosRequestConfig) => {
@@ -29,13 +30,19 @@ http.interceptors.request.use(
         config.cancelToken = new axios.CancelToken(function executor(c) {
             clean.push(c);
         })
-        if (config.method == "POST" || config.method == 'post') {
+        if (config.method == "POST" || config.method == 'post'
+            ||
+            config.method == "PUT" || config.method == "put") {
+            // if (config.headers["Content-Type"] != 'multipart/form-data') {
+            // }
             config.data = AesUtil.encrypt(JSON.stringify(config.data));
         }
-        if (config.method === "GET" || config.method === "get") {
-            console.log(config.params);
+        if (config.method === "GET" || config.method === "get"
+            ||
+            config.method === 'DELETE' || config.method === 'delete') {
             config.params = {args: AesUtil.encrypt(JSON.stringify(config.params))}
         }
+
         return config;
     },
     error => {

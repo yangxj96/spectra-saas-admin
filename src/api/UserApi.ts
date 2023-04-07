@@ -54,10 +54,6 @@ export default {
         return request.post('/api/auth/login', {
             username: username,
             password: password
-        },{
-            headers: {
-                'Content-Type' :'multipart/form-data'
-            }
         });
     },
     /**

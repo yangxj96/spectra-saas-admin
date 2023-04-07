@@ -23,7 +23,7 @@ export default defineComponent({
         }
     },
     created() {
-        DemoApi.demoGet();
+        DemoApi.demoPostFromData();
         // let obj = {
         //     k1: 'value'
         // }
