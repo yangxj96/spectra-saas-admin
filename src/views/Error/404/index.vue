@@ -15,11 +15,11 @@ export default defineComponent({
     name: "error-404",
     data(){
         return{
-            time: -1
+            time: -1 as number
         }
     },
     created() {
-        this.time = setTimeout(()=> {
+        this.time = window.setTimeout(()=> {
             this.$router.back();
         },3000)
     },

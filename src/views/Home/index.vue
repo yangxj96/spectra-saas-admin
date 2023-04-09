@@ -7,7 +7,7 @@
 <script lang="ts">
 
 import {defineComponent} from 'vue';
-import * as echarts from 'echarts';
+import {ECharts, init} from 'echarts';
 
 export default defineComponent({
 
@@ -15,7 +15,7 @@ export default defineComponent({
     data() {
         return {
             chart: {
-                obj: null as echarts.ECharts || null,
+                obj: {} as ECharts,
                 options: {
                     graphic: {
                         elements: [
@@ -63,16 +63,16 @@ export default defineComponent({
                             }
                         ]
                     }
-                } as echarts.EChartOption,
+                }
             }
         }
     },
     mounted() {
-        this.chart.obj = echarts.init(this.$refs["echarts-box"] as HTMLDivElement);
+        this.chart.obj = init(this.$refs["echarts-box"] as HTMLDivElement);
         this.chart.obj.setOption(this.chart.options);
     },
     unmounted() {
-        this.chart.obj?.dispose();
+        this.chart.obj.dispose();
     }
 })
 

@@ -85,7 +85,7 @@ export default defineComponent({
                     systemApi.saveSystemConfig(this.formatParams()).then((response: AxiosResponse<IResult>) => {
                         this.$message({
                             ...MessageDefaultConfig,
-                            message: response.data.message,
+                            message: response.data.msg,
                             type: 'success',
                             onClose: () => {
                                 this.onCancel();
