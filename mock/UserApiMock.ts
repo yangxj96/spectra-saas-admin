@@ -2,6 +2,7 @@ import {MockMethod} from "vite-plugin-mock";
 import CommonUtils from "../src/utils/CommonUtils";
 import {IResult} from "../src/plugin/request";
 import {UserOperateLog} from "../src/api/UserApi";
+import AesUtil from "../src/utils/AesUtil";
 
 export default <MockMethod[]>[
     {
@@ -13,7 +14,7 @@ export default <MockMethod[]>[
             return {
                 code: 0,
                 message: '操作成功',
-                data: {
+                data: AesUtil.encrypt(JSON.stringify({
                     username: "admin",
                     access_token: "ea0b5233-e02e-4156-92b8-daf7511e4645",
                     refresh_token: "e5a6c21f-61c0-4867-9772-9711d7081347",
@@ -22,7 +23,7 @@ export default <MockMethod[]>[
                         "ROLE_ADMIN"
                     ],
                     expiration_time: "2022-06-13 17:29:21"
-                }
+                }))
             }
         }
     },
