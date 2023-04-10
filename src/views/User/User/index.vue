@@ -20,7 +20,7 @@
                 </el-form-item>
                 <el-form-item>
                     <el-button-group>
-                        <el-button type="primary" icon="Search">查询</el-button>
+                        <el-button type="primary"><IconSearch/>&nbsp;查询</el-button>
                     </el-button-group>
                 </el-form-item>
             </el-form>
@@ -30,7 +30,7 @@
             <!-- @formatter:off -->
           <el-table :data="table_data" stripe border  height="100%" style="width: 100%">
               <el-table-column label="ID"        prop="id" width="140"/>
-              <el-table-column label="账户"       prop="username" show-overflow-tooltip/>
+              <el-table-column label="账户"       prop="username" :show-overflow-tooltip="true"/>
               <el-table-column label="密码"       prop="password"/>
               <el-table-column label="所属组织"    prop="org_name"/>
               <el-table-column label="上次登录时间" prop="last_login_time"/>
@@ -80,11 +80,13 @@ import {defineComponent} from "vue";
 import Table from "@/mixins/Table";
 import {UserList} from "@/api/UserApi";
 import Log from './components/Log/index.vue';
+import IconSearch from "@/icon/IconSearch.vue";
 
 export default defineComponent({
     name: 'user-user',
     mixins: [Table],
     components: {
+        IconSearch,
         Log
     },
     data() {

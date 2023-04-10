@@ -14,9 +14,13 @@
                 </el-form-item>
                 <el-form-item>
                     <el-button-group>
-                        <el-button type="primary" icon="Search">查询</el-button>
-                        <el-button type="primary" @click="this.$router.push({path: '/User/Tenant/Register'});"
-                                   icon="Plus">注册
+                        <el-button type="primary">
+                            <IconSearch/>
+                            &nbsp;查询
+                        </el-button>
+                        <el-button type="primary" @click="this.$router.push({path: '/User/Tenant/Register'});">
+                            <IconAdd/>
+                            &nbsp;注册
                         </el-button>
                     </el-button-group>
                 </el-form-item>
@@ -68,9 +72,12 @@
 import {defineComponent} from "vue";
 import table from "@/mixins/Table";
 import DateUtils from "@/utils/DateUtils";
+import IconSearch from "@/icon/IconSearch.vue";
+import IconAdd from "@/icon/IconAdd.vue";
 
 export default defineComponent({
     name: 'user-tenant',
+    components: {IconSearch, IconAdd},
     mixins: [table],
     data() {
         return {

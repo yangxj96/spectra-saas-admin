@@ -3,14 +3,18 @@
         <el-tabs v-model="active">
             <el-tab-pane name="routine">
                 <template #label>
-                    <el-icon><Calendar /></el-icon>
+                    <el-icon>
+                        <IconSetting color="#4d4d4d"/>
+                    </el-icon>
                     <span>&nbsp;常规配置</span>
                 </template>
                 <Routine/>
             </el-tab-pane>
             <el-tab-pane name="file">
                 <template #label>
-                    <el-icon><Files /></el-icon>
+                    <el-icon>
+                        <IconFileConfig color="#4d4d4d"/>
+                    </el-icon>
                     <span>&nbsp;文件存储配置</span>
                 </template>
                 <FileSave/>
@@ -23,13 +27,14 @@
 import {defineComponent} from 'vue';
 import Routine from "@/views/System/Config/components/Routine/index.vue";
 import FileSave from "@/views/System/Config/components/FileSave/index.vue";
-import {Calendar,Files} from "@element-plus/icons-vue";
+import IconFileConfig from "@/icon/IconFileConfig.vue";
+import IconSetting from "@/icon/IconSetting.vue";
 
 export default defineComponent({
     name: 'SystemConfig',
     components: {
-        Calendar,
-        Files,
+        IconSetting,
+        IconFileConfig,
         Routine,
         FileSave
     },

@@ -9,7 +9,7 @@
 
         <el-menu-item index="/" :disabled="itemDisabled" @click="onMenuItemClick">
             <el-icon>
-                <HomeFilled/>
+                <IconHome color="#4d4d4d"/>
             </el-icon>
             <template #title>首页</template>
         </el-menu-item>
@@ -17,37 +17,37 @@
         <el-sub-menu index="1" :disabled="itemDisabled">
             <template #title>
                 <el-icon>
-                    <Setting/>
+                    <IconSetting color="#4d4d4d"/>
                 </el-icon>
                 <span>平台配置</span>
             </template>
             <el-menu-item index="/System">
                 <el-icon>
-                    <Menu/>
+                    <IconMenu color="#4d4d4d"/>
                 </el-icon>
                 平台配置
             </el-menu-item>
             <el-menu-item index="/System/Service">
                 <el-icon>
-                    <Menu/>
+                    <IconMenu color="#4d4d4d"/>
                 </el-icon>
                 服务管理
             </el-menu-item>
             <el-menu-item index="/System/Module">
                 <el-icon>
-                    <Menu/>
+                    <IconMenu color="#4d4d4d"/>
                 </el-icon>
                 模块管理
             </el-menu-item>
             <el-menu-item index="/System/Menu">
                 <el-icon>
-                    <Menu/>
+                    <IconMenu color="#4d4d4d"/>
                 </el-icon>
                 菜单管理
             </el-menu-item>
             <el-menu-item index="/System/Dict">
                 <el-icon>
-                    <Menu/>
+                    <IconMenu color="#4d4d4d"/>
                 </el-icon>
                 字典管理
             </el-menu-item>
@@ -56,25 +56,25 @@
         <el-sub-menu index="2" :disabled="itemDisabled">
             <template #title>
                 <el-icon>
-                    <User/>
+                    <IconUser color="#4d4d4d"/>
                 </el-icon>
                 <span>用户管理</span>
             </template>
             <el-menu-item index="/User">
                 <el-icon>
-                    <Menu/>
+                    <IconMenu color="#4d4d4d"/>
                 </el-icon>
                 用户管理
             </el-menu-item>
             <el-menu-item index="/User/Tenant">
                 <el-icon>
-                    <Menu/>
+                    <IconMenu color="#4d4d4d"/>
                 </el-icon>
                 租户管理
             </el-menu-item>
             <el-menu-item index="/User/Authority">
                 <el-icon>
-                    <Menu/>
+                    <IconMenu color="#4d4d4d"/>
                 </el-icon>
                 权限管理
             </el-menu-item>
@@ -86,16 +86,19 @@
 <script lang="ts">
 import {defineComponent} from "vue";
 import {clean} from "@/plugin/request";
-import {HomeFilled, Setting, User,Menu} from "@element-plus/icons-vue";
 import useSystemStore from "@/plugin/store/modules/system";
+import IconHome from "@/icon/IconHome.vue";
+import IconSetting from "@/icon/IconSetting.vue";
+import IconUser from "@/icon/IconUser.vue";
+import IconMenu from "@/icon/IconMenu.vue";
 
 export default defineComponent({
     name: "LayoutSidebar",
     components: {
-        HomeFilled,
-        Setting,
-        User,
-        Menu
+        IconHome,
+        IconSetting,
+        IconUser,
+        IconMenu
     },
     data() {
         return {

@@ -8,7 +8,9 @@
                    width="20%">
             <template #header>
                 <p>
-                    <icon-font :icon-href="'icon-login'"/>
+                    <el-icon>
+                        <IconLogin color="#9B9B9B"/>
+                    </el-icon>
                     用户登录
                 </p>
             </template>
@@ -24,8 +26,8 @@
             </div>
             <template #footer>
                 <el-button type="primary" @click="handleLogin(this.$refs.ruleFormRef)">
-                    <icon-font :icon-href="'icon-login-btn'"/>
-                    登录
+                    <el-icon><IconLoginBtn/></el-icon>
+                    <span>登录</span>
                 </el-button>
             </template>
         </el-dialog>
@@ -41,9 +43,15 @@ import UserApi, {Token} from "@/api/UserApi";
 import {AxiosResponse} from "axios";
 import {IResult} from "@/plugin/request";
 import {MessageDefaultConfig} from "@/utils/DefaultConfig";
+import IconLogin from "@/icon/IconLogin.vue";
+import IconLoginBtn from "@/icon/IconLoginBtn.vue";
 
 export default defineComponent({
     name: "login",
+    components: {
+        IconLogin,
+        IconLoginBtn
+    },
     data() {
         return {
             userStore: useUserStore(),

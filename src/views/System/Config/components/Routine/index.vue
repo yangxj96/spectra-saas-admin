@@ -11,7 +11,10 @@
                 </el-form-item>
                 <el-form-item>
                     <el-button-group>
-                        <el-button type="primary" icon="Search">查询</el-button>
+                        <el-button type="primary">
+                            <IconSearch/>
+                            查询
+                        </el-button>
                     </el-button-group>
                 </el-form-item>
             </el-form>
@@ -28,7 +31,7 @@
                 <el-table-column label="说明"   prop="remark" align="center"/>
                 <el-table-column label="操作" width="130" align="center">
                     <template #default="datum">
-                        <el-button :icon="'Edit'" text type="primary" @click="onEditorConfig(datum.row)">编辑</el-button>
+                        <el-button text type="primary" @click="onEditorConfig(datum.row)"> <IconEdit color="#409EFC"/>编辑</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -61,13 +64,15 @@ import Table from "@/mixins/Table";
 import Editor from "@/views/System/Config/components/Routine/components/Editor/index.vue";
 import {SystemConfig} from "@/api/SystemApi";
 import CommonUtils from "@/utils/CommonUtils";
+import IconSearch from "@/icon/IconSearch.vue";
+import IconEdit from "@/icon/IconEdit.vue";
 
 /**
  * 常规配置
  */
 export default defineComponent({
     name: "ConfigRoutine",
-    components: {Editor},
+    components: {IconSearch, IconEdit, Editor},
     mixins: [Table],
     data() {
         return {
