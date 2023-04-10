@@ -1,7 +1,7 @@
 <template>
     <el-row>
         <el-col :span="4">
-            <img src="~@/assets/logo2.png" alt="logo" style="height: 56px"/>
+            <img src="~@/assets/logo2.png" class="goto-home" @click="gotoHome" alt="logo" style="height: 56px"/>
         </el-col>
 
         <el-col :span="1" :offset="19">
@@ -42,21 +42,21 @@ const propsStore = useStore().props;
 const {proxy} = getCurrentInstance() as any;
 
 // 打开个人信息弹框
-function handlePersonalPopup(){
+function handlePersonalPopup() {
     propsStore.setPersonalDetails(true);
 }
 
 // 打开修改密码信息弹框
-function handleModifyPasswordPopup(){
+function handleModifyPasswordPopup() {
     propsStore.setChangePassword(true);
 }
 
 // 处理用户登出消息
-function handleUserLogout(){
+function handleUserLogout() {
     proxy.$message.success({
         message: '登出成功',
         duration: 500,
-        onClose(){
+        onClose() {
             window.localStorage.clear();
             window.sessionStorage.clear();
             location.reload();
@@ -64,9 +64,18 @@ function handleUserLogout(){
     })
 }
 
+// 跳转到首页
+function gotoHome() {
+    proxy.$router.push({path: '/'});
+}
+
 </script>
 
 <style scoped lang="scss">
+
+.goto-home {
+    cursor: pointer;
+}
 
 .el-menu.el-menu--horizontal {
     border: 0;
