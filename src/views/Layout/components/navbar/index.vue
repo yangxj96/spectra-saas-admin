@@ -1,7 +1,7 @@
 <template>
     <el-row>
         <el-col :span="4">
-            <img src="~@/assets/logo2.png" class="goto-home" @click="gotoHome" alt="logo" style="height: 56px"/>
+            <img src="../../../../assets/logo-across.png" class="goto-home" @click="gotoHome" alt="logo" style="height: 56px"/>
         </el-col>
 
         <el-col :span="1" :offset="19">
