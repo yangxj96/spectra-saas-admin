@@ -78,9 +78,7 @@
 
 import {defineComponent} from "vue";
 import Table from "@/mixins/Table";
-import UserApi, {UserList} from "@/api/UserApi";
-import {AxiosResponse} from "axios";
-import {IResult} from "@/plugin/request";
+import {UserList} from "@/api/UserApi";
 import Log from './components/Log/index.vue';
 
 export default defineComponent({
@@ -109,10 +107,38 @@ export default defineComponent({
     methods: {
         onInit() {
             this.options.log.user = {} as UserList;
-            UserApi.getUserList()
-                .then((response: AxiosResponse<IResult<UserList[]>>) => {
-                    this.table_data = response.data.data;
-                })
+            this.table_data = [
+                {
+                    id: 1000000000000,
+                    username: 'sysadmin',
+                    password: 'password',
+                    org_name: '我是组织',
+                    last_login_time: '2022-08-12 00:36:05',
+                    last_login_ip: '127.0.0.1',
+                    lock: false,
+                    enable: true
+                },
+                {
+                    id: 1000000000002,
+                    username: 'devadmin',
+                    password: 'password',
+                    org_name: '我是组织',
+                    last_login_time: '2022-08-12 00:36:05',
+                    last_login_ip: '127.0.0.1',
+                    lock: false,
+                    enable: true
+                },
+                {
+                    id: 1000000000003,
+                    username: 'oldadmin',
+                    password: 'password',
+                    org_name: '我是组织',
+                    last_login_time: '2022-08-12 00:36:05',
+                    last_login_ip: '127.0.0.1',
+                    lock: true,
+                    enable: true
+                }
+            ]
         },
         handleSizeChange(val: number) {
             console.log(`minix重写每页数量: ${val}`)

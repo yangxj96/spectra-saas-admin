@@ -1,5 +1,4 @@
 import {ConfigEnv, UserConfigExport} from 'vite'
-import {viteMockServe} from "vite-plugin-mock";
 import vue from '@vitejs/plugin-vue'
 import * as path from "path";
 
@@ -12,20 +11,7 @@ export default ({command}: ConfigEnv): UserConfigExport => {
           }
         },
         plugins: [
-            vue(),
-            viteMockServe({
-                mockPath: 'mock',
-                watchFiles: true,
-                logger: true,
-                // 设置是否启用本地 xxx.ts 文件，不要在生产环境中打开它.设置为 false 将禁用 mock 功能
-                localEnabled: command === 'serve',
-                // 设置打包是否启用 mock 功能
-                prodEnabled: command !== 'serve',
-                injectCode: `
-                 import {setupProdMockServer} from "../mock/MockProdServer";
-                 setupProdMockServer();
-                 `
-            })
+            vue()
         ],
         resolve: {
             alias: {

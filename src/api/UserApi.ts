@@ -55,18 +55,5 @@ export default {
             username: username,
             password: password
         });
-    },
-    /**
-     * 获取用户列表
-     */
-    getUserList() {
-        return request.get(`/api/user/getUserList`);
-    },
-    /**
-     * 获取用户日志列表
-     * @param id 用户ID
-     */
-    getUserLogById(id: number) {
-        return request.get(`/api/user/getUserLogById`)
     }
 }

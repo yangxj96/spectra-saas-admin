@@ -34,7 +34,7 @@
 
 <script setup lang="ts">
 
-import {ref, reactive, getCurrentInstance} from "vue";
+import {getCurrentInstance, reactive, ref} from "vue";
 import useStore from "@/plugin/store";
 import type {FormInstance, FormRules} from "element-plus";
 import UserApi, {Token} from "@/api/UserApi";
@@ -70,13 +70,12 @@ async function handleLogin(formEl: FormInstance | undefined) {
         if (valid) {
             UserApi.login(user.username, user.password).then((response: AxiosResponse<IResult<Token>>) => {
                     let result = response.data.data;
-                    console.log(response.data)
                     proxy.$message.success({
                         ...MessageDefaultConfig,
                         message: `登录成功`,
                         onClose: () => {
                             userStore.setToken(result);
-                            // proxy.$router.push({path: '/'});
+                            proxy.$router.push({path: '/'});
                         }
                     })
                 }

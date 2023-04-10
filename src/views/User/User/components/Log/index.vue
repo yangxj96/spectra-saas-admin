@@ -4,7 +4,7 @@
         <el-dialog :model-value="true" destroy-on-close @close="onCancel" :title="`用户[${options.user.username}]日志`"
                    width="80%" class="loading-box">
 
-            <el-row >
+            <el-row>
                 <!-- @formatter:off -->
                 <el-table :data="table_data" stripe border  height="100%" style="width: 100%">
                     <el-table-column type="expand">
@@ -53,9 +53,8 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import Table from "@/mixins/Table";
-import UserApi, { UserList } from '@/api/UserApi';
-import {AxiosResponse} from "axios";
-import {IResult} from "@/plugin/request";
+import {UserList, UserOperateLog} from '@/api/UserApi';
+import CommonUtils from "@/utils/CommonUtils";
 
 export default defineComponent({
     name: 'user-log',
@@ -77,10 +76,20 @@ export default defineComponent({
         this.onInit();
     },
     methods: {
-        onInit(){
-          UserApi.getUserLogById(this.options.user.id).then((response: AxiosResponse<IResult<UserList[]>>) => {
-              this.table_data = response.data.data;
-          })
+        onInit() {
+            let data: UserOperateLog[] = [];
+            let status: number[] = [200, 204, 206, 301, 302, 303, 304, 400, 401, 403, 404, 500, 503]
+            for (let i = 0; i < 10; i++) {
+                data.push({
+                    id: CommonUtils.getRandom(10000000, 99999999),
+                    created_time: '2022-12-12 00:00:00',
+                    url: '/baidu.com',
+                    response_status: status[CommonUtils.getRandom(1, status.length)],
+                    response_result: JSON.stringify({code: 0, message: '操作成功'}),
+                    ip: '127.0.0.1',
+                })
+            }
+            this.table_data = data;
         },
         onCancel() {
             this.$emit('close', false);

@@ -24,16 +24,16 @@
         <el-row style="height: calc(100% - 100px)">
             <!-- @formatter:off -->
             <el-table :data="table_data" highlight-current-row stripe border  height="100%" style="width: 100%">
-                <el-table-column label="租户编号"   prop="id" width="140" align="center" show-overflow-tooltip="true"/>
-                <el-table-column label="公司名称"   prop="company_name" align="center" show-overflow-tooltip="true"/>
+                <el-table-column label="租户编号"   prop="id" width="140" align="center" :show-overflow-tooltip="true"/>
+                <el-table-column label="公司名称"   prop="company_name" align="center" :show-overflow-tooltip="true"/>
                 <el-table-column label="管理账号" align="center">
                     <template #default="datum">
                         <el-button type="primary" link>{{ datum.row.admin.username }}</el-button>
                     </template>
                 </el-table-column>
                 <el-table-column label="联系方式" prop="contact" align="center" width="120"/>
-                <el-table-column label="公司地址" prop="address" align="center" show-overflow-tooltip="true"/>
-                <el-table-column label="已购模块" prop="modules" align="center" show-overflow-tooltip="true"/>
+                <el-table-column label="公司地址" prop="address" align="center" :show-overflow-tooltip="true"/>
+                <el-table-column label="已购模块" prop="modules" align="center" :show-overflow-tooltip="true"/>
                 <el-table-column label="创建时间" prop="created_time"    align="center"/>
                 <el-table-column label="到期时间" prop="expiration_time" align="center"/>
                 <el-table-column label="剩余时间" prop="remaining_time"  align="center"/>

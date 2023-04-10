@@ -76,20 +76,28 @@ http.interceptors.response.use(
         if (error.name === 'CanceledError') {
             return Promise.reject(error);
         }
-        switch (error.response.status) {
-            case 404:
-                ElMessage.error({
-                    ...MessageDefaultConfig,
-                    type: 'error',
-                    message: '请求URL错误'
-                })
-                break;
-            default:
-                ElMessage.error({
-                    ...MessageDefaultConfig,
-                    type: 'error',
-                    message: '请求失败,请稍后重试'
-                })
+        if (error.response) {
+            switch (error.response.status) {
+                case 404:
+                    ElMessage.error({
+                        ...MessageDefaultConfig,
+                        type: 'error',
+                        message: '请求URL错误'
+                    })
+                    break;
+                default:
+                    ElMessage.error({
+                        ...MessageDefaultConfig,
+                        type: 'error',
+                        message: '请求失败,请稍后重试'
+                    })
+            }
+        } else {
+            ElMessage.error({
+                ...MessageDefaultConfig,
+                type: 'error',
+                message: '网络错误,请检查网络'
+            })
         }
         return Promise.reject(error);
     }

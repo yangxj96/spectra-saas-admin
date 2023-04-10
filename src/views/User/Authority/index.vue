@@ -38,9 +38,7 @@
 
 <script lang="ts">
 import {defineComponent} from "vue";
-import RoleApi, {RoleTree} from "@/api/RoleApi";
-import {AxiosResponse} from "axios";
-import {IResult} from "@/plugin/request";
+import {RoleTree} from "@/api/RoleApi";
 
 export default defineComponent({
     name: 'user-authority',
@@ -70,10 +68,35 @@ export default defineComponent({
     methods: {
         // 获取角色列表
         getRole() {
-            RoleApi.tree().then((response: AxiosResponse<IResult<RoleTree[]>>) => {
-                console.log(response)
-                this.tree_data = response.data.data
-            })
+            this.tree_data = [
+                {
+                    id: "123",
+                    name: "运维管理员1",
+                    description: "说明",
+                    children: [
+                        {
+                            id: "123",
+                            name: "运维管理员4",
+                            description: "说明",
+                        },
+                        {
+                            id: "123",
+                            name: "运维管理员5",
+                            description: "说明",
+                        }
+                    ]
+                },
+                {
+                    id: "123",
+                    name: "运维管理员2",
+                    description: "说明"
+                },
+                {
+                    id: "123",
+                    name: "运维管理员3",
+                    description: "说明"
+                },
+            ]
         },
         // 处理角色新增
         handleCreateRole() {

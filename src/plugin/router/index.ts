@@ -1,4 +1,4 @@
-import {createRouter, createWebHashHistory, RouteRecordRaw} from 'vue-router';
+import {createRouter, createWebHashHistory} from 'vue-router';
 import useStore from "@/plugin/store/index";
 import {ElLoading} from "element-plus";
 import base from "@/plugin/router/router/base";

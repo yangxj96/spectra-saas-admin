@@ -45,11 +45,9 @@
 </template>
 
 <script lang="ts">
-import systemApi, {SystemConfig} from '@/api/SystemApi';
+import {SystemConfig} from '@/api/SystemApi';
 import {defineComponent} from 'vue';
 import {FormInstance, FormRules} from "element-plus";
-import {AxiosResponse} from "axios";
-import {IResult} from "@/plugin/request";
 import {MessageDefaultConfig} from "@/utils/DefaultConfig";
 
 export default defineComponent({
@@ -66,7 +64,7 @@ export default defineComponent({
                 datum: {} as SystemConfig,
             },
             form: {
-                obj:{} as SystemConfig,
+                obj: {} as SystemConfig,
                 rules: {
                     value: [
                         {required: true, message: '请输入或选择值', trigger: 'blur'}
@@ -82,29 +80,26 @@ export default defineComponent({
         async onSave() {
             await (this.$refs.ruleForm as FormInstance).validate((valid) => {
                 if (valid) {
-                    systemApi.saveSystemConfig(this.formatParams()).then((response: AxiosResponse<IResult>) => {
-                        this.$message({
-                            ...MessageDefaultConfig,
-                            message: response.data.msg,
-                            type: 'success',
-                            onClose: () => {
-                                this.onCancel();
-                            }
-                        })
-
+                    this.$message({
+                        ...MessageDefaultConfig,
+                        message: '操作成功',
+                        type: 'success',
+                        onClose: () => {
+                            this.onCancel();
+                        }
                     })
                 }
             })
 
         },
-        formatParams(){
-            this.form.obj = Object.assign({},this.options.datum);
-            if (this.form.obj.type === 3){
+        formatParams() {
+            this.form.obj = Object.assign({}, this.options.datum);
+            if (this.form.obj.type === 3) {
                 let v = '';
                 for (let item of this.form.obj.value) {
                     v += item + ',';
                 }
-                v = v.substring(0,v.length - 1);
+                v = v.substring(0, v.length - 1);
                 this.form.obj.value = v;
             }
             return this.form.obj;

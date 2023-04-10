@@ -72,9 +72,8 @@
 <script lang="ts">
 import {defineComponent} from "vue";
 import Table from "@/mixins/Table";
-import SystemApi, {SystemDictGroup} from "@/api/SystemApi";
-import {AxiosResponse} from "axios";
-import {IResult} from "@/plugin/request";
+import {SystemDictGroup} from "@/api/SystemApi";
+import CommonUtils from "@/utils/CommonUtils";
 
 export default defineComponent({
     name: 'dict',
@@ -91,10 +90,50 @@ export default defineComponent({
         this.initData()
     },
     methods: {
-        initData(){
-          SystemApi.getDictGroupAll().then((response: AxiosResponse<IResult<SystemDictGroup[]>>) =>{
-              this.tree_data = response.data.data
-          })
+        initData() {
+            this.tree_data = [
+                {
+                    id: CommonUtils.getRandom(10000000, 99999999),
+                    name: '人物',
+                    children: [
+                        {
+                            id: CommonUtils.getRandom(10000000, 99999999),
+                            name: '性别'
+                        },
+                        {
+                            id: CommonUtils.getRandom(10000000, 99999999),
+                            name: '学历'
+                        }
+                    ]
+                }, {
+                    id: CommonUtils.getRandom(10000000, 99999999),
+                    name: '人物',
+                    children: [
+                        {
+                            id: CommonUtils.getRandom(10000000, 99999999),
+                            name: '性别'
+                        },
+                        {
+                            id: CommonUtils.getRandom(10000000, 99999999),
+                            name: '学历'
+                        }
+                    ]
+                }, {
+                    id: CommonUtils.getRandom(10000000, 99999999),
+                    name: '人物',
+                    children: [
+                        {
+                            id: CommonUtils.getRandom(10000000, 99999999),
+                            name: '性别'
+                        },
+                        {
+                            id: CommonUtils.getRandom(10000000, 99999999),
+                            name: '学历'
+                        }
+                    ]
+                }
+
+            ]
         },
         handleTableData() {
             this.table_data = [];
@@ -125,10 +164,10 @@ export default defineComponent({
         },
         // 字典组被单击事件
         onDictGroupClick(o: any, node: any, tn: any, e: PointerEvent) {
-            console.log(`o`,o)
-            console.log(`node`,node)
-            console.log(`tn`,tn)
-            console.log(`e`,e)
+            console.log(`o`, o)
+            console.log(`node`, node)
+            console.log(`tn`, tn)
+            console.log(`e`, e)
         }
     }
 })

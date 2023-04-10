@@ -1,4 +1,5 @@
 import request from "@/plugin/request";
+
 export default {
     demoGet() {
         return request.get("/api/auth/Demo", {
@@ -26,14 +27,10 @@ export default {
         })
     },
     demoPostFromData() {
-        let input = document.createElement("input");
-        input.type = 'file';
-        input.dispatchEvent(new MouseEvent('click'));
-        console.log(`执行了`);
-        let params = new FormData();
-        params.append("id", "39");
-        params.append("name", "test_b1c52f1ac97b");
-        params.append("age", "47");
+        // let params = new FormData();
+        // params.append("id", "39");
+        // params.append("name", "test_b1c52f1ac97b");
+        // params.append("age", "47");
         // params.append("file",)
         // return axios.post("/api/auth/Demo/fromdata", params, {
         //     baseURL: import.meta.env.VITE_API_URL

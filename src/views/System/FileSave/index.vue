@@ -32,7 +32,7 @@
                 </div>
 
                 <el-form-item>
-                    <el-button type="primary" >保存</el-button>
+                    <el-button type="primary">保存</el-button>
                 </el-form-item>
             </el-form>
         </el-col>
@@ -43,26 +43,26 @@
 <script lang="ts">
 
 import {defineComponent} from "vue";
-import SystemApi, {FileSave} from "@/api/SystemApi";
-import {AxiosResponse} from "axios";
-import {IResult} from "@/plugin/request";
+import {FileSave} from "@/api/SystemApi";
 
 export default defineComponent({
     created() {
         this.init();
     },
-    data(){
+    data() {
         return {
             form: {} as FileSave
         }
     },
-    methods:{
-        init(){
-            SystemApi.getFileSave().then((response: AxiosResponse<IResult<FileSave>>) => {
-                console.log(response.data)
-                let result = response.data;
-                this.form = result.data;
-            })
+    methods: {
+        init() {
+            this.form = {
+                type: 0,
+                locale: '/opt/file/img',
+                access_id: 'access_id',
+                access_secret: 'access_secret',
+                bucket: 'bucket'
+            }
         }
     }
 })
@@ -71,7 +71,7 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-    .tabs-box {
-        height: 100%;
-    }
+.tabs-box {
+    height: 100%;
+}
 </style>
