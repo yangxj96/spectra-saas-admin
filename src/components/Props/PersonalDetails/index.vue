@@ -1,21 +1,34 @@
 <template>
-    <el-dialog v-model="isShow" destroy-on-close title="个人信息" width="30%">
+    <el-dialog v-model="isShow"
+               :destroy-on-close="true"
+               :append-to-body="true"
+               :close-on-click-modal="false"
+               :close-on-press-escape="false"
+               :show-close="false"
+               width="30%">
+        <template #header>
+            <span><el-icon><User/></el-icon> 个人信息</span>
+        </template>
 
-        <el-avatar style="margin-left: 100px;margin-bottom: 10px" src="/img/default-avatar.png"/>
-        <el-form label-width="100px" style="max-width: 460px">
-            <el-form-item label="用户名">
-                <el-input value="我是用户名" :disabled="true" placeholder="请输入用户名"/>
-            </el-form-item>
-            <el-form-item label="邮箱">
-                <el-input placeholder="请输入邮箱"/>
-            </el-form-item>
-            <el-form-item label="手机号码">
-                <el-input placeholder="请输入手机号码"/>
-            </el-form-item>
-            <el-form-item label="个人说明">
-                <el-input placeholder="请输入个人说明" type="textarea" rows="5"/>
-            </el-form-item>
-        </el-form>
+        <el-row style="width: 100%;height: 100%">
+            <el-col :span="20" :push="2">
+                <el-avatar style="margin-left: 100px;margin-bottom: 10px" src="/img/default-avatar.png"/>
+                <el-form label-width="80px">
+                    <el-form-item label="用户名">
+                        <el-input value="我是用户名" :disabled="true" placeholder="请输入用户名"/>
+                    </el-form-item>
+                    <el-form-item label="邮箱">
+                        <el-input placeholder="请输入邮箱"/>
+                    </el-form-item>
+                    <el-form-item label="手机号码">
+                        <el-input placeholder="请输入手机号码"/>
+                    </el-form-item>
+                    <el-form-item label="个人说明">
+                        <el-input placeholder="请输入个人说明" type="textarea" rows="5"/>
+                    </el-form-item>
+                </el-form>
+            </el-col>
+        </el-row>
 
         <template #footer>
             <slot name="footer">
@@ -30,9 +43,11 @@
 
 import {defineComponent} from "vue";
 import useStore from "@/plugin/store";
+import {User} from "@element-plus/icons-vue";
 
 export default defineComponent({
     name: 'prop-personal-details',
+    components: {User},
     created() {
         useStore().props.$subscribe((mutation, state) => {
             /*

@@ -21,8 +21,7 @@
                             </el-icon>
                         </i>
                         <el-breadcrumb separator-class="el-icon-arrow-right">
-                            <el-breadcrumb-item v-for="(item,idx) in $router.currentRoute.value.matched" :key="idx"
-                                                :to="{path: item.path}">
+                            <el-breadcrumb-item v-for="(item,idx) in breadcrumb" :key="idx" :to="{path: item.path}">
                                 {{ item.name }}
                             </el-breadcrumb-item>
                         </el-breadcrumb>
@@ -32,7 +31,7 @@
                         <!--<router-view/>-->
 
                         <router-view v-slot="{ Component }">
-                            <transition mode="out-in" name="el-zoom-in-top" >
+                            <transition mode="out-in" name="el-zoom-in-top">
                                 <component :is="Component"/>
                             </transition>
                         </router-view>
@@ -61,15 +60,40 @@ import {defineComponent} from "vue";
 import Navbar from "@/views/Layout/components/navbar/index.vue";
 import Sidebar from "@/views/Layout/components/sidebar/index.vue";
 import useStore from "@/plugin/store/index";
+import {RouteLocationMatched} from "vue-router";
+import {CaretLeft, CaretRight} from "@element-plus/icons-vue";
 
 export default defineComponent({
     name: 'layout-index',
     components: {
-        Navbar, Sidebar
+        CaretRight,
+        CaretLeft,
+        Navbar,
+        Sidebar
     },
     data() {
         return {
-            systemStore: useStore().system
+            systemStore: useStore().system,
+            breadcrumb: [] as RouteLocationMatched[]
+        }
+    },
+    created() {
+        this.handlerRouter();
+    },
+    methods: {
+        handlerRouter(router: RouteLocationMatched[] = []) {
+            if (router.length <= 0) {
+                router = [...this.$router.currentRoute.value.matched];
+            }
+            if (router.length >= 2 && router[router.length - 1].name == router[router.length - 2].name) {
+                router = router.splice(0, router.length - 1);
+            }
+            this.breadcrumb = router
+        }
+    },
+    watch: {
+        '$router.currentRoute.value.matched'(val) {
+            this.handlerRouter([...val]);
         }
     }
 })

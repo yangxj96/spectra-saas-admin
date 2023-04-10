@@ -11,17 +11,13 @@
                 <template #dropdown>
                     <el-dropdown-menu>
                         <el-dropdown-item @click="handlePersonalPopup">
-                            <icon-font :icon-href="'icon-personal'" :icon-class="{width: '1.5em', height: '1.5em'}"/>
-                            个人信息
+                            <span><User style="width: 1.1em; height: 1.1em;"/>个人信息</span>
                         </el-dropdown-item>
                         <el-dropdown-item @click="handleModifyPasswordPopup">
-                            <icon-font :icon-href="'icon-change-password'"
-                                       :icon-class="{width: '1.5em', height: '1.1em'}"/>
-                            修改密码
+                            <span><Edit style="width: 1.1em; height: 1.1em;"/>修改密码</span>
                         </el-dropdown-item>
                         <el-dropdown-item @click="handleUserLogout">
-                            <icon-font :icon-href="'icon-logout'" :icon-class="{width: '1.5em', height: '1.5em'}"/>
-                            退出登录
+                            <span><CircleClose style="width: 1.1em; height: 1.1em;"/>退出登录</span>
                         </el-dropdown-item>
                     </el-dropdown-menu>
                 </template>
@@ -32,42 +28,45 @@
     <change-password/>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
+import {defineComponent} from "vue";
+import {CircleClose, Edit, User} from "@element-plus/icons-vue";
+import usePropsStore from "@/plugin/store/modules/props";
 import PersonalDetails from "@/components/Props/PersonalDetails/index.vue";
 import ChangePassword from "@/components/Props/ChangePassword/index.vue";
-import useStore from "@/plugin/store";
-import {getCurrentInstance} from "vue";
 
-const propsStore = useStore().props;
-const {proxy} = getCurrentInstance() as any;
-
-// 打开个人信息弹框
-function handlePersonalPopup() {
-    propsStore.setPersonalDetails(true);
-}
-
-// 打开修改密码信息弹框
-function handleModifyPasswordPopup() {
-    propsStore.setChangePassword(true);
-}
-
-// 处理用户登出消息
-function handleUserLogout() {
-    proxy.$message.success({
-        message: '登出成功',
-        duration: 500,
-        onClose() {
-            window.localStorage.clear();
-            window.sessionStorage.clear();
-            location.reload();
+export default defineComponent({
+    name: "LayoutNavbarIndex",
+    components: {
+        CircleClose,
+        Edit,
+        User,
+        PersonalDetails,
+        ChangePassword
+    },
+    methods: {
+        gotoHome() {
+            this.$router.push({path: '/'});
+        },
+        handleUserLogout() {
+            this.$message.success({
+                message: '登出成功',
+                duration: 500,
+                onClose() {
+                    window.localStorage.clear();
+                    window.sessionStorage.clear();
+                    location.reload();
+                }
+            })
+        },
+        handleModifyPasswordPopup() {
+            usePropsStore().setChangePassword(true);
+        },
+        handlePersonalPopup() {
+            usePropsStore().setPersonalDetails(true);
         }
-    })
-}
-
-// 跳转到首页
-function gotoHome() {
-    proxy.$router.push({path: '/'});
-}
+    }
+})
 
 </script>
 

@@ -8,56 +8,74 @@
     >
 
         <el-menu-item index="/" :disabled="itemDisabled" @click="onMenuItemClick">
-            <icon-font :icon-href="'icon-home'"/>
+            <el-icon>
+                <HomeFilled/>
+            </el-icon>
             <template #title>首页</template>
         </el-menu-item>
 
         <el-sub-menu index="1" :disabled="itemDisabled">
             <template #title>
-                <icon-font :icon-href="'icon-system-setting'"/>
-                <span>系统配置</span>
+                <el-icon>
+                    <Setting/>
+                </el-icon>
+                <span>平台配置</span>
             </template>
+            <el-menu-item index="/System">
+                <el-icon>
+                    <Menu/>
+                </el-icon>
+                平台配置
+            </el-menu-item>
             <el-menu-item index="/System/Service">
-                <icon-font :icon-href="'icon-sub-menu'"/>
+                <el-icon>
+                    <Menu/>
+                </el-icon>
                 服务管理
             </el-menu-item>
             <el-menu-item index="/System/Module">
-                <icon-font :icon-href="'icon-sub-menu'"/>
+                <el-icon>
+                    <Menu/>
+                </el-icon>
                 模块管理
             </el-menu-item>
             <el-menu-item index="/System/Menu">
-                <icon-font :icon-href="'icon-sub-menu'"/>
+                <el-icon>
+                    <Menu/>
+                </el-icon>
                 菜单管理
             </el-menu-item>
             <el-menu-item index="/System/Dict">
-                <icon-font :icon-href="'icon-sub-menu'"/>
+                <el-icon>
+                    <Menu/>
+                </el-icon>
                 字典管理
-            </el-menu-item>
-            <el-menu-item index="/System/Config">
-                <icon-font :icon-href="'icon-sub-menu'"/>
-                配置管理
-            </el-menu-item>
-            <el-menu-item index="/System/FileSave">
-                <icon-font :icon-href="'icon-sub-menu'"/>
-                文件存储管理
             </el-menu-item>
         </el-sub-menu>
 
         <el-sub-menu index="2" :disabled="itemDisabled">
             <template #title>
-                <icon-font :icon-href="'icon-user'"/>
-                <span>用户相关</span>
+                <el-icon>
+                    <User/>
+                </el-icon>
+                <span>用户管理</span>
             </template>
             <el-menu-item index="/User">
-                <icon-font :icon-href="'icon-sub-menu'"/>
+                <el-icon>
+                    <Menu/>
+                </el-icon>
                 用户管理
             </el-menu-item>
             <el-menu-item index="/User/Tenant">
-                <icon-font :icon-href="'icon-sub-menu'"/>
+                <el-icon>
+                    <Menu/>
+                </el-icon>
                 租户管理
             </el-menu-item>
             <el-menu-item index="/User/Authority">
-                <icon-font :icon-href="'icon-sub-menu'"/>
+                <el-icon>
+                    <Menu/>
+                </el-icon>
                 权限管理
             </el-menu-item>
         </el-sub-menu>
@@ -65,35 +83,50 @@
     </el-menu>
 </template>
 
-<script setup lang="ts">
-import useStore from '@/plugin/store/index';
-import {onMounted, ref} from "vue";
+<script lang="ts">
+import {defineComponent} from "vue";
 import {clean} from "@/plugin/request";
+import {HomeFilled, Setting, User,Menu} from "@element-plus/icons-vue";
+import useSystemStore from "@/plugin/store/modules/system";
 
-let unfold = ref(true);
+export default defineComponent({
+    name: "LayoutSidebar",
+    components: {
+        HomeFilled,
+        Setting,
+        User,
+        Menu
+    },
+    data() {
+        return {
+            unfold: true,
+            itemDisabled: false
+        }
+    },
+    mounted() {
+        // 赋值
+        this.unfold = useSystemStore().getSidebarUnfold;
 
-let itemDisabled = ref(false);
+        this.itemDisabled = useSystemStore().getItemDisabled;
 
-function onMenuItemClick(el: any) {
-    if (clean.length > 0){
-        for (let canceler of clean) {
-            canceler('取消请求');
+        // 订阅
+        useSystemStore().$subscribe((mutation, state) => {
+            this.unfold = state.sidebar_unfold;
+            this.itemDisabled = state.item_disabled;
+        })
+    },
+    methods: {
+        onMenuItemClick(el: any) {
+            console.log('菜单被点击', el)
+            if (clean.length > 0) {
+                for (let canceler of clean) {
+                    canceler('取消请求');
+                }
+            }
         }
     }
-}
-
-onMounted(() => {
-    // 赋值
-    unfold.value = useStore().system.getSidebarUnfold;
-
-    itemDisabled.value = useStore().system.getItemDisabled;
-
-    // 订阅
-    useStore().system.$subscribe((mutation, state) => {
-        unfold.value = state.sidebar_unfold;
-        itemDisabled.value = state.item_disabled;
-    })
 })
+
 
 </script>
 

@@ -6,14 +6,22 @@ import layout from "@/views/Layout/index.vue";
  */
 export default [
     {
-        name: '系统配置',
+        name: '平台配置',
         path: '/System',
         component: layout,
-        redirect: 'Service',
+        redirect: '',
         meta: {
             authority: ["ROLE_SYSADMIN"]
         },
         children: [
+            {
+                path: '',
+                name: '平台配置',
+                component: () => import('@/views/System/Config/index.vue'),
+                meta: {
+                    title: '平台配置'
+                }
+            },
             {
                 path: 'Service',
                 name: '服务管理',
@@ -45,27 +53,11 @@ export default [
                 meta: {
                     title: '字典管理'
                 }
-            },
-            {
-                path: 'Config',
-                name: '配置管理',
-                component: () => import('@/views/System/Config/index.vue'),
-                meta: {
-                    title: '配置管理'
-                }
-            },
-            {
-                path: 'FileSave',
-                name: '文件存储管理',
-                component: () => import('@/views/System/FileSave/index.vue'),
-                meta: {
-                    title: '文件存储管理'
-                }
-            },
+            }
         ]
     },
     {
-        name: '用户相关',
+        name: '用户管理',
         path: '/User',
         component: layout,
         redirect: '',
@@ -113,14 +105,6 @@ export default [
                     }
                 ]
             },
-            // {
-            //     path: 'Tenant',
-            //     name: '租户管理',
-            //     component: () => import('@/views/User/Tenant/index.vue'),
-            //     meta: {
-            //         title: '租户管理'
-            //     }
-            // },
             {
                 path: 'Authority',
                 name: '权限管理',

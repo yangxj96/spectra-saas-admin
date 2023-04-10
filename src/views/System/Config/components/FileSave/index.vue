@@ -1,6 +1,7 @@
 <template>
     <div style="height: 100%">
-        <el-col :span="8" :offset="8">
+
+        <el-col :span="12" :offset="8">
 
             <el-form v-model="form" label-width="120px">
                 <el-form-item label="存储方式">
@@ -40,18 +41,17 @@
     </div>
 </template>
 
-<script lang="ts">
-
+<script>
 import {defineComponent} from "vue";
-import {FileSave} from "@/api/SystemApi";
 
 export default defineComponent({
+    name: "ConfigFileSave",
     created() {
         this.init();
     },
     data() {
         return {
-            form: {} as FileSave
+            form: {}
         }
     },
     methods: {
@@ -66,12 +66,8 @@ export default defineComponent({
         }
     }
 })
-
-
 </script>
 
-<style scoped lang="scss">
-.tabs-box {
-    height: 100%;
-}
+<style scoped>
+
 </style>
