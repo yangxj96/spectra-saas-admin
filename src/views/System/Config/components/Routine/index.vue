@@ -64,8 +64,8 @@ import Table from "@/mixins/Table";
 import Editor from "@/views/System/Config/components/Routine/components/Editor/index.vue";
 import {SystemConfig} from "@/api/SystemApi";
 import CommonUtils from "@/utils/CommonUtils";
-import IconSearch from "@/icon/IconSearch.vue";
-import IconEdit from "@/icon/IconEdit.vue";
+import IconSearch from "@/components/Icon/IconSearch.vue";
+import IconEdit from "@/components/Icon/IconEdit.vue";
 
 /**
  * 常规配置

@@ -43,8 +43,8 @@ import UserApi, {Token} from "@/api/UserApi";
 import {AxiosResponse} from "axios";
 import {IResult} from "@/plugin/request";
 import {MessageDefaultConfig} from "@/utils/DefaultConfig";
-import IconLogin from "@/icon/IconLogin.vue";
-import IconLoginBtn from "@/icon/IconLoginBtn.vue";
+import IconLogin from "@/components/Icon/IconLogin.vue";
+import IconLoginBtn from "@/components/Icon/IconLoginBtn.vue";
 
 export default defineComponent({
     name: "login",

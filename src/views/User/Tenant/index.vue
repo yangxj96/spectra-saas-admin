@@ -72,8 +72,8 @@
 import {defineComponent} from "vue";
 import table from "@/mixins/Table";
 import DateUtils from "@/utils/DateUtils";
-import IconSearch from "@/icon/IconSearch.vue";
-import IconAdd from "@/icon/IconAdd.vue";
+import IconSearch from "@/components/Icon/IconSearch.vue";
+import IconAdd from "@/components/Icon/IconAdd.vue";
 
 export default defineComponent({
     name: 'user-tenant',

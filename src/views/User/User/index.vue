@@ -80,7 +80,7 @@ import {defineComponent} from "vue";
 import Table from "@/mixins/Table";
 import {UserList} from "@/api/UserApi";
 import Log from './components/Log/index.vue';
-import IconSearch from "@/icon/IconSearch.vue";
+import IconSearch from "@/components/Icon/IconSearch.vue";
 
 export default defineComponent({
     name: 'user-user',

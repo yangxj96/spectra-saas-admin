@@ -74,9 +74,9 @@ import {defineComponent} from "vue";
 import Table from "@/mixins/Table";
 import {SystemDictGroup} from "@/api/SystemApi";
 import CommonUtils from "@/utils/CommonUtils";
-import IconSearch from "@/icon/IconSearch.vue";
-import IconFolder from "@/icon/IconFolder.vue";
-import IconFile from "@/icon/IconFile.vue";
+import IconSearch from "@/components/Icon/IconSearch.vue";
+import IconFolder from "@/components/Icon/IconFolder.vue";
+import IconFile from "@/components/Icon/IconFile.vue";
 
 export default defineComponent({
     name: 'dict',

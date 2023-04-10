@@ -42,9 +42,9 @@ import {defineComponent} from "vue";
 import usePropsStore from "@/plugin/store/modules/props";
 import PersonalDetails from "@/components/Props/PersonalDetails/index.vue";
 import ChangePassword from "@/components/Props/ChangePassword/index.vue";
-import IconUser from "@/icon/IconUser.vue";
-import IconChangePassword from "@/icon/IconChangePassword.vue";
-import IconLogout from "@/icon/IconLogout.vue";
+import IconUser from "@/components/Icon/IconUser.vue";
+import IconChangePassword from "@/components/Icon/IconChangePassword.vue";
+import IconLogout from "@/components/Icon/IconLogout.vue";
 
 export default defineComponent({
     name: "LayoutNavbarIndex",

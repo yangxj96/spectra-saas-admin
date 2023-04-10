@@ -39,8 +39,8 @@
 <script lang="ts">
 import {defineComponent} from "vue";
 import {RoleTree} from "@/api/RoleApi";
-import IconAdd from "@/icon/IconAdd.vue";
-import IconSearch from "@/icon/IconSearch.vue";
+import IconAdd from "@/components/Icon/IconAdd.vue";
+import IconSearch from "@/components/Icon/IconSearch.vue";
 
 export default defineComponent({
     name: 'user-authority',

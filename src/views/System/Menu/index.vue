@@ -48,8 +48,8 @@
 
 import {defineComponent} from "vue";
 import Table from "@/mixins/Table";
-import IconSearch from "@/icon/IconSearch.vue";
-import IconEdit from "@/icon/IconEdit.vue";
+import IconSearch from "@/components/Icon/IconSearch.vue";
+import IconEdit from "@/components/Icon/IconEdit.vue";
 
 export default defineComponent({
     name: 'system-menu',
