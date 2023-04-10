@@ -9,13 +9,13 @@ export default [
         name: '系统配置',
         path: '/System',
         component: layout,
-        redirect: 'service',
+        redirect: 'Service',
         meta: {
             authority: ["ROLE_SYSADMIN"]
         },
         children: [
             {
-                path: 'service',
+                path: 'Service',
                 name: '服务管理',
                 component: () => import('@/views/System/Service/index.vue'),
                 meta: {
@@ -23,7 +23,7 @@ export default [
                 }
             },
             {
-                path: 'module',
+                path: 'Module',
                 name: '模块管理',
                 component: () => import('@/views/System/Module/index.vue'),
                 meta: {
@@ -31,7 +31,7 @@ export default [
                 }
             },
             {
-                path: 'menu',
+                path: 'Menu',
                 name: '菜单管理',
                 component: () => import('@/views/System/Menu/index.vue'),
                 meta: {
@@ -39,7 +39,7 @@ export default [
                 }
             },
             {
-                path: 'dict',
+                path: 'Dict',
                 name: '字典管理',
                 component: () => import('@/views/System/Dict/index.vue'),
                 meta: {
@@ -47,7 +47,7 @@ export default [
                 }
             },
             {
-                path: 'config',
+                path: 'Config',
                 name: '配置管理',
                 component: () => import('@/views/System/Config/index.vue'),
                 meta: {
@@ -55,7 +55,7 @@ export default [
                 }
             },
             {
-                path: 'file_save',
+                path: 'FileSave',
                 name: '文件存储管理',
                 component: () => import('@/views/System/FileSave/index.vue'),
                 meta: {
@@ -68,13 +68,13 @@ export default [
         name: '用户相关',
         path: '/User',
         component: layout,
-        redirect: 'user',
+        redirect: '',
         meta: {
             authority: ["ROLE_SYSADMIN"]
         },
         children: [
             {
-                path: 'user',
+                path: '',
                 name: '用户管理',
                 component: () => import('@/views/User/User/index.vue'),
                 meta: {
@@ -83,15 +83,46 @@ export default [
                 }
             },
             {
-                path: 'tenant',
                 name: '租户管理',
-                component: () => import('@/views/User/Tenant/index.vue'),
-                meta: {
-                    title: '租户管理'
-                }
+                path: '/User/Tenant',
+                redirect: '',
+                children: [
+                    {
+                        path: '',
+                        name: '租户信息',
+                        component: () => import('@/views/User/Tenant/index.vue'),
+                        meta: {
+                            title: '租户信息'
+                        }
+                    },
+                    {
+                        path: 'Register',
+                        name: '租户注册',
+                        component: () => import('@/views/User/Tenant/components/register.vue'),
+                        meta: {
+                            title: '租户注册'
+                        }
+                    },
+                    {
+                        path: 'Details',
+                        name: '租户详情',
+                        component: () => import('@/views/User/Tenant/components/register.vue'),
+                        meta: {
+                            title: '租户详情'
+                        }
+                    }
+                ]
             },
+            // {
+            //     path: 'Tenant',
+            //     name: '租户管理',
+            //     component: () => import('@/views/User/Tenant/index.vue'),
+            //     meta: {
+            //         title: '租户管理'
+            //     }
+            // },
             {
-                path: 'authority',
+                path: 'Authority',
                 name: '权限管理',
                 component: () => import('@/views/User/Authority/index.vue'),
                 meta: {

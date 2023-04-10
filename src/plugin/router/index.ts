@@ -38,7 +38,7 @@ router.beforeEach(async (to, from, next) => {
         if (to.matched.length <= 0) {
             loading.close();
             next({
-                path: '/error/404'
+                path: '/Error/404'
             })
         } else {
             next();

@@ -17,27 +17,27 @@
                 <icon-font :icon-href="'icon-system-setting'"/>
                 <span>系统配置</span>
             </template>
-            <el-menu-item index="/System/service">
+            <el-menu-item index="/System/Service">
                 <icon-font :icon-href="'icon-sub-menu'"/>
                 服务管理
             </el-menu-item>
-            <el-menu-item index="/System/module">
+            <el-menu-item index="/System/Module">
                 <icon-font :icon-href="'icon-sub-menu'"/>
                 模块管理
             </el-menu-item>
-            <el-menu-item index="/System/menu">
+            <el-menu-item index="/System/Menu">
                 <icon-font :icon-href="'icon-sub-menu'"/>
                 菜单管理
             </el-menu-item>
-            <el-menu-item index="/System/dict">
+            <el-menu-item index="/System/Dict">
                 <icon-font :icon-href="'icon-sub-menu'"/>
                 字典管理
             </el-menu-item>
-            <el-menu-item index="/System/config">
+            <el-menu-item index="/System/Config">
                 <icon-font :icon-href="'icon-sub-menu'"/>
                 配置管理
             </el-menu-item>
-            <el-menu-item index="/System/file_save">
+            <el-menu-item index="/System/FileSave">
                 <icon-font :icon-href="'icon-sub-menu'"/>
                 文件存储管理
             </el-menu-item>
@@ -48,15 +48,15 @@
                 <icon-font :icon-href="'icon-user'"/>
                 <span>用户相关</span>
             </template>
-            <el-menu-item index="/User/user">
+            <el-menu-item index="/User">
                 <icon-font :icon-href="'icon-sub-menu'"/>
                 用户管理
             </el-menu-item>
-            <el-menu-item index="/User/tenant">
+            <el-menu-item index="/User/Tenant">
                 <icon-font :icon-href="'icon-sub-menu'"/>
                 租户管理
             </el-menu-item>
-            <el-menu-item index="/User/authority">
+            <el-menu-item index="/User/Authority">
                 <icon-font :icon-href="'icon-sub-menu'"/>
                 权限管理
             </el-menu-item>

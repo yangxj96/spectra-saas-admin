@@ -31,8 +31,8 @@ export default [
         ]
     },
     {
-        name: 'error',
-        path: '/error',
+        name: 'Error',
+        path: '/Error',
         component: layout,
         redirect: '404',
         meta: {},

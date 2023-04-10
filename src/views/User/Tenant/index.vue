@@ -15,7 +15,9 @@
                 <el-form-item>
                     <el-button-group>
                         <el-button type="primary" icon="Search">查询</el-button>
-                        <el-button type="primary" icon="Plus">注册</el-button>
+                        <el-button type="primary" @click="this.$router.push({path: '/User/Tenant/Register'});"
+                                   icon="Plus">注册
+                        </el-button>
                     </el-button-group>
                 </el-form-item>
             </el-form>
@@ -40,7 +42,7 @@
                 <el-table-column label="操作" width="150">
                     <template #default="datum">
                         <el-button link type="primary" @click="handleLockTenant(datum.row)">冻结</el-button>
-                        <el-button link type="primary">详情</el-button>
+                        <el-button link type="primary" @click="this.$router.push({path: '/User/Tenant/Details',query:{id:datum.row.id}});">详情</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -91,14 +93,14 @@ export default defineComponent({
                 contact: '131xxxx2222',
                 address: '云南省昆明市西山区XXX街道XX大厦XX栋XX层1111',
                 modules: '基础模块,OA协同,审核模块',
-                created_time: DateUtils.formatting(new Date(),'yyyy-MM-dd'),
-                expiration_time: DateUtils.formatting(new Date(),'yyyy-MM-dd'),
+                created_time: DateUtils.formatting(new Date(), 'yyyy-MM-dd'),
+                expiration_time: DateUtils.formatting(new Date(), 'yyyy-MM-dd'),
                 remaining_time: Math.round(Math.random() * 10) + i
             }
             this.table_data.push(datum);
         }
     },
-    methods:{
+    methods: {
         handleLockTenant(row: any) {
             this.$confirm(`是否冻结[${row.company_name}]`, '冻结租户', {
                 confirmButtonText: '确定',
