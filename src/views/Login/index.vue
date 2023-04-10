@@ -15,15 +15,15 @@
             <div>
                 <el-form ref="ruleFormRef" label-width="60px" :model="user" :rules="rules">
                     <el-form-item label="账号" prop="username">
-                        <el-input v-model="user.username" placeholder="请输入账号"/>
+                        <el-input v-model="user['username']" placeholder="请输入账号"/>
                     </el-form-item>
                     <el-form-item label="密码" prop="password">
-                        <el-input v-model="user.password" placeholder="请输入密码" show-password/>
+                        <el-input v-model="user['password']" placeholder="请输入密码" show-password/>
                     </el-form-item>
                 </el-form>
             </div>
             <template #footer>
-                <el-button type="primary" @click="handleLogin(ruleFormRef)">
+                <el-button type="primary" @click="handleLogin(this.$refs.ruleFormRef)">
                     <icon-font :icon-href="'icon-login-btn'"/>
                     登录
                 </el-button>
@@ -32,68 +32,70 @@
     </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 
-import {getCurrentInstance, reactive, ref} from "vue";
-import useStore from "@/plugin/store";
-import type {FormInstance, FormRules} from "element-plus";
+import {defineComponent} from "vue";
+import {FormInstance, FormRules} from "element-plus";
+import useUserStore from "@/plugin/store/modules/user";
 import UserApi, {Token} from "@/api/UserApi";
-import {MessageDefaultConfig} from "@/utils/DefaultConfig";
 import {AxiosResponse} from "axios";
 import {IResult} from "@/plugin/request";
+import {MessageDefaultConfig} from "@/utils/DefaultConfig";
 
-const userStore = useStore().user;
-
-const {proxy} = getCurrentInstance() as any;
-
-let user: User = reactive({
-    username: 'sysadmin',
-    password: 'sysadmin'
-})
-
-let ruleFormRef = ref<FormInstance>();
-
-let rules = reactive<FormRules>({
-    username: [
-        {required: true, message: '请输入用户名', trigger: 'blur'}
-    ],
-    password: [
-        {required: true, message: '请输入密码', trigger: 'blur'}
-    ]
-});
-
-async function handleLogin(formEl: FormInstance | undefined) {
-    if (!formEl) {
-        return;
-    }
-    await formEl.validate((valid) => {
-        if (valid) {
-            UserApi.login(user.username, user.password).then((response: AxiosResponse<IResult<Token>>) => {
-                    let result = response.data.data;
-                    proxy.$message.success({
-                        ...MessageDefaultConfig,
-                        message: `登录成功`,
-                        onClose: () => {
-                            userStore.setToken(result);
-                            proxy.$router.push({path: '/'});
+export default defineComponent({
+    name: "login",
+    data() {
+        return {
+            userStore: useUserStore(),
+            user: {
+                username: 'sysadmin',
+                password: 'sysadmin'
+            } as User,
+            rules: {
+                username: [
+                    {required: true, message: '请输入用户名', trigger: 'blur'}
+                ],
+                password: [
+                    {required: true, message: '请输入密码', trigger: 'blur'}
+                ]
+            } as FormRules
+        }
+    },
+    methods: {
+        async handleLogin(formEl: FormInstance | undefined) {
+            if (!formEl) {
+                return;
+            }
+            await formEl.validate((valid) => {
+                if (valid) {
+                    UserApi.login(this.user.username, this.user.password).then((response: AxiosResponse<IResult<Token>>) => {
+                            let result = response.data.data;
+                            this.$message.success({
+                                ...MessageDefaultConfig,
+                                message: `登录成功`,
+                                onClose: () => {
+                                    useUserStore().setToken(result);
+                                    this.$router.push({path: '/'});
+                                }
+                            })
                         }
+                    );
+                } else {
+                    this.$message.error({
+                        ...MessageDefaultConfig,
+                        message: '请检查输入'
                     })
                 }
-            );
-        } else {
-            proxy.$message.error({
-                ...MessageDefaultConfig,
-                message: '请检查输入'
-            })
+            });
         }
-    });
-}
+    }
+})
+
 
 interface User {
     username: string,
     password: string
 }
-
 </script>
 
 <style scoped lang="scss">
