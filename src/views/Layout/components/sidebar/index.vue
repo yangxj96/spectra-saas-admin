@@ -80,6 +80,42 @@
             </el-menu-item>
         </el-sub-menu>
 
+        <el-sub-menu index="3" :disabled="itemDisabled">
+            <template #title>
+                <el-icon>
+                    <IconFlow color="#4d4d4d"/>
+                </el-icon>
+                <span>流程管理</span>
+            </template>
+            <el-menu-item index="/Flow">
+                <el-icon>
+                    <IconMenu color="#4d4d4d"/>
+                </el-icon>
+                流程列表
+            </el-menu-item>
+        </el-sub-menu>
+
+        <el-sub-menu index="4" :disabled="itemDisabled">
+            <template #title>
+                <el-icon>
+                    <IconProject color="#4d4d4d"/>
+                </el-icon>
+                <span>项目管理</span>
+            </template>
+            <el-menu-item index="/Project">
+                <el-icon>
+                    <IconMenu color="#4d4d4d"/>
+                </el-icon>
+                项目列表
+            </el-menu-item>
+            <el-menu-item index="/Project/Feasibility">
+                <el-icon>
+                    <IconMenu color="#4d4d4d"/>
+                </el-icon>
+                项目立项
+            </el-menu-item>
+        </el-sub-menu>
+
     </el-menu>
 </template>
 
@@ -91,10 +127,14 @@ import IconHome from "@/components/Icon/IconHome.vue";
 import IconSetting from "@/components/Icon/IconSetting.vue";
 import IconUser from "@/components/Icon/IconUser.vue";
 import IconMenu from "@/components/Icon/IconMenu.vue";
+import IconFlow from "@/components/Icon/IconFlow.vue";
+import IconProject from "@/components/Icon/IconProject.vue";
 
 export default defineComponent({
     name: "LayoutSidebar",
     components: {
+        IconProject,
+        IconFlow,
         IconHome,
         IconSetting,
         IconUser,

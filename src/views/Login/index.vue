@@ -26,7 +26,9 @@
             </div>
             <template #footer>
                 <el-button type="primary" @click="handleLogin(this.$refs.ruleFormRef)">
-                    <el-icon><IconLoginBtn/></el-icon>
+                    <el-icon>
+                        <IconLoginBtn/>
+                    </el-icon>
                     <span>登录</span>
                 </el-button>
             </template>
@@ -76,18 +78,39 @@ export default defineComponent({
             }
             await formEl.validate((valid) => {
                 if (valid) {
-                    UserApi.login(this.user.username, this.user.password).then((response: AxiosResponse<IResult<Token>>) => {
-                            let result = response.data.data;
-                            this.$message.success({
-                                ...MessageDefaultConfig,
-                                message: `登录成功`,
-                                onClose: () => {
-                                    useUserStore().setToken(result);
-                                    this.$router.push({path: '/'});
-                                }
-                            })
-                        }
-                    );
+                    useUserStore().setToken({
+                        username: "sysadmin",
+                        access_token: "29c02a6f-c886-4668-82a5-4a3139b5d90f",
+                        refresh_token: "b83c2f7f-d90e-440a-8327-55a2a8cd7422",
+                        authorities: [
+                            "系统管理员",
+                            "子管理员",
+                            "普通用户",
+                            "USER_INSERT",
+                            "USER_DELETE",
+                            "USER_UPDATE",
+                            "USER_SELECT",
+                            "SYS_CONFIGURE_INSERT",
+                            "SYS_CONFIGURE_DELETE",
+                            "SYS_CONFIGURE_UPDATE",
+                            "SYS_CONFIGURE_SELECT"
+                        ],
+                        expiration_time: "2023-04-11 11:58:33"
+                    })
+                    this.$router.push({path: '/'});
+                    // UserApi.login(this.user.username, this.user.password).then((response: AxiosResponse<IResult<Token>>) => {
+                    //         let result = response.data.data;
+                    //         console.log(result)
+                    //         this.$message.success({
+                    //             ...MessageDefaultConfig,
+                    //             message: `登录成功`,
+                    //             onClose: () => {
+                    //                 useUserStore().setToken(result);
+                    //                 this.$router.push({path: '/'});
+                    //             }
+                    //         })
+                    //     }
+                    // );
                 } else {
                     this.$message.error({
                         ...MessageDefaultConfig,
