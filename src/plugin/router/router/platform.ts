@@ -114,5 +114,24 @@ export default [
                 }
             }
         ]
+    },
+    {
+        name: '流程控制',
+        path: '/Flow',
+        component: layout,
+        redirect: '',
+        meta: {
+            authority: ["ROLE_SYSADMIN"]
+        },
+        children: [
+            {
+                path: '',
+                name: '流程控制',
+                component: () => import('@/views/Flow/index.vue'),
+                meta: {
+                    title: '流程控制'
+                }
+            }
+        ]
     }
 ] as Array<RouteRecordRaw>
