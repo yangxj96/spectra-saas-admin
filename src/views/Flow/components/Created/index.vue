@@ -24,7 +24,7 @@
                 <div id="container" style="height: 100%;"></div>
             </el-col>
 
-            <el-col :span="4">
+            <el-col :span="4" style="border-left: 1px #4d4d4d solid">
                 <div id="properties" style="height: 100%;"></div>
             </el-col>
         </el-row>
@@ -46,10 +46,8 @@ import IconSearch from "@/components/Icon/IconSearch.vue";
 // 样式
 // import "bpmn-js-properties-panel/dist/assets/bpmn-js-properties-panel.css";
 
-// use Camunda BPMN Moddle extension
-// import CamundaExtensionModule from 'camunda-bpmn-moddle/lib';
-// use Camunda BPMN namespace
-import camundaModdleDescriptors from 'camunda-bpmn-moddle/resources/camunda';
+// 汉化
+import CustomTranslate from "@/views/Flow/components/Created/utils/CustomTranslate.ts";
 
 export default defineComponent({
     name: "FlowCreated",
@@ -73,19 +71,14 @@ export default defineComponent({
                 additionalModules: [
                     BpmnPropertiesPanelModule,
                     BpmnPropertiesProviderModule,
-                    CamundaPlatformPropertiesProviderModule,
-                ],
-                moddleExtensions: {
-                    camunda: camundaModdleDescriptors
-                }
+                    // 国际化
+                    {
+                        translate: ['value', CustomTranslate]
+                    }
+                ]
             }));
             await this.modeler.createDiagram()
             this.modeler.get("canvas").zoom('fit-viewport')
-            let {xml} = await this.modeler.saveXML({
-                format: true,
-                preamble: true
-            });
-            console.log(xml);
         }
     }
 })
