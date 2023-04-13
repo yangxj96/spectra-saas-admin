@@ -1,7 +1,7 @@
 <template>
     <div style="height: 100%">
 
-        <el-col :span="12" :offset="8">
+        <el-col :span="12" :offset="6">
 
             <el-form v-model="form" label-width="120px">
                 <el-form-item label="存储方式">
@@ -41,7 +41,7 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import {defineComponent} from "vue";
 
 export default defineComponent({
@@ -51,7 +51,7 @@ export default defineComponent({
     },
     data() {
         return {
-            form: {}
+            form: {} as any
         }
     },
     methods: {

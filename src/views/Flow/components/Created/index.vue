@@ -31,21 +31,16 @@
     </div>
 </template>
 
-<script>
-import {defineComponent, markRaw} from "vue";
+<script lang="js">
+import {defineComponent} from "vue";
 import 'bpmn-js/dist/assets/diagram-js.css';
 import 'bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css'
 import BpmnModeler from 'bpmn-js/lib/Modeler';
 
-import {
-    BpmnPropertiesPanelModule,
-    BpmnPropertiesProviderModule,
-    CamundaPlatformPropertiesProviderModule
-} from "bpmn-js-properties-panel";
+import {BpmnPropertiesPanelModule, BpmnPropertiesProviderModule,} from "bpmn-js-properties-panel";
 import IconSearch from "@/components/Icon/IconSearch.vue";
 // 样式
 // import "bpmn-js-properties-panel/dist/assets/bpmn-js-properties-panel.css";
-
 // 汉化
 import CustomTranslate from "@/views/Flow/components/Created/utils/CustomTranslate.ts";
 
@@ -62,7 +57,7 @@ export default defineComponent({
     },
     methods: {
         async init() {
-            this.modeler = markRaw(new BpmnModeler({
+            this.modeler = new BpmnModeler({
                 container: '#container',
                 // 添加控制板
                 propertiesPanel: {
@@ -76,7 +71,7 @@ export default defineComponent({
                         translate: ['value', CustomTranslate]
                     }
                 ]
-            }));
+            });
             await this.modeler.createDiagram()
             this.modeler.get("canvas").zoom('fit-viewport')
         }

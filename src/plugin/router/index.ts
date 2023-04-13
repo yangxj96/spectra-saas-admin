@@ -3,11 +3,12 @@ import useStore from "@/plugin/store/index";
 import {ElLoading} from "element-plus";
 import base from "@/plugin/router/router/base";
 import platform from "@/plugin/router/router/platform";
+import flow from "@/plugin/router/router/modle/flow";
 
 
 const router = createRouter({
     history: createWebHashHistory(),
-    routes: [...base,...platform],
+    routes: [...base,...platform,...flow],
     scrollBehavior(to, from, savedPosition) {
         return {
             top: 0

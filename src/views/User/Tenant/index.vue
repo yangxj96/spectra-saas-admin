@@ -18,7 +18,7 @@
                             <IconSearch/>
                             &nbsp;查询
                         </el-button>
-                        <el-button type="primary" @click="this.$router.push({path: '/User/Tenant/Register'});">
+                        <el-button type="primary" @click="$router.push({path: '/User/Tenant/Register'});">
                             <IconAdd/>
                             &nbsp;注册
                         </el-button>
@@ -46,7 +46,7 @@
                 <el-table-column label="操作" width="150">
                     <template #default="datum">
                         <el-button link type="primary" @click="handleLockTenant(datum.row)">冻结</el-button>
-                        <el-button link type="primary" @click="this.$router.push({path: '/User/Tenant/Details',query:{id:datum.row.id}});">详情</el-button>
+                        <el-button link type="primary" @click="$router.push({path: '/User/Tenant/Details',query:{id:datum.row.id}});">详情</el-button>
                     </template>
                 </el-table-column>
             </el-table>

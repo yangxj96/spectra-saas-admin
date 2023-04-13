@@ -25,7 +25,7 @@
                 </el-form>
             </div>
             <template #footer>
-                <el-button type="primary" @click="handleLogin(this.$refs.ruleFormRef)">
+                <el-button type="primary" @click="handleLogin">
                     <el-icon>
                         <IconLoginBtn/>
                     </el-icon>
@@ -72,11 +72,12 @@ export default defineComponent({
         }
     },
     methods: {
-        async handleLogin(formEl: FormInstance | undefined) {
-            if (!formEl) {
+        async handleLogin() {
+            let el = this.$refs.ruleFormRef as FormInstance;
+            if (!el) {
                 return;
             }
-            await formEl.validate((valid) => {
+            await el.validate((valid) => {
                 if (valid) {
                     useUserStore().setToken({
                         username: "sysadmin",

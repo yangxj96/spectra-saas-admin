@@ -110,7 +110,7 @@
 import {defineComponent} from "vue";
 import IconSearch from "@/components/Icon/IconSearch.vue";
 import IconEdit from "@/components/Icon/IconEdit.vue";
-import Table from "@/mixins/Table.ts";
+import Table from "@/mixins/Table";
 import IconAdd from "@/components/Icon/IconAdd.vue";
 import IconCode from "@/components/Icon/IconCode.vue";
 import IconUser from "@/components/Icon/IconUser.vue";
@@ -131,7 +131,7 @@ export default defineComponent({
     directives: {
         highlight: (el) => {
             let blocks = el.querySelectorAll('pre code');
-            blocks.forEach((block) => {
+            blocks.forEach((block: any) => {
                 hljs.highlightElement(block);
             })
         }
