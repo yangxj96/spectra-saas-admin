@@ -15,6 +15,7 @@ import 'element-plus/dist/index.css';
 import AuthDirective from "@/directive/Auth";
 import FocusDirective from "@/directive/Focus";
 
+// 创建APP
 createApp(App)
     .use(createStore())
     .use(router)

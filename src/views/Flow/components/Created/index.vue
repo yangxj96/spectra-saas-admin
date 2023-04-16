@@ -1,7 +1,7 @@
 <template>
     <div style="height: 94%">
         <el-row style="height: 50px;float: right">
-            <el-button link type="primary">
+            <el-button link type="primary" @click="handleSaveXML">
                 <IconSearch/>
                 导出
             </el-button>
@@ -74,6 +74,10 @@ export default defineComponent({
             });
             await this.modeler.createDiagram()
             this.modeler.get("canvas").zoom('fit-viewport')
+        },
+        async handleSaveXML() {
+            let xml = await this.modeler.saveXML();
+            console.log(JSON.stringify(xml.xml))
         }
     }
 })
