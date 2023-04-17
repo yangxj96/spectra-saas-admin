@@ -143,7 +143,7 @@ export default defineComponent({
         })
     },
     methods: {
-        onMenuItemClick(index: any, path: any, item: any, router) {
+        onMenuItemClick(index: any, path: any, item: any, router: any) {
             console.log(`index:${index},path:${path}`)
             console.log(`item:`, item)
             console.log(`router:`, router)
