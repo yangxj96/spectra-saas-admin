@@ -8,7 +8,7 @@
                 <el-form-item>
                     <el-button-group>
                         <el-button type="primary">
-                            <IconSearch/>
+                            <el-icon><IconSearch/></el-icon>
                             &nbsp;查询
                         </el-button>
                     </el-button-group>
@@ -36,7 +36,7 @@
                         <el-switch v-model="menu_details.enable"/>
                     </el-form-item>
                     <el-form-item>
-                        <el-button type="primary"><IconEdit/>&nbsp;保存</el-button>
+                        <el-button type="primary"><el-icon><IconEdit/></el-icon>&nbsp;保存</el-button>
                     </el-form-item>
                 </el-form>
             </el-col>
@@ -45,15 +45,9 @@
 </template>
 
 <script lang="ts">
-
-import {defineComponent} from "vue";
 import Table from "@/mixins/Table";
-import IconSearch from "@/components/Icon/IconSearch.vue";
-import IconEdit from "@/components/Icon/IconEdit.vue";
-
 export default defineComponent({
     name: 'system-menu',
-    components: {IconSearch, IconEdit},
     mixins: [Table],
     data() {
         const tree_data: TreeData[] = [

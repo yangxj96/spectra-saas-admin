@@ -7,9 +7,9 @@
                 </el-form-item>
                 <el-form-item>
                     <el-button-group>
-                        <el-button type="primary"><IconSearch/>&nbsp;查询</el-button>
-                        <el-button type="primary" @click="handleCreateDictGroup"><IconFolder/>&nbsp;新增组</el-button>
-                        <el-button type="primary" @click="handleCreateDictItem"><IconFile/>&nbsp;新增项</el-button>
+                        <el-button type="primary"><el-icon><IconSearch/></el-icon>&nbsp;查询</el-button>
+                        <el-button type="primary" @click="handleCreateDictGroup"><el-icon><IconFolder/></el-icon>&nbsp;新增组</el-button>
+                        <el-button type="primary" @click="handleCreateDictItem"><el-icon><IconFile/></el-icon>&nbsp;新增项</el-button>
                     </el-button-group>
                 </el-form-item>
             </el-form>
@@ -70,22 +70,12 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
 import Table from "@/mixins/Table";
 import {SystemDictGroup} from "@/api/SystemApi";
-import CommonUtils from "@/utils/CommonUtils";
-import IconSearch from "@/components/Icon/IconSearch.vue";
-import IconFolder from "@/components/Icon/IconFolder.vue";
-import IconFile from "@/components/Icon/IconFile.vue";
 
 export default defineComponent({
     name: 'dict',
     mixins: [Table],
-    components:{
-        IconSearch,
-        IconFolder,
-        IconFile
-    },
     data() {
         const table_data: TableData[] = [];
         return {

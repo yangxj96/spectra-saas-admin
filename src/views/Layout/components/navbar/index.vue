@@ -39,24 +39,9 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
-import usePropsStore from "@/plugin/store/modules/props";
-import PersonalDetails from "@/components/Props/PersonalDetails/index.vue";
-import ChangePassword from "@/components/Props/ChangePassword/index.vue";
-import IconUser from "@/components/Icon/IconUser.vue";
-import IconChangePassword from "@/components/Icon/IconChangePassword.vue";
-import IconLogout from "@/components/Icon/IconLogout.vue";
-import {MessageDefaultConfig} from "@/utils/DefaultConfig";
 
 export default defineComponent({
     name: "LayoutNavbarIndex",
-    components: {
-        IconUser,
-        IconChangePassword,
-        IconLogout,
-        PersonalDetails,
-        ChangePassword
-    },
     methods: {
         gotoHome() {
             this.$router.push({path: '/'});

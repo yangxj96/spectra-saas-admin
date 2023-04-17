@@ -56,10 +56,8 @@
 
 <script lang="ts">
 
-import {defineComponent} from "vue";
 import Navbar from "@/views/Layout/components/navbar/index.vue";
 import Sidebar from "@/views/Layout/components/sidebar/index.vue";
-import useStore from "@/plugin/store/index";
 import {RouteLocationMatched} from "vue-router";
 import {CaretLeft, CaretRight} from "@element-plus/icons-vue";
 
@@ -73,7 +71,7 @@ export default defineComponent({
     },
     data() {
         return {
-            systemStore: useStore().system,
+            systemStore: useSystemStore(),
             breadcrumb: [] as RouteLocationMatched[]
         }
     },

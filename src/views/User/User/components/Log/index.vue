@@ -51,11 +51,8 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
 import Table from "@/mixins/Table";
 import {UserList, UserOperateLog} from '@/api/UserApi';
-import CommonUtils from "@/utils/CommonUtils";
-
 export default defineComponent({
     name: 'user-log',
     mixins: [Table],

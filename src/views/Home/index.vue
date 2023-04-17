@@ -6,11 +6,9 @@
 
 <script lang="ts">
 
-import {defineComponent} from 'vue';
 import {ECharts, init} from 'echarts';
 
 export default defineComponent({
-
     name: "Home",
     data() {
         return {

@@ -7,7 +7,7 @@
             <el-table :data="table_data" stripe border  height="100%" style="width: 100%">
                 <el-table-column label="序号"    type="index" width="80"/>
                 <el-table-column label="服务名称" prop="date"  width="180"/>
-                <el-table-column label="说明"    prop="name"  width="180" show-overflow-tooltip/>
+                <el-table-column label="说明"    prop="name"  width="180" :show-overflow-tooltip="true"/>
                 <el-table-column label="实例数量" prop="num"   width="120"/>
                 <el-table-column label="实例状态" prop="num" />
                 <el-table-column label="操作"    width="120">
@@ -43,10 +43,7 @@
 <script lang="ts">
 
 import table from "@/mixins/Table";
-import {defineComponent} from "vue";
 import ServiceDetails from './components/details.vue';
-
-
 export default defineComponent({
     name: 'service',
     components: {

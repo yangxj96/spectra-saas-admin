@@ -20,7 +20,7 @@
                 </el-form-item>
                 <el-form-item>
                     <el-button-group>
-                        <el-button type="primary"><IconSearch/>&nbsp;查询</el-button>
+                        <el-button type="primary"><el-icon><IconSearch/></el-icon>&nbsp;查询</el-button>
                     </el-button-group>
                 </el-form-item>
             </el-form>
@@ -76,17 +76,13 @@
 
 <script lang="ts">
 
-import {defineComponent} from "vue";
 import Table from "@/mixins/Table";
 import {UserList} from "@/api/UserApi";
 import Log from './components/Log/index.vue';
-import IconSearch from "@/components/Icon/IconSearch.vue";
-
 export default defineComponent({
     name: 'user-user',
     mixins: [Table],
     components: {
-        IconSearch,
         Log
     },
     data() {

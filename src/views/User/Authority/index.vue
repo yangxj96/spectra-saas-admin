@@ -8,8 +8,16 @@
                 </el-form-item>
                 <el-form-item>
                     <el-button-group>
-                        <el-button type="primary"><IconSearch/>&nbsp;查询</el-button>
-                        <el-button type="primary" @click="handleCreateRole"><IconAdd/>&nbsp;新增角色</el-button>
+                        <el-button type="primary">
+                            <el-icon>
+                                <IconSearch/>
+                            </el-icon>&nbsp;查询
+                        </el-button>
+                        <el-button type="primary" @click="handleCreateRole">
+                            <el-icon>
+                                <IconAdd/>
+                            </el-icon>&nbsp;新增角色
+                        </el-button>
                     </el-button-group>
                 </el-form-item>
             </el-form>
@@ -37,14 +45,10 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
 import {RoleTree} from "@/api/RoleApi";
-import IconAdd from "@/components/Icon/IconAdd.vue";
-import IconSearch from "@/components/Icon/IconSearch.vue";
 
 export default defineComponent({
     name: 'user-authority',
-    components: {IconSearch, IconAdd},
     data() {
         const authority_data: TreeData[] = [
             {

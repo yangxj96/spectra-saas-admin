@@ -46,9 +46,7 @@
 
 <script lang="ts">
 import {SystemConfig} from '@/api/SystemApi';
-import {defineComponent} from 'vue';
 import {FormInstance, FormRules} from "element-plus";
-import {MessageDefaultConfig} from "@/utils/DefaultConfig";
 
 export default defineComponent({
     name: 'config-editor',
@@ -80,9 +78,8 @@ export default defineComponent({
         async onSave() {
             await (this.$refs.ruleForm as FormInstance).validate((valid) => {
                 if (valid) {
-                    this.$message({
+                    this.$message.success({
                         ...MessageDefaultConfig,
-                        message: '操作成功',
                         type: 'success',
                         onClose: () => {
                             this.onCancel();

@@ -38,22 +38,10 @@
 
 <script lang="ts">
 
-import {defineComponent} from "vue";
 import {FormInstance, FormRules} from "element-plus";
-import useUserStore from "@/plugin/store/modules/user";
-import UserApi, {Token} from "@/api/UserApi";
-import {AxiosResponse} from "axios";
-import {IResult} from "@/plugin/request";
-import {MessageDefaultConfig} from "@/utils/DefaultConfig";
-import IconLogin from "@/components/Icon/IconLogin.vue";
-import IconLoginBtn from "@/components/Icon/IconLoginBtn.vue";
 
 export default defineComponent({
     name: "login",
-    components: {
-        IconLogin,
-        IconLoginBtn
-    },
     data() {
         return {
             userStore: useUserStore(),

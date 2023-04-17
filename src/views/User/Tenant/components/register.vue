@@ -5,8 +5,6 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
-
 export default defineComponent({
     name: "tenant-register",
     data() {
@@ -20,5 +18,4 @@ export default defineComponent({
         }
     }
 })
-
 </script>

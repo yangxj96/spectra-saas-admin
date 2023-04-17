@@ -9,8 +9,7 @@
 
 <script lang="ts">
 
-import {defineComponent} from "vue";
-import useAppStore from "@/plugin/store/modules/app";
+import useAppStore from "@/plugin/store/modules/useAppStore";
 
 export default defineComponent({
     name: 'app',

@@ -24,17 +24,12 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
 import Routine from "@/views/System/Config/components/Routine/index.vue";
 import FileSave from "@/views/System/Config/components/FileSave/index.vue";
-import IconFileConfig from "@/components/Icon/IconFileConfig.vue";
-import IconSetting from "@/components/Icon/IconSetting.vue";
 
 export default defineComponent({
     name: 'SystemConfig',
     components: {
-        IconSetting,
-        IconFileConfig,
         Routine,
         FileSave
     },

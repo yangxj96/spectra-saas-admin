@@ -120,26 +120,10 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
 import {clean} from "@/plugin/request";
-import useSystemStore from "@/plugin/store/modules/system";
-import IconHome from "@/components/Icon/IconHome.vue";
-import IconSetting from "@/components/Icon/IconSetting.vue";
-import IconUser from "@/components/Icon/IconUser.vue";
-import IconMenu from "@/components/Icon/IconMenu.vue";
-import IconFlow from "@/components/Icon/IconFlow.vue";
-import IconProject from "@/components/Icon/IconProject.vue";
 
 export default defineComponent({
     name: "LayoutSidebar",
-    components: {
-        IconProject,
-        IconFlow,
-        IconHome,
-        IconSetting,
-        IconUser,
-        IconMenu
-    },
     data() {
         return {
             unfold: true,

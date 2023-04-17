@@ -15,11 +15,15 @@
                 <el-form-item>
                     <el-button-group>
                         <el-button type="primary">
-                            <IconSearch/>
+                            <el-icon>
+                                <IconSearch/>
+                            </el-icon>
                             &nbsp;查询
                         </el-button>
                         <el-button type="primary" @click="$router.push({path: '/User/Tenant/Register'});">
-                            <IconAdd/>
+                            <el-icon>
+                                <IconAdd/>
+                            </el-icon>
                             &nbsp;注册
                         </el-button>
                     </el-button-group>
@@ -69,15 +73,10 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
 import table from "@/mixins/Table";
-import DateUtils from "@/utils/DateUtils";
-import IconSearch from "@/components/Icon/IconSearch.vue";
-import IconAdd from "@/components/Icon/IconAdd.vue";
 
 export default defineComponent({
     name: 'user-tenant',
-    components: {IconSearch, IconAdd},
     mixins: [table],
     data() {
         return {

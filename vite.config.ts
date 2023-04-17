@@ -2,6 +2,10 @@
 
 import {defineConfig} from 'vite'
 import vue from '@vitejs/plugin-vue'
+import AutoImport from 'unplugin-auto-import/vite';
+import AutoComponents from 'unplugin-vue-components/vite'
+import {ElementPlusResolver} from 'unplugin-vue-components/resolvers'
+
 import * as path from "path";
 
 export default defineConfig({
@@ -12,7 +16,28 @@ export default defineConfig({
         }
     },
     plugins: [
-        vue()
+        vue(),
+        AutoImport({
+            dts: 'src/auto-import.d.ts',
+            dirs: [
+                'src/utils',// 工具类自动导入
+                'src/plugin/store/modules',// pinia的模块自动导入
+            ],
+            imports: [
+                "vue",
+                "vue-router"
+            ],
+            resolvers: [
+                ElementPlusResolver()
+            ]
+        }),
+        AutoComponents({
+            dts: 'src/components.d.ts',
+            dirs:'src/components',
+            resolvers: [
+                ElementPlusResolver()
+            ],
+        })
     ],
     resolve: {
         alias: {

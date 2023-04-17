@@ -17,11 +17,11 @@
                 <el-form-item>
                     <el-button-group>
                         <el-button type="primary">
-                            <IconSearch/>
+                            <el-icon><IconSearch/></el-icon>
                             &nbsp;查询
                         </el-button>
                         <el-button type="primary" @click="$router.push({path: '/Flow/Created'})">
-                            <IconAdd/>
+                            <el-icon><IconAdd/></el-icon>
                             &nbsp;新增流程
                         </el-button>
                     </el-button-group>
@@ -47,10 +47,10 @@
                 <el-table-column label="创建时间" prop="created_datetime" width="180" align="center" :show-overflow-tooltip="true"/>
                 <el-table-column label="操作" width="210" align="center">
                     <template #default="datum">
-                        <el-button link type="primary" @click="handleShowDetails(datum.row)"> <IconEye color="#409EFC"/>&nbsp;查看</el-button>
-                        <el-button link type="primary"> <IconEdit color="#409EFC"/>&nbsp;编辑</el-button>
-                        <el-button v-if="datum.row.status / 2 < 1" link type="primary"> <IconEnable color="#409EFC"/>&nbsp;启用</el-button>
-                        <el-button v-else link type="primary"> <IconDisable color="#409EFC"/>&nbsp;停用</el-button>
+                        <el-button link type="primary" @click="handleShowDetails(datum.row)"> <el-icon><IconEye color="#409EFC"/></el-icon> &nbsp;查看</el-button>
+                        <el-button link type="primary"> <el-icon><IconEdit color="#409EFC"/></el-icon>&nbsp;编辑</el-button>
+                        <el-button v-if="datum.row.status / 2 < 1" link type="primary"> <el-icon><IconEnable color="#409EFC"/></el-icon>&nbsp;启用</el-button>
+                        <el-button v-else link type="primary"> <el-icon><IconDisable color="#409EFC"/></el-icon>&nbsp;停用</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -81,7 +81,7 @@
                    width="50%">
 
             <template #header>
-                <span><IconCode color="#4d4d4d"/> XML预览</span>
+                <span><el-icon><IconCode color="#4d4d4d"/></el-icon> XML预览</span>
             </template>
 
             <el-tabs v-model="dialog.active">
@@ -107,18 +107,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
-import IconSearch from "@/components/Icon/IconSearch.vue";
-import IconEdit from "@/components/Icon/IconEdit.vue";
 import Table from "@/mixins/Table";
-import IconAdd from "@/components/Icon/IconAdd.vue";
-import IconCode from "@/components/Icon/IconCode.vue";
-import IconUser from "@/components/Icon/IconUser.vue";
-import IconXML from "@/components/Icon/IconXML.vue";
-import IconFlow from "@/components/Icon/IconFlow.vue";
-import IconEnable from "@/components/Icon/IconEnable.vue";
-import IconDisable from "@/components/Icon/IconDisable.vue";
-import IconEye from "@/components/Icon/IconEye.vue";
 import DefaultFlowImage from '@/assets/images/flow-img.png';
 import vkbeautify from 'vkbeautify';
 import hljs from 'highlight.js';
@@ -135,18 +124,6 @@ export default defineComponent({
                 hljs.highlightElement(block);
             })
         }
-    },
-    components: {
-        IconEye,
-        IconDisable,
-        IconEnable,
-        IconFlow,
-        IconUser,
-        IconCode,
-        IconAdd,
-        IconEdit,
-        IconSearch,
-        IconXML
     },
     data() {
         return {
