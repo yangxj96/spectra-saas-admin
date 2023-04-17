@@ -10,7 +10,8 @@ import useAppStore from "@/plugin/store/modules/app";
 import 'default-passive-events';
 // element
 import ElementPlus from 'element-plus';
-import 'element-plus/dist/index.css';
+//import 'element-plus/dist/index.css';
+import './plugin/element/index.scss'
 // 自定义指令
 import AuthDirective from "@/directive/Auth";
 import FocusDirective from "@/directive/Focus";
