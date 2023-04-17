@@ -1,7 +1,8 @@
 <template>
     <el-row>
         <el-col :span="4">
-            <img src="../../../../assets/logo-across.png" class="goto-home" @click="gotoHome" alt="logo" style="height: 56px"/>
+            <img src="../../../../assets/logo-across.png" class="goto-home" @click="gotoHome" alt="logo"
+                 style="height: 56px"/>
         </el-col>
 
         <el-col :span="1" :offset="19">
@@ -45,6 +46,7 @@ import ChangePassword from "@/components/Props/ChangePassword/index.vue";
 import IconUser from "@/components/Icon/IconUser.vue";
 import IconChangePassword from "@/components/Icon/IconChangePassword.vue";
 import IconLogout from "@/components/Icon/IconLogout.vue";
+import {MessageDefaultConfig} from "@/utils/DefaultConfig";
 
 export default defineComponent({
     name: "LayoutNavbarIndex",
@@ -61,9 +63,9 @@ export default defineComponent({
         },
         handleUserLogout() {
             this.$message.success({
-                message: '登出成功',
-                duration: 500,
-                onClose() {
+                ...MessageDefaultConfig,
+                message: '退出成功',
+                onClose: () => {
                     window.localStorage.clear();
                     window.sessionStorage.clear();
                     location.reload();

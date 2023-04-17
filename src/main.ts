@@ -4,9 +4,8 @@ import App from './App.vue';
 import router from './plugin/router';
 // 状态
 import {createStore} from "@/plugin/store";
-import useAppStore from "@/plugin/store/modules/app";
 
-// 事件
+// 滚动事件警告去除
 import 'default-passive-events';
 // element
 import ElementPlus from 'element-plus';
@@ -20,7 +19,7 @@ import FocusDirective from "@/directive/Focus";
 createApp(App)
     .use(createStore())
     .use(router)
-    .use(ElementPlus, {locale: useAppStore().lang})
+    .use(ElementPlus)
     // .component("IconFont", iconFont)
     .directive("auth", AuthDirective)
     .directive('focus', FocusDirective)

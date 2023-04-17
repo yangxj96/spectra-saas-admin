@@ -2,7 +2,7 @@ import {createRouter, createWebHashHistory} from 'vue-router';
 import useStore from "@/plugin/store/index";
 import {ElLoading} from "element-plus";
 import base from "@/plugin/router/router/base";
-import platform from "@/plugin/router/router/platform";
+import platform from "@/plugin/router/router/modle/platform";
 import flow from "@/plugin/router/router/modle/flow";
 
 

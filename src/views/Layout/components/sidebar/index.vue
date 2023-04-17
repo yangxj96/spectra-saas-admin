@@ -1,13 +1,13 @@
 <template>
-    <el-menu :router="true"
+    <el-menu class="box-menu"
+             :router="true"
              :default-active="$route.path"
              :collapse="!unfold"
-             class="box-menu"
              :collapse-transition="true"
              :unique-opened="true"
-    >
+             @select="onMenuItemClick">
 
-        <el-menu-item index="/" :disabled="itemDisabled" @click="onMenuItemClick">
+        <el-menu-item index="/" :disabled="itemDisabled">
             <el-icon>
                 <IconHome color="#4d4d4d"/>
             </el-icon>
@@ -159,8 +159,10 @@ export default defineComponent({
         })
     },
     methods: {
-        onMenuItemClick(el: any) {
-            console.log('菜单被点击', el)
+        onMenuItemClick(index: any, path: any, item: any, router) {
+            console.log(`index:${index},path:${path}`)
+            console.log(`item:`, item)
+            console.log(`router:`, router)
             if (clean.length > 0) {
                 for (let canceler of clean) {
                     canceler('取消请求');

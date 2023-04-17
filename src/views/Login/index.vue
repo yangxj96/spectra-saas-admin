@@ -79,6 +79,13 @@ export default defineComponent({
             }
             await el.validate((valid) => {
                 if (valid) {
+                    this.$message.success({
+                        ...MessageDefaultConfig,
+                        message: '登录成功',
+                        onClose: () => {
+                            this.$router.push({path: '/'});
+                        }
+                    })
                     useUserStore().setToken({
                         username: "sysadmin",
                         access_token: "29c02a6f-c886-4668-82a5-4a3139b5d90f",
@@ -98,20 +105,6 @@ export default defineComponent({
                         ],
                         expiration_time: "2023-04-11 11:58:33"
                     })
-                    this.$router.push({path: '/'});
-                    // UserApi.login(this.user.username, this.user.password).then((response: AxiosResponse<IResult<Token>>) => {
-                    //         let result = response.data.data;
-                    //         console.log(result)
-                    //         this.$message.success({
-                    //             ...MessageDefaultConfig,
-                    //             message: `登录成功`,
-                    //             onClose: () => {
-                    //                 useUserStore().setToken(result);
-                    //                 this.$router.push({path: '/'});
-                    //             }
-                    //         })
-                    //     }
-                    // );
                 } else {
                     this.$message.error({
                         ...MessageDefaultConfig,
