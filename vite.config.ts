@@ -22,6 +22,7 @@ export default defineConfig({
             dirs: [
                 'src/utils',// 工具类自动导入
                 'src/plugin/store/modules',// pinia的模块自动导入
+                'src/model', // 实体模块
             ],
             imports: [
                 "vue",

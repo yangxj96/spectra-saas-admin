@@ -77,8 +77,9 @@
 <script lang="ts">
 
 import Table from "@/mixins/Table";
-import {UserList} from "@/api/UserApi";
 import Log from './components/Log/index.vue';
+import {UserList} from "@/model/User";
+
 export default defineComponent({
     name: 'user-user',
     mixins: [Table],

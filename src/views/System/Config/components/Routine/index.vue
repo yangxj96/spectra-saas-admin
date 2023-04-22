@@ -61,8 +61,7 @@
 
 import Table from "@/mixins/Table";
 import Editor from "@/views/System/Config/components/Routine/components/Editor/index.vue";
-import {SystemConfig} from "@/api/SystemApi";
-import CommonUtils from "@/utils/CommonUtils";
+import {SystemConfig} from "@/model/System";
 
 /**
  * 常规配置

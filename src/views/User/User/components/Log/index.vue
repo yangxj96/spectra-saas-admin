@@ -52,7 +52,8 @@
 
 <script lang="ts">
 import Table from "@/mixins/Table";
-import {UserList, UserOperateLog} from '@/api/UserApi';
+import {UserList, UserOperateLog} from "@/model/User";
+
 export default defineComponent({
     name: 'user-log',
     mixins: [Table],

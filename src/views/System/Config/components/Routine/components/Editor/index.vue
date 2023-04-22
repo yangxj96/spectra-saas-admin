@@ -45,8 +45,8 @@
 </template>
 
 <script lang="ts">
-import {SystemConfig} from '@/api/SystemApi';
 import {FormInstance, FormRules} from "element-plus";
+import {SystemConfig} from "@/model/System";
 
 export default defineComponent({
     name: 'config-editor',

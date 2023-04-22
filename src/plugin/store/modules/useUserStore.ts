@@ -1,6 +1,5 @@
 import {defineStore} from "pinia";
-import {Token} from "@/api/UserApi";
-
+import {Token} from "@/model/User";
 
 export interface UserState {
     token: Token

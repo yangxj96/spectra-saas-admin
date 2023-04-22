@@ -71,7 +71,7 @@
 
 <script lang="ts">
 import Table from "@/mixins/Table";
-import {SystemDictGroup} from "@/api/SystemApi";
+import {SystemDictGroup} from "@/model/System";
 
 export default defineComponent({
     name: 'dict',

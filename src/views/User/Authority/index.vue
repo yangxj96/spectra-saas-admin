@@ -45,7 +45,8 @@
 </template>
 
 <script lang="ts">
-import {RoleTree} from "@/api/RoleApi";
+
+import {RoleTree} from "@/model/Role";
 
 export default defineComponent({
     name: 'user-authority',
