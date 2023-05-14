@@ -8,110 +8,78 @@
              @select="onMenuItemClick">
 
         <el-menu-item index="/" :disabled="itemDisabled">
-            <el-icon>
-                <IconHome color="#4d4d4d"/>
-            </el-icon>
+            <icons name="icon-home" class-name="icon-sidebar"/>
             <template #title>首页</template>
         </el-menu-item>
 
         <el-sub-menu index="1" :disabled="itemDisabled">
             <template #title>
-                <el-icon>
-                    <IconSetting color="#4d4d4d"/>
-                </el-icon>
+                <icons name="icon-setting" class-name="icon-sidebar"/>
                 <span>平台配置</span>
             </template>
             <el-menu-item index="/System">
-                <el-icon>
-                    <IconMenu color="#4d4d4d"/>
-                </el-icon>
+                <icons name="icon-menu" class-name="icon-sidebar"/>
                 平台配置
             </el-menu-item>
             <el-menu-item index="/System/Service">
-                <el-icon>
-                    <IconMenu color="#4d4d4d"/>
-                </el-icon>
+                <icons name="icon-menu" class-name="icon-sidebar"/>
                 服务管理
             </el-menu-item>
             <el-menu-item index="/System/Module">
-                <el-icon>
-                    <IconMenu color="#4d4d4d"/>
-                </el-icon>
+                <icons name="icon-menu" class-name="icon-sidebar"/>
                 模块管理
             </el-menu-item>
             <el-menu-item index="/System/Menu">
-                <el-icon>
-                    <IconMenu color="#4d4d4d"/>
-                </el-icon>
+                <icons name="icon-menu" class-name="icon-sidebar"/>
                 菜单管理
             </el-menu-item>
             <el-menu-item index="/System/Dict">
-                <el-icon>
-                    <IconMenu color="#4d4d4d"/>
-                </el-icon>
+                <icons name="icon-menu" class-name="icon-sidebar"/>
                 字典管理
             </el-menu-item>
         </el-sub-menu>
 
         <el-sub-menu index="2" :disabled="itemDisabled">
             <template #title>
-                <el-icon>
-                    <IconUser color="#4d4d4d"/>
-                </el-icon>
+                <icons name="icon-user" class-name="icon-sidebar"/>
                 <span>用户管理</span>
             </template>
             <el-menu-item index="/User">
-                <el-icon>
-                    <IconMenu color="#4d4d4d"/>
-                </el-icon>
+                <icons name="icon-menu" class-name="icon-sidebar"/>
                 用户管理
             </el-menu-item>
             <el-menu-item index="/User/Tenant">
-                <el-icon>
-                    <IconMenu color="#4d4d4d"/>
-                </el-icon>
+                <icons name="icon-menu" class-name="icon-sidebar"/>
                 租户管理
             </el-menu-item>
             <el-menu-item index="/User/Authority">
-                <el-icon>
-                    <IconMenu color="#4d4d4d"/>
-                </el-icon>
+                <icons name="icon-menu" class-name="icon-sidebar"/>
                 权限管理
             </el-menu-item>
         </el-sub-menu>
 
         <el-sub-menu index="3" :disabled="itemDisabled">
             <template #title>
-                <el-icon>
-                    <IconFlow color="#4d4d4d"/>
-                </el-icon>
+                <icons name="icon-flow" class-name="icon-sidebar"/>
                 <span>流程管理</span>
             </template>
             <el-menu-item index="/Flow">
-                <el-icon>
-                    <IconMenu color="#4d4d4d"/>
-                </el-icon>
+                <icons name="icon-menu" class-name="icon-sidebar"/>
                 流程列表
             </el-menu-item>
         </el-sub-menu>
 
         <el-sub-menu index="4" :disabled="itemDisabled">
             <template #title>
-                <el-icon>
-                    <IconProject color="#4d4d4d"/>
-                </el-icon>
+                <icons name="icon-project" class-name="icon-sidebar"/>
                 <span>项目管理</span>
             </template>
             <el-menu-item index="/Project">
-                <el-icon>
-                    <IconMenu color="#4d4d4d"/>
-                </el-icon>
+                <icons name="icon-menu" class-name="icon-sidebar"/>
                 项目列表
             </el-menu-item>
             <el-menu-item index="/Project/Feasibility">
-                <el-icon>
-                    <IconMenu color="#4d4d4d"/>
-                </el-icon>
+                <icons name="icon-menu" class-name="icon-sidebar"/>
                 项目立项
             </el-menu-item>
         </el-sub-menu>
@@ -167,5 +135,12 @@ export default defineComponent({
 .box-menu:not(.el-menu--collapse) {
     width: 200px;
     min-height: 400px;
+}
+
+.icon-sidebar {
+    width: 1.4em;
+    height: 1.4em;
+    padding-right: .5em;
+    padding-left: .2em;
 }
 </style>

@@ -15,15 +15,11 @@
                 <el-form-item>
                     <el-button-group>
                         <el-button type="primary">
-                            <el-icon>
-                                <IconSearch/>
-                            </el-icon>
+                            <icons name="icon-search" class-name="icon-common"/>
                             &nbsp;查询
                         </el-button>
                         <el-button type="primary" @click="$router.push({path: '/User/Tenant/Register'});">
-                            <el-icon>
-                                <IconAdd/>
-                            </el-icon>
+                            <icons name="icon-add" class-name="icon-common"/>
                             &nbsp;注册
                         </el-button>
                     </el-button-group>

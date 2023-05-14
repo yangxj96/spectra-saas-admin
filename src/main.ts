@@ -13,6 +13,7 @@ import {ElLoadingService, ElMessage, ElMessageBox, ElNotification} from 'element
 // 自定义指令
 import AuthDirective from "@/directive/Auth";
 import FocusDirective from "@/directive/Focus";
+import './assets/iconfont/iconfont'
 
 // 创建APP
 const app = createApp(App);

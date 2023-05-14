@@ -9,14 +9,12 @@
                 <el-form-item>
                     <el-button-group>
                         <el-button type="primary">
-                            <el-icon>
-                                <IconSearch/>
-                            </el-icon>&nbsp;查询
+                            <icons name="icon-search" class-name="icon-common"/>
+                            &nbsp;查询
                         </el-button>
                         <el-button type="primary" @click="handleCreateRole">
-                            <el-icon>
-                                <IconAdd/>
-                            </el-icon>&nbsp;新增角色
+                            <icons name="icon-add" class-name="icon-common"/>
+                            &nbsp;新增角色
                         </el-button>
                     </el-button-group>
                 </el-form-item>

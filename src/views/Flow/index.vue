@@ -17,11 +17,11 @@
                 <el-form-item>
                     <el-button-group>
                         <el-button type="primary">
-                            <el-icon><IconSearch/></el-icon>
+                           <icons name="icon-search" class-name="icon-common"/>
                             &nbsp;查询
                         </el-button>
                         <el-button type="primary" @click="$router.push({path: '/Flow/Created'})">
-                            <el-icon><IconAdd/></el-icon>
+                            <icons name="icon-add" class-name="icon-common"/>
                             &nbsp;新增流程
                         </el-button>
                     </el-button-group>
@@ -47,10 +47,22 @@
                 <el-table-column label="创建时间" prop="created_datetime" width="180" align="center" :show-overflow-tooltip="true"/>
                 <el-table-column label="操作" width="210" align="center">
                     <template #default="datum">
-                        <el-button link type="primary" @click="handleShowDetails(datum.row)"> <el-icon><IconEye color="#409EFC"/></el-icon> &nbsp;查看</el-button>
-                        <el-button link type="primary"> <el-icon><IconEdit color="#409EFC"/></el-icon>&nbsp;编辑</el-button>
-                        <el-button v-if="datum.row.status / 2 < 1" link type="primary"> <el-icon><IconEnable color="#409EFC"/></el-icon>&nbsp;启用</el-button>
-                        <el-button v-else link type="primary"> <el-icon><IconDisable color="#409EFC"/></el-icon>&nbsp;停用</el-button>
+                        <el-button link type="primary" @click="handleShowDetails(datum.row)">
+                            <icons name="icon-eye" style="color:#409EFC" class-name="icon-common"/>
+                            &nbsp;查看
+                        </el-button>
+                        <el-button link type="primary">
+                            <icons name="icon-edit" style="color:#409EFC" class-name="icon-common"/>
+                            &nbsp;编辑
+                        </el-button>
+                        <el-button v-if="datum.row.status / 2 < 1" link type="primary">
+                            <icons name="icon-enable" style="color:#409EFC" class-name="icon-common"/>
+                            &nbsp;启用
+                        </el-button>
+                        <el-button v-else link type="primary">
+                            <icons name="icon-disable" style="color:#409EFC" class-name="icon-common"/>
+                            &nbsp;停用
+                        </el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -81,7 +93,7 @@
                    width="50%">
 
             <template #header>
-                <span><el-icon><IconCode color="#4d4d4d"/></el-icon> XML预览</span>
+                <span> <icons name="icon-code" class-name="icon-common"/>  XML预览</span>
             </template>
 
             <el-tabs v-model="dialog.active">

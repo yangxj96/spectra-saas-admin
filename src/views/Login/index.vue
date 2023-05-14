@@ -8,9 +8,7 @@
                    width="20%">
             <template #header>
                 <p>
-                    <el-icon>
-                        <IconLogin color="#9B9B9B"/>
-                    </el-icon>
+                    <icons name="icon-login" class-name="icon-common" style="color: #9B9B9B"/>
                     用户登录
                 </p>
             </template>
@@ -26,10 +24,8 @@
             </div>
             <template #footer>
                 <el-button type="primary" @click="handleLogin">
-                    <el-icon>
-                        <IconLoginBtn/>
-                    </el-icon>
-                    <span>登录</span>
+                    <icons name="icon-login" class-name="icon-common" />
+                    <span>&nbsp;登录</span>
                 </el-button>
             </template>
         </el-dialog>

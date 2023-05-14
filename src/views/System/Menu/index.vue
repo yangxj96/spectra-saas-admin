@@ -8,7 +8,7 @@
                 <el-form-item>
                     <el-button-group>
                         <el-button type="primary">
-                            <el-icon><IconSearch/></el-icon>
+                            <icons name="icon-search" class-name="icon-common"/>
                             &nbsp;查询
                         </el-button>
                     </el-button-group>
@@ -36,7 +36,11 @@
                         <el-switch v-model="menu_details.enable"/>
                     </el-form-item>
                     <el-form-item>
-                        <el-button type="primary"><el-icon><IconEdit/></el-icon>&nbsp;保存</el-button>
+                        <el-button type="primary">
+                            <icons name="icon-edit"/>
+                            &nbsp;保存
+                        </el-button>
+
                     </el-form-item>
                 </el-form>
             </el-col>

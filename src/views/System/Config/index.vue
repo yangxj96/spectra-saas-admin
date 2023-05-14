@@ -3,18 +3,14 @@
         <el-tabs v-model="active">
             <el-tab-pane name="routine">
                 <template #label>
-                    <el-icon>
-                        <IconSetting color="#4d4d4d"/>
-                    </el-icon>
+                    <icons name="icon-setting" style="color: #4d4d4d" class-name="icon-common"/>
                     <span>&nbsp;常规配置</span>
                 </template>
                 <Routine/>
             </el-tab-pane>
             <el-tab-pane name="file">
                 <template #label>
-                    <el-icon>
-                        <IconFileConfig color="#4d4d4d"/>
-                    </el-icon>
+                    <icons name="icon-file-config" style="color: #4d4d4d" class-name="icon-common"/>
                     <span>&nbsp;文件存储配置</span>
                 </template>
                 <FileSave/>

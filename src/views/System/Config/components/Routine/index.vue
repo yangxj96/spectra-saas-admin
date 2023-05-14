@@ -12,7 +12,7 @@
                 <el-form-item>
                     <el-button-group>
                         <el-button type="primary">
-                            <el-icon><IconSearch/></el-icon>
+                            <icons name="icon-search" class-name="icon-common"/>
                             查询
                         </el-button>
                     </el-button-group>
@@ -31,7 +31,10 @@
                 <el-table-column label="说明"   prop="remark" align="center"/>
                 <el-table-column label="操作" width="130" align="center">
                     <template #default="datum">
-                        <el-button text type="primary" @click="onEditorConfig(datum.row)"> <el-icon><IconEdit color="#409EFC"/></el-icon>编辑</el-button>
+                        <el-button text type="primary" @click="onEditorConfig(datum.row)">
+                            <icons name="icon-edit" class-name="icon-common"/>
+                            &nbsp;编辑
+                        </el-button>
                     </template>
                 </el-table-column>
             </el-table>

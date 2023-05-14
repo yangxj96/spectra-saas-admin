@@ -7,9 +7,18 @@
                 </el-form-item>
                 <el-form-item>
                     <el-button-group>
-                        <el-button type="primary"><el-icon><IconSearch/></el-icon>&nbsp;查询</el-button>
-                        <el-button type="primary" @click="handleCreateDictGroup"><el-icon><IconFolder/></el-icon>&nbsp;新增组</el-button>
-                        <el-button type="primary" @click="handleCreateDictItem"><el-icon><IconFile/></el-icon>&nbsp;新增项</el-button>
+                        <el-button type="primary">
+                            <icons name="icon-search" class-name="icon-common"/>
+                            &nbsp;查询
+                        </el-button>
+                        <el-button type="primary" @click="handleCreateDictGroup">
+                            <icons name="icon-add"/>
+                            &nbsp;新增组
+                        </el-button>
+                        <el-button type="primary" @click="handleCreateDictItem">
+                            <icons name="icon-add"/>
+                            &nbsp;新增项
+                        </el-button>
                     </el-button-group>
                 </el-form-item>
             </el-form>

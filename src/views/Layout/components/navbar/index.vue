@@ -12,21 +12,15 @@
                 <template #dropdown>
                     <el-dropdown-menu>
                         <el-dropdown-item @click="handlePersonalPopup">
-                            <el-icon :size="'1.3em'">
-                                <IconUser color="#4d4d4d"/>
-                            </el-icon>
+                            <icons name="icon-user" class-name="icon-navbar"/>
                             <span>个人信息</span>
                         </el-dropdown-item>
                         <el-dropdown-item @click="handleModifyPasswordPopup">
-                            <el-icon :size="'1.3em'">
-                                <IconChangePassword color="#4d4d4d"/>
-                            </el-icon>
+                            <icons name="icon-change-password" class-name="icon-navbar"/>
                             <span>修改密码</span>
                         </el-dropdown-item>
                         <el-dropdown-item @click="handleUserLogout">
-                            <el-icon :size="'1.3em'">
-                                <IconLogout color="#4d4d4d"/>
-                            </el-icon>
+                            <icons name="icon-logout" class-name="icon-navbar"/>
                             <span>退出登录</span>
                         </el-dropdown-item>
                     </el-dropdown-menu>
@@ -93,5 +87,11 @@ export default defineComponent({
         //left: 50%;
         transform: translate(-50%, -50%);
     }
+}
+
+.icon-navbar {
+    width: 1.3em;
+    height: 1.3em;
+    padding-right: .5em;
 }
 </style>
