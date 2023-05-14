@@ -1,7 +1,7 @@
 <template>
     <el-result icon="error" title="404" :sub-title="`无权访问该页面,${second}秒后自动后退`">
         <template #extra>
-            <el-button type="primary" @click="handleBack" >后退</el-button>
+            <el-button type="primary" @click="handleBack">后退</el-button>
         </template>
     </el-result>
 </template>
@@ -26,8 +26,8 @@ export default defineComponent({
         }, 1000)
     },
     methods: {
-        handleBack(){
-            if (this.time!= -1) {
+        handleBack() {
+            if (this.time != -1) {
                 clearTimeout(this.time)
             }
             this.$router.back();

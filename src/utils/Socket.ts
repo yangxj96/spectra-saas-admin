@@ -77,8 +77,8 @@ export default class Socket {
     /**
      * 销毁当前实例
      */
-    public destroy(){
-        if (this.ws !== null){
+    public destroy() {
+        if (this.ws !== null) {
             this.ws.close();
         }
         console.debug(`${this.LOG_PREFIX} 实例销毁`);

@@ -50,6 +50,7 @@
 
 <script lang="ts">
 import Table from "@/mixins/Table";
+
 export default defineComponent({
     name: 'system-menu',
     mixins: [Table],

@@ -44,6 +44,7 @@
 
 import table from "@/mixins/Table";
 import ServiceDetails from './components/details.vue';
+
 export default defineComponent({
     name: 'service',
     components: {

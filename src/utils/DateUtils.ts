@@ -11,9 +11,9 @@ export default class DateUtils {
             H: date.getHours(),
             m: date.getMinutes(),
             s: date.getSeconds(),
-            MM: ('' + (date.getMonth()   + 101)).substring(1),
-            dd: ('' + (date.getDate()    + 100)).substring(1),
-            HH: ('' + (date.getHours()   + 100)).substring(1),
+            MM: ('' + (date.getMonth() + 101)).substring(1),
+            dd: ('' + (date.getDate() + 100)).substring(1),
+            HH: ('' + (date.getHours() + 100)).substring(1),
             mm: ('' + (date.getMinutes() + 100)).substring(1),
             ss: ('' + (date.getSeconds() + 100)).substring(1),
         };

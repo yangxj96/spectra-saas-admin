@@ -7,8 +7,8 @@
 
 <script lang="ts">
 export default defineComponent({
-    methods:{
-        handleGo(){
+    methods: {
+        handleGo() {
             this.$router.push({
                 path: '/123233'
             })

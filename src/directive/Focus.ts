@@ -3,10 +3,10 @@ import type {ObjectDirective} from 'vue';
 
 const Focus: ObjectDirective = {
     mounted(el: HTMLElement, binging) {
-        if (el.tagName.toLocaleLowerCase() == 'input'){
+        if (el.tagName.toLocaleLowerCase() == 'input') {
             el.focus();
         } else {
-            if (el.getElementsByTagName('input')){
+            if (el.getElementsByTagName('input')) {
                 el.getElementsByTagName('input')[0].focus()
             }
         }

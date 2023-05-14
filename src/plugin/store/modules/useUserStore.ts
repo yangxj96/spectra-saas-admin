@@ -7,7 +7,7 @@ export interface UserState {
 
 const useUserStore = defineStore('user', {
     state: () => {
-        return <UserState> {
+        return <UserState>{
             token: {}
         }
     },

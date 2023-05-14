@@ -1,4 +1,3 @@
-
 /** 角色类 */
 export interface Role {
     // ID

@@ -24,7 +24,7 @@
             </div>
             <template #footer>
                 <el-button type="primary" @click="handleLogin">
-                    <icons name="icon-login" class-name="icon-common" />
+                    <icons name="icon-login" class-name="icon-common"/>
                     <span>&nbsp;登录</span>
                 </el-button>
             </template>

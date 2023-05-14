@@ -8,7 +8,7 @@ import flow from "@/plugin/router/router/modle/flow";
 
 const router = createRouter({
     history: createWebHashHistory(),
-    routes: [...base,...platform,...flow],
+    routes: [...base, ...platform, ...flow],
     scrollBehavior(to, from, savedPosition) {
         return {
             top: 0
