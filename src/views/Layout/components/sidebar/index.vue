@@ -1,12 +1,12 @@
 <template>
-  <el-menu class="box-menu"
-           :router="true"
-           :default-active="$route.path"
-           :collapse="!unfold"
-           :collapse-transition="true"
-           :unique-opened="true"
-           @select="onMenuItemClick">
-
+  <el-menu
+    class="box-menu"
+    :router="true"
+    :default-active="$route.path"
+    :collapse="!unfold"
+    :collapse-transition="true"
+    :unique-opened="true"
+    @select="onMenuItemClick">
     <el-menu-item index="/" :disabled="itemDisabled">
       <icons name="icon-home" class-name="icon-sidebar" />
       <template #title>首页</template>
@@ -83,12 +83,11 @@
         项目立项
       </el-menu-item>
     </el-sub-menu>
-
   </el-menu>
 </template>
 
 <script lang="ts">
-import {clean} from "@/plugin/request";
+import { clean } from "@/plugin/request";
 
 export default defineComponent({
   name: "LayoutSidebar",
@@ -123,8 +122,6 @@ export default defineComponent({
     }
   }
 });
-
-
 </script>
 
 <style scoped lang="scss">
@@ -140,7 +137,7 @@ export default defineComponent({
 .icon-sidebar {
   width: 1.4em;
   height: 1.4em;
-  padding-right: .5em;
-  padding-left: .2em;
+  padding-right: 0.5em;
+  padding-left: 0.2em;
 }
 </style>

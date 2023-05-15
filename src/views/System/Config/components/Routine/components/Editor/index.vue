@@ -1,8 +1,12 @@
 <template>
   <div style="height: 100%">
-    <el-dialog :model-value="true" destroy-on-close @close="onCancel" :title="`编辑[${options.datum.key}]`"
-               width="25%" class="loading-box">
-
+    <el-dialog
+      :model-value="true"
+      destroy-on-close
+      @close="onCancel"
+      :title="`编辑[${options.datum.key}]`"
+      width="25%"
+      class="loading-box">
       <el-form ref="ruleForm" :model="options.datum" :rules="form.rules" label-width="70px">
         <el-form-item label="id">
           <el-input v-model="options.datum.id" disabled />
@@ -15,19 +19,20 @@
         </el-form-item>
         <el-form-item label="配置值" prop="value" v-else-if="options.datum.type === 2">
           <el-select v-model="options.datum.value" placeholder="请选择值" style="width: 100%">
-            <el-option v-for="item in options.datum.items"
-                       :key="item.value"
-                       :label="item.name"
-                       :value="item.value.toString()" />
+            <el-option
+              v-for="item in options.datum.items"
+              :key="item.value"
+              :label="item.name"
+              :value="item.value.toString()" />
           </el-select>
         </el-form-item>
         <el-form-item label="配置值" prop="value" v-else-if="options.datum.type === 3">
-          <el-select v-model="options.datum.value" placeholder="请选择值" :multiple="true"
-                     style="width: 100%">
-            <el-option v-for="item in options.datum.items"
-                       :key="item.value"
-                       :label="item.name"
-                       :value="item.value.toString()" />
+          <el-select v-model="options.datum.value" placeholder="请选择值" :multiple="true" style="width: 100%">
+            <el-option
+              v-for="item in options.datum.items"
+              :key="item.value"
+              :label="item.name"
+              :value="item.value.toString()" />
           </el-select>
         </el-form-item>
         <el-form-item label="说明">
@@ -45,8 +50,8 @@
 </template>
 
 <script lang="ts">
-import {type FormInstance, type FormRules} from "element-plus";
-import {type SystemConfig} from "@/model/System";
+import { type FormInstance, type FormRules } from "element-plus";
+import { type SystemConfig } from "@/model/System";
 
 export default defineComponent({
   name: "config-editor",
@@ -64,9 +69,7 @@ export default defineComponent({
       form: {
         obj: {} as SystemConfig,
         rules: {
-          value: [
-            {required: true, message: "请输入或选择值", trigger: "blur"}
-          ]
+          value: [{ required: true, message: "请输入或选择值", trigger: "blur" }]
         } as FormRules
       }
     };
@@ -76,7 +79,7 @@ export default defineComponent({
       this.$emit("close", false);
     },
     async onSave() {
-      await (this.$refs.ruleForm as FormInstance).validate((valid) => {
+      await (this.$refs.ruleForm as FormInstance).validate(valid => {
         if (valid) {
           this.$message.success({
             ...MessageDefaultConfig,
@@ -87,7 +90,6 @@ export default defineComponent({
           });
         }
       });
-
     },
     formatParams() {
       this.form.obj = Object.assign({}, this.options.datum);
@@ -114,10 +116,6 @@ export default defineComponent({
     }
   }
 });
-
-
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

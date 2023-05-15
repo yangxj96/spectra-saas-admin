@@ -1,4 +1,4 @@
-import type {ObjectDirective} from "vue";
+import type { ObjectDirective } from "vue";
 
 const authority = ["USER:INSERT", "USER:DELETE", "USER:UPDATE", "USER:SELECT"];
 

@@ -8,7 +8,7 @@
         <el-form-item>
           <el-button-group>
             <el-button type="primary">
-              <icons name="icon-search" class-name="icon-common" />
+              <icons name="icon-search" />
               &nbsp;查询
             </el-button>
             <el-button type="primary" @click="handleCreateDictGroup">
@@ -29,11 +29,11 @@
     <el-row class="box-content">
       <!-- 字典组树 -->
       <el-col :span="4" class="tree">
-        <el-tree ref="group_tree"
-                 :data="tree_data"
-                 :props="{children:'children',label:'name'}"
-                 @node-click="onDictGroupClick"
-        />
+        <el-tree
+          ref="group_tree"
+          :data="tree_data"
+          :props="{ children: 'children', label: 'name' }"
+          @node-click="onDictGroupClick" />
       </el-col>
       <!-- 字典项表格 -->
       <el-col :span="20">
@@ -61,7 +61,7 @@
             </el-table-column>
           </el-table>
         </el-row>
-        <el-row style="float: right;height: 8%">
+        <el-row style="float: right; height: 8%">
           <el-pagination
             v-model:currentPage="pagination.page"
             hide-on-single-page
@@ -70,8 +70,7 @@
             :layout="'sizes,prev,pager,next'"
             :total="pagination.total"
             @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-          />
+            @current-change="handleCurrentChange" />
         </el-row>
       </el-col>
     </el-row>
@@ -80,7 +79,7 @@
 
 <script lang="ts">
 import Table from "@/mixins/Table";
-import {type SystemDictGroup} from "@/model/System";
+import { type SystemDictGroup } from "@/model/System";
 
 export default defineComponent({
   name: "dict",
@@ -112,7 +111,8 @@ export default defineComponent({
               name: "学历"
             }
           ]
-        }, {
+        },
+        {
           id: CommonUtils.getRandom(10000000, 99999999),
           name: "人物",
           children: [
@@ -125,7 +125,8 @@ export default defineComponent({
               name: "学历"
             }
           ]
-        }, {
+        },
+        {
           id: CommonUtils.getRandom(10000000, 99999999),
           name: "人物",
           children: [
@@ -139,7 +140,6 @@ export default defineComponent({
             }
           ]
         }
-
       ];
     },
     handleTableData() {
@@ -187,19 +187,16 @@ interface TreeData {
 
 // 表格数据结构
 interface TableData {
-  id: string,
-  name: string,
-  value: string,
-  internal: boolean,
-  enable: boolean
+  id: string;
+  name: string;
+  value: string;
+  internal: boolean;
+  enable: boolean;
 }
-
 </script>
 
 <style scoped lang="scss">
-
 .box-content {
-
   height: 95%;
 
   .tree {

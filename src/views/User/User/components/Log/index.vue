@@ -1,9 +1,12 @@
 <template>
   <div style="height: 100%">
-
-    <el-dialog :model-value="true" destroy-on-close @close="onCancel" :title="`用户[${options.user.username}]日志`"
-               width="80%" class="loading-box">
-
+    <el-dialog
+      :model-value="true"
+      destroy-on-close
+      @close="onCancel"
+      :title="`用户[${options.user.username}]日志`"
+      width="80%"
+      class="loading-box">
       <el-row>
         <el-table :data="table_data" stripe border height="100%" style="width: 100%">
           <el-table-column type="expand">
@@ -26,7 +29,7 @@
         </el-table>
       </el-row>
 
-      <el-row style="float: right;height: 50px">
+      <el-row style="float: right; height: 50px">
         <el-pagination
           v-model:currentPage="pagination.page"
           hide-on-single-page
@@ -35,13 +38,12 @@
           :layout="'sizes,prev, pager, next'"
           :total="pagination.total"
           @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-        />
+          @current-change="handleCurrentChange" />
       </el-row>
 
       <template #footer>
         <slot name="footer">
-          <!--<el-button type="primary" @click="handlePropsCancel">确定</el-button>-->
+          <!--          <el-button type="primary">确定</el-button>-->
         </slot>
       </template>
     </el-dialog>
@@ -50,7 +52,7 @@
 
 <script lang="ts">
 import Table from "@/mixins/Table";
-import {type UserList, type UserOperateLog} from "@/model/User";
+import { type UserList, type UserOperateLog } from "@/model/User";
 
 export default defineComponent({
   name: "user-log",
@@ -81,7 +83,7 @@ export default defineComponent({
           created_time: "2022-12-12 00:00:00",
           url: "/baidu.com",
           response_status: status[CommonUtils.getRandom(1, status.length)],
-          response_result: JSON.stringify({code: 0, message: "操作成功"}),
+          response_result: JSON.stringify({ code: 0, message: "操作成功" }),
           ip: "127.0.0.1"
         });
       }
@@ -108,10 +110,6 @@ export default defineComponent({
     }
   }
 });
-
-
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

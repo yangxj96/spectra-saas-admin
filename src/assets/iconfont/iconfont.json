@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "13952258",
+      "name": "操作日志",
+      "font_class": "log",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "857684",
+      "name": "角色管理",
+      "font_class": "role-manager",
+      "unicode": "e74a",
+      "unicode_decimal": 59210
+    },
+    {
+      "icon_id": "12771534",
+      "name": "重置密码222",
+      "font_class": "reset-password",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    },
+    {
       "icon_id": "4437608",
       "name": "右箭头",
       "font_class": "caret-right",

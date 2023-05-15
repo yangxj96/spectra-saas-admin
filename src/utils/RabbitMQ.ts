@@ -1,11 +1,9 @@
-import {Client, type IFrame} from "@stomp/stompjs";
-
+import { Client, type IFrame } from "@stomp/stompjs";
 
 export default class RabbitMQ {
-
   private _client: Client;
 
-  constructor(options: {url: string, username: string, password: string}) {
+  constructor(options: { url: string; username: string; password: string }) {
     this._client = new Client({
       brokerURL: options.url,
       connectHeaders: {
@@ -36,5 +34,4 @@ export default class RabbitMQ {
   private stompError(frame: IFrame) {
     console.log(`连接错误`, frame);
   }
-
 }

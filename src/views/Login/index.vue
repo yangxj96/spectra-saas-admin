@@ -1,14 +1,15 @@
 <template>
   <div class="box">
-    <el-dialog :model-value="true"
-               :close-on-click-modal="false"
-               :close-on-press-escape="false"
-               :show-close="false"
-               class="dialog-login"
-               width="20%">
+    <el-dialog
+      :model-value="true"
+      :close-on-click-modal="false"
+      :close-on-press-escape="false"
+      :show-close="false"
+      class="dialog-login"
+      width="20%">
       <template #header>
         <p>
-          <icons name="icon-login" class-name="icon-common" style="color: #9B9B9B" />
+          <icons name="icon-login" style="color: #9b9b9b" />
           用户登录
         </p>
       </template>
@@ -24,7 +25,7 @@
       </div>
       <template #footer>
         <el-button type="primary" @click="handleLogin">
-          <icons name="icon-login" class-name="icon-common" />
+          <icons name="icon-login" />
           <span>&nbsp;登录</span>
         </el-button>
       </template>
@@ -33,8 +34,7 @@
 </template>
 
 <script lang="ts">
-
-import {type FormInstance, type FormRules} from "element-plus";
+import { type FormInstance, type FormRules } from "element-plus";
 
 export default defineComponent({
   name: "login",
@@ -46,12 +46,8 @@ export default defineComponent({
         password: "sysadmin"
       } as User,
       rules: {
-        username: [
-          {required: true, message: "请输入用户名", trigger: "blur"}
-        ],
-        password: [
-          {required: true, message: "请输入密码", trigger: "blur"}
-        ]
+        username: [{ required: true, message: "请输入用户名", trigger: "blur" }],
+        password: [{ required: true, message: "请输入密码", trigger: "blur" }]
       } as FormRules
     };
   },
@@ -61,13 +57,13 @@ export default defineComponent({
       if (!el) {
         return;
       }
-      await el.validate((valid) => {
+      await el.validate(valid => {
         if (valid) {
           this.$message.success({
             ...MessageDefaultConfig,
             message: "登录成功",
             onClose: () => {
-              this.$router.push({path: "/"});
+              this.$router.push({ path: "/" });
             }
           });
           useUserStore().setToken({
@@ -100,17 +96,16 @@ export default defineComponent({
   }
 });
 
-
 interface User {
-  username: string,
-  password: string
+  username: string;
+  password: string;
 }
 </script>
 
 <style scoped lang="scss">
 .box {
   height: 100vh;
-  background: url('~@/assets/images/background-login.jpg') no-repeat;
+  background: url("~@/assets/images/background-login.jpg") no-repeat;
   background-size: 100% 100%;
 }
 

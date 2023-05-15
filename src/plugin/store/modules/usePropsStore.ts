@@ -1,4 +1,4 @@
-import {defineStore} from "pinia";
+import { defineStore } from "pinia";
 
 const usePropsStore = defineStore("props", {
   state: () => ({

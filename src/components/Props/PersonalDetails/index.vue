@@ -1,18 +1,22 @@
 <template>
-  <el-dialog v-model="isShow"
-             :destroy-on-close="true"
-             :append-to-body="true"
-             :close-on-click-modal="false"
-             :close-on-press-escape="false"
-             :show-close="false"
-             width="30%">
+  <el-dialog
+    v-model="isShow"
+    :destroy-on-close="true"
+    :append-to-body="true"
+    :close-on-click-modal="false"
+    :close-on-press-escape="false"
+    :show-close="false"
+    width="30%">
     <template #header>
-      <span><el-icon><User /></el-icon> 个人信息</span>
+      <span>
+        <el-icon><User /></el-icon>
+        个人信息
+      </span>
     </template>
 
-    <el-row style="width: 100%;height: 100%">
+    <el-row style="width: 100%; height: 100%">
       <el-col :span="20" :push="2">
-        <el-avatar style="margin-left: 100px;margin-bottom: 10px" src="/img/default-avatar.png" />
+        <el-avatar style="margin-left: 100px; margin-bottom: 10px" src="/img/default-avatar.png" />
         <el-form label-width="80px">
           <el-form-item label="用户名">
             <el-input value="我是用户名" :disabled="true" placeholder="请输入用户名" />
@@ -40,14 +44,13 @@
 </template>
 
 <script lang="ts">
-
-import {defineComponent} from "vue";
+import { defineComponent } from "vue";
 import useStore from "@/plugin/store";
-import {User} from "@element-plus/icons-vue";
+import { User } from "@element-plus/icons-vue";
 
 export default defineComponent({
   name: "prop-personal-details",
-  components: {User},
+  components: { User },
   created() {
     useStore().props.$subscribe((mutation, state) => {
       /*
@@ -76,9 +79,6 @@ export default defineComponent({
     }
   }
 });
-
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

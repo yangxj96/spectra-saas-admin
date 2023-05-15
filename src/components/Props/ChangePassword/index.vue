@@ -1,17 +1,20 @@
 <template>
-  <el-dialog v-model="isShow"
-             :destroy-on-close="true"
-             :append-to-body="true"
-             :close-on-click-modal="false"
-             :close-on-press-escape="false"
-             :show-close="false"
-             width="30%">
-
+  <el-dialog
+    v-model="isShow"
+    :destroy-on-close="true"
+    :append-to-body="true"
+    :close-on-click-modal="false"
+    :close-on-press-escape="false"
+    :show-close="false"
+    width="30%">
     <template #header>
-      <span><el-icon><Edit /></el-icon> 修改密码</span>
+      <span>
+        <el-icon><Edit /></el-icon>
+        修改密码
+      </span>
     </template>
 
-    <el-row style="width: 100%;height: 100%">
+    <el-row style="width: 100%; height: 100%">
       <el-col :span="20" :push="2">
         <el-form v-model="form" :rules="rules" label-width="80px">
           <el-form-item label="旧密码" prop="old_password">
@@ -37,14 +40,13 @@
 </template>
 
 <script lang="ts">
-
-import {defineComponent} from "vue";
+import { defineComponent } from "vue";
 import useStore from "@/plugin/store";
-import {Edit} from "@element-plus/icons-vue";
+import { Edit } from "@element-plus/icons-vue";
 
 export default defineComponent({
   name: "prop-change-password",
-  components: {Edit},
+  components: { Edit },
   created() {
     useStore().props.$subscribe((mutation, state) => {
       this.isShow = state.change_password;
@@ -59,15 +61,9 @@ export default defineComponent({
         verify_password: ""
       },
       rules: {
-        old_password: [
-          {required: true, message: "请输入旧密码", trigger: "blur"}
-        ],
-        new_password: [
-          {required: true, message: "请输入新密码", trigger: "blur"}
-        ],
-        verify_password: [
-          {required: true, message: "请重复输入新密码", trigger: "blur"}
-        ]
+        old_password: [{ required: true, message: "请输入旧密码", trigger: "blur" }],
+        new_password: [{ required: true, message: "请输入新密码", trigger: "blur" }],
+        verify_password: [{ required: true, message: "请重复输入新密码", trigger: "blur" }]
       }
     };
   },
@@ -77,9 +73,6 @@ export default defineComponent({
     }
   }
 });
-
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

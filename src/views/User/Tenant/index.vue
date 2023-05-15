@@ -15,11 +15,11 @@
         <el-form-item>
           <el-button-group>
             <el-button type="primary">
-              <icons name="icon-search" class-name="icon-common" />
+              <icons name="icon-search" />
               &nbsp;查询
             </el-button>
-            <el-button type="primary" @click="$router.push({path: '/User/Tenant/Register'});">
-              <icons name="icon-add" class-name="icon-common" />
+            <el-button type="primary" @click="$router.push({ path: '/User/Tenant/Register' })">
+              <icons name="icon-add" />
               &nbsp;注册
             </el-button>
           </el-button-group>
@@ -45,15 +45,18 @@
         <el-table-column label="操作" width="150">
           <template #default="datum">
             <el-button link type="primary" @click="handleLockTenant(datum.row)">冻结</el-button>
-            <el-button link type="primary"
-                       @click="$router.push({path: '/User/Tenant/Details',query:{id:datum.row.id}});">详情
+            <el-button
+              link
+              type="primary"
+              @click="$router.push({ path: '/User/Tenant/Details', query: { id: datum.row.id } })">
+              详情
             </el-button>
           </template>
         </el-table-column>
       </el-table>
     </el-row>
     <!-- 分页 -->
-    <el-row style="float: right;height: 50px">
+    <el-row style="float: right; height: 50px">
       <el-pagination
         v-model:currentPage="pagination.page"
         hide-on-single-page
@@ -62,8 +65,7 @@
         :layout="'sizes,prev, pager, next'"
         :total="pagination.total"
         @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-      />
+        @current-change="handleCurrentChange" />
     </el-row>
   </div>
 </template>
@@ -108,33 +110,31 @@ export default defineComponent({
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"
-      }).then(() => {
-        console.log("ok");
-      }).catch(() => {
-        console.log("点击取消");
-      });
+      })
+        .then(() => {
+          console.log("ok");
+        })
+        .catch(() => {
+          console.log("点击取消");
+        });
     }
   }
 });
 
 interface TableData {
-  id: number,
-  company_name: string,
+  id: number;
+  company_name: string;
   admin: {
-    user_id: number,
-    username: string
-  },
-  contact: string,
-  address: string,
-  modules: string,
-  created_time: string,
-  expiration_time: string,
-  remaining_time: number
+    user_id: number;
+    username: string;
+  };
+  contact: string;
+  address: string;
+  modules: string;
+  created_time: string;
+  expiration_time: string;
+  remaining_time: number;
 }
-
-
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

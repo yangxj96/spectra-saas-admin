@@ -1,4 +1,4 @@
-import {defineComponent} from "vue";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   data() {
@@ -26,9 +26,9 @@ export default defineComponent({
 
 // 分页参数实体
 export interface Pagination {
-  size: number,
-  page: number,
-  page_sizes: Array<number>,
-  default_page_size: number,
-  total: number,
+  size: number;
+  page: number;
+  page_sizes: Array<number>;
+  default_page_size: number;
+  total: number;
 }

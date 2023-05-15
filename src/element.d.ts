@@ -1,10 +1,9 @@
-import {ElLoadingService, ElMessage, ElMessageBox, ElNotification} from "element-plus";
+import { ElLoadingService, ElMessage, ElMessageBox, ElNotification } from "element-plus";
 
 /**
  * 按需引入后这里无效了,等研究下怎么使用
  */
 declare module "@vue/runtime-core" {
-
   export interface ComponentCustomProperties {
     $message: typeof ElMessage;
     $notify: typeof ElNotification;

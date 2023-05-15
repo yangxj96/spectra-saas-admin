@@ -21,7 +21,7 @@
         <el-form-item>
           <el-button-group>
             <el-button type="primary">
-              <icons name="icon-search" class-name="icon-common" />
+              <icons name="icon-search" />
               &nbsp;查询
             </el-button>
           </el-button-group>
@@ -31,32 +31,47 @@
     <!-- 表格 -->
     <el-row style="height: calc(100% - 100px)">
       <el-table :data="table_data" stripe border height="100%" style="width: 100%">
-        <el-table-column label="ID" prop="id" width="140" />
-        <el-table-column label="账户" prop="username" :show-overflow-tooltip="true" />
-        <el-table-column label="密码" prop="password" />
-        <el-table-column label="所属组织" prop="org_name" />
-        <el-table-column label="上次登录时间" prop="last_login_time" />
-        <el-table-column label="上次登录IP" prop="last_login_ip" />
-        <el-table-column label="锁定状态" width="100">
+        <el-table-column align="center" width="190" prop="id" label="ID" />
+        <el-table-column align="center" prop="username" :show-overflow-tooltip="true" label="账户" />
+        <el-table-column align="center" prop="password" label="密码" />
+        <el-table-column align="center" prop="org_name" label="所属组织" />
+        <el-table-column align="center" width="165" prop="last_login_time" label="上次登录时间" />
+        <el-table-column align="center" width="135" prop="last_login_ip" label="上次登录IP" />
+        <el-table-column align="center" width="85" label="锁定状态">
           <template #default="scope">
             <el-switch v-model="scope.row.lock" />
           </template>
         </el-table-column>
-        <el-table-column label="启用状态" width="100">
+        <el-table-column align="center" width="85" label="启用状态">
           <template #default="scope">
             <el-switch v-model="scope.row.enable" />
           </template>
         </el-table-column>
-        <el-table-column label="操作" width="280">
+        <el-table-column align="center" width="140" label="操作">
           <template #default="datum">
-            <el-button :icon="'Search'" text type="primary" @click="handleResetPassword(datum.row)">重置密码</el-button>
-            <el-button :icon="'Edit'" text type="primary" @click="showLog(datum.row)">操作日志</el-button>
+            <el-tooltip effect="dark" content="重置密码" placement="top">
+              <el-button link @click="handleResetPassword(datum.row)">
+                <icons name="icon-reset-password" class-name="icon-cls" />
+              </el-button>
+            </el-tooltip>
+
+            <el-tooltip effect="dark" content="操作日志" placement="top">
+              <el-button link @click="showLog(datum.row)">
+                <icons name="icon-log" class-name="icon-cls" />
+              </el-button>
+            </el-tooltip>
+
+            <el-tooltip effect="dark" content="角色管理" placement="top">
+              <el-button link>
+                <icons name="icon-role-manager" class-name="icon-cls" />
+              </el-button>
+            </el-tooltip>
           </template>
         </el-table-column>
       </el-table>
     </el-row>
     <!-- 分页 -->
-    <el-row style="float: right;height: 50px">
+    <el-row style="float: right; height: 50px">
       <el-pagination
         v-model:currentPage="pagination.page"
         hide-on-single-page
@@ -65,21 +80,18 @@
         :layout="'sizes,prev, pager, next'"
         :total="pagination.total"
         @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-      />
+        @current-change="handleCurrentChange" />
     </el-row>
 
     <!-- 组件区 -->
     <Log v-if="options.log.user.id" :user="options.log.user" @close="onInit" />
-
   </div>
 </template>
 
 <script lang="ts">
-
 import Table from "@/mixins/Table";
 import Log from "./components/Log/index.vue";
-import {type UserList} from "@/model/User";
+import { type UserList } from "@/model/User";
 
 export default defineComponent({
   name: "user-user",
@@ -109,17 +121,17 @@ export default defineComponent({
       this.options.log.user = {} as UserList;
       this.table_data = [
         {
-          id: 1000000000000,
+          id: "1628283509519011841",
           username: "sysadmin",
           password: "password",
           org_name: "我是组织",
           last_login_time: "2022-08-12 00:36:05",
-          last_login_ip: "127.0.0.1",
+          last_login_ip: "255.255.255.255",
           lock: false,
           enable: true
         },
         {
-          id: 1000000000002,
+          id: "1628283509519011841",
           username: "devadmin",
           password: "password",
           org_name: "我是组织",
@@ -129,7 +141,7 @@ export default defineComponent({
           enable: true
         },
         {
-          id: 1000000000003,
+          id: "1628283509519011841",
           username: "oldadmin",
           password: "password",
           org_name: "我是组织",
@@ -154,18 +166,22 @@ export default defineComponent({
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"
-      }).then(() => {
-        console.log("ok");
-      }).catch(() => {
-        console.log("点击取消");
-      });
+      })
+        .then(() => {
+          console.log("ok");
+        })
+        .catch(() => {
+          console.log("点击取消");
+        });
     }
   }
 });
-
 </script>
 
-
-<style scoped>
-
+<style scoped lang="scss">
+.icon-cls {
+  width: 1.4em;
+  height: 1.4em;
+  color: var(--el-color-primary);
+}
 </style>

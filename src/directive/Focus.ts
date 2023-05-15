@@ -1,5 +1,4 @@
-import type {ObjectDirective} from "vue";
-
+import type { ObjectDirective } from "vue";
 
 const Focus: ObjectDirective = {
   mounted(el: HTMLElement, binging) {

@@ -12,18 +12,17 @@
       <el-main class="box-main">
         <div style="height: 100%">
           <el-row>
-            <i class="box-unfold-a" @click="()=>systemStore.setSidebarUnfold()">
+            <i class="box-unfold-a" @click="() => systemStore.setSidebarUnfold()">
               <icons name="icon-caret-left" v-if="systemStore.getSidebarUnfold" />
               <icons name="icon-caret-right" v-else />
             </i>
             <el-breadcrumb separator-class="el-icon-arrow-right">
-              <el-breadcrumb-item v-for="(item,idx) in breadcrumb" :key="idx" :to="{path: item.path}">
+              <el-breadcrumb-item v-for="(item, idx) in breadcrumb" :key="idx" :to="{ path: item.path }">
                 {{ item.name }}
               </el-breadcrumb-item>
             </el-breadcrumb>
           </el-row>
           <div class="box-content loading-box">
-
             <!--<router-view/>-->
 
             <router-view v-slot="{ Component }">
@@ -31,7 +30,6 @@
                 <component :is="Component" />
               </transition>
             </router-view>
-
           </div>
           <el-row>
             <el-footer class="footer">
@@ -46,15 +44,13 @@
         </div>
       </el-main>
     </el-container>
-
   </el-container>
 </template>
 
 <script lang="ts">
-
 import Navbar from "@/views/Layout/components/navbar/index.vue";
 import Sidebar from "@/views/Layout/components/sidebar/index.vue";
-import {type RouteLocationMatched} from "vue-router";
+import { type RouteLocationMatched } from "vue-router";
 // import { CaretLeft, CaretRight } from '@element-plus/icons-vue'
 
 export default defineComponent({
@@ -91,11 +87,9 @@ export default defineComponent({
     }
   }
 });
-
 </script>
 
 <style scoped lang="scss">
-
 ::v-deep(.el-aside) {
   width: auto;
 }
@@ -123,7 +117,6 @@ export default defineComponent({
 }
 
 .box-main {
-
   .box-content {
     width: 100%;
     height: calc(100% - 25px - 25px);

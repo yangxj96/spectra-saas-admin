@@ -1,10 +1,9 @@
-import {createRouter, createWebHashHistory} from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 import useStore from "@/plugin/store/index";
-import {ElLoading} from "element-plus";
+import { ElLoading } from "element-plus";
 import base from "@/plugin/router/router/base";
 import platform from "@/plugin/router/router/modle/platform";
 import flow from "@/plugin/router/router/modle/flow";
-
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -65,9 +64,9 @@ router.afterEach((to, from) => {
 declare module "vue-router" {
   interface RouteMeta {
     /** 修改的标题 */
-    title?: string,
+    title?: string;
     /** 所需权限集合 */
-    authority?: string[],
+    authority?: string[];
   }
 }
 

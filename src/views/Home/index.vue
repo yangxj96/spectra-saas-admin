@@ -5,8 +5,7 @@
 </template>
 
 <script lang="ts">
-
-import {type ECharts, init} from "echarts";
+import { type ECharts, init } from "echarts";
 
 export default defineComponent({
   name: "Home",
@@ -73,7 +72,6 @@ export default defineComponent({
     this.chart.obj.dispose();
   }
 });
-
 </script>
 
 <style scoped lang="scss">
@@ -87,4 +85,3 @@ export default defineComponent({
   }
 }
 </style>
-

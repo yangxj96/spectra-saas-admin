@@ -8,7 +8,7 @@
 
 // ElLoading       : loading组件
 // ILoadingInstance: loading对象类型接口
-import {ElLoading} from "element-plus";
+import { ElLoading } from "element-plus";
 
 // 计数器
 let count: number = 0;

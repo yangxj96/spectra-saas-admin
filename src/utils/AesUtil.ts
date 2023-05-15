@@ -8,9 +8,7 @@
 import CryptoJS from "crypto-js";
 
 export default class AesUtil {
-
-  private constructor() {
-  }
+  private constructor() {}
 
   /**
    * 加密
@@ -69,11 +67,15 @@ export default class AesUtil {
       array[i] = atob.charCodeAt(i + key.length + iv.length);
     }
 
-    let decrypt = CryptoJS.AES.decrypt(this.uint8ArrayToBase64(array), CryptoJS.enc.Base64.parse(this.uint8ArrayToBase64(key)), {
-      iv: CryptoJS.enc.Base64.parse(this.uint8ArrayToBase64(iv)),
-      mode: CryptoJS.mode.CBC,
-      padding: CryptoJS.pad.Pkcs7
-    });
+    let decrypt = CryptoJS.AES.decrypt(
+      this.uint8ArrayToBase64(array),
+      CryptoJS.enc.Base64.parse(this.uint8ArrayToBase64(key)),
+      {
+        iv: CryptoJS.enc.Base64.parse(this.uint8ArrayToBase64(iv)),
+        mode: CryptoJS.mode.CBC,
+        padding: CryptoJS.pad.Pkcs7
+      }
+    );
     return decrypt.toString(CryptoJS.enc.Utf8);
   }
 
@@ -130,8 +132,8 @@ export default class AesUtil {
    */
   private static base64ToUint8Array(origin: string) {
     try {
-      let padding = "=".repeat((4 - origin.length % 4) % 4);
-      let base64 = (origin + padding);
+      let padding = "=".repeat((4 - (origin.length % 4)) % 4);
+      let base64 = origin + padding;
       // .replace(/\-/g, '+')
       // .replace(/_/g, '/');
       let rawData = atob(base64);
@@ -144,5 +146,4 @@ export default class AesUtil {
       throw e;
     }
   }
-
 }

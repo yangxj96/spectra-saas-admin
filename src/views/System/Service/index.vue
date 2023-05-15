@@ -1,6 +1,6 @@
 <template>
   <div style="height: 100%">
-    <el-row style="height: 1.2%"></el-row>
+    <el-row style="height: 1.2%" />
 
     <el-row style="height: 90.8%">
       <el-table :data="table_data" stripe border height="100%" style="width: 100%">
@@ -17,7 +17,7 @@
       </el-table>
     </el-row>
 
-    <el-row style="float: right;height: 8%">
+    <el-row style="float: right; height: 8%">
       <el-pagination
         v-model:currentPage="pagination.page"
         hide-on-single-page
@@ -26,28 +26,16 @@
         :layout="'sizes,prev,pager,next'"
         :total="pagination.total"
         @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-      />
+        @current-change="handleCurrentChange" />
     </el-row>
-
-    <service-details :id="detailId" :visible="detailsPopupShow" @submit="handleSubmitDetails">
-      <!--<template v-slot:footer>-->
-      <!--    我是插槽内容-->
-      <!--</template>-->
-    </service-details>
   </div>
 </template>
 
 <script lang="ts">
-
 import table from "@/mixins/Table";
-import ServiceDetails from "./components/details.vue";
 
 export default defineComponent({
   name: "service",
-  components: {
-    ServiceDetails
-  },
   mixins: [table],
   created() {
     for (let i = 0; i < 17; i++) {
@@ -61,31 +49,21 @@ export default defineComponent({
   data() {
     const table_data: TableData[] = [];
     return {
-      table_data: table_data,
-      detailId: "",
-      detailsPopupShow: false
+      table_data: table_data
     };
   },
   methods: {
     handleShowDetails() {
-      this.detailId = "1";
-      this.detailsPopupShow = !this.detailsPopupShow;
-    },
-    handleSubmitDetails() {
-      this.detailsPopupShow = false;
+      console.log("详情按钮被点击");
     }
   }
 });
 
 interface TableData {
-  date: String,
-  name: String,
-  num: Number
+  date: String;
+  name: String;
+  num: Number;
 }
-
 </script>
 
-<style scoped lang="scss">
-
-
-</style>
+<style scoped lang="scss"></style>

@@ -3,14 +3,14 @@
     <el-tabs v-model="active">
       <el-tab-pane name="routine">
         <template #label>
-          <icons name="icon-setting" style="color: #4d4d4d" class-name="icon-common" />
-          <span>&nbsp;常规配置</span>
+          <icons name="icon-setting" style="color: #4d4d4d" />
+          <span>&nbsp;平台属性配置</span>
         </template>
         <Routine />
       </el-tab-pane>
       <el-tab-pane name="file">
         <template #label>
-          <icons name="icon-file-config" style="color: #4d4d4d" class-name="icon-common" />
+          <icons name="icon-file-config" style="color: #4d4d4d" />
           <span>&nbsp;文件存储配置</span>
         </template>
         <FileSave />
@@ -35,11 +35,12 @@ export default defineComponent({
     };
   }
 });
-
 </script>
 
 <style scoped lang="scss">
-:deep(.el-tabs), :deep(.el-tabs__content), :deep(.el-tab-pane) {
-  height: 100%;
+:deep(.el-tabs),
+:deep(.el-tabs__content),
+:deep(.el-tab-pane) {
+  height: 98%;
 }
 </style>

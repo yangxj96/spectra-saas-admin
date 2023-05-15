@@ -8,7 +8,7 @@
         <el-form-item>
           <el-button-group>
             <el-button type="primary">
-              <icons name="icon-search" class-name="icon-common" />
+              <icons name="icon-search" />
               &nbsp;查询
             </el-button>
           </el-button-group>
@@ -21,7 +21,7 @@
     <el-row class="box-content">
       <!-- 菜单树 -->
       <el-col :span="6" class="tree">
-        <el-tree ref="group_tree" :data="tree_data" :props="{children:'children',label:'name'}" />
+        <el-tree ref="group_tree" :data="tree_data" :props="{ children: 'children', label: 'name' }" />
       </el-col>
       <!-- 菜单信息 -->
       <el-col :span="18">
@@ -40,7 +40,6 @@
               <icons name="icon-edit" />
               &nbsp;保存
             </el-button>
-
           </el-form-item>
         </el-form>
       </el-col>
@@ -58,15 +57,15 @@ export default defineComponent({
     const tree_data: TreeData[] = [
       {
         name: "人物",
-        children: [{name: "性别"}, {name: "学历"}]
+        children: [{ name: "性别" }, { name: "学历" }]
       },
       {
         name: "层级2",
-        children: [{name: "层级2-1", children: [{name: "层级2-1-1"}]}]
+        children: [{ name: "层级2-1", children: [{ name: "层级2-1-1" }] }]
       },
       {
         name: "层级3",
-        children: [{name: "层级3-1", children: [{name: "层级3-1-1"}]}]
+        children: [{ name: "层级3-1", children: [{ name: "层级3-1-1" }] }]
       }
     ];
     const table_data: TableData[] = [];
@@ -88,14 +87,10 @@ interface TreeData {
   children?: TreeData[];
 }
 
-interface TableData {
-
-}
-
+interface TableData {}
 </script>
 
 <style scoped lang="scss">
-
 .box-content {
   height: 95%;
 

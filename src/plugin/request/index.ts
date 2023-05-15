@@ -1,7 +1,7 @@
-import axios, {type AxiosResponse, type  Canceler, type InternalAxiosRequestConfig} from "axios";
-import {hideLoading, showLoading} from "@/plugin/element/loading";
-import {ElMessage} from "element-plus/es";
-import {MessageDefaultConfig} from "@/utils/DefaultConfig";
+import axios, { type AxiosResponse, type Canceler, type InternalAxiosRequestConfig } from "axios";
+import { hideLoading, showLoading } from "@/plugin/element/loading";
+import { ElMessage } from "element-plus/es";
+import { MessageDefaultConfig } from "@/utils/DefaultConfig";
 import AesUtil from "@/utils/AesUtil";
 
 const http = axios.create({
@@ -15,13 +15,12 @@ const http = axios.create({
 });
 
 export interface IResult<T = any> {
-  code: number,
-  msg: string,
-  data: T
+  code: number;
+  msg: string;
+  data: T;
 }
 
 export const clean: Canceler[] = [];
-
 
 // 请求拦截器
 http.interceptors.request.use(
@@ -30,17 +29,18 @@ http.interceptors.request.use(
     config.cancelToken = new axios.CancelToken(function executor(c) {
       clean.push(c);
     });
-    if (config.method == "POST" || config.method == "post"
-      ||
-      config.method == "PUT" || config.method == "put") {
+    if (config.method == "POST" || config.method == "post" || config.method == "PUT" || config.method == "put") {
       // if (config.headers["Content-Type"] != 'multipart/form-data') {
       // }
       config.data = AesUtil.encrypt(JSON.stringify(config.data));
     }
-    if (config.method === "GET" || config.method === "get"
-      ||
-      config.method === "DELETE" || config.method === "delete") {
-      config.params = {args: AesUtil.encrypt(JSON.stringify(config.params))};
+    if (
+      config.method === "GET" ||
+      config.method === "get" ||
+      config.method === "DELETE" ||
+      config.method === "delete"
+    ) {
+      config.params = { args: AesUtil.encrypt(JSON.stringify(config.params)) };
     }
 
     return config;

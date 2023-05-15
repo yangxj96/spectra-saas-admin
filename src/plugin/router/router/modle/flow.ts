@@ -1,4 +1,4 @@
-import {type RouteRecordRaw} from "vue-router";
+import { type RouteRecordRaw } from "vue-router";
 import layout from "@/views/Layout/index.vue";
 
 /**
@@ -21,7 +21,8 @@ export default [
         meta: {
           title: "流程控制"
         }
-      }, {
+      },
+      {
         path: "Created",
         name: "创建流程",
         component: () => import("@/views/Flow/components/Created/index.vue"),
@@ -30,7 +31,5 @@ export default [
         }
       }
     ]
-
-
   }
 ] as Array<RouteRecordRaw>;
