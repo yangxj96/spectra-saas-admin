@@ -1,9 +1,9 @@
 <template>
-    <div id="nav">
-        <el-config-provider :locale="locale" :message="message">
-            <router-view/>
-        </el-config-provider>
-    </div>
+  <div id="nav">
+    <el-config-provider :locale="locale" :message="message">
+      <router-view />
+    </el-config-provider>
+  </div>
 
 </template>
 
@@ -12,14 +12,14 @@
 import useAppStore from "@/plugin/store/modules/useAppStore";
 
 export default defineComponent({
-    name: 'app',
-    data() {
-        return {
-            locale: useAppStore().lang,
-            message: {max: 500}
-        }
-    }
-})
+  name: "app",
+  data() {
+    return {
+      locale: useAppStore().lang,
+      message: {max: 500}
+    };
+  }
+});
 
 </script>
 
@@ -28,8 +28,8 @@ export default defineComponent({
 @import "assets/css/common.scss";
 
 * {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 

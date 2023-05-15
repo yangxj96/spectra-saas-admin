@@ -18,39 +18,39 @@ let count: number = 0;
 let loading: any;
 
 function open(): void {
-    let els = document.getElementsByClassName('loading-box') as HTMLCollectionOf<HTMLElement>;
-    // target: <HTMLElement>document.querySelector('.loading-box'),
-    loading = ElLoading.service({
-        target: els[els.length - 1],
-        lock: true,
-        text: '数据加载中...',
-        background: 'rgba(0,0,0,0.5)'
-    })
+  let els = document.getElementsByClassName("loading-box") as HTMLCollectionOf<HTMLElement>;
+  // target: <HTMLElement>document.querySelector('.loading-box'),
+  loading = ElLoading.service({
+    target: els[els.length - 1],
+    lock: true,
+    text: "数据加载中...",
+    background: "rgba(0,0,0,0.5)"
+  });
 }
 
 function close(): void {
-    loading.close();
+  loading.close();
 }
 
 /**
  * 显示loading层
  */
 export function showLoading(): void {
-    if (count == 0) {
-        open();
-    }
-    count++;
+  if (count == 0) {
+    open();
+  }
+  count++;
 }
 
 /**
  * 关闭loading层
  */
 export function hideLoading(): void {
-    if (count <= 0) {
-        return;
-    }
-    count--;
-    if (count == 0) {
-        close();
-    }
+  if (count <= 0) {
+    return;
+  }
+  count--;
+  if (count == 0) {
+    close();
+  }
 }

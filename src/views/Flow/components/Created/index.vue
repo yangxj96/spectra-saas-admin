@@ -1,16 +1,15 @@
 <template>
-    <div style="height: 94%">
-        <h1>新增流程页面</h1>
-    </div>
+  <div style="height: 94%">
+    <h1>新增流程页面</h1>
+  </div>
 </template>
 
-<script lang="js">
-import {defineComponent} from "vue";
-
+<script lang="ts">
 export default defineComponent({
-    name: "FlowCreated",
-    data() {
-        return {}
-    }
-})
+  name: "FlowCreated",
+  data() {
+    return {};
+  }
+});
+
 </script>
