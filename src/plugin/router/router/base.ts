@@ -11,7 +11,8 @@ export default [
     component: () => import("@/views/Login/index.vue"),
     meta: {
       title: "登录",
-      authority: []
+      authority: [],
+      route_group: "Login"
     }
   },
   {
@@ -25,7 +26,8 @@ export default [
         component: () => import("@/views/Home/index.vue"),
         meta: {
           title: "首页",
-          authority: []
+          authority: [],
+          route_group: "Home"
         }
       }
     ]
@@ -35,7 +37,9 @@ export default [
     path: "/Error",
     component: layout,
     redirect: "404",
-    meta: {},
+    meta: {
+      route_group: "Error"
+    },
     children: [
       {
         path: "404",

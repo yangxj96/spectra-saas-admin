@@ -11,7 +11,7 @@ export default [
     component: layout,
     redirect: "",
     meta: {
-      authority: ["ROLE_SYSADMIN"]
+      route_group: "Flow"
     },
     children: [
       {

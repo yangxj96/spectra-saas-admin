@@ -5,7 +5,7 @@
   "useTabs": false,
   "singleQuote": false,
   "quoteProps": "as-needed",
-  "printWidth": 120,
+  "printWidth": 200,
   "trailingComma": "none",
   "htmlWhitespaceSensitivity": "ignore",
   "bracketSpacing": true,

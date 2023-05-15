@@ -10,16 +10,14 @@ export default [
     path: "/System",
     component: layout,
     redirect: "",
-    meta: {
-      authority: ["ROLE_SYSADMIN"]
-    },
     children: [
       {
         path: "",
         name: "平台配置",
         component: () => import("@/views/System/Config/index.vue"),
         meta: {
-          title: "平台配置"
+          title: "平台配置",
+          route_group: "Platform"
         }
       },
       {
@@ -27,7 +25,8 @@ export default [
         name: "服务管理",
         component: () => import("@/views/System/Service/index.vue"),
         meta: {
-          title: "服务管理"
+          title: "服务管理",
+          route_group: "Service"
         }
       },
       {
@@ -35,7 +34,8 @@ export default [
         name: "模块管理",
         component: () => import("@/views/System/Module/index.vue"),
         meta: {
-          title: "模块管理"
+          title: "模块管理",
+          route_group: "Module"
         }
       },
       {
@@ -43,7 +43,8 @@ export default [
         name: "菜单管理",
         component: () => import("@/views/System/Menu/index.vue"),
         meta: {
-          title: "菜单管理"
+          title: "菜单管理",
+          route_group: "Menu"
         }
       },
       {
@@ -51,7 +52,8 @@ export default [
         name: "字典管理",
         component: () => import("@/views/System/Dict/index.vue"),
         meta: {
-          title: "字典管理"
+          title: "字典管理",
+          route_group: "Dict"
         }
       }
     ]
@@ -61,9 +63,6 @@ export default [
     path: "/User",
     component: layout,
     redirect: "",
-    meta: {
-      authority: ["ROLE_SYSADMIN"]
-    },
     children: [
       {
         path: "",
@@ -71,13 +70,16 @@ export default [
         component: () => import("@/views/User/User/index.vue"),
         meta: {
           title: "用户管理",
-          authority: ["USER_INSERT"]
+          route_group: "User"
         }
       },
       {
         name: "租户管理",
         path: "/User/Tenant",
         redirect: "",
+        meta: {
+          route_group: "Tenant"
+        },
         children: [
           {
             path: "",
@@ -110,7 +112,8 @@ export default [
         name: "权限管理",
         component: () => import("@/views/User/Authority/index.vue"),
         meta: {
-          title: "权限管理"
+          title: "权限管理",
+          route_group: "Authority"
         }
       }
     ]

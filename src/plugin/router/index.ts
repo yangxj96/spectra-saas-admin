@@ -67,6 +67,8 @@ declare module "vue-router" {
     title?: string;
     /** 所需权限集合 */
     authority?: string[];
+    /** 路由分组 **/
+    route_group?: string;
   }
 }
 

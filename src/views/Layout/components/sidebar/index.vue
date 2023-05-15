@@ -1,13 +1,6 @@
 <template>
-  <el-menu
-    class="box-menu"
-    :router="true"
-    :default-active="$route.path"
-    :collapse="!unfold"
-    :collapse-transition="true"
-    :unique-opened="true"
-    @select="onMenuItemClick">
-    <el-menu-item index="/" :disabled="itemDisabled">
+  <el-menu class="box-menu" :router="true" :default-active="$route.meta.route_group" :collapse="!unfold" :collapse-transition="true" :unique-opened="true" @select="onMenuItemClick">
+    <el-menu-item index="Home" :route="{ path: '/' }" :disabled="itemDisabled">
       <icons name="icon-home" class-name="icon-sidebar" />
       <template #title>首页</template>
     </el-menu-item>
@@ -17,23 +10,23 @@
         <icons name="icon-setting" class-name="icon-sidebar" />
         <span>平台配置</span>
       </template>
-      <el-menu-item index="/System">
+      <el-menu-item index="Platform" :route="{ path: '/System' }">
         <icons name="icon-menu" class-name="icon-sidebar" />
         平台配置
       </el-menu-item>
-      <el-menu-item index="/System/Service">
+      <el-menu-item index="Service" :route="{ path: '/System/Service' }">
         <icons name="icon-menu" class-name="icon-sidebar" />
         服务管理
       </el-menu-item>
-      <el-menu-item index="/System/Module">
+      <el-menu-item index="Module" :route="{ path: '/System/Module' }">
         <icons name="icon-menu" class-name="icon-sidebar" />
         模块管理
       </el-menu-item>
-      <el-menu-item index="/System/Menu">
+      <el-menu-item index="Menu" :route="{ path: '/System/Menu' }">
         <icons name="icon-menu" class-name="icon-sidebar" />
         菜单管理
       </el-menu-item>
-      <el-menu-item index="/System/Dict">
+      <el-menu-item index="Dict" :route="{ path: '/System/Dict' }">
         <icons name="icon-menu" class-name="icon-sidebar" />
         字典管理
       </el-menu-item>
@@ -44,15 +37,15 @@
         <icons name="icon-user" class-name="icon-sidebar" />
         <span>用户管理</span>
       </template>
-      <el-menu-item index="/User">
+      <el-menu-item index="User" :route="{ path: '/User' }">
         <icons name="icon-menu" class-name="icon-sidebar" />
         用户管理
       </el-menu-item>
-      <el-menu-item index="/User/Tenant">
+      <el-menu-item index="Tenant" :route="{ path: '/User/Tenant' }">
         <icons name="icon-menu" class-name="icon-sidebar" />
         租户管理
       </el-menu-item>
-      <el-menu-item index="/User/Authority">
+      <el-menu-item index="Authority" :route="{ path: '/User/Authority' }">
         <icons name="icon-menu" class-name="icon-sidebar" />
         权限管理
       </el-menu-item>
@@ -63,7 +56,7 @@
         <icons name="icon-flow" class-name="icon-sidebar" />
         <span>流程管理</span>
       </template>
-      <el-menu-item index="/Flow">
+      <el-menu-item index="Flow" :route="{ path: '/Flow' }">
         <icons name="icon-menu" class-name="icon-sidebar" />
         流程列表
       </el-menu-item>
@@ -74,11 +67,11 @@
         <icons name="icon-project" class-name="icon-sidebar" />
         <span>项目管理</span>
       </template>
-      <el-menu-item index="/Project">
+      <el-menu-item index="Project" :route="{ path: '/Project' }">
         <icons name="icon-menu" class-name="icon-sidebar" />
         项目列表
       </el-menu-item>
-      <el-menu-item index="/Project/Feasibility">
+      <el-menu-item index="Feasibility" :route="{ path: '/Project/Feasibility' }">
         <icons name="icon-menu" class-name="icon-sidebar" />
         项目立项
       </el-menu-item>
@@ -88,6 +81,8 @@
 
 <script lang="ts">
 import { clean } from "@/plugin/request";
+import type { MenuItemClicked } from "element-plus";
+import type { NavigationFailure } from "vue-router";
 
 export default defineComponent({
   name: "LayoutSidebar",
@@ -110,7 +105,7 @@ export default defineComponent({
     });
   },
   methods: {
-    onMenuItemClick(index: any, path: any, item: any, router: any) {
+    onMenuItemClick(index: string, path: string[], item: MenuItemClicked, router: Promise<void | undefined | NavigationFailure>) {
       console.log(`index:${index},path:${path}`);
       console.log(`item:`, item);
       console.log(`router:`, router);
