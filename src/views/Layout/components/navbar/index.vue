@@ -37,6 +37,8 @@
 </template>
 
 <script lang="ts">
+import usePropsStore from "@/plugin/store/modules/usePropsStore";
+
 export default defineComponent({
   name: "LayoutNavbarIndex",
   methods: {
@@ -55,10 +57,10 @@ export default defineComponent({
       });
     },
     handleModifyPasswordPopup() {
-      usePropsStore().setChangePassword(true);
+      usePropsStore().change_password = true;
     },
     handlePersonalPopup() {
-      usePropsStore().setPersonalDetails(true);
+      usePropsStore().personal_details = true;
     }
   }
 });

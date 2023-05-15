@@ -87,7 +87,8 @@ interface TreeData {
   children?: TreeData[];
 }
 
-interface TableData {}
+interface TableData {
+}
 </script>
 
 <style scoped lang="scss">

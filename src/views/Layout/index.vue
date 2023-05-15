@@ -12,8 +12,8 @@
       <el-main class="box-main">
         <div style="height: 100%">
           <el-row>
-            <i class="box-unfold-a" @click="() => systemStore.setSidebarUnfold()">
-              <icons name="icon-caret-left" v-if="systemStore.getSidebarUnfold" />
+            <i class="box-unfold-a" @click="chooseSidebarUnfold">
+              <icons name="icon-caret-left" v-if="systemStore.sidebar_unfold" />
               <icons name="icon-caret-right" v-else />
             </i>
             <el-breadcrumb separator-class="el-icon-arrow-right">
@@ -79,6 +79,9 @@ export default defineComponent({
         router = router.splice(0, router.length - 1);
       }
       this.breadcrumb = router;
+    },
+    chooseSidebarUnfold() {
+      this.systemStore.sidebar_unfold = !this.systemStore.sidebar_unfold;
     }
   },
   watch: {

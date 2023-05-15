@@ -1,5 +1,4 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import useStore from "@/plugin/store/index";
 import { ElLoading } from "element-plus";
 import base from "@/plugin/router/router/base";
 import platform from "@/plugin/router/router/modle/platform";
@@ -23,7 +22,7 @@ let loading: {
 router.beforeEach(async (to, from, next) => {
   console.debug("[路由守卫 - 前置] - 开始");
   // 判断token
-  let token = useStore().user.getToken;
+  let token = useUserStore().token;
   if (token.access_token === undefined && to.path !== "/Login") {
     next({
       path: "/Login"
@@ -34,7 +33,7 @@ router.beforeEach(async (to, from, next) => {
       text: "页面加载中",
       background: "rgba(0,0,0,.6)"
     });
-    useStore().system.setItemDisabled(true);
+    useSystemStore().item_disabled = true;
     if (to.matched.length <= 0) {
       loading.close();
       next({
@@ -54,7 +53,7 @@ router.afterEach((to, from) => {
     // 强制转换成了string,后续优化
     document.title = String(to.meta.title);
   }
-  useStore().system.setItemDisabled(false);
+  useSystemStore().item_disabled = false;
   if (loading) {
     loading.close();
   }

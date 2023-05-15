@@ -1,5 +1,6 @@
 <template>
-  <el-menu class="box-menu" :router="true" :default-active="$route.meta.route_group" :collapse="!unfold" :collapse-transition="true" :unique-opened="true" @select="onMenuItemClick">
+  <el-menu class="box-menu" :router="true" :default-active="$route.meta.route_group" :collapse="!unfold"
+           :collapse-transition="true" :unique-opened="true" @select="onMenuItemClick">
     <el-menu-item index="Home" :route="{ path: '/' }" :disabled="itemDisabled">
       <icons name="icon-home" class-name="icon-sidebar" />
       <template #title>首页</template>
@@ -94,9 +95,9 @@ export default defineComponent({
   },
   mounted() {
     // 赋值
-    this.unfold = useSystemStore().getSidebarUnfold;
+    this.unfold = useSystemStore().sidebar_unfold;
 
-    this.itemDisabled = useSystemStore().getItemDisabled;
+    this.itemDisabled = useSystemStore().item_disabled;
 
     // 订阅
     useSystemStore().$subscribe((mutation, state) => {

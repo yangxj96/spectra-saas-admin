@@ -16,7 +16,7 @@ export default defineConfig({
   plugins: [
     vue(),
     AutoImport({
-      dts: "src/auto-import.d.ts",
+      dts: "src/plugin/unplugin/auto-import.d.ts",
       dirs: [
         "src/utils", // 工具类自动导入
         "src/plugin/store/modules", // pinia的模块自动导入
@@ -26,7 +26,7 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()]
     }),
     AutoComponents({
-      dts: "src/components.d.ts",
+      dts: "src/plugin/unplugin/components.d.ts",
       dirs: "src/components",
       resolvers: [ElementPlusResolver()]
     })

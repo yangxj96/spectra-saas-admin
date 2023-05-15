@@ -45,14 +45,11 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import useStore from "@/plugin/store";
-import { User } from "@element-plus/icons-vue";
 
 export default defineComponent({
   name: "prop-personal-details",
-  components: { User },
   created() {
-    useStore().props.$subscribe((mutation, state) => {
+    usePropsStore().$subscribe((mutation, state) => {
       /*
       * mutation主要包含三个属性值：
       *   events：当前state改变的具体数据，包括改变前的值和改变后的值等等数据
@@ -69,13 +66,13 @@ export default defineComponent({
   },
   data() {
     return {
-      isShow: useStore().props.getPersonalDetails
+      isShow: usePropsStore().personal_details
     };
   },
   methods: {
     // 关闭弹窗
     handlePropsCancel() {
-      useStore().props.setPersonalDetails(false);
+      usePropsStore().personal_details = false;
     }
   }
 });

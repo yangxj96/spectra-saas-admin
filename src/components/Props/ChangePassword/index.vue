@@ -41,20 +41,17 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import useStore from "@/plugin/store";
-import { Edit } from "@element-plus/icons-vue";
 
 export default defineComponent({
   name: "prop-change-password",
-  components: { Edit },
   created() {
-    useStore().props.$subscribe((mutation, state) => {
+    usePropsStore().$subscribe((mutation, state) => {
       this.isShow = state.change_password;
     });
   },
   data() {
     return {
-      isShow: useStore().props.getChangePassword,
+      isShow: usePropsStore().change_password,
       form: {
         old_password: "",
         new_password: "",
@@ -69,7 +66,7 @@ export default defineComponent({
   },
   methods: {
     handlePropsCancel() {
-      useStore().props.setChangePassword(false);
+      usePropsStore().change_password = false;
     }
   }
 });

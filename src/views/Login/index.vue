@@ -35,6 +35,7 @@
 
 <script lang="ts">
 import { type FormInstance, type FormRules } from "element-plus";
+import useUserStore from "@/plugin/store/modules/useUserStore";
 
 export default defineComponent({
   name: "login",
@@ -66,25 +67,44 @@ export default defineComponent({
               this.$router.push({ path: "/" });
             }
           });
-          useUserStore().setToken({
+          useUserStore().token = {
             username: "sysadmin",
-            access_token: "29c02a6f-c886-4668-82a5-4a3139b5d90f",
-            refresh_token: "b83c2f7f-d90e-440a-8327-55a2a8cd7422",
+            access_token: "29C02A6F-C886-4668-82A5-4A3139B5D90F",
+            refresh_token: "B83C2F7F-D90E-440A-8327-55A2A8CD7422",
             authorities: [
-              "系统管理员",
-              "子管理员",
-              "普通用户",
-              "USER_INSERT",
-              "USER_DELETE",
-              "USER_UPDATE",
-              "USER_SELECT",
-              "SYS_CONFIGURE_INSERT",
-              "SYS_CONFIGURE_DELETE",
-              "SYS_CONFIGURE_UPDATE",
-              "SYS_CONFIGURE_SELECT"
+              "ROLE_SYSADMIN",
+              "ROLE_ADMIN",
+              "ROLE_USER",
+              "USER:INSERT",
+              "USER:DELETE",
+              "USER:UPDATE",
+              "USER:SELECT",
+              "SYS:CONFIGURE:INSERT",
+              "SYS:CONFIGURE:DELETE",
+              "SYS:CONFIGURE:UPDATE",
+              "SYS:CONFIGURE:SELECT"
             ],
             expiration_time: "2023-04-11 11:58:33"
-          });
+          };
+          // useUserStore().setToken({
+          //   username: "sysadmin",
+          //   access_token: "29C02A6F-C886-4668-82A5-4A3139B5D90F",
+          //   refresh_token: "B83C2F7F-D90E-440A-8327-55A2A8CD7422",
+          //   authorities: [
+          //     "ROLE_SYSADMIN",
+          //     "ROLE_ADMIN",
+          //     "ROLE_USER",
+          //     "USER:INSERT",
+          //     "USER:DELETE",
+          //     "USER:UPDATE",
+          //     "USER:SELECT",
+          //     "SYS:CONFIGURE:INSERT",
+          //     "SYS:CONFIGURE:DELETE",
+          //     "SYS:CONFIGURE:UPDATE",
+          //     "SYS:CONFIGURE:SELECT"
+          //   ],
+          //   expiration_time: "2023-04-11 11:58:33"
+          // });
         } else {
           this.$message.error({
             ...MessageDefaultConfig,
