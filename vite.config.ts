@@ -33,10 +33,17 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()]
     }),
     viteMockServe({
-      enable: true,
       mockPath: "src/mock",
+      watchFiles: true,
       logger: true,
-      watchFiles: true
+      // 设置是否启用本地 xxx.ts 文件，不要在生产环境中打开它.设置为 false 将禁用 mock 功能
+      localEnabled: true,
+      // 设置打包是否启用 mock 功能
+      prodEnabled: true,
+      injectCode: `
+      import {setupProdMockServer} from "./mock/MockProdServer";
+      setupProdMockServer();
+      `
     })
   ],
   resolve: {

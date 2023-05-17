@@ -1,6 +1,5 @@
 <template>
-  <el-menu class="box-menu" :router="true" :default-active="$route.meta.route_group" :collapse="!unfold"
-           :collapse-transition="true" :unique-opened="true" @select="onMenuItemClick">
+  <el-menu class="box-menu" :router="true" :default-active="$route.meta.route_group" :collapse="!unfold" :collapse-transition="true" :unique-opened="true" @select="onMenuItemClick">
     <el-menu-item index="Home" :route="{ path: '/' }" :disabled="itemDisabled">
       <icons name="icon-home" class-name="icon-sidebar" />
       <template #title>首页</template>
@@ -106,10 +105,11 @@ export default defineComponent({
     });
   },
   methods: {
-    onMenuItemClick(index: string, path: string[], item: MenuItemClicked, router: Promise<void | undefined | NavigationFailure>) {
-      console.log(`index:${index},path:${path}`);
-      console.log(`item:`, item);
-      console.log(`router:`, router);
+    onMenuItemClick() {
+      // 参数 index: string, path: string[], item: MenuItemClicked, router: any
+      // console.log(`index:${index},path:${path}`);
+      // console.log(`item:`, item);
+      // console.log(`router:`, router);
       if (clean.length > 0) {
         for (let canceler of clean) {
           canceler("取消请求");
