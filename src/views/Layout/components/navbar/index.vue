@@ -32,8 +32,6 @@
 </template>
 
 <script lang="ts">
-import usePropsStore from "@/plugin/store/modules/usePropsStore";
-
 export default defineComponent({
   name: "LayoutNavbar",
   methods: {

@@ -2,7 +2,7 @@
   <el-dialog v-model="isShow" :destroy-on-close="true" :append-to-body="true" :close-on-click-modal="false" :close-on-press-escape="false" :show-close="false" width="30%">
     <template #header>
       <span>
-        <el-icon><Edit /></el-icon>
+        <icons name="icon-reset-password" />
         修改密码
       </span>
     </template>
@@ -33,10 +33,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-
 export default defineComponent({
-  name: "prop-change-password",
+  name: "PropsChangePassword",
   created() {
     usePropsStore().$subscribe((mutation, state) => {
       this.isShow = state.change_password;

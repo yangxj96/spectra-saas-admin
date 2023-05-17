@@ -51,13 +51,10 @@
 import Navbar from "@/views/Layout/components/navbar/index.vue";
 import Sidebar from "@/views/Layout/components/sidebar/index.vue";
 import { type RouteLocationMatched } from "vue-router";
-// import { CaretLeft, CaretRight } from '@element-plus/icons-vue'
 
 export default defineComponent({
   name: "Layout",
   components: {
-    // CaretRight,
-    // CaretLeft,
     Navbar,
     Sidebar
   },
