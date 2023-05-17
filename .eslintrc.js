@@ -1,5 +1,5 @@
 // https://eslint.org/docs/user-guide/configuring
-// require('@rushstack/eslint-patch/modern-module-resolution')
+require("@rushstack/eslint-patch/modern-module-resolution");
 
 module.exports = {
   root: true,

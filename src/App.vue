@@ -7,8 +7,6 @@
 </template>
 
 <script lang="ts">
-import useAppStore from "@/plugin/store/modules/useAppStore";
-
 export default defineComponent({
   name: "app",
   data() {
