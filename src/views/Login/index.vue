@@ -1,12 +1,6 @@
 <template>
   <div class="box">
-    <el-dialog
-      :model-value="true"
-      :close-on-click-modal="false"
-      :close-on-press-escape="false"
-      :show-close="false"
-      class="dialog-login"
-      width="20%">
+    <el-dialog :model-value="true" :close-on-click-modal="false" :close-on-press-escape="false" :show-close="false" class="dialog-login" width="20%">
       <template #header>
         <p>
           <icons name="icon-login" style="color: #9b9b9b" />
@@ -35,13 +29,11 @@
 
 <script lang="ts">
 import { type FormInstance, type FormRules } from "element-plus";
-import useUserStore from "@/plugin/store/modules/useUserStore";
 
 export default defineComponent({
   name: "login",
   data() {
     return {
-      userStore: useUserStore(),
       user: {
         username: "sysadmin",
         password: "sysadmin"
@@ -60,51 +52,20 @@ export default defineComponent({
       }
       await el.validate(valid => {
         if (valid) {
-          this.$message.success({
-            ...MessageDefaultConfig,
-            message: "登录成功",
-            onClose: () => {
-              this.$router.push({ path: "/" });
+          UserApi.login(this.user.username, this.user.password).then(res => {
+            if (res.code === 0) {
+              this.$message.success({
+                ...MessageDefaultConfig,
+                message: "登录成功",
+                onClose: () => {
+                  useUserStore().token = res.data;
+                  this.$router.push({ path: "/" });
+                }
+              });
+            } else {
+              this.$message.error({ message: res.msg });
             }
           });
-          useUserStore().token = {
-            username: "sysadmin",
-            access_token: "29C02A6F-C886-4668-82A5-4A3139B5D90F",
-            refresh_token: "B83C2F7F-D90E-440A-8327-55A2A8CD7422",
-            authorities: [
-              "ROLE_SYSADMIN",
-              "ROLE_ADMIN",
-              "ROLE_USER",
-              "USER:INSERT",
-              "USER:DELETE",
-              "USER:UPDATE",
-              "USER:SELECT",
-              "SYS:CONFIGURE:INSERT",
-              "SYS:CONFIGURE:DELETE",
-              "SYS:CONFIGURE:UPDATE",
-              "SYS:CONFIGURE:SELECT"
-            ],
-            expiration_time: "2023-04-11 11:58:33"
-          };
-          // useUserStore().setToken({
-          //   username: "sysadmin",
-          //   access_token: "29C02A6F-C886-4668-82A5-4A3139B5D90F",
-          //   refresh_token: "B83C2F7F-D90E-440A-8327-55A2A8CD7422",
-          //   authorities: [
-          //     "ROLE_SYSADMIN",
-          //     "ROLE_ADMIN",
-          //     "ROLE_USER",
-          //     "USER:INSERT",
-          //     "USER:DELETE",
-          //     "USER:UPDATE",
-          //     "USER:SELECT",
-          //     "SYS:CONFIGURE:INSERT",
-          //     "SYS:CONFIGURE:DELETE",
-          //     "SYS:CONFIGURE:UPDATE",
-          //     "SYS:CONFIGURE:SELECT"
-          //   ],
-          //   expiration_time: "2023-04-11 11:58:33"
-          // });
         } else {
           this.$message.error({
             ...MessageDefaultConfig,

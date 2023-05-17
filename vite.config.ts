@@ -4,6 +4,7 @@ import AutoImport from "unplugin-auto-import/vite";
 import AutoComponents from "unplugin-vue-components/vite";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 import { fileURLToPath, URL } from "node:url";
+import { viteMockServe } from "vite-plugin-mock";
 
 export default defineConfig({
   base: "./",
@@ -20,7 +21,8 @@ export default defineConfig({
       dirs: [
         "src/utils", // 工具类自动导入
         "src/plugin/store/modules", // pinia的模块自动导入
-        "src/model" // 实体模块
+        "src/model", // 实体模块
+        "src/api" //api模块
       ],
       imports: ["vue", "vue-router"],
       resolvers: [ElementPlusResolver()]
@@ -29,6 +31,12 @@ export default defineConfig({
       dts: "src/plugin/unplugin/components.d.ts",
       dirs: "src/components",
       resolvers: [ElementPlusResolver()]
+    }),
+    viteMockServe({
+      enable: true,
+      mockPath: "src/mock",
+      logger: true,
+      watchFiles: true
     })
   ],
   resolve: {

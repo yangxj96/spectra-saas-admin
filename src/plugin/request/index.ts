@@ -5,8 +5,8 @@ import { MessageDefaultConfig } from "@/utils/DefaultConfig";
 import AesUtil from "@/utils/AesUtil";
 
 const http = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
-  // baseURL: import.meta.env.BASE_URL,
+  // baseURL: import.meta.env.VITE_API_URL,
+  baseURL: import.meta.env.BASE_URL,
   timeout: 3 * 1000,
   withCredentials: false,
   headers: {
@@ -29,20 +29,6 @@ http.interceptors.request.use(
     config.cancelToken = new axios.CancelToken(function executor(c) {
       clean.push(c);
     });
-    if (config.method == "POST" || config.method == "post" || config.method == "PUT" || config.method == "put") {
-      // if (config.headers["Content-Type"] != 'multipart/form-data') {
-      // }
-      config.data = AesUtil.encrypt(JSON.stringify(config.data));
-    }
-    if (
-      config.method === "GET" ||
-      config.method === "get" ||
-      config.method === "DELETE" ||
-      config.method === "delete"
-    ) {
-      config.params = { args: AesUtil.encrypt(JSON.stringify(config.params)) };
-    }
-
     return config;
   },
   error => {
@@ -63,9 +49,6 @@ http.interceptors.response.use(
         message: response.data.msg
       });
       throw new Error(`请求失败:${response.data.msg}`);
-    }
-    if (response.data.data) {
-      response.data.data = JSON.parse(AesUtil.decrypt(response.data.data));
     }
     return response;
   },
