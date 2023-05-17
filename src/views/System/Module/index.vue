@@ -7,6 +7,7 @@
 
 <script lang="ts">
 export default defineComponent({
+  name: "SystemModule",
   methods: {
     handleGo() {
       this.$router.push({
@@ -15,18 +16,6 @@ export default defineComponent({
     }
   }
 });
-
-interface XlsxData {
-  Shape_Type: string,
-  Name: string,
-  Type: string,
-  latitude: number,
-  longitude: number,
-  altitude: number
-}
-
 </script>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

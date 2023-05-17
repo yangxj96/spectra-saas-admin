@@ -65,7 +65,7 @@ import { type SystemConfig } from "@/model/System";
  * 常规配置
  */
 export default defineComponent({
-  name: "ConfigRoutine",
+  name: "SystemConfigRoutine",
   components: { Editor },
   mixins: [Table],
   data() {

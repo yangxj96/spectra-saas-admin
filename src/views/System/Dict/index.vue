@@ -29,11 +29,7 @@
     <el-row class="box-content">
       <!-- 字典组树 -->
       <el-col :span="4" class="tree">
-        <el-tree
-          ref="group_tree"
-          :data="tree_data"
-          :props="{ children: 'children', label: 'name' }"
-          @node-click="onDictGroupClick" />
+        <el-tree ref="group_tree" :data="tree_data" :props="{ children: 'children', label: 'name' }" @node-click="onDictGroupClick" />
       </el-col>
       <!-- 字典项表格 -->
       <el-col :span="20">
@@ -55,7 +51,7 @@
               </template>
             </el-table-column>
             <el-table-column label="操作" align="center">
-              <template #default="scope">
+              <template>
                 <el-button text type="primary">修改</el-button>
               </template>
             </el-table-column>
@@ -82,7 +78,7 @@ import Table from "@/mixins/Table";
 import { type SystemDictGroup } from "@/model/System";
 
 export default defineComponent({
-  name: "dict",
+  name: "SystemDict",
   mixins: [Table],
   data() {
     const table_data: TableData[] = [];
@@ -180,11 +176,6 @@ export default defineComponent({
 });
 
 // 树结构
-interface TreeData {
-  name: string;
-  children?: TreeData[];
-}
-
 // 表格数据结构
 interface TableData {
   id: string;

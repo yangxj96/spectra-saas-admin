@@ -6,7 +6,7 @@
 
 <script lang="ts">
 export default defineComponent({
-  name: "tenant-register",
+  name: "UserTenantRegister",
   data() {
     return {
       title: "租户注册" as string

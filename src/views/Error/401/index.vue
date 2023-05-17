@@ -8,7 +8,7 @@
 
 <script lang="ts">
 export default defineComponent({
-  name: "error-401",
+  name: "Error401",
   data() {
     return {
       time: -1 as number,
@@ -37,6 +37,4 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

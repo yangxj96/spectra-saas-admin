@@ -1,8 +1,6 @@
 <template>
   <div style="height: 100%">
-
     <el-col :span="12" :offset="6">
-
       <el-form v-model="form" label-width="120px">
         <el-form-item label="存储方式">
           <el-radio-group v-model="form.type">
@@ -37,14 +35,12 @@
         </el-form-item>
       </el-form>
     </el-col>
-
   </div>
 </template>
 
 <script lang="ts">
-
 export default defineComponent({
-  name: "ConfigFileSave",
+  name: "SystemConfigFileSave",
   created() {
     this.init();
   },
@@ -67,6 +63,4 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

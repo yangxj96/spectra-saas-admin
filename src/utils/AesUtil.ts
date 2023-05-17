@@ -8,8 +8,7 @@
 import CryptoJS from "crypto-js";
 
 export default class AesUtil {
-  private constructor() {
-  }
+  private constructor() {}
 
   /**
    * 加密
@@ -17,19 +16,19 @@ export default class AesUtil {
    * @return 加密后的数据
    */
   static encrypt(origin: string) {
-    let key = this.getRandomKey();
-    let iv = this.getRandomIv();
+    const key = this.getRandomKey();
+    const iv = this.getRandomIv();
     // 加密
-    let encrypt = CryptoJS.AES.encrypt(origin, CryptoJS.enc.Base64.parse(this.uint8ArrayToBase64(key)), {
+    const encrypt = CryptoJS.AES.encrypt(origin, CryptoJS.enc.Base64.parse(this.uint8ArrayToBase64(key)), {
       iv: CryptoJS.enc.Base64.parse(this.uint8ArrayToBase64(iv)),
       mode: CryptoJS.mode.CBC,
       padding: CryptoJS.pad.Pkcs7
     });
 
-    let string = encrypt.ciphertext.toString(CryptoJS.enc.Base64);
-    let bytes = this.base64ToUint8Array(string);
+    const string = encrypt.ciphertext.toString(CryptoJS.enc.Base64);
+    const bytes = this.base64ToUint8Array(string);
 
-    let result = new Uint8Array(32 + 16 + bytes.byteLength);
+    const result = new Uint8Array(32 + 16 + bytes.byteLength);
     for (let i = 0; i < key.byteLength; i++) {
       result[i] = key[i];
     }
@@ -51,10 +50,10 @@ export default class AesUtil {
    * @return 解密后的数据
    */
   static decrypt(ciphertext: string) {
-    let atob = window.atob(ciphertext);
-    let key = new Uint8Array(32);
-    let iv = new Uint8Array(16);
-    let array = new Uint8Array(atob.length - key.length - iv.length);
+    const atob = window.atob(ciphertext);
+    const key = new Uint8Array(32);
+    const iv = new Uint8Array(16);
+    const array = new Uint8Array(atob.length - key.length - iv.length);
 
     for (let i = 0; i < key.length; i++) {
       key[i] = atob.charCodeAt(i);
@@ -68,15 +67,11 @@ export default class AesUtil {
       array[i] = atob.charCodeAt(i + key.length + iv.length);
     }
 
-    let decrypt = CryptoJS.AES.decrypt(
-      this.uint8ArrayToBase64(array),
-      CryptoJS.enc.Base64.parse(this.uint8ArrayToBase64(key)),
-      {
-        iv: CryptoJS.enc.Base64.parse(this.uint8ArrayToBase64(iv)),
-        mode: CryptoJS.mode.CBC,
-        padding: CryptoJS.pad.Pkcs7
-      }
-    );
+    const decrypt = CryptoJS.AES.decrypt(this.uint8ArrayToBase64(array), CryptoJS.enc.Base64.parse(this.uint8ArrayToBase64(key)), {
+      iv: CryptoJS.enc.Base64.parse(this.uint8ArrayToBase64(iv)),
+      mode: CryptoJS.mode.CBC,
+      padding: CryptoJS.pad.Pkcs7
+    });
     return decrypt.toString(CryptoJS.enc.Utf8);
   }
 
@@ -85,7 +80,7 @@ export default class AesUtil {
    * @private
    */
   private static getRandomIv() {
-    let array = new Uint8Array(16);
+    const array = new Uint8Array(16);
     for (let i = 0; i < array.byteLength; i++) {
       array[i] = this.random(100, 0);
     }
@@ -97,7 +92,7 @@ export default class AesUtil {
    * @private
    */
   private static getRandomKey() {
-    let array = new Uint8Array(32);
+    const array = new Uint8Array(32);
     for (let i = 0; i < array.byteLength; i++) {
       array[i] = this.random(100, 0);
     }
@@ -132,19 +127,15 @@ export default class AesUtil {
    * @param origin
    */
   private static base64ToUint8Array(origin: string) {
-    try {
-      let padding = "=".repeat((4 - (origin.length % 4)) % 4);
-      let base64 = origin + padding;
-      // .replace(/\-/g, '+')
-      // .replace(/_/g, '/');
-      let rawData = atob(base64);
-      let outputArray = new Uint8Array(rawData.length);
-      for (let i = 0; i < rawData.length; ++i) {
-        outputArray[i] = rawData.charCodeAt(i);
-      }
-      return outputArray;
-    } catch (e) {
-      throw e;
+    const padding = "=".repeat((4 - (origin.length % 4)) % 4);
+    const base64 = origin + padding;
+    // .replace(/\-/g, '+')
+    // .replace(/_/g, '/');
+    const rawData = atob(base64);
+    const outputArray = new Uint8Array(rawData.length);
+    for (let i = 0; i < rawData.length; ++i) {
+      outputArray[i] = rawData.charCodeAt(i);
     }
+    return outputArray;
   }
 }

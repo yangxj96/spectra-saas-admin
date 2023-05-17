@@ -94,7 +94,7 @@ import Log from "./components/Log/index.vue";
 import { type UserList } from "@/model/User";
 
 export default defineComponent({
-  name: "user-user",
+  name: "User",
   mixins: [Table],
   components: {
     Log

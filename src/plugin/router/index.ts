@@ -7,7 +7,7 @@ import flow from "@/plugin/router/router/modle/flow";
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [...base, ...platform, ...flow],
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior() {
     return {
       top: 0
     };
@@ -22,7 +22,7 @@ let loading: {
 router.beforeEach(async (to, from, next) => {
   console.debug("[路由守卫 - 前置] - 开始");
   // 判断token
-  let token = useUserStore().token;
+  const token = useUserStore().token;
   if (token.access_token === undefined && to.path !== "/Login") {
     next({
       path: "/Login"
@@ -46,7 +46,7 @@ router.beforeEach(async (to, from, next) => {
   console.debug("[路由守卫 - 前置] - 解析守卫结束");
 });
 // 路由后置守卫
-router.afterEach((to, from) => {
+router.afterEach(to => {
   console.debug("[路由守卫 - 后置] - 开始");
   // 切换标题
   if (to.meta.title) {

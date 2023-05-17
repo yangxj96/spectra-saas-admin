@@ -1,12 +1,6 @@
 <template>
   <div style="height: 100%">
-    <el-dialog
-      :model-value="true"
-      destroy-on-close
-      @close="onCancel"
-      :title="`用户[${options.user.username}]日志`"
-      width="80%"
-      class="loading-box">
+    <el-dialog :model-value="true" destroy-on-close @close="onCancel" :title="`用户[${options.user.username}]日志`" width="80%" class="loading-box">
       <el-row>
         <el-table :data="table_data" stripe border height="100%" style="width: 100%">
           <el-table-column type="expand">
@@ -55,7 +49,7 @@ import Table from "@/mixins/Table";
 import { type UserList, type UserOperateLog } from "@/model/User";
 
 export default defineComponent({
-  name: "user-log",
+  name: "UserLog",
   mixins: [Table],
   props: {
     user: {

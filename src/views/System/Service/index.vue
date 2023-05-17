@@ -35,7 +35,7 @@
 import table from "@/mixins/Table";
 
 export default defineComponent({
-  name: "service",
+  name: "SystemService",
   mixins: [table],
   created() {
     for (let i = 0; i < 17; i++) {

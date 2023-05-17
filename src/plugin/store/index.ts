@@ -6,7 +6,7 @@ import { createPinia } from "pinia";
 import { createPersistedState } from "pinia-plugin-persistedstate";
 
 export function createStore() {
-  let pinia = createPinia();
+  const pinia = createPinia();
   pinia.use(
     createPersistedState({
       storage: sessionStorage

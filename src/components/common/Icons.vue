@@ -6,7 +6,7 @@
 
 <script lang="ts">
 export default defineComponent({
-  name: "icons",
+  name: "Icons",
   props: {
     prefix: {
       type: String,

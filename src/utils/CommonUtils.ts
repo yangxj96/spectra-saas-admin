@@ -1,5 +1,4 @@
 export default class CommonUtils {
-
   /**
    * 获取随机数
    * @param min 最小数
@@ -8,5 +7,4 @@ export default class CommonUtils {
   public static getRandom(min: number, max: number) {
     return Math.floor(Math.random() * (max - min)) + min;
   }
-
 }

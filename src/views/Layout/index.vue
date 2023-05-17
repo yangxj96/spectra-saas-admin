@@ -54,7 +54,7 @@ import { type RouteLocationMatched } from "vue-router";
 // import { CaretLeft, CaretRight } from '@element-plus/icons-vue'
 
 export default defineComponent({
-  name: "layout-index",
+  name: "Layout",
   components: {
     // CaretRight,
     // CaretLeft,

@@ -12,7 +12,6 @@ export interface IOptions {
 }
 
 export default class Socket {
-
   private LOG_PREFIX: string = "[websocket]";
 
   private readonly url: string;
@@ -29,7 +28,6 @@ export default class Socket {
   private intervalId?: NodeJS.Timer;
 
   constructor(url: string, options?: IOptions) {
-
     // 组件创建钩子
     //public created() {
     // this.socket = new Socket('ws://127.0.0.1:8080/api/websocket/alarm', {
@@ -155,5 +153,4 @@ export default class Socket {
       }
     }, this.options.heart_time);
   }
-
 }

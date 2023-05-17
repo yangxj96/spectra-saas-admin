@@ -7,37 +7,37 @@ export interface Token {
   /** 刷新的token */
   refresh_token: string;
   /** 权限列表 */
-  authorities: string[],
+  authorities: string[];
   /** 过期时间 */
-  expiration_time: string
+  expiration_time: string;
 }
 
 /** 用户信息实体 */
 export interface UserList {
-  id: number,
-  username: string,
-  password: string,
-  org_name: string,
-  last_login_time: string,
-  last_login_ip: string,
-  lock: boolean,
-  enable: boolean,
+  id: number;
+  username: string;
+  password: string;
+  org_name: string;
+  last_login_time: string;
+  last_login_ip: string;
+  lock: boolean;
+  enable: boolean;
 }
 
 /** 用户日志实体接口 */
 export interface UserOperateLog {
   /** 日志ID */
-  id: number,
+  id: number;
   /** 创建时间 */
-  created_time: string,
+  created_time: string;
   /** URL */
-  url: string,
+  url: string;
   /** 响应状态码 */
-  response_status: number,
+  response_status: number;
   /** 响应数据 */
-  response_result: string,
+  response_result: string;
   /** 请求IP */
-  ip: string,
+  ip: string;
   /** 备注 */
-  remark?: string
+  remark?: string;
 }

@@ -1,12 +1,5 @@
 <template>
-  <el-dialog
-    v-model="isShow"
-    :destroy-on-close="true"
-    :append-to-body="true"
-    :close-on-click-modal="false"
-    :close-on-press-escape="false"
-    :show-close="false"
-    width="30%">
+  <el-dialog v-model="isShow" :destroy-on-close="true" :append-to-body="true" :close-on-click-modal="false" :close-on-press-escape="false" :show-close="false" width="30%">
     <template #header>
       <span>
         <el-icon><Edit /></el-icon>

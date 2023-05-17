@@ -2,7 +2,6 @@ import axios, { type AxiosResponse, type Canceler, type InternalAxiosRequestConf
 import { hideLoading, showLoading } from "@/plugin/element/loading";
 import { ElMessage } from "element-plus/es";
 import { MessageDefaultConfig } from "@/utils/DefaultConfig";
-import AesUtil from "@/utils/AesUtil";
 
 const http = axios.create({
   // baseURL: import.meta.env.VITE_API_URL,

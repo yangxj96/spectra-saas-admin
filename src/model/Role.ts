@@ -1,11 +1,11 @@
 /** 角色类 */
 export interface Role {
   // ID
-  id: string | null,
+  id: string | null;
   // 角色名称
-  name: string,
+  name: string;
   // 角色说明
-  description: string
+  description: string;
 }
 
 /** 角色树 */

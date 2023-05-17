@@ -51,7 +51,7 @@
 import Table from "@/mixins/Table";
 
 export default defineComponent({
-  name: "system-menu",
+  name: "SystemMenu",
   mixins: [Table],
   data() {
     const tree_data: TreeData[] = [
@@ -87,8 +87,7 @@ interface TreeData {
   children?: TreeData[];
 }
 
-interface TableData {
-}
+interface TableData {}
 </script>
 
 <style scoped lang="scss">

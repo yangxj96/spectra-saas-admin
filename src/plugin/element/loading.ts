@@ -18,7 +18,7 @@ let count: number = 0;
 let loading: any;
 
 function open(): void {
-  let els = document.getElementsByClassName("loading-box") as HTMLCollectionOf<HTMLElement>;
+  const els = document.getElementsByClassName("loading-box") as HTMLCollectionOf<HTMLElement>;
   // target: <HTMLElement>document.querySelector('.loading-box'),
   loading = ElLoading.service({
     target: els[els.length - 1],

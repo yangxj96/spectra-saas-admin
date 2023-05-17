@@ -81,8 +81,6 @@
 
 <script lang="ts">
 import { clean } from "@/plugin/request";
-import type { MenuItemClicked } from "element-plus";
-import type { NavigationFailure } from "vue-router";
 
 export default defineComponent({
   name: "LayoutSidebar",

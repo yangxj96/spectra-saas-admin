@@ -25,19 +25,11 @@
     <el-row class="box-content">
       <!-- 字典组树 -->
       <el-col :span="4" class="tree">
-        <el-tree
-          ref="group_tree"
-          :default-expand-all="true"
-          :data="tree_data"
-          :props="{ children: 'children', label: 'name' }" />
+        <el-tree ref="group_tree" :default-expand-all="true" :data="tree_data" :props="{ children: 'children', label: 'name' }" />
       </el-col>
       <!-- 字典项表格 -->
       <el-col :span="10">
-        <el-tree
-          :data="authority_data"
-          :default-expand-all="true"
-          show-checkbox
-          :props="{ children: 'children', label: 'name' }" />
+        <el-tree :data="authority_data" :default-expand-all="true" show-checkbox :props="{ children: 'children', label: 'name' }" />
       </el-col>
       <!-- 说明 -->
       <el-col :span="10"></el-col>
@@ -49,7 +41,7 @@
 import { type RoleTree } from "@/model/Role";
 
 export default defineComponent({
-  name: "user-authority",
+  name: "UserAuthority",
   data() {
     const authority_data: TreeData[] = [
       {

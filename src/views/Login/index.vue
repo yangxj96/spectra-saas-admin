@@ -31,7 +31,7 @@
 import { type FormInstance, type FormRules } from "element-plus";
 
 export default defineComponent({
-  name: "login",
+  name: "Login",
   data() {
     return {
       user: {

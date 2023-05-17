@@ -1,7 +1,7 @@
 import type { ObjectDirective } from "vue";
 
 const Focus: ObjectDirective = {
-  mounted(el: HTMLElement, binging) {
+  mounted(el: HTMLElement) {
     if (el.tagName.toLocaleLowerCase() == "input") {
       el.focus();
     } else {
