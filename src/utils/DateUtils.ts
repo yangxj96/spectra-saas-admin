@@ -1,7 +1,7 @@
 export default class DateUtils {
   private constructor() {}
 
-  static formatting(date: Date, fmt: string = "yyyy-MM-dd HH:mm:ss") {
+  static formatting(date: any, fmt: string = "yyyy-MM-dd HH:mm:ss") {
     const dict: any = {
       yyyy: date.getFullYear(),
       M: date.getMonth() + 1,
@@ -15,8 +15,8 @@ export default class DateUtils {
       mm: ("" + (date.getMinutes() + 100)).substring(1),
       ss: ("" + (date.getSeconds() + 100)).substring(1)
     };
-    return fmt.replace(/(yyyy|MM?|dd?|HH?|mm?|ss?)/g, function () {
-      return dict[arguments[0]];
+    return fmt.replace(/(yyyy|MM?|dd?|HH?|mm?|ss?)/g, function (substring: string, ...args: any[]) {
+      return dict[args[0]];
     });
   }
 }
