@@ -24,7 +24,10 @@ export const clean: Canceler[] = [];
 // 请求拦截器
 http.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    showLoading();
+    if (config.headers.loading == undefined || config.headers.loading === true) {
+      showLoading();
+      config.headers.loading = undefined;
+    }
     config.cancelToken = new axios.CancelToken(function executor(c) {
       clean.push(c);
     });

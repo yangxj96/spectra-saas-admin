@@ -12,8 +12,33 @@ export default defineComponent({
   data() {
     return {
       locale: useAppStore().lang,
-      message: { max: 500 }
+      message: { max: 500 },
+      checkToken: 0
     };
+  },
+  mounted() {
+    useUserStore().$subscribe((mutation, state) => {
+      if (state.token !== {} && state.token.access_token != undefined) {
+        this.checkToken = setInterval(async () => {
+          // 检查token是否有效
+          await UserApi.check().then(async res => {
+            if (res.code == 0 && CommonUtils.getRandom(1, 2000) / 2 === 0) {
+              // 刷新token
+              await UserApi.refresh().then(res => {
+                if (res.code === 0) {
+                  useUserStore().token = res.data;
+                }
+              });
+            }
+          });
+        }, 5000);
+      }
+    });
+  },
+  unmounted() {
+    if (this.checkToken != 0) {
+      clearInterval(this.checkToken);
+    }
   }
 });
 </script>
