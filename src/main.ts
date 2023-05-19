@@ -11,8 +11,9 @@ import "./plugin/element/index.scss";
 // element全局指令
 import { ElLoadingService, ElMessage, ElMessageBox, ElNotification } from "element-plus";
 // 自定义指令
-import AuthDirective from "@/directive/Auth";
+import AuthDirective from "@/directive/Authority";
 import FocusDirective from "@/directive/Focus";
+// iconfont
 import "./assets/iconfont/iconfont";
 
 // 创建APP
@@ -31,6 +32,6 @@ app
   .use(createStore())
   .use(router)
   // .component("IconFont", iconFont)
-  .directive("auth", AuthDirective)
+  .directive("authority", AuthDirective)
   .directive("focus", FocusDirective)
   .mount("#app");
