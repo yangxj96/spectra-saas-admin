@@ -68,6 +68,8 @@ declare module "vue-router" {
     authority?: string[];
     /** 路由分组 **/
     route_group?: string;
+    /** 菜单项 **/
+    menu?: boolean;
   }
 }
 

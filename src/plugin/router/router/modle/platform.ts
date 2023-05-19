@@ -10,6 +10,9 @@ export default [
     path: "/System",
     component: layout,
     redirect: "",
+    meta: {
+      menu: true
+    },
     children: [
       {
         path: "",
@@ -63,6 +66,9 @@ export default [
     path: "/User",
     component: layout,
     redirect: "",
+    meta: {
+      menu: true
+    },
     children: [
       {
         path: "",

@@ -26,6 +26,7 @@ export default [
         component: () => import("@/views/Home/index.vue"),
         meta: {
           title: "首页",
+          menu: true,
           authority: [],
           route_group: "Home"
         }
