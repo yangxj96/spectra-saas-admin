@@ -5,6 +5,8 @@
     </el-header>
 
     <el-container class="box-container">
+      <IM />
+
       <el-aside width="200px">
         <sidebar />
       </el-aside>
