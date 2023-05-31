@@ -90,9 +90,6 @@ export default defineComponent({
       itemDisabled: false
     };
   },
-  created() {
-    console.log(useRouter().getRoutes());
-  },
   mounted() {
     // 赋值
     this.unfold = useSystemStore().sidebar_unfold;

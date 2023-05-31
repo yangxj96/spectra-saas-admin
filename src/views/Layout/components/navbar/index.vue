@@ -1,10 +1,16 @@
 <template>
   <el-row>
-    <el-col :span="4">
+    <el-col :span="3">
       <img src="../../../../assets/logo-across.png" class="goto-home" @click="gotoHome" alt="logo" style="height: 56px" />
     </el-col>
 
-    <el-col :span="1" :offset="19">
+    <el-col :span="20" style="padding-right: 40px">
+      <el-button link @click="handleToggleIMState" style="line-height: 100%; height: 100%; float: right">
+        <icons name="icon-IM" style="width: 1.3em; height: 1.3em" />
+      </el-button>
+    </el-col>
+
+    <el-col :span="1">
       <el-dropdown>
         <el-avatar
           src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic_source%2Ff0%2F4b%2F31%2Ff04b31b61de3beb1d87898afc6d84760.jpeg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1644772664&t=82aba550cf7ee7fd169853007fc3ab0c" />
@@ -54,6 +60,9 @@ export default defineComponent({
     },
     handlePersonalPopup() {
       usePropsStore().personal_details = true;
+    },
+    handleToggleIMState() {
+      useSystemStore().IM = !useSystemStore().IM;
     }
   }
 });
@@ -89,5 +98,13 @@ export default defineComponent({
   width: 1.3em;
   height: 1.3em;
   padding-right: 0.5em;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+:deep(.el-menu) {
+  height: 100%;
 }
 </style>

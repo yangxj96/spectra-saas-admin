@@ -1,8 +1,23 @@
 <template>
-  <el-card class="box-im" shadow="always">
-    <template v-slot:header>即时通讯</template>
+  <el-dialog v-model="show" :modal="false" :append-to-body="true" :show-close="false" :close-on-click-modal="false" :close-on-press-escape="false" draggable>
+    <!-- 头部 -->
+    <template v-slot:header>
+      <el-row>
+        <el-col :span="23">
+          <icons name="icon-IM" style="width: 1.3em; height: 1.3em" />
+          <span style="margin-left: 4px">即时通讯</span>
+        </el-col>
+        <el-col :span="1">
+          <el-button link style="float: right">
+            <icons name="icon-im-lessen" style="width: 1.3em; height: 1.3em" />
+          </el-button>
+        </el-col>
+      </el-row>
+    </template>
+
+    <!-- 内容 -->
     <el-row style="height: 100%">
-      <el-col :span="6" style="height: 100%">
+      <el-col :span="6">
         <el-menu style="height: 100%">
           <el-menu-item>
             <el-avatar
@@ -37,56 +52,58 @@
         </el-menu>
       </el-col>
       <el-col :span="18">
-        <el-row style="height: 60%; width: 100%; padding: 10px">
-          <ImMessageItem style="width: 100%; height: 20px" />
+        <el-row style="height: 80%; width: 100%; padding: 10px; overflow-y: auto">
+          <ImMessageItem />
+          <ImMessageItem />
+          <ImMessageItem />
         </el-row>
-
-        <el-row style="height: 20%">
+        <el-row style="width: 5%; padding-left: 5px; padding-right: 5px">
+          <el-button link>
+            <icons name="icon-IM" style="width: 1.3em; height: 1.3em" />
+          </el-button>
+        </el-row>
+        <el-row style="height: 15%">
           <el-input resize="none" type="textarea" placeholder="请输入回复消息" />
-        </el-row>
-
-        <el-row justify="end" align="middle" style="height: 10%; padding-right: 10px">
-          <el-button style="margin-right: 10px" type="info">关闭</el-button>
-          <el-dropdown split-button type="primary">
-            发送
-            <template #dropdown>
-              <el-dropdown-menu>
-                <el-dropdown-item>快捷回复 1</el-dropdown-item>
-                <el-dropdown-item>快捷回复 2</el-dropdown-item>
-                <el-dropdown-item>快捷回复 3</el-dropdown-item>
-                <el-dropdown-item>快捷回复 4</el-dropdown-item>
-              </el-dropdown-menu>
-            </template>
-          </el-dropdown>
         </el-row>
       </el-col>
     </el-row>
-  </el-card>
+
+    <!-- 底部 -->
+    <template v-slot:footer>
+      <el-row justify="end" align="middle" style="height: 10%; padding-right: 10px">
+        <el-button style="margin-right: 10px" type="info">关闭</el-button>
+        <el-dropdown split-button type="primary">
+          发送
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item>快捷回复 1</el-dropdown-item>
+              <el-dropdown-item>快捷回复 2</el-dropdown-item>
+              <el-dropdown-item>快捷回复 3</el-dropdown-item>
+              <el-dropdown-item>快捷回复 4</el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
+      </el-row>
+    </template>
+  </el-dialog>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
 import ImMessageItem from "@/components/IM/MessageItem/index.vue";
 
 export default defineComponent({
   name: "IM",
-  components: { ImMessageItem }
+  components: { ImMessageItem },
+  data() {
+    return {
+      show: true
+    };
+  }
 });
 </script>
 
 <style scoped lang="scss">
 .box-im {
-  max-width: 50vw;
-  min-width: 40vw;
-
-  max-height: 50vh;
-  height: 100%;
-
-  z-index: 1000;
-
-  position: absolute;
-  right: 1vw;
-  bottom: 1vh;
 }
 
 :deep(.el-card__body) {
@@ -105,5 +122,10 @@ export default defineComponent({
 
 :deep(.el-textarea__inner) {
   border-radius: 0;
+}
+
+:deep(.el-dialog__body) {
+  padding-top: 10px;
+  border: 1px #dcdfe6 solid;
 }
 </style>

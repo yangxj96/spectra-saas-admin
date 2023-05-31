@@ -5,7 +5,9 @@ const useSystemStore = defineStore("system", {
     // 左侧菜单是否展开
     sidebar_unfold: true,
     // 是否禁用菜单项
-    item_disabled: false
+    item_disabled: false,
+    // 是否显示IM
+    IM: false
   }),
   persist: true
 });

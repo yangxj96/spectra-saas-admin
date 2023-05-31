@@ -63,7 +63,8 @@ export default defineComponent({
   data() {
     return {
       systemStore: useSystemStore(),
-      breadcrumb: [] as RouteLocationMatched[]
+      breadcrumb: [] as RouteLocationMatched[],
+      showIm: false
     };
   },
   created() {
