@@ -1,7 +1,7 @@
 <template>
   <el-row>
     <el-col :span="3">
-      <img src="../../../../assets/logo-across.png" class="goto-home" @click="gotoHome" alt="logo" style="height: 56px" />
+      <img :src="getAssets('../assets/logo-across.png')" class="goto-home" @click="gotoHome" alt="logo" style="height: 56px" />
     </el-col>
 
     <el-col :span="20" style="padding-right: 40px">
@@ -12,8 +12,7 @@
 
     <el-col :span="1">
       <el-dropdown>
-        <el-avatar
-          src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic_source%2Ff0%2F4b%2F31%2Ff04b31b61de3beb1d87898afc6d84760.jpeg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1644772664&t=82aba550cf7ee7fd169853007fc3ab0c" />
+        <el-avatar :src="getAssets('../assets/images/default-avatar.jpg')" />
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item @click="handlePersonalPopup">
@@ -38,9 +37,12 @@
 </template>
 
 <script lang="ts">
+import { getAssets } from "@/utils/CommonUtils";
+
 export default defineComponent({
   name: "LayoutNavbar",
   methods: {
+    getAssets,
     gotoHome() {
       this.$router.push({ path: "/" });
     },
@@ -62,7 +64,7 @@ export default defineComponent({
       usePropsStore().personal_details = true;
     },
     handleToggleIMState() {
-      useSystemStore().IM = !useSystemStore().IM;
+      useSystemStore().IM = true;
     }
   }
 });

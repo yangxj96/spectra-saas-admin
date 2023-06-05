@@ -1,77 +1,59 @@
 <template>
-  <el-dialog v-model="show" :modal="false" :append-to-body="true" :show-close="false" :close-on-click-modal="false" :close-on-press-escape="false" draggable>
+  <el-dialog v-model="show" :modal="false" :append-to-body="true" :show-close="false" :destroy-on-close="true" :close-on-click-modal="false" :close-on-press-escape="false" draggable>
     <!-- 头部 -->
     <template v-slot:header>
       <el-row>
         <el-col :span="23">
-          <icons name="icon-IM" style="width: 1.3em; height: 1.3em" />
+          <icons name="icon-IM" />
           <span style="margin-left: 4px">即时通讯</span>
         </el-col>
         <el-col :span="1">
-          <el-button link style="float: right">
-            <icons name="icon-im-lessen" style="width: 1.3em; height: 1.3em" />
+          <el-button link style="float: right" @click="handleMinimizeIm">
+            <icons name="icon-im-lessen" />
           </el-button>
         </el-col>
       </el-row>
     </template>
 
-    <!-- 内容 -->
-    <el-row style="height: 100%">
-      <el-col :span="6">
-        <el-menu style="height: 100%">
-          <el-menu-item>
-            <el-avatar
-              :size="20"
-              :src="'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic_source%2Ff0%2F4b%2F31%2Ff04b31b61de3beb1d87898afc6d84760.jpeg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1644772664&t=82aba550cf7ee7fd169853007fc3ab0c'" />
-            用户1
-          </el-menu-item>
-          <el-menu-item>
-            <el-avatar
-              :size="20"
-              :src="'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic_source%2Ff0%2F4b%2F31%2Ff04b31b61de3beb1d87898afc6d84760.jpeg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1644772664&t=82aba550cf7ee7fd169853007fc3ab0c'" />
-            用户2
-          </el-menu-item>
-          <el-menu-item>
-            <el-avatar
-              :size="20"
-              :src="'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic_source%2Ff0%2F4b%2F31%2Ff04b31b61de3beb1d87898afc6d84760.jpeg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1644772664&t=82aba550cf7ee7fd169853007fc3ab0c'" />
-            用户3
-          </el-menu-item>
-          <el-menu-item>
-            <el-avatar
-              :size="20"
-              :src="'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic_source%2Ff0%2F4b%2F31%2Ff04b31b61de3beb1d87898afc6d84760.jpeg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1644772664&t=82aba550cf7ee7fd169853007fc3ab0c'" />
-            用户4
-          </el-menu-item>
-          <el-menu-item>
-            <el-avatar
-              :size="20"
-              :src="'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic_source%2Ff0%2F4b%2F31%2Ff04b31b61de3beb1d87898afc6d84760.jpeg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1644772664&t=82aba550cf7ee7fd169853007fc3ab0c'" />
-            用户5
-          </el-menu-item>
-        </el-menu>
-      </el-col>
-      <el-col :span="18">
-        <el-row style="height: 80%; width: 100%; padding: 10px; overflow-y: auto">
-          <ImMessageItem />
-          <ImMessageItem />
-          <ImMessageItem />
-        </el-row>
-        <el-row style="width: 5%; padding-left: 5px; padding-right: 5px">
-          <el-button link>
-            <icons name="icon-IM" style="width: 1.3em; height: 1.3em" />
-          </el-button>
-        </el-row>
-        <el-row style="height: 15%">
-          <el-input resize="none" type="textarea" placeholder="请输入回复消息" />
-        </el-row>
-      </el-col>
-    </el-row>
+    <template v-slot:default>
+      <!-- 内容 -->
+      <el-row>
+        <el-col :span="4" style="max-height: 45vh">
+          <el-menu style="height: 100%">
+            <el-menu-item>
+              <el-avatar :size="20" :src="getAssets('../assets/images/default-avatar.jpg')" />
+              用户1
+            </el-menu-item>
+          </el-menu>
+        </el-col>
+
+        <el-col :span="20" style="max-height: 45vh">
+          <el-row style="height: 80%">
+            <el-scrollbar style="padding: 1.3em">
+              <ImMessageItemYou />
+              <ImMessageItemMe />
+              <ImMessageItemYou />
+              <ImMessageItemMe />
+            </el-scrollbar>
+          </el-row>
+
+          <el-row style="height: 5%; margin: 0.5em">
+            <el-button link>
+              <icons name="icon-IM" style="width: 1.3em; height: 1.3em" />
+            </el-button>
+          </el-row>
+
+          <el-row style="height: 15%">
+            <el-input v-model="message" resize="none" type="textarea" placeholder="请输入回复消息" />
+          </el-row>
+        </el-col>
+      </el-row>
+    </template>
 
     <!-- 底部 -->
     <template v-slot:footer>
       <el-row justify="end" align="middle" style="height: 10%; padding-right: 10px">
-        <el-button style="margin-right: 10px" type="info">关闭</el-button>
+        <el-button style="margin-right: 10px" type="info" @click="handleMinimizeIm">关闭</el-button>
         <el-dropdown split-button type="primary">
           发送
           <template #dropdown>
@@ -89,21 +71,33 @@
 </template>
 
 <script lang="ts">
-import ImMessageItem from "@/components/IM/MessageItem/index.vue";
+import { getAssets } from "@/utils/CommonUtils";
 
 export default defineComponent({
   name: "IM",
-  components: { ImMessageItem },
   data() {
     return {
-      show: true
+      show: useSystemStore().IM,
+      message: ""
     };
+  },
+  created() {
+    useSystemStore().$subscribe((mutation, state) => {
+      this.show = state.IM;
+    });
+  },
+  methods: {
+    getAssets,
+    handleMinimizeIm() {
+      useSystemStore().IM = false;
+    }
   }
 });
 </script>
 
 <style scoped lang="scss">
-.box-im {
+:deep(.el-card__header) {
+  padding: calc(var(--el-card-padding) - 10px) calc(var(--el-card-padding));
 }
 
 :deep(.el-card__body) {
@@ -111,8 +105,14 @@ export default defineComponent({
   height: 100%;
 }
 
-:deep(.el-card__header) {
-  padding: calc(var(--el-card-padding) - 10px) calc(var(--el-card-padding));
+:deep(.el-dialog__body) {
+  padding-top: 10px;
+  border: 1px #dcdfe6 solid;
+  max-height: 45vh;
+}
+
+:deep(.el-menu) {
+  border: none;
 }
 
 :deep(.el-textarea__inner) {
@@ -122,10 +122,5 @@ export default defineComponent({
 
 :deep(.el-textarea__inner) {
   border-radius: 0;
-}
-
-:deep(.el-dialog__body) {
-  padding-top: 10px;
-  border: 1px #dcdfe6 solid;
 }
 </style>
