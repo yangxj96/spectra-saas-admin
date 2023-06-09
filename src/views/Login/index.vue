@@ -16,6 +16,25 @@
             <el-input v-model="user['password']" placeholder="请输入密码" show-password />
           </el-form-item>
         </el-form>
+        <el-row>
+          <ul class="login-type-ul">
+            <li>
+              <el-button link>
+                <icons name="icon-github" class-name="login-type-icon" />
+              </el-button>
+            </li>
+            <li>
+              <el-button link>
+                <icons name="icon-qq" class-name="login-type-icon" />
+              </el-button>
+            </li>
+            <li>
+              <el-button link>
+                <icons name="icon-github" class-name="login-type-icon" />
+              </el-button>
+            </li>
+          </ul>
+        </el-row>
       </div>
       <template #footer>
         <el-button type="primary" @click="handleLogin">
@@ -101,5 +120,20 @@ interface User {
 
 :deep(.el-dialog__footer) {
   padding-top: 0;
+}
+
+.login-type-icon {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.login-type-ul {
+  width: 100%;
+
+  li {
+    list-style: none;
+    display: inline;
+    margin-left: 1.3em;
+  }
 }
 </style>

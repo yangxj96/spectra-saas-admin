@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "785012",
+      "name": "QQ",
+      "font_class": "qq",
+      "unicode": "e647",
+      "unicode_decimal": 58951
+    },
+    {
+      "icon_id": "15188382",
+      "name": "github",
+      "font_class": "github",
+      "unicode": "e6ea",
+      "unicode_decimal": 59114
+    },
+    {
       "icon_id": "5358535",
       "name": "缩小",
       "font_class": "im-lessen",
