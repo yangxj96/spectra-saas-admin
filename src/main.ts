@@ -31,7 +31,6 @@ app.config.globalProperties.$loading = ElLoadingService;
 app
   .use(createStore())
   .use(router)
-  // .component("IconFont", iconFont)
   .directive("authority", AuthDirective)
   .directive("focus", FocusDirective)
   .mount("#app");
