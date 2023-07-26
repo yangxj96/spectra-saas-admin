@@ -19,8 +19,8 @@
       <!-- 内容 -->
       <el-row>
         <el-col :span="4" style="max-height: 45vh">
-          <el-menu style="height: 100%">
-            <el-menu-item>
+          <el-menu style="height: 100%" default-active="u1">
+            <el-menu-item index="u1">
               <el-avatar :size="20" :src="getAssets('../assets/images/default-avatar.jpg')" />
               用户1
             </el-menu-item>
