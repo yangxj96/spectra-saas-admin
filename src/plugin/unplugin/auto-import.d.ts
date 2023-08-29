@@ -6,6 +6,7 @@ export {}
 declare global {
   const AesUtil: typeof import('../../utils/AesUtil')['default']
   const CommonUtils: typeof import('../../utils/CommonUtils')['default']
+  const ConvertUtils: typeof import('../../utils/ConvertUtils')['default']
   const DateUtils: typeof import('../../utils/DateUtils')['default']
   const EffectScope: typeof import('vue')['EffectScope']
   const MessageDefaultConfig: typeof import('../../utils/DefaultConfig')['MessageDefaultConfig']
