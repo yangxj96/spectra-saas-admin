@@ -67,6 +67,7 @@
 
 <script lang="ts">
 import table from "@/mixins/Table";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "UserTenant",

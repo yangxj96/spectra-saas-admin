@@ -1,12 +1,23 @@
 <template>
   <el-row class="box-content">
     <div v-authority="'_ROLE_SYSADMIN'">有权限</div>
+    <input ref="fs" type="file" />
   </el-row>
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
+import ConvertUtils from "@/utils/ConvertUtils";
+
 export default defineComponent({
-  name: "Home"
+  name: "Home",
+  created() {
+    let o = {
+      code: 10,
+      msg: "success"
+    };
+    console.log(ConvertUtils.json2FormData(o));
+  }
 });
 </script>
 

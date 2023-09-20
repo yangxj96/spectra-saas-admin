@@ -39,6 +39,7 @@
 
 <script lang="ts">
 import { type RoleTree } from "@/model/Role";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "UserAuthority",

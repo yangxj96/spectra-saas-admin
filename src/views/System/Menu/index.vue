@@ -49,9 +49,12 @@
 
 <script lang="ts">
 import Table from "@/mixins/Table";
+import { defineComponent } from "vue";
+import Icons from "@/components/common/Icons.vue";
 
 export default defineComponent({
   name: "SystemMenu",
+  components: { Icons },
   mixins: [Table],
   data() {
     const tree_data: TreeData[] = [

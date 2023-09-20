@@ -1,3 +1,4 @@
+import { createApp } from "vue";
 import App from "./App.vue";
 // 路由
 import router from "./plugin/router";
@@ -9,7 +10,7 @@ import "default-passive-events";
 // element自定义的样式文件
 import "./plugin/element/index.scss";
 // element全局指令
-import { ElLoadingService, ElMessage, ElMessageBox, ElNotification } from "element-plus";
+import ElementPlus, { ElLoadingService, ElMessage, ElMessageBox, ElNotification } from "element-plus";
 // 自定义指令
 import AuthDirective from "@/directive/Authority";
 import FocusDirective from "@/directive/Focus";
@@ -31,6 +32,8 @@ app.config.globalProperties.$loading = ElLoadingService;
 app
   .use(createStore())
   .use(router)
+  .use(ElementPlus)
+  // .component("IconFont", iconFont)
   .directive("authority", AuthDirective)
   .directive("focus", FocusDirective)
   .mount("#app");

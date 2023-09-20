@@ -1,13 +1,18 @@
 <template>
   <el-row>
-    <el-col :span="4">
-      <img src="../../../../assets/logo-across.png" class="goto-home" @click="gotoHome" alt="logo" style="height: 56px" />
+    <el-col :span="3">
+      <img :src="getAssets('../assets/logo-across.png')" class="goto-home" @click="gotoHome" alt="logo" style="height: 56px" />
     </el-col>
 
-    <el-col :span="1" :offset="19">
+    <el-col :span="20" style="padding-right: 40px">
+      <el-button link @click="handleToggleIMState" style="line-height: 100%; height: 100%; float: right">
+        <icons name="icon-IM" style="width: 1.3em; height: 1.3em" />
+      </el-button>
+    </el-col>
+
+    <el-col :span="1">
       <el-dropdown>
-        <el-avatar
-          src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic_source%2Ff0%2F4b%2F31%2Ff04b31b61de3beb1d87898afc6d84760.jpeg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1644772664&t=82aba550cf7ee7fd169853007fc3ab0c" />
+        <el-avatar :src="getAssets('../assets/images/default-avatar.jpg')" />
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item @click="handlePersonalPopup">
@@ -32,9 +37,20 @@
 </template>
 
 <script lang="ts">
+import { getAssets } from "@/utils/CommonUtils";
+import { defineComponent } from "vue";
+import { MessageDefaultConfig } from "@/utils/DefaultConfig";
+import usePropsStore from "@/plugin/store/modules/usePropsStore";
+import useSystemStore from "@/plugin/store/modules/useSystemStore";
+import Icons from "@/components/common/Icons.vue";
+import PersonalDetails from "@/components/Props/PersonalDetails/index.vue";
+import ChangePassword from "@/components/Props/ChangePassword/index.vue";
+
 export default defineComponent({
   name: "LayoutNavbar",
+  components: { Icons, PersonalDetails, ChangePassword },
   methods: {
+    getAssets,
     gotoHome() {
       this.$router.push({ path: "/" });
     },
@@ -54,6 +70,9 @@ export default defineComponent({
     },
     handlePersonalPopup() {
       usePropsStore().personal_details = true;
+    },
+    handleToggleIMState() {
+      useSystemStore().IM = true;
     }
   }
 });
@@ -89,5 +108,13 @@ export default defineComponent({
   width: 1.3em;
   height: 1.3em;
   padding-right: 0.5em;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+:deep(.el-menu) {
+  height: 100%;
 }
 </style>

@@ -1,4 +1,6 @@
 import type { ObjectDirective } from "vue";
+import useUserStore from "@/plugin/store/modules/useUserStore";
+import CommonUtils from "@/utils/CommonUtils";
 
 /** 是否需要删除的标识,因为钩子顺序问题,可以这样使用 **/
 let del: boolean = false;

@@ -42,3 +42,7 @@ export default class CommonUtils {
     return this.UUID().toLowerCase();
   }
 }
+
+export function getAssets(url: string) {
+  return new URL(`${url}`, import.meta.url).href;
+}

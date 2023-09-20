@@ -76,9 +76,13 @@
 <script lang="ts">
 import Table from "@/mixins/Table";
 import { type SystemDictGroup } from "@/model/System";
+import { defineComponent } from "vue";
+import Icons from "@/components/common/Icons.vue";
+import CommonUtils from "@/utils/CommonUtils";
 
 export default defineComponent({
   name: "SystemDict",
+  components: { Icons },
   mixins: [Table],
   data() {
     const table_data: TableData[] = [];
