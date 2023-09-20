@@ -74,9 +74,13 @@
 import { getAssets } from "@/utils/CommonUtils";
 import { defineComponent } from "vue";
 import useSystemStore from "@/plugin/store/modules/useSystemStore";
+import Icons from "@/components/common/Icons.vue";
+import ImMessageItemYou from "@/components/IM/components/ImMessageItemYou.vue";
+import ImMessageItemMe from "@/components/IM/components/ImMessageItemMe.vue";
 
 export default defineComponent({
   name: "IM",
+  components: { Icons, ImMessageItemYou, ImMessageItemMe },
   data() {
     return {
       show: useSystemStore().IM,

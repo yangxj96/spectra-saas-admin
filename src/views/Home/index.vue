@@ -10,14 +10,7 @@ import { defineComponent } from "vue";
 import ConvertUtils from "@/utils/ConvertUtils";
 
 export default defineComponent({
-  name: "Home",
-  created() {
-    let o = {
-      code: 10,
-      msg: "success"
-    };
-    console.log(ConvertUtils.json2FormData(o));
-  }
+  name: "Home"
 });
 </script>
 

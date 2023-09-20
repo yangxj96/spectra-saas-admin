@@ -39,9 +39,11 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import usePropsStore from "@/plugin/store/modules/usePropsStore";
+import Icons from "@/components/common/Icons.vue";
 
 export default defineComponent({
   name: "PropsPersonalDetails",
+  components: { Icons },
   created() {
     usePropsStore().$subscribe((mutation, state) => {
       /*

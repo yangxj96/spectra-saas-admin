@@ -35,9 +35,11 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import usePropsStore from "@/plugin/store/modules/usePropsStore";
+import Icons from "@/components/common/Icons.vue";
 
 export default defineComponent({
   name: "PropsChangePassword",
+  components: { Icons },
   created() {
     usePropsStore().$subscribe((mutation, state) => {
       this.isShow = state.change_password;

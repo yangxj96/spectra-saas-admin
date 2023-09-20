@@ -56,10 +56,12 @@ import { type RouteLocationMatched } from "vue-router";
 import { defineComponent } from "vue";
 import useSystemStore from "@/plugin/store/modules/useSystemStore";
 import Icons from "@/components/common/Icons.vue";
+import IM from "@/components/IM/index.vue";
 
 export default defineComponent({
   name: "Layout",
   components: {
+    IM,
     Icons,
     Navbar,
     Sidebar
