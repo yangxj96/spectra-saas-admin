@@ -111,7 +111,7 @@
 
 <script lang="ts">
 import Table from "@/mixins/Table";
-import DefaultFlowImage from "@/assets/images/flow-img.png";
+import DefaultFlowImage from "../../../public/assets/images/flow-img.png";
 import vkbeautify from "vkbeautify";
 import hljs from "highlight.js";
 import "highlight.js/styles/github-dark.css";

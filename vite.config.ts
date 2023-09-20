@@ -1,6 +1,5 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-import { fileURLToPath, URL } from "node:url";
 import { viteMockServe } from "vite-plugin-mock";
 import * as path from "path";
 
@@ -18,9 +17,7 @@ export default defineConfig({
       mockPath: "src/mock",
       watchFiles: true,
       logger: true,
-      // 设置是否启用本地 xxx.ts 文件，不要在生产环境中打开它.设置为 false 将禁用 mock 功能
       localEnabled: true,
-      // 设置打包是否启用 mock 功能
       prodEnabled: true,
       injectCode: `
       import {setupProdMockServer} from "./mock/MockProdServer";
@@ -31,8 +28,8 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
-      "~@": fileURLToPath(new URL("./src", import.meta.url)),
-      "/img": "src/assets/images"
+      "~@": path.resolve(__dirname, "src"),
+      "/img": path.resolve(__dirname, "src/assets/images")
     }
   },
   build: {

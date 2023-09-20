@@ -6,5 +6,15 @@
     {
       "path": "./tsconfig.app.json"
     }
+  ],
+  "compilerOptions": {
+    "moduleResolution": "node"
+  },
+  "include": [
+    "src/**/*",
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue"
   ]
 }

@@ -25,7 +25,7 @@ export default class Socket {
     lock_time: 3000
   };
 
-  private intervalId?: NodeJS.Timer;
+  private intervalId?: any;
 
   constructor(url: string, options?: IOptions) {
     // 组件创建钩子

@@ -1,7 +1,7 @@
 <template>
   <el-row>
     <el-col :span="3">
-      <img :src="getAssets('../assets/logo-across.png')" class="goto-home" @click="gotoHome" alt="logo" style="height: 56px" />
+      <img src="/assets/logo-across.png" class="goto-home" @click="gotoHome" alt="logo" style="height: 56px" />
     </el-col>
 
     <el-col :span="20" style="padding-right: 40px">
@@ -12,7 +12,7 @@
 
     <el-col :span="1">
       <el-dropdown>
-        <el-avatar :src="getAssets('../assets/images/default-avatar.jpg')" />
+        <el-avatar src="/assets/images/default-avatar.jpg" />
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item @click="handlePersonalPopup">
@@ -37,7 +37,6 @@
 </template>
 
 <script lang="ts">
-import { getAssets } from "@/utils/CommonUtils";
 import { defineComponent } from "vue";
 import { MessageDefaultConfig } from "@/utils/DefaultConfig";
 import usePropsStore from "@/plugin/store/modules/usePropsStore";
@@ -50,7 +49,6 @@ export default defineComponent({
   name: "LayoutNavbar",
   components: { Icons, PersonalDetails, ChangePassword },
   methods: {
-    getAssets,
     gotoHome() {
       this.$router.push({ path: "/" });
     },

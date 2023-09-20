@@ -4,13 +4,13 @@
       {{ msg }}
     </el-card>
 
-    <el-avatar class="box-avatar" :src="getAssets('../assets/images/default-avatar.jpg')" />
+    <el-avatar class="box-avatar" src="/assets/images/default-avatar.jpg" />
   </el-row>
 </template>
 
 <script lang="ts">
-import CommonUtils, { getAssets } from "@/utils/CommonUtils";
 import { defineComponent } from "vue";
+import CommonUtils from "@/utils/CommonUtils";
 
 export default defineComponent({
   name: "ImMessageItem",
@@ -24,9 +24,6 @@ export default defineComponent({
     for (let i = 0; i < num; i++) {
       this.msg += "🙂";
     }
-  },
-  methods: {
-    getAssets
   }
 });
 </script>

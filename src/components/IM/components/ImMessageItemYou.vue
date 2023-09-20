@@ -1,6 +1,6 @@
 <template>
   <el-row align="top" class="box-item">
-    <el-avatar class="box-avatar" :src="getAssets('../assets/images/default-avatar.jpg')" />
+    <el-avatar class="box-avatar" src="/assets/images/default-avatar.jpg" />
 
     <el-card class="box-msg" shadow="always">
       {{ msg }}
@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import CommonUtils, { getAssets } from "@/utils/CommonUtils";
+import CommonUtils from "@/utils/CommonUtils";
 import { defineComponent } from "vue";
 
 export default defineComponent({
@@ -24,8 +24,7 @@ export default defineComponent({
     for (let i = 0; i < num; i++) {
       this.msg += "🤣";
     }
-  },
-  methods: { getAssets }
+  }
 });
 </script>
 

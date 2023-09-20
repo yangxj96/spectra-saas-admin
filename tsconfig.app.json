@@ -2,6 +2,8 @@
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "include": [
     "src/type/env.d.ts",
+    "src/type/shims-vue.d.ts",
+    "src/type/element.d.ts",
     "src/**/*",
     "src/**/*.vue"
   ],
@@ -29,8 +31,11 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@": [
+        "./src"
+      ],
       "@/*": [
-        "src/*"
+        "./src/*"
       ]
     },
     "types": [
