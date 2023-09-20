@@ -19,7 +19,7 @@ export default defineComponent({
     return {
       locale: useAppStore().lang,
       message: { max: 500 },
-      checkToken: 0
+      checkToken: 0 as any
     };
   },
   mounted() {
