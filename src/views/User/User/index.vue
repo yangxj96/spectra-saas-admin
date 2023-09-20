@@ -92,6 +92,7 @@
 import Table from "@/mixins/Table";
 import Log from "./components/Log/index.vue";
 import { type UserList } from "@/model/User";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "User",

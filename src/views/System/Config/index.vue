@@ -22,10 +22,13 @@
 <script lang="ts">
 import Routine from "@/views/System/Config/components/Routine/index.vue";
 import FileSave from "@/views/System/Config/components/FileSave/index.vue";
+import { defineComponent } from "vue";
+import Icons from "@/components/common/Icons.vue";
 
 export default defineComponent({
   name: "SystemConfig",
   components: {
+    Icons,
     Routine,
     FileSave
   },

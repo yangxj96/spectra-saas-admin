@@ -48,9 +48,15 @@
 
 <script lang="ts">
 import { type FormInstance, type FormRules } from "element-plus";
+import { defineComponent } from "vue";
+import UserApi from "@/api/UserApi";
+import { MessageDefaultConfig } from "@/utils/DefaultConfig";
+import useUserStore from "@/plugin/store/modules/useUserStore";
+import Icons from "@/components/common/Icons.vue";
 
 export default defineComponent({
   name: "Login",
+  components: { Icons },
   data() {
     return {
       user: {

@@ -3,6 +3,8 @@ import { ElLoading } from "element-plus";
 import base from "@/plugin/router/router/base";
 import platform from "@/plugin/router/router/modle/platform";
 import flow from "@/plugin/router/router/modle/flow";
+import useUserStore from "@/plugin/store/modules/useUserStore";
+import useSystemStore from "@/plugin/store/modules/useSystemStore";
 
 const router = createRouter({
   history: createWebHashHistory(),

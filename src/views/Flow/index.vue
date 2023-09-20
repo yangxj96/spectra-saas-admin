@@ -115,9 +115,12 @@ import DefaultFlowImage from "@/assets/images/flow-img.png";
 import vkbeautify from "vkbeautify";
 import hljs from "highlight.js";
 import "highlight.js/styles/github-dark.css";
+import { defineComponent } from "vue";
+import Icons from "@/components/common/Icons.vue";
 
 export default defineComponent({
   name: "Flow",
+  components: { Icons },
   mixins: [Table],
   directives: {
     highlight: el => {

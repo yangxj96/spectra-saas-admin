@@ -38,9 +38,17 @@
 
 <script lang="ts">
 import { getAssets } from "@/utils/CommonUtils";
+import { defineComponent } from "vue";
+import { MessageDefaultConfig } from "@/utils/DefaultConfig";
+import usePropsStore from "@/plugin/store/modules/usePropsStore";
+import useSystemStore from "@/plugin/store/modules/useSystemStore";
+import Icons from "@/components/common/Icons.vue";
+import PersonalDetails from "@/components/Props/PersonalDetails/index.vue";
+import ChangePassword from "@/components/Props/ChangePassword/index.vue";
 
 export default defineComponent({
   name: "LayoutNavbar",
+  components: { Icons, PersonalDetails, ChangePassword },
   methods: {
     getAssets,
     gotoHome() {

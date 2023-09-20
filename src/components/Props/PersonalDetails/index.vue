@@ -37,6 +37,9 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
+import usePropsStore from "@/plugin/store/modules/usePropsStore";
+
 export default defineComponent({
   name: "PropsPersonalDetails",
   created() {

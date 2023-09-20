@@ -60,13 +60,15 @@
 import Table from "@/mixins/Table";
 import Editor from "@/views/System/Config/components/Routine/components/Editor/index.vue";
 import { type SystemConfig } from "@/model/System";
+import { defineComponent } from "vue";
+import Icons from "@/components/common/Icons.vue";
 
 /**
  * 常规配置
  */
 export default defineComponent({
   name: "SystemConfigRoutine",
-  components: { Editor },
+  components: { Icons, Editor },
   mixins: [Table],
   data() {
     return {

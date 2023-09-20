@@ -81,9 +81,13 @@
 
 <script lang="ts">
 import { clean } from "@/plugin/request";
+import { defineComponent } from "vue";
+import useSystemStore from "@/plugin/store/modules/useSystemStore";
+import Icons from "@/components/common/Icons.vue";
 
 export default defineComponent({
   name: "LayoutSidebar",
+  components: { Icons },
   data() {
     return {
       unfold: true,

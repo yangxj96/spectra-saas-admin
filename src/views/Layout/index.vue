@@ -53,10 +53,14 @@
 import Navbar from "@/views/Layout/components/navbar/index.vue";
 import Sidebar from "@/views/Layout/components/sidebar/index.vue";
 import { type RouteLocationMatched } from "vue-router";
+import { defineComponent } from "vue";
+import useSystemStore from "@/plugin/store/modules/useSystemStore";
+import Icons from "@/components/common/Icons.vue";
 
 export default defineComponent({
   name: "Layout",
   components: {
+    Icons,
     Navbar,
     Sidebar
   },

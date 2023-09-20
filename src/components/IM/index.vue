@@ -72,6 +72,8 @@
 
 <script lang="ts">
 import { getAssets } from "@/utils/CommonUtils";
+import { defineComponent } from "vue";
+import useSystemStore from "@/plugin/store/modules/useSystemStore";
 
 export default defineComponent({
   name: "IM",

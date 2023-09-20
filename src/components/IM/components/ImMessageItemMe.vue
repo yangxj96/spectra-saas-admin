@@ -9,7 +9,8 @@
 </template>
 
 <script lang="ts">
-import { getAssets } from "@/utils/CommonUtils";
+import CommonUtils, { getAssets } from "@/utils/CommonUtils";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "ImMessageItem",

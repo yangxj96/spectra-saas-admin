@@ -7,6 +7,12 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
+import useAppStore from "@/plugin/store/modules/useAppStore";
+import useUserStore from "@/plugin/store/modules/useUserStore";
+import UserApi from "@/api/UserApi";
+import CommonUtils from "@/utils/CommonUtils";
+
 export default defineComponent({
   name: "app",
   data() {
@@ -18,7 +24,7 @@ export default defineComponent({
   },
   mounted() {
     useUserStore().$subscribe((mutation, state) => {
-      if (state.token !== {} && state.token.access_token != undefined) {
+      if (state.token.access_token != undefined) {
         this.checkToken = setInterval(async () => {
           // 检查token是否有效
           await UserApi.check().then(async res => {
