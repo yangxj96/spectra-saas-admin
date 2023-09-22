@@ -1,7 +1,8 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
+import eslint from "vite-plugin-eslint";
 import { viteMockServe } from "vite-plugin-mock";
-import * as path from "path";
+import { fileURLToPath, URL } from "url";
 
 export default defineConfig({
   base: "./",
@@ -13,6 +14,7 @@ export default defineConfig({
   },
   plugins: [
     vue(),
+    eslint(),
     viteMockServe({
       mockPath: "src/mock",
       watchFiles: true,
@@ -27,9 +29,8 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src"),
-      "~@": path.resolve(__dirname, "src"),
-      "/img": path.resolve(__dirname, "src/assets/images")
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
+      "~@": fileURLToPath(new URL("./src", import.meta.url))
     }
   },
   build: {

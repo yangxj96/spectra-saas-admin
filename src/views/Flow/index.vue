@@ -315,7 +315,7 @@ export default defineComponent({
   },
   methods: {
     // 翻译tag类型
-    handleTagTypeTransition(type: Number) {
+    handleTagTypeTransition(type: number) {
       switch (type) {
         default:
           return "";

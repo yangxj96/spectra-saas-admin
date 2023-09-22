@@ -8,7 +8,7 @@ export interface IOptions {
   /** 断线重连时间 */
   lock_time?: number;
   /** 接受到消息 */
-  handleMessage?: Function | null;
+  handleMessage?: (e: any) => void | null;
 }
 
 export default class Socket {

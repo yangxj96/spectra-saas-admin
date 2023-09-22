@@ -61,9 +61,9 @@ export default defineComponent({
 });
 
 interface TableData {
-  date: String;
-  name: String;
-  num: Number;
+  date: string;
+  name: string;
+  num: number;
 }
 </script>
 
