@@ -8,8 +8,6 @@
 import CryptoJS from "crypto-js";
 
 export default class AesUtil {
-  private constructor() {}
-
   /**
    * 加密
    * @param origin 元数据

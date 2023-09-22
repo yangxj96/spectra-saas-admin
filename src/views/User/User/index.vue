@@ -93,11 +93,13 @@ import Table from "@/mixins/Table";
 import Log from "./components/Log/index.vue";
 import { type UserList } from "@/model/User";
 import { defineComponent } from "vue";
+import Icons from "@/components/common/Icons.vue";
 
 export default defineComponent({
   name: "User",
   mixins: [Table],
   components: {
+    Icons,
     Log
   },
   data() {

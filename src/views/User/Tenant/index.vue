@@ -69,9 +69,11 @@
 import table from "@/mixins/Table";
 import { defineComponent } from "vue";
 import DateUtils from "@/utils/DateUtils";
+import Icons from "@/components/common/Icons.vue";
 
 export default defineComponent({
   name: "UserTenant",
+  components: { Icons },
   mixins: [table],
   data() {
     return {

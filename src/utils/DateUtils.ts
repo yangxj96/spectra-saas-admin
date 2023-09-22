@@ -1,6 +1,4 @@
 export default class DateUtils {
-  private constructor() {}
-
   static formatting(date: any, fmt: string = "yyyy-MM-dd HH:mm:ss") {
     const dict: any = {
       yyyy: date.getFullYear(),

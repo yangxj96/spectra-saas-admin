@@ -40,9 +40,11 @@
 <script lang="ts">
 import { type RoleTree } from "@/model/Role";
 import { defineComponent } from "vue";
+import Icons from "@/components/common/Icons.vue";
 
 export default defineComponent({
   name: "UserAuthority",
+  components: { Icons },
   data() {
     const authority_data: TreeData[] = [
       {

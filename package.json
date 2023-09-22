@@ -21,6 +21,7 @@
     "mockjs": "^1.1.0",
     "pinia": "^2.1.6",
     "pinia-plugin-persistedstate": "^3.2.0",
+    "sass": "^1.68.0",
     "vite-plugin-mock": "2.9.1",
     "vkbeautify": "^0.99.3",
     "vue": "^3.2.25",
@@ -29,6 +30,7 @@
   "devDependencies": {
     "@types/crypto-js": "^4.1.2",
     "@types/node": "^20.6.3",
+    "@types/vkbeautify": "^0.99.2",
     "@typescript-eslint/eslint-plugin": "^6.7.2",
     "@typescript-eslint/parser": "^6.7.2",
     "@vitejs/plugin-vue": "^2.3.4",
