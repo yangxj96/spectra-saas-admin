@@ -36,11 +36,11 @@
           <el-row>
             <el-footer class="footer">
               Copyright © 2018-2023
-              <strong><a href="//yangxj96.github.io/" target="_blank">yangxj96</a></strong>
+              <strong><a href="//yangxj96.com/" target="_blank">yangxj96</a></strong>
               &nbsp;
-              <strong><a href="//yangxj96.github.io/" target="_blank">yangxj96.github.io</a></strong>
+              <strong><a href="//yangxj96.com/" target="_blank">yangxj96.com</a></strong>
               All Rights Reserved. 备案号：
-              <a target="_blank" rel="nofollow" href="https://beian.miit.gov.cn/">滇ICP备xxxxxxxx号</a>
+              <a target="_blank" rel="nofollow" href="https://beian.miit.gov.cn/">滇ICP备2023006063号-1</a>
             </el-footer>
           </el-row>
         </div>

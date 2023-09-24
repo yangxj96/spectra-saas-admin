@@ -1,6 +1,7 @@
 import http, { type IResult } from "@/plugin/request";
 import type { AxiosResponse } from "axios";
 import type { Token } from "@/model/User";
+import useUserStore from "@/plugin/store/modules/useUserStore";
 
 export default {
   /**
@@ -24,8 +25,10 @@ export default {
   check() {
     return http
       .post(
-        "/api/auth/check",
-        {},
+        "/api/auth/check_token",
+        {
+          token: useUserStore().token.access_token
+        },
         {
           headers: {
             loading: false
@@ -43,7 +46,9 @@ export default {
     return http
       .post(
         "/api/auth/refresh",
-        {},
+        {
+          token: useUserStore().token.refresh_token
+        },
         {
           headers: {
             loading: false
@@ -51,6 +56,18 @@ export default {
         }
       )
       .then((response: AxiosResponse<IResult<Token>>) => {
+        return response.data;
+      });
+  },
+  /**
+   * 退出登录
+   */
+  logout() {
+    return http
+      .post("/api/auth/logoff", {
+        token: useUserStore().token.access_token
+      })
+      .then((response: AxiosResponse<IResult>) => {
         return response.data;
       });
   }

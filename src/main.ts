@@ -15,7 +15,8 @@ import ElementPlus, { ElLoadingService, ElMessage, ElMessageBox, ElNotification 
 import AuthDirective from "@/directive/Authority";
 import FocusDirective from "@/directive/Focus";
 // iconfont
-import "./assets/iconfont/iconfont";
+// import "./assets/iconfont/iconfont";
+import "//at.alicdn.com/t/c/font_3119163_oqg12xgkssd.js";
 
 // 创建APP
 const app = createApp(App);

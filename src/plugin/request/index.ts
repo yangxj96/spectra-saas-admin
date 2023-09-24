@@ -2,11 +2,11 @@ import axios, { type AxiosResponse, type Canceler, type InternalAxiosRequestConf
 import { hideLoading, showLoading } from "@/plugin/element/loading";
 import { ElMessage } from "element-plus/es";
 import { MessageDefaultConfig } from "@/utils/DefaultConfig";
+import useUserStore from "@/plugin/store/modules/useUserStore";
 
 const http = axios.create({
-  // baseURL: import.meta.env.VITE_API_URL,
-  baseURL: import.meta.env.BASE_URL,
-  timeout: 3 * 1000,
+  baseURL: import.meta.env.MODE == "production" ? import.meta.env.VITE_API_URL : import.meta.env.BASE_URL,
+  timeout: 10 * 1000,
   withCredentials: false,
   headers: {
     "Content-Type": "application/json"
@@ -27,6 +27,10 @@ http.interceptors.request.use(
     if (config.headers.loading == undefined || config.headers.loading === true) {
       showLoading();
       config.headers.loading = undefined;
+    }
+    const token = useUserStore().token.access_token;
+    if (token != null || token != undefined || token != "") {
+      config.headers["Authorization"] = token;
     }
     config.cancelToken = new axios.CancelToken(function executor(c) {
       clean.push(c);

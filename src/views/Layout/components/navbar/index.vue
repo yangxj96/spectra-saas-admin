@@ -44,6 +44,7 @@ import useSystemStore from "@/plugin/store/modules/useSystemStore";
 import Icons from "@/components/common/Icons.vue";
 import PersonalDetails from "@/components/Props/PersonalDetails/index.vue";
 import ChangePassword from "@/components/Props/ChangePassword/index.vue";
+import UserApi from "@/api/UserApi";
 
 export default defineComponent({
   name: "LayoutNavbar",
@@ -53,13 +54,22 @@ export default defineComponent({
       this.$router.push({ path: "/" });
     },
     handleUserLogout() {
-      this.$message.success({
-        ...MessageDefaultConfig,
-        message: "退出成功",
-        onClose: () => {
-          window.localStorage.clear();
-          window.sessionStorage.clear();
-          location.reload();
+      UserApi.logout().then(res => {
+        if (res.code == 0) {
+          this.$message.success({
+            ...MessageDefaultConfig,
+            message: "退出成功",
+            onClose: () => {
+              window.localStorage.clear();
+              window.sessionStorage.clear();
+              location.reload();
+            }
+          });
+        } else {
+          this.$message.error({
+            ...MessageDefaultConfig,
+            message: res.msg
+          });
         }
       });
     },

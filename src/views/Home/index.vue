@@ -1,7 +1,6 @@
 <template>
   <el-row class="box-content">
     <div v-authority="'_ROLE_SYSADMIN'">有权限</div>
-    <input ref="fs" type="file" />
   </el-row>
 </template>
 

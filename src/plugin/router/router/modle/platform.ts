@@ -7,7 +7,7 @@ import layout from "@/views/Layout/index.vue";
 export default [
   {
     name: "平台配置",
-    path: "/System",
+    path: "/Platform",
     component: layout,
     redirect: "",
     meta: {
@@ -17,7 +17,7 @@ export default [
       {
         path: "",
         name: "平台配置",
-        component: () => import("@/views/System/Config/index.vue"),
+        component: () => import("@/views/Platform/Config/index.vue"),
         meta: {
           title: "平台配置",
           route_group: "Platform"
@@ -26,7 +26,7 @@ export default [
       {
         path: "Service",
         name: "服务管理",
-        component: () => import("@/views/System/Service/index.vue"),
+        component: () => import("@/views/Platform/Service/index.vue"),
         meta: {
           title: "服务管理",
           route_group: "Service"
@@ -35,7 +35,7 @@ export default [
       {
         path: "Module",
         name: "模块管理",
-        component: () => import("@/views/System/Module/index.vue"),
+        component: () => import("@/views/Platform/Module/index.vue"),
         meta: {
           title: "模块管理",
           route_group: "Module"
@@ -44,7 +44,7 @@ export default [
       {
         path: "Menu",
         name: "菜单管理",
-        component: () => import("@/views/System/Menu/index.vue"),
+        component: () => import("@/views/Platform/Menu/index.vue"),
         meta: {
           title: "菜单管理",
           route_group: "Menu"
@@ -53,7 +53,7 @@ export default [
       {
         path: "Dict",
         name: "字典管理",
-        component: () => import("@/views/System/Dict/index.vue"),
+        component: () => import("@/views/Platform/Dict/index.vue"),
         meta: {
           title: "字典管理",
           route_group: "Dict"

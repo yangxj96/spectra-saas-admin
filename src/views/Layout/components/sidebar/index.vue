@@ -10,29 +10,44 @@
         <icons name="icon-setting" class-name="icon-sidebar" />
         <span>平台配置</span>
       </template>
-      <el-menu-item index="Platform" :route="{ path: '/System' }">
+      <el-menu-item index="Platform" :route="{ path: '/Platform' }">
         <icons name="icon-menu" class-name="icon-sidebar" />
         平台配置
       </el-menu-item>
-      <el-menu-item index="Service" :route="{ path: '/System/Service' }">
+      <el-menu-item index="Service" :route="{ path: '/Platform/Service' }">
         <icons name="icon-menu" class-name="icon-sidebar" />
         服务管理
       </el-menu-item>
-      <el-menu-item index="Module" :route="{ path: '/System/Module' }">
+      <el-menu-item index="Module" :route="{ path: '/Platform/Module' }">
         <icons name="icon-menu" class-name="icon-sidebar" />
         模块管理
       </el-menu-item>
-      <el-menu-item index="Menu" :route="{ path: '/System/Menu' }">
+      <el-menu-item index="Menu" :route="{ path: '/Platform/Menu' }">
         <icons name="icon-menu" class-name="icon-sidebar" />
         菜单管理
       </el-menu-item>
-      <el-menu-item index="Dict" :route="{ path: '/System/Dict' }">
+      <el-menu-item index="Dict" :route="{ path: '/Platform/Dict' }">
         <icons name="icon-menu" class-name="icon-sidebar" />
         字典管理
       </el-menu-item>
     </el-sub-menu>
 
     <el-sub-menu index="2" :disabled="itemDisabled">
+      <template #title>
+        <icons name="icon-module" class-name="icon-sidebar" />
+        <span>模块配置</span>
+      </template>
+      <el-menu-item index="Storage" :route="{ path: '/Module/Storage' }">
+        <icons name="icon-menu" class-name="icon-sidebar" />
+        存储模块
+      </el-menu-item>
+      <el-menu-item index="OA" :route="{ path: '/Module/OA' }">
+        <icons name="icon-menu" class-name="icon-sidebar" />
+        OA配置
+      </el-menu-item>
+    </el-sub-menu>
+
+    <el-sub-menu index="3" :disabled="itemDisabled">
       <template #title>
         <icons name="icon-user" class-name="icon-sidebar" />
         <span>用户管理</span>
@@ -51,7 +66,7 @@
       </el-menu-item>
     </el-sub-menu>
 
-    <el-sub-menu index="3" :disabled="itemDisabled">
+    <el-sub-menu index="4" :disabled="itemDisabled">
       <template #title>
         <icons name="icon-flow" class-name="icon-sidebar" />
         <span>流程管理</span>
@@ -62,7 +77,7 @@
       </el-menu-item>
     </el-sub-menu>
 
-    <el-sub-menu index="4" :disabled="itemDisabled">
+    <el-sub-menu index="5" :disabled="itemDisabled">
       <template #title>
         <icons name="icon-project" class-name="icon-sidebar" />
         <span>项目管理</span>

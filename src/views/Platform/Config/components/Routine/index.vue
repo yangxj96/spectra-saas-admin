@@ -58,7 +58,7 @@
 
 <script lang="ts">
 import Table from "@/mixins/Table";
-import Editor from "@/views/System/Config/components/Routine/components/Editor/index.vue";
+import Editor from "@/views/Platform/Config/components/Routine/components/Editor/index.vue";
 import { type SystemConfig } from "@/model/System";
 import { defineComponent } from "vue";
 import Icons from "@/components/common/Icons.vue";
