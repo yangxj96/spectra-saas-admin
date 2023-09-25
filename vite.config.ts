@@ -13,9 +13,6 @@ export default defineConfig(({ mode }) => {
       open: false,
       watch: {
         usePolling: true
-      },
-      proxy: {
-        "/api": "http://192.168.31.6:8080"
       }
     },
     plugins: [vue(), eslint()],

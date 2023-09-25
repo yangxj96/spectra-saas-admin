@@ -1,13 +1,14 @@
 import { defineComponent } from "vue";
+import { Pagination } from "@/model/CommonModel";
 
 export default defineComponent({
   data() {
     const pagination: Pagination = {
-      size: 15,
+      size: 10,
       page: 1,
       page_sizes: [10, 50, 100, 150, 300],
       default_page_size: 10,
-      total: 1000
+      total: 0
     };
     return {
       table_data: [] as any[],
@@ -23,12 +24,3 @@ export default defineComponent({
     }
   }
 });
-
-// 分页参数实体
-export interface Pagination {
-  size: number;
-  page: number;
-  page_sizes: Array<number>;
-  default_page_size: number;
-  total: number;
-}

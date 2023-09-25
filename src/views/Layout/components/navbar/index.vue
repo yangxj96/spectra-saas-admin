@@ -45,6 +45,7 @@ import Icons from "@/components/common/Icons.vue";
 import PersonalDetails from "@/components/Props/PersonalDetails/index.vue";
 import ChangePassword from "@/components/Props/ChangePassword/index.vue";
 import UserApi from "@/api/UserApi";
+import useAppStore from "@/plugin/store/modules/useAppStore";
 
 export default defineComponent({
   name: "LayoutNavbar",
@@ -56,6 +57,9 @@ export default defineComponent({
     handleUserLogout() {
       UserApi.logout().then(res => {
         if (res.code == 0) {
+          if (useAppStore().checkTokenInterval != 0) {
+            clearInterval(useAppStore().checkTokenInterval);
+          }
           this.$message.success({
             ...MessageDefaultConfig,
             message: "退出成功",

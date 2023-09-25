@@ -5,7 +5,8 @@ import { MessageDefaultConfig } from "@/utils/DefaultConfig";
 import useUserStore from "@/plugin/store/modules/useUserStore";
 
 const http = axios.create({
-  baseURL: import.meta.env.MODE == "production" ? import.meta.env.VITE_API_URL : import.meta.env.BASE_URL,
+  // baseURL: import.meta.env.MODE == "production" ? import.meta.env.VITE_API_URL : import.meta.env.BASE_URL,
+  baseURL: import.meta.env.VITE_API_URL,
   timeout: 10 * 1000,
   withCredentials: false,
   headers: {

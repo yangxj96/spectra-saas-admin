@@ -14,9 +14,9 @@
         <icons name="icon-menu" class-name="icon-sidebar" />
         平台配置
       </el-menu-item>
-      <el-menu-item index="Service" :route="{ path: '/Platform/Service' }">
+      <el-menu-item index="Service" :route="{ path: '/Platform/Router' }">
         <icons name="icon-menu" class-name="icon-sidebar" />
-        服务管理
+        路由管理
       </el-menu-item>
       <el-menu-item index="Module" :route="{ path: '/Platform/Module' }">
         <icons name="icon-menu" class-name="icon-sidebar" />

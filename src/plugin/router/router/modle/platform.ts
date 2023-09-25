@@ -24,12 +24,12 @@ export default [
         }
       },
       {
-        path: "Service",
-        name: "服务管理",
-        component: () => import("@/views/Platform/Service/index.vue"),
+        path: "Router",
+        name: "路由管理",
+        component: () => import("@/views/Platform/Router/index.vue"),
         meta: {
-          title: "服务管理",
-          route_group: "Service"
+          title: "路由管理",
+          route_group: "Router"
         }
       },
       {

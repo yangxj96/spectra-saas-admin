@@ -11,36 +11,60 @@ import { defineComponent } from "vue";
 import useAppStore from "@/plugin/store/modules/useAppStore";
 import useUserStore from "@/plugin/store/modules/useUserStore";
 import UserApi from "@/api/UserApi";
+import { MessageDefaultConfig } from "@/utils/DefaultConfig";
 
 export default defineComponent({
   name: "app",
   data() {
     return {
       locale: useAppStore().lang,
-      message: { max: 500 },
-      checkToken: 0 as any
+      message: { max: 3 }
     };
   },
   mounted() {
     useUserStore().$subscribe((mutation, state) => {
       if (state.token.access_token != undefined) {
-        this.checkToken = setInterval(async () => {
+        useAppStore().checkTokenInterval = setInterval(async () => {
           // 检查token是否有效
           await UserApi.check().catch(async () => {
             // 刷新token
-            await UserApi.refresh().then(res => {
-              if (res.code === 0) {
-                useUserStore().token = res.data;
-              }
-            });
+            await UserApi.refresh()
+              .then(res => {
+                if (res.code === 0) {
+                  if (res.data) {
+                    this.$message.success({
+                      ...MessageDefaultConfig,
+                      message: "获取token失败",
+                      onClose: () => {
+                        window.localStorage.clear();
+                        window.sessionStorage.clear();
+                        location.reload();
+                      }
+                    });
+                  } else {
+                    useUserStore().token = res.data;
+                  }
+                }
+              })
+              .catch(async () => {
+                this.$message.error({
+                  ...MessageDefaultConfig,
+                  message: "获取token失败",
+                  onClose: () => {
+                    window.localStorage.clear();
+                    window.sessionStorage.clear();
+                    location.reload();
+                  }
+                });
+              });
           });
         }, 5000);
       }
     });
   },
   unmounted() {
-    if (this.checkToken != 0) {
-      clearInterval(this.checkToken);
+    if (useAppStore().checkTokenInterval != 0) {
+      clearInterval(useAppStore().checkTokenInterval);
     }
   }
 });
