@@ -37,9 +37,7 @@
 import table from "@/mixins/Table";
 import { defineComponent } from "vue";
 import RouteApi from "@/api/RouteApi";
-import { Route } from "@/model/Platform";
-import { Page } from "@/model/CommonModel";
-import { IResult } from "@/plugin/request";
+import { IResult, Page, Route } from "@/types";
 
 export default defineComponent({
   name: "SystemRoute",

@@ -1,5 +1,5 @@
 import { defineComponent } from "vue";
-import { Pagination } from "@/model/CommonModel";
+import { Pagination } from "@/types";
 
 export default defineComponent({
   data() {

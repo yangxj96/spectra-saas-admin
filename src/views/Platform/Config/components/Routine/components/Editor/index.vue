@@ -37,9 +37,9 @@
 
 <script lang="ts">
 import { type FormInstance, type FormRules } from "element-plus";
-import { type SystemConfig } from "@/model/System";
 import { defineComponent } from "vue";
 import { MessageDefaultConfig } from "@/utils/DefaultConfig";
+import { SystemConfig } from "@/types";
 
 export default defineComponent({
   name: "SystemConfigRoutineEditor",

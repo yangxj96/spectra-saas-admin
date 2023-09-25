@@ -1,7 +1,6 @@
-import http, { type IResult } from "@/plugin/request";
+import http from "@/plugin/request";
 import { AxiosResponse } from "axios";
-import { Page } from "@/model/CommonModel";
-import { Route } from "@/model/Platform";
+import { IResult, Page, Route } from "@/types";
 
 export default {
   query(num: number = 1, size: number = 10) {

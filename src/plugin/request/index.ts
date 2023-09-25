@@ -3,6 +3,7 @@ import { hideLoading, showLoading } from "@/plugin/element/loading";
 import { ElMessage } from "element-plus/es";
 import { MessageDefaultConfig } from "@/utils/DefaultConfig";
 import useUserStore from "@/plugin/store/modules/useUserStore";
+import { IResult } from "@/types";
 
 const http = axios.create({
   // baseURL: import.meta.env.MODE == "production" ? import.meta.env.VITE_API_URL : import.meta.env.BASE_URL,
@@ -13,12 +14,6 @@ const http = axios.create({
     "Content-Type": "application/json"
   }
 });
-
-export interface IResult<T = any> {
-  code: number;
-  msg: string;
-  data: T;
-}
 
 export const clean: Canceler[] = [];
 

@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { type Token } from "@/model/User";
+import { Token } from "@/types";
 
 export interface UserState {
   token: Token;

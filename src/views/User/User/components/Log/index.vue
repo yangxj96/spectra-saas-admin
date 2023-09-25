@@ -46,9 +46,9 @@
 
 <script lang="ts">
 import Table from "@/mixins/Table";
-import { type UserList, type UserOperateLog } from "@/model/User";
 import { defineComponent } from "vue";
 import CommonUtils from "@/utils/CommonUtils";
+import { UserList, UserOperateLog } from "@/types";
 
 export default defineComponent({
   name: "UserLog",

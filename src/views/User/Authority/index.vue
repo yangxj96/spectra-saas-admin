@@ -38,9 +38,9 @@
 </template>
 
 <script lang="ts">
-import { type RoleTree } from "@/model/Role";
 import { defineComponent } from "vue";
 import Icons from "@/components/common/Icons.vue";
+import { RoleTree } from "@/types";
 
 export default defineComponent({
   name: "UserAuthority",
