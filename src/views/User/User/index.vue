@@ -91,9 +91,9 @@
 <script lang="ts">
 import Table from "@/mixins/Table";
 import Log from "./components/Log/index.vue";
-import { type UserList } from "@/model/User";
 import { defineComponent } from "vue";
 import Icons from "@/components/common/Icons.vue";
+import { UserList } from "@/types";
 
 export default defineComponent({
   name: "User",
