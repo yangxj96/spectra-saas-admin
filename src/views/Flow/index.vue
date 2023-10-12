@@ -40,10 +40,30 @@
             <el-tag size="small" :type="handleTagTypeTransition(datum.row.status)">{{ datum.row.status_name }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column label="执行次数" prop="execute_count" width="100" align="center" :show-overflow-tooltip="true" />
-        <el-table-column label="完成次数" prop="finish_count" width="100" align="center" :show-overflow-tooltip="true" />
-        <el-table-column label="创建人员" prop="created_name" width="100" align="center" :show-overflow-tooltip="true" />
-        <el-table-column label="创建时间" prop="created_datetime" width="180" align="center" :show-overflow-tooltip="true" />
+        <el-table-column
+          label="执行次数"
+          prop="execute_count"
+          width="100"
+          align="center"
+          :show-overflow-tooltip="true" />
+        <el-table-column
+          label="完成次数"
+          prop="finish_count"
+          width="100"
+          align="center"
+          :show-overflow-tooltip="true" />
+        <el-table-column
+          label="创建人员"
+          prop="created_name"
+          width="100"
+          align="center"
+          :show-overflow-tooltip="true" />
+        <el-table-column
+          label="创建时间"
+          prop="created_datetime"
+          width="180"
+          align="center"
+          :show-overflow-tooltip="true" />
         <el-table-column label="操作" width="210" align="center">
           <template #default="datum">
             <el-button link type="primary" @click="handleShowDetails()">
@@ -81,7 +101,14 @@
     </el-row>
 
     <!-- XML预览弹框 -->
-    <el-dialog v-model="dialog.preview" :destroy-on-close="true" :append-to-body="false" :close-on-click-modal="false" :close-on-press-escape="false" :show-close="false" width="50%">
+    <el-dialog
+      v-model="dialog.preview"
+      :destroy-on-close="true"
+      :append-to-body="false"
+      :close-on-click-modal="false"
+      :close-on-press-escape="false"
+      :show-close="false"
+      width="50%">
       <template #header>
         <span>
           <icons name="icon-code" />

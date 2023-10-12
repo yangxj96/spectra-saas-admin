@@ -65,11 +65,15 @@ export default class AesUtil {
       array[i] = atob.charCodeAt(i + key.length + iv.length);
     }
 
-    const decrypt = CryptoJS.AES.decrypt(this.uint8ArrayToBase64(array), CryptoJS.enc.Base64.parse(this.uint8ArrayToBase64(key)), {
-      iv: CryptoJS.enc.Base64.parse(this.uint8ArrayToBase64(iv)),
-      mode: CryptoJS.mode.CBC,
-      padding: CryptoJS.pad.Pkcs7
-    });
+    const decrypt = CryptoJS.AES.decrypt(
+      this.uint8ArrayToBase64(array),
+      CryptoJS.enc.Base64.parse(this.uint8ArrayToBase64(key)),
+      {
+        iv: CryptoJS.enc.Base64.parse(this.uint8ArrayToBase64(iv)),
+        mode: CryptoJS.mode.CBC,
+        padding: CryptoJS.pad.Pkcs7
+      }
+    );
     return decrypt.toString(CryptoJS.enc.Utf8);
   }
 

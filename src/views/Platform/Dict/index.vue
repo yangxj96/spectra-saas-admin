@@ -29,7 +29,11 @@
     <el-row class="box-content">
       <!-- 字典组树 -->
       <el-col :span="4" class="tree">
-        <el-tree ref="group_tree" :data="tree_data" :props="{ children: 'children', label: 'name' }" @node-click="onDictGroupClick" />
+        <el-tree
+          ref="group_tree"
+          :data="tree_data"
+          :props="{ children: 'children', label: 'name' }"
+          @node-click="onDictGroupClick" />
       </el-col>
       <!-- 字典项表格 -->
       <el-col :span="20">

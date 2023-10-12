@@ -1,6 +1,12 @@
 <template>
   <div class="box">
-    <el-dialog :model-value="true" :close-on-click-modal="false" :close-on-press-escape="false" :show-close="false" class="dialog-login" width="20%">
+    <el-dialog
+      :model-value="true"
+      :close-on-click-modal="false"
+      :close-on-press-escape="false"
+      :show-close="false"
+      class="dialog-login"
+      width="20%">
       <template #header>
         <p>
           <icons name="icon-login" style="color: #9b9b9b" />

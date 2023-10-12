@@ -1,5 +1,13 @@
 <template>
-  <el-dialog v-model="show" :modal="false" :append-to-body="true" :show-close="false" :destroy-on-close="true" :close-on-click-modal="false" :close-on-press-escape="false" draggable>
+  <el-dialog
+    v-model="show"
+    :modal="false"
+    :append-to-body="true"
+    :show-close="false"
+    :destroy-on-close="true"
+    :close-on-click-modal="false"
+    :close-on-press-escape="false"
+    draggable>
     <!-- 头部 -->
     <template v-slot:header>
       <el-row>

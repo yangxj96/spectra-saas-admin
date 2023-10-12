@@ -72,6 +72,26 @@ export interface RoleTree extends Role {
   children?: Role[];
 }
 
+/**
+ * 权限类
+ */
+export type Authority = {
+  // ID
+  id: string | null;
+  // PID
+  pid?: string;
+  // 角色名称
+  name: string;
+  // 角色代码
+  code: string;
+  // 角色说明
+  description?: string;
+};
+
+export interface AuthorityTree extends Authority {
+  children?: Authority[];
+}
+
 // --------------- system
 
 /** 系统配置实体 */

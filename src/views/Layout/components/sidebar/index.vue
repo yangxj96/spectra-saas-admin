@@ -1,5 +1,12 @@
 <template>
-  <el-menu class="box-menu" :router="true" :default-active="$route.meta.route_group" :collapse="!unfold" :collapse-transition="true" :unique-opened="true" @select="onMenuItemClick">
+  <el-menu
+    class="box-menu"
+    :router="true"
+    :default-active="$route.meta.route_group"
+    :collapse="!unfold"
+    :collapse-transition="true"
+    :unique-opened="true"
+    @select="onMenuItemClick">
     <el-menu-item index="Home" :route="{ path: '/' }" :disabled="itemDisabled">
       <icons name="icon-home" class-name="icon-sidebar" />
       <template #title>首页</template>
