@@ -55,10 +55,14 @@ export type Route = {
 export type Role = {
   // ID
   id: string | null;
+  // PID
+  pid?: string;
   // 角色名称
   name: string;
+  // 角色代码
+  code: string;
   // 角色说明
-  description: string;
+  description?: string;
 };
 
 /**

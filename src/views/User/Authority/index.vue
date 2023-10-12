@@ -34,72 +34,71 @@
       <!-- 说明 -->
       <el-col :span="10"></el-col>
     </el-row>
+
+    <el-dialog v-model="edit_role.dialog" :destroy-on-close="true" :append-to-body="true" :close-on-click-modal="false" :close-on-press-escape="false" :show-close="false" width="30%">
+      <template #header>
+        <span>
+          <icons name="icon-reset-password" />
+          {{ edit_role.title }}
+        </span>
+      </template>
+      <template #footer>
+        <slot name="footer">
+          <el-button>关闭</el-button>
+          <el-button type="primary">确定</el-button>
+        </slot>
+      </template>
+
+      <el-form :model="edit_role.obj" label-width="80px">
+        <el-form-item label="角色ID">
+          <el-input v-model="edit_role.obj.id" disabled placeholder="自动生成" />
+        </el-form-item>
+        <el-form-item label="上级角色">
+          <el-select v-model="edit_role.obj.pid" placeholder="请选择上级角色" style="width: 100%">
+            <el-option label="Zone one" value="shanghai" />
+            <el-option label="Zone two" value="beijing" />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="角色名称" placeholder="请输入角色名称">
+          <el-input v-model="edit_role.obj.name" />
+        </el-form-item>
+      </el-form>
+    </el-dialog>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import Icons from "@/components/common/Icons.vue";
-import { RoleTree } from "@/types";
+import RoleApi from "@/api/RoleApi";
+import { IResult, Role, RoleTree } from "@/types";
 
 export default defineComponent({
   name: "UserAuthority",
   components: { Icons },
   data() {
-    const authority_data: TreeData[] = [
-      {
-        name: "人员管理",
-        children: [{ name: "新增" }, { name: "修改" }, { name: "删除" }, { name: "查询" }]
-      },
-      {
-        name: "组织机构管理",
-        children: [{ name: "新增" }, { name: "修改" }, { name: "删除" }, { name: "查询" }]
-      },
-      {
-        name: "菜单管理",
-        children: [{ name: "新增" }, { name: "修改" }, { name: "删除" }, { name: "查询" }]
-      }
-    ];
     return {
+      edit_role: {
+        dialog: true,
+        title: "新增角色",
+        obj: {} as Role
+      },
       tree_data: [] as RoleTree[],
-      authority_data: authority_data
+      authority_data: []
     };
   },
   created() {
-    this.getRole();
+    this.queryRole();
   },
   methods: {
     // 获取角色列表
-    getRole() {
-      this.tree_data = [
-        {
-          id: "123",
-          name: "运维管理员1",
-          description: "说明",
-          children: [
-            {
-              id: "123",
-              name: "运维管理员4",
-              description: "说明"
-            },
-            {
-              id: "123",
-              name: "运维管理员5",
-              description: "说明"
-            }
-          ]
-        },
-        {
-          id: "123",
-          name: "运维管理员2",
-          description: "说明"
-        },
-        {
-          id: "123",
-          name: "运维管理员3",
-          description: "说明"
+    queryRole() {
+      RoleApi.tree().then((res: IResult<RoleTree[]>) => {
+        console.log(res);
+        if (res.code == 0 && res.data) {
+          this.tree_data = res.data;
         }
-      ];
+      });
     },
     // 处理角色新增
     handleCreateRole() {
@@ -114,12 +113,6 @@ export default defineComponent({
     }
   }
 });
-
-// 树结构
-interface TreeData {
-  name: string;
-  children?: TreeData[];
-}
 </script>
 
 <style scoped lang="scss">
