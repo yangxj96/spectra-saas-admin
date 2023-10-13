@@ -34,6 +34,11 @@ export default {
         return response.data;
       });
   },
+  ownerAuthority(id: string) {
+    return http.get(`/api/auth/role/ownerAuthority/${id}`).then((response: AxiosResponse<IResult>) => {
+      return response.data;
+    });
+  },
   tree() {
     return http.get("/api/auth/role/tree").then((response: AxiosResponse<IResult<RoleTree[]>>) => {
       return response.data;
