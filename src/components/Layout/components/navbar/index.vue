@@ -1,7 +1,7 @@
 <template>
   <el-row>
     <el-col :span="3">
-      <img src="/assets/logo-across.png" class="goto-home" @click="gotoHome" alt="logo" style="height: 56px" />
+      <img src="/src/assets/logo-across.png" class="goto-home" @click="gotoHome" alt="logo" style="height: 56px" />
     </el-col>
 
     <el-col :span="20" style="padding-right: 40px">
@@ -12,7 +12,11 @@
 
     <el-col :span="1">
       <el-dropdown>
-        <el-avatar src="/assets/images/default-avatar.jpg" />
+        <img
+          src="/src/assets/images/default-avatar.jpg"
+          alt="default avatar"
+          style="object-fit: cover"
+          class="el-avatar el-avatar--circle el-tooltip__trigger" />
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item @click="handlePersonalPopup">
@@ -99,21 +103,10 @@ export default defineComponent({
   border: 0;
 }
 
-:deep(.el-avatar--large) {
-  --el-avatar-size: 2.8vw;
-}
-
 :deep(.el-dropdown) {
   width: 100%;
-  height: 100%;
+  top: 20%;
   text-align: center;
-
-  span {
-    position: absolute;
-    top: 50%;
-    //left: 50%;
-    transform: translate(-50%, -50%);
-  }
 }
 
 .icon-navbar {

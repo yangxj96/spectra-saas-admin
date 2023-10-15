@@ -50,8 +50,8 @@
 </template>
 
 <script lang="ts">
-import Navbar from "@/views/Layout/components/navbar/index.vue";
-import Sidebar from "@/views/Layout/components/sidebar/index.vue";
+import Navbar from "@/components/Layout/components/navbar/index.vue";
+import Sidebar from "@/components/Layout/components/sidebar/index.vue";
 import { type RouteLocationMatched } from "vue-router";
 import { defineComponent } from "vue";
 import useSystemStore from "@/plugin/store/modules/useSystemStore";

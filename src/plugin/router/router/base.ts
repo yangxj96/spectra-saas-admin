@@ -1,5 +1,5 @@
 import { type RouteRecordRaw } from "vue-router";
-import layout from "@/views/Layout/index.vue";
+import layout from "@/components/Layout/index.vue";
 
 /**
  * 通用的路由,所有人都有的
@@ -10,9 +10,7 @@ export default [
     name: "登录",
     component: () => import("@/views/Login/index.vue"),
     meta: {
-      title: "登录",
-      authority: [],
-      route_group: "Login"
+      title: "登录"
     }
   },
   {
@@ -38,9 +36,6 @@ export default [
     path: "/Error",
     component: layout,
     redirect: "404",
-    meta: {
-      route_group: "Error"
-    },
     children: [
       {
         path: "404",

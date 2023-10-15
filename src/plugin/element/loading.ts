@@ -14,12 +14,10 @@ import { ElLoading } from "element-plus";
 let count: number = 0;
 
 // loading对象
-// let loading: ILoadingInstance;
 let loading: any;
 
 function open(): void {
   const els = document.getElementsByClassName("loading-box") as HTMLCollectionOf<HTMLElement>;
-  // target: <HTMLElement>document.querySelector('.loading-box'),
   loading = ElLoading.service({
     target: els[els.length - 1],
     lock: true,

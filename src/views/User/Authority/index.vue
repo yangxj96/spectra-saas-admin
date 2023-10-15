@@ -78,7 +78,7 @@
           <el-button
             @click="
               () => {
-                this.edit_authority.dialog = false;
+                edit_authority.dialog = false;
               }
             ">
             关闭
@@ -135,7 +135,7 @@
           <el-button
             @click="
               () => {
-                this.edit_role.dialog = false;
+                edit_role.dialog = false;
               }
             ">
             关闭

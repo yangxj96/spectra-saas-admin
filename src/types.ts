@@ -108,6 +108,11 @@ export type SystemConfig = {
   }[];
 };
 
+/** 菜单对象 **/
+export type Menu = {
+  icon: string;
+};
+
 /** 系统字典 */
 export type SystemDictGroup = {
   id: number;

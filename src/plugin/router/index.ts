@@ -1,14 +1,15 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import { ElLoading } from "element-plus";
 import base from "@/plugin/router/router/base";
 import platform from "@/plugin/router/router/modle/platform";
 import flow from "@/plugin/router/router/modle/flow";
 import useUserStore from "@/plugin/store/modules/useUserStore";
 import useSystemStore from "@/plugin/store/modules/useSystemStore";
+import { showLoading, hideLoading } from "@/plugin/element/loading";
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes: [...base, ...platform, ...flow],
+  //routes: [...base, ...platform, ...flow],
+  routes: loadMenus(),
   scrollBehavior() {
     return {
       top: 0
@@ -16,9 +17,9 @@ const router = createRouter({
   }
 });
 
-let loading: {
-  close: () => void;
-};
+function loadMenus() {
+  return [...base, ...platform, ...flow];
+}
 
 // 路由前置守卫
 router.beforeEach(async (to, from, next) => {
@@ -30,14 +31,11 @@ router.beforeEach(async (to, from, next) => {
       path: "/Login"
     });
   } else {
-    loading = ElLoading.service({
-      target: ".loading-box",
-      text: "页面加载中",
-      background: "rgba(0,0,0,.6)"
-    });
+    showLoading();
     useSystemStore().item_disabled = true;
     if (to.matched.length <= 0) {
-      loading.close();
+      // loading.close();
+      hideLoading();
       next({
         path: "/Error/404"
       });
@@ -56,9 +54,7 @@ router.afterEach(to => {
     document.title = String(to.meta.title);
   }
   useSystemStore().item_disabled = false;
-  if (loading) {
-    loading.close();
-  }
+  hideLoading();
   console.debug("[路由守卫 - 后置] - 解析守卫结束");
 });
 

@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import { Menu } from "@/types";
 
 const useSystemStore = defineStore("system", {
   state: () => ({
@@ -7,7 +8,9 @@ const useSystemStore = defineStore("system", {
     // 是否禁用菜单项
     item_disabled: false,
     // 是否显示IM
-    IM: false
+    IM: false,
+    // 菜单项
+    menus: [] as Menu[]
   }),
   persist: true
 });

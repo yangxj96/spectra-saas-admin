@@ -1,6 +1,10 @@
 <template>
   <el-row align="top" class="box-item">
-    <el-avatar class="box-avatar" src="/assets/images/default-avatar.jpg" />
+    <img
+      src="/src/assets/images/default-avatar.jpg"
+      alt="default avatar"
+      style="object-fit: cover; margin-left: 80px; margin-bottom: 10px"
+      class="box-avatar el-avatar el-avatar--circle el-tooltip__trigger" />
 
     <el-card class="box-msg" shadow="always">
       {{ msg }}

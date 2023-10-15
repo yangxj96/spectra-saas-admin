@@ -1,5 +1,5 @@
 import { type RouteRecordRaw } from "vue-router";
-import layout from "@/views/Layout/index.vue";
+import layout from "@/components/Layout/index.vue";
 
 /**
  * 平台用户才能有的

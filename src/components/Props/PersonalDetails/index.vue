@@ -16,7 +16,11 @@
 
     <el-row style="width: 100%; height: 100%">
       <el-col :span="20" :push="2">
-        <el-avatar style="margin-left: 100px; margin-bottom: 10px" src="/src/assets/images/default-avatar.jpg" />
+        <img
+          src="/src/assets/images/default-avatar.jpg"
+          alt="default avatar"
+          style="object-fit: cover; margin-left: 80px; margin-bottom: 10px"
+          class="el-avatar el-avatar--circle el-tooltip__trigger" />
         <el-form label-width="80px">
           <el-form-item label="用户名">
             <el-input value="我是用户名" :disabled="true" placeholder="请输入用户名" />
