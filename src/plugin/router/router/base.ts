@@ -8,7 +8,7 @@ export default [
   {
     path: "/Login",
     name: "登录",
-    component: () => import("@/views/Login/index.vue"),
+    component: () => import("@/components/Login/index.vue"),
     meta: {
       title: "登录"
     }
@@ -21,7 +21,7 @@ export default [
       {
         path: "",
         name: "首页",
-        component: () => import("@/views/Home/index.vue"),
+        component: () => import("@/components/Home/index.vue"),
         meta: {
           title: "首页",
           menu: true,
@@ -40,7 +40,7 @@ export default [
       {
         path: "404",
         name: "未匹配到页面",
-        component: () => import("@/views/Error/404/index.vue"),
+        component: () => import("@/components/Error/404/index.vue"),
         meta: {
           title: "未匹配到页面"
         }
@@ -48,7 +48,7 @@ export default [
       {
         path: "401",
         name: "无权访问",
-        component: () => import("@/views/Error/401/index.vue"),
+        component: () => import("@/components/Error/401/index.vue"),
         meta: {
           title: "无权访问"
         }

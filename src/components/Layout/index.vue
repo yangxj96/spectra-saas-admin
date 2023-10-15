@@ -53,10 +53,11 @@
 import Navbar from "@/components/Layout/components/navbar/index.vue";
 import Sidebar from "@/components/Layout/components/sidebar/index.vue";
 import { type RouteLocationMatched } from "vue-router";
-import { defineComponent } from "vue";
+import { defineComponent, watch } from "vue";
 import useSystemStore from "@/plugin/store/modules/useSystemStore";
 import Icons from "@/components/common/Icons.vue";
 import IM from "@/components/IM/index.vue";
+import router from "@/plugin/router";
 
 export default defineComponent({
   name: "Layout",
@@ -75,6 +76,14 @@ export default defineComponent({
   },
   created() {
     this.handlerRouter();
+    // 监听当前路由
+    watch(
+      () => router.currentRoute.value.matched,
+      value => {
+        this.handlerRouter([...value]);
+      },
+      { immediate: true, deep: true }
+    );
   },
   methods: {
     handlerRouter(router: RouteLocationMatched[] = []) {
@@ -88,11 +97,6 @@ export default defineComponent({
     },
     chooseSidebarUnfold() {
       this.systemStore.sidebar_unfold = !this.systemStore.sidebar_unfold;
-    }
-  },
-  watch: {
-    "$router.currentRoute.value.matched"(val) {
-      this.handlerRouter([...val]);
     }
   }
 });

@@ -110,8 +110,15 @@ export type SystemConfig = {
 
 /** 菜单对象 **/
 export type Menu = {
+  index: string;
   icon: string;
+  name: string;
+  path?: string;
 };
+
+export interface MenuTree extends Menu {
+  children?: Menu[];
+}
 
 /** 系统字典 */
 export type SystemDictGroup = {
