@@ -27,25 +27,58 @@
       <!-- 内容 -->
       <el-row>
         <el-col :span="4" style="max-height: 45vh">
-          <el-menu style="height: 100%" default-active="u1">
+          <el-menu style="height: 100%; margin-right: 10px" default-active="u1">
             <el-menu-item index="u1">
-              <el-avatar :size="20" :src="getAssets('../assets/images/default-avatar.jpg')" />
+              <img
+                src="/src/assets/images/default-avatar.jpg"
+                alt="default avatar"
+                style="object-fit: cover; width: 20px; height: 20px; margin-right: 5px"
+                class="el-avatar el-avatar--circle" />
               用户1
+            </el-menu-item>
+            <el-menu-item index="u2">
+              <img
+                src="/src/assets/images/default-avatar.jpg"
+                alt="default avatar"
+                style="object-fit: cover; width: 20px; height: 20px; margin-right: 5px"
+                class="el-avatar el-avatar--circle" />
+              用户2
+            </el-menu-item>
+            <el-menu-item index="u3">
+              <img
+                src="/src/assets/images/default-avatar.jpg"
+                alt="default avatar"
+                style="object-fit: cover; width: 20px; height: 20px; margin-right: 5px"
+                class="el-avatar el-avatar--circle" />
+              用户3
+            </el-menu-item>
+            <el-menu-item index="u4">
+              <img
+                src="/src/assets/images/default-avatar.jpg"
+                alt="default avatar"
+                style="object-fit: cover; width: 20px; height: 20px; margin-right: 5px"
+                class="el-avatar el-avatar--circle" />
+              用户4
             </el-menu-item>
           </el-menu>
         </el-col>
 
         <el-col :span="20" style="max-height: 45vh">
-          <el-row style="height: 80%">
-            <el-scrollbar style="padding: 1.3em">
-              <ImMessageItemYou />
-              <ImMessageItemMe />
-              <ImMessageItemYou />
-              <ImMessageItemMe />
+          <el-row style="height: 80%; width: 100%">
+            <el-scrollbar ref="scrollbar" :always="true" style="width: 100%">
+              <MessageItem :is_me="true" />
+              <MessageItem :is_me="false" />
+              <MessageItem :is_me="true" />
+              <MessageItem :is_me="true" />
+              <MessageItem :is_me="false" />
+              <MessageItem :is_me="false" />
+              <MessageItem :is_me="true" />
+              <MessageItem :is_me="false" />
+              <MessageItem :is_me="true" />
             </el-scrollbar>
           </el-row>
 
-          <el-row style="height: 5%; margin: 0.5em">
+          <el-row style="height: 5%; margin: 0.5em 0.5em 1em">
             <el-button link>
               <icons name="icon-IM" style="width: 1.3em; height: 1.3em" />
             </el-button>
@@ -79,16 +112,14 @@
 </template>
 
 <script lang="ts">
-import { getAssets } from "@/utils/CommonUtils";
 import { defineComponent } from "vue";
 import useSystemStore from "@/plugin/store/modules/useSystemStore";
 import Icons from "@/components/common/Icons.vue";
-import ImMessageItemYou from "@/components/IM/components/ImMessageItemYou.vue";
-import ImMessageItemMe from "@/components/IM/components/ImMessageItemMe.vue";
+import MessageItem from "@/components/IM/components/MessageItem.vue";
 
 export default defineComponent({
   name: "IM",
-  components: { Icons, ImMessageItemYou, ImMessageItemMe },
+  components: { Icons, MessageItem },
   data() {
     return {
       show: useSystemStore().IM,
@@ -96,12 +127,15 @@ export default defineComponent({
     };
   },
   created() {
-    useSystemStore().$subscribe((mutation, state) => {
+    useSystemStore().$subscribe((_mutation, state) => {
       this.show = state.IM;
     });
+    this.$nextTick(() => {
+      (this.$refs.scrollbar as any).setScrollTop(99999);
+    });
   },
+  mounted() {},
   methods: {
-    getAssets,
     handleMinimizeIm() {
       useSystemStore().IM = false;
     }
@@ -127,6 +161,12 @@ export default defineComponent({
 
 :deep(.el-menu) {
   border: none;
+}
+
+:deep(.el-menu-item) {
+  padding: 0 20px;
+  height: 30px;
+  line-height: 30px;
 }
 
 :deep(.el-textarea__inner) {
