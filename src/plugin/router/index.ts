@@ -1,15 +1,15 @@
-import { createRouter, createWebHashHistory } from "vue-router";
-import base from "@/plugin/router/router/base";
-import platform from "@/plugin/router/router/modle/platform";
-import flow from "@/plugin/router/router/modle/flow";
+import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
+import common from "@/plugin/router/router/common";
+// import platform from "@/plugin/router/router/modle/platform";
+// import flow from "@/plugin/router/router/modle/flow";
 import useUserStore from "@/plugin/store/modules/useUserStore";
 import useSystemStore from "@/plugin/store/modules/useSystemStore";
 import { showLoading, hideLoading } from "@/plugin/element/loading";
+import Layout from "@/components/Layout/index.vue";
 
 const router = createRouter({
   history: createWebHashHistory(),
-  //routes: [...base, ...platform, ...flow],
-  routes: loadMenus(),
+  routes: common,
   scrollBehavior() {
     return {
       top: 0
@@ -17,8 +17,32 @@ const router = createRouter({
   }
 });
 
-function loadMenus() {
-  return [...base, ...platform, ...flow];
+/**
+ * 生成路由
+ */
+export function generateRouter() {
+  const modules = import.meta.glob("@/views/**/*.vue");
+  const menus = useSystemStore().menus;
+  for (const menu of menus) {
+    const datum = {
+      name: menu.name,
+      path: menu.default
+    } as RouteRecordRaw;
+    if (menu.children) {
+      datum.component = Layout;
+      datum.redirect = "";
+      datum.children = [];
+      for (let i = 0; i < menu.children.length; i++) {
+        const f1 = menu.children[i];
+        datum.children?.push({
+          path: f1.path!,
+          name: f1.name,
+          component: modules[`/src/views${f1.path}/index.vue`]
+        });
+      }
+    }
+    router.addRoute(datum);
+  }
 }
 
 // 路由前置守卫

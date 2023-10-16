@@ -129,9 +129,11 @@ export default defineComponent({
   created() {
     useSystemStore().$subscribe((_mutation, state) => {
       this.show = state.IM;
-    });
-    this.$nextTick(() => {
-      (this.$refs.scrollbar as any).setScrollTop(99999);
+      if (this.show) {
+        this.$nextTick(() => {
+          (this.$refs.scrollbar as any).setScrollTop(99999);
+        });
+      }
     });
   },
   mounted() {},

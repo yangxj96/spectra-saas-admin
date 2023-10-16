@@ -18,7 +18,14 @@
               <icons name="icon-search" />
               &nbsp;查询
             </el-button>
-            <el-button type="primary" @click="$router.push({ path: '/User/Tenant/Register' })">
+            <el-button
+              type="primary"
+              @click="
+                () => {
+                  console.log($router.resolve('/User/Tenant/Register'));
+                  $router.push({ path: '/User/Tenant/Register' });
+                }
+              ">
               <icons name="icon-add" />
               &nbsp;注册
             </el-button>

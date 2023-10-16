@@ -7,7 +7,7 @@ import { IResult } from "@/types";
 
 const http = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
-  timeout: 10 * 1000,
+  timeout: 60 * 1000,
   withCredentials: false,
   headers: {
     "Content-Type": "application/json"

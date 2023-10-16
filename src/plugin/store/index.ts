@@ -9,7 +9,7 @@ export function createStore() {
   const pinia = createPinia();
   pinia.use(
     createPersistedState({
-      // storage: sessionStorage
+      storage: sessionStorage
       // beforeRestore: ctx => {
       //     console.debug(`恢复之前执行: ${ctx.store.$id}`, ctx);
       // },

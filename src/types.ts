@@ -113,7 +113,10 @@ export type Menu = {
   index: string;
   icon: string;
   name: string;
+  default?: string;
+  show?: boolean;
   path?: string;
+  component?: string;
 };
 
 export interface MenuTree extends Menu {

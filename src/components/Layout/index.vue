@@ -80,6 +80,7 @@ export default defineComponent({
     watch(
       () => router.currentRoute.value.matched,
       value => {
+        console.log(`当前路由:`, value);
         this.handlerRouter([...value]);
       },
       { immediate: true, deep: true }

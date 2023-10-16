@@ -6,9 +6,13 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { generateRouter } from "@/plugin/router";
 
 export default defineComponent({
-  name: "Home"
+  name: "Home",
+  mounted() {
+    generateRouter();
+  }
 });
 </script>
 

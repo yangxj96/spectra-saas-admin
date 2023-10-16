@@ -15,36 +15,42 @@ const useSystemStore = defineStore("system", {
         index: "1",
         icon: "icon-setting",
         name: "平台配置",
+        default: "/Platform/Config",
         children: [
           {
-            index: "Platform",
+            index: "Config",
             icon: "icon-menu",
             name: "平台配置",
-            path: "/Platform"
+            path: "/Platform/Config",
+            show: true
           },
           {
             index: "Router",
             icon: "icon-menu",
             name: "路由管理",
-            path: "/Platform/Router"
+            path: "/Platform/Router",
+            show: true
           },
           {
             index: "Module",
             icon: "icon-menu",
             name: "模块管理",
-            path: "/Platform/Module"
+            path: "/Platform/Module",
+            show: true
           },
           {
             index: "Menu",
             icon: "icon-menu",
             name: "菜单管理",
-            path: "/Platform/Menu"
+            path: "/Platform/Menu",
+            show: true
           },
           {
             index: "Dict",
             icon: "icon-menu",
             name: "字典管理",
-            path: "/Platform/Dict"
+            path: "/Platform/Dict",
+            show: true
           }
         ]
       },
@@ -52,24 +58,28 @@ const useSystemStore = defineStore("system", {
         index: "2",
         icon: "icon-module",
         name: "用户管理",
+        default: "/User/User",
         children: [
           {
             index: "User",
             icon: "icon-menu",
             name: "用户管理",
-            path: "/User"
+            path: "/User/User",
+            show: true
           },
           {
             index: "Tenant",
             icon: "icon-menu",
             name: "租户管理",
-            path: "/User/Tenant"
+            path: "/User/Tenant",
+            show: true
           },
           {
             index: "Authority",
             icon: "icon-menu",
             name: "权限管理",
-            path: "/User/Authority"
+            path: "/User/Authority",
+            show: true
           }
         ]
       },
@@ -77,12 +87,36 @@ const useSystemStore = defineStore("system", {
         index: "3",
         icon: "icon-flow",
         name: "流程管理",
+        default: "/Flow/List",
         children: [
           {
             index: "Flow",
             icon: "icon-menu",
             name: "流程列表",
-            path: "/Flow"
+            path: "/Flow/List",
+            show: true
+          },
+          {
+            index: "FlowCreated",
+            icon: "icon-menu",
+            name: "流程新增",
+            path: "/Flow/Created",
+            show: false
+          }
+        ]
+      },
+      {
+        index: "999",
+        icon: "icon-flow",
+        name: "示例页面",
+        default: "/Demo/Form",
+        children: [
+          {
+            index: "Demo",
+            icon: "icon-menu",
+            name: "表单",
+            path: "/Demo/Form",
+            show: true
           }
         ]
       }
