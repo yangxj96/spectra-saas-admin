@@ -9,7 +9,7 @@
         class="el-avatar el-avatar--square" />
     </el-col>
     <el-col :span="20" style="padding-right: 10px; padding-left: 10px">
-      <el-card class="box-msg" :style="is_me ? 'float: right' : 'float: left'">
+      <el-card :class="is_me ? 'box-msg box-me' : 'box-msg'" :style="is_me ? 'float: right' : 'float: left'">
         {{ msg }}
       </el-card>
     </el-col>
