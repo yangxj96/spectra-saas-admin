@@ -1,5 +1,5 @@
 {
-  "name": "yangxj96-saas-visual",
+  "name": "yangxj96-saas-admin",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -21,10 +21,10 @@
     "pinia": "^2.1.6",
     "pinia-plugin-persistedstate": "^3.2.0",
     "sass": "^1.68.0",
+    "vite": "^4.3.3",
     "vkbeautify": "^0.99.3",
     "vue": "^3.2.25",
-    "vue-router": "^4.2.4",
-    "vite": "^4.3.3"
+    "vue-router": "^4.2.4"
   },
   "devDependencies": {
     "@types/crypto-js": "^4.1.2",
@@ -34,7 +34,7 @@
     "@typescript-eslint/parser": "^6.7.2",
     "@vitejs/plugin-vue": "^4.3.4",
     "@vue/language-core": "^1.8.13",
-    "@vue/typescript": "^1.8.13",
+    "@vue/typescript": "^1.8.19",
     "eslint": "^8.49.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
