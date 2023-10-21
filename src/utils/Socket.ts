@@ -48,7 +48,6 @@ export default class Socket {
     this.url = url;
     // 如果有配置则合并配置
     if (options) {
-      // Object.assign(this.options, options);
       (<any>Object).assign(this.options, options);
     }
     // 初始化
@@ -100,7 +99,7 @@ export default class Socket {
    * @private
    */
   private onOpen(e: Event): void {
-    console.debug(`${this.LOG_PREFIX} event-open:${e}`);
+    console.debug(`${this.LOG_PREFIX} event-open:`, e);
     // 启动心跳
     console.debug(`${this.LOG_PREFIX} 启动心跳`);
     this.heartCheck();
@@ -112,7 +111,7 @@ export default class Socket {
    * @private
    */
   private onClose(e: CloseEvent): void {
-    console.debug(`${this.LOG_PREFIX} event-close:${e}`);
+    console.debug(`${this.LOG_PREFIX} event-close:`, e);
     console.debug(`${this.LOG_PREFIX} 关闭心跳 `);
     if (this.intervalId != null) {
       clearInterval(this.intervalId);
@@ -125,7 +124,7 @@ export default class Socket {
    * @private
    */
   private onError(e: Event): void {
-    console.debug(`${this.LOG_PREFIX} event-error:${e}`);
+    console.debug(`${this.LOG_PREFIX} event-error:`, e);
     if (this.ws != null) {
       this.ws.close();
     }

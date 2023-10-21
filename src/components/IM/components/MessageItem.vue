@@ -2,7 +2,7 @@
   <el-row align="top" style="width: 100%; padding-bottom: 5px">
     <el-col :span="2">
       <img
-        v-if="!this.is_me"
+        v-if="!is_me"
         src="/src/assets/images/default-avatar.jpg"
         alt="default avatar"
         style="object-fit: cover; float: right"
@@ -15,7 +15,7 @@
     </el-col>
     <el-col :span="2">
       <img
-        v-if="this.is_me"
+        v-if="is_me"
         src="/src/assets/images/default-avatar.jpg"
         alt="default avatar"
         style="object-fit: cover; float: left"

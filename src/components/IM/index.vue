@@ -174,9 +174,6 @@ export default defineComponent({
 :deep(.el-textarea__inner) {
   height: 100%;
   width: 100%;
-}
-
-:deep(.el-textarea__inner) {
   border-radius: 0;
 }
 </style>

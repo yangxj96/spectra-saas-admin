@@ -1,7 +1,5 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 import common from "@/plugin/router/router/common";
-// import platform from "@/plugin/router/router/modle/platform";
-// import flow from "@/plugin/router/router/modle/flow";
 import useUserStore from "@/plugin/store/modules/useUserStore";
 import useSystemStore from "@/plugin/store/modules/useSystemStore";
 import { showLoading, hideLoading } from "@/plugin/element/loading";
@@ -32,8 +30,7 @@ export function generateRouter() {
       datum.component = Layout;
       datum.redirect = "";
       datum.children = [];
-      for (let i = 0; i < menu.children.length; i++) {
-        const f1 = menu.children[i];
+      for (const f1 of menu.children) {
         datum.children?.push({
           path: f1.path!,
           name: f1.name,
@@ -58,7 +55,6 @@ router.beforeEach(async (to, from, next) => {
     showLoading();
     useSystemStore().item_disabled = true;
     if (to.matched.length <= 0) {
-      // loading.close();
       hideLoading();
       next({
         path: "/Error/404"

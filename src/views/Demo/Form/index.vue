@@ -9,5 +9,3 @@ export default defineComponent({
   name: "DemoFormIndex"
 });
 </script>
-
-<style scoped lang="scss"></style>

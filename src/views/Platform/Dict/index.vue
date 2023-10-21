@@ -163,7 +163,6 @@ export default defineComponent({
       let node = el.getCurrentNode();
       console.log(node);
       if (node) {
-        // this.$confirm(`是否新建在${node.name}的下级`);
         this.$confirm(`是否新建在${node.name}的下级`, "", {
           cancelButtonText: "取消",
           confirmButtonText: "确定"

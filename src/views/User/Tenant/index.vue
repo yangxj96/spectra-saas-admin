@@ -147,5 +147,3 @@ interface TableData {
   remaining_time: number;
 }
 </script>
-
-<style scoped></style>

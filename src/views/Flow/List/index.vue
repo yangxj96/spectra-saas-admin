@@ -343,8 +343,6 @@ export default defineComponent({
     // 翻译tag类型
     handleTagTypeTransition(type: number) {
       switch (type) {
-        default:
-          return "";
         case 0:
           return "info";
         case 1:
@@ -353,6 +351,8 @@ export default defineComponent({
           return "success";
         case 3:
           return "danger";
+        default:
+          return "";
       }
     },
     // 格式化XML文本

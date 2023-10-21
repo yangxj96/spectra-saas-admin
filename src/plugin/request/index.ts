@@ -69,6 +69,20 @@ http.interceptors.response.use(
             message: "请求URL错误"
           });
           break;
+        case 502:
+          ElMessage.error({
+            ...MessageDefaultConfig,
+            type: "error",
+            message: "服务器异常"
+          });
+          break;
+        case 503:
+          ElMessage.error({
+            ...MessageDefaultConfig,
+            type: "error",
+            message: "服务器异常2"
+          });
+          break;
         default:
           ElMessage.error({
             ...MessageDefaultConfig,

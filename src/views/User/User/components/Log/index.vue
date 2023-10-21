@@ -40,12 +40,6 @@
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange" />
       </el-row>
-
-      <template #footer>
-        <slot name="footer">
-          <!--          <el-button type="primary">确定</el-button>-->
-        </slot>
-      </template>
     </el-dialog>
   </div>
 </template>
@@ -113,5 +107,3 @@ export default defineComponent({
   }
 });
 </script>
-
-<style scoped></style>

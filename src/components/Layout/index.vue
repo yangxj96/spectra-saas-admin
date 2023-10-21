@@ -25,8 +25,6 @@
             </el-breadcrumb>
           </el-row>
           <div class="box-content loading-box">
-            <!--<router-view/>-->
-
             <router-view v-slot="{ Component }">
               <transition mode="out-in" name="el-zoom-in-top">
                 <component :is="Component" />
@@ -80,7 +78,6 @@ export default defineComponent({
     watch(
       () => router.currentRoute.value.matched,
       value => {
-        console.log(`当前路由:`, value);
         this.handlerRouter([...value]);
       },
       { immediate: true, deep: true }

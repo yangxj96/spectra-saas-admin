@@ -4,10 +4,8 @@ const Focus: ObjectDirective = {
   mounted(el: HTMLElement) {
     if (el.tagName.toLocaleLowerCase() == "input") {
       el.focus();
-    } else {
-      if (el.getElementsByTagName("input")) {
-        el.getElementsByTagName("input")[0].focus();
-      }
+    } else if (el.getElementsByTagName("input")) {
+      el.getElementsByTagName("input")[0].focus();
     }
   }
 };

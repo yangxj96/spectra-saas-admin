@@ -114,7 +114,6 @@ export type Menu = {
   icon: string;
   name: string;
   default?: string;
-  show?: boolean;
   path?: string;
   component?: string;
 };
@@ -128,15 +127,6 @@ export type SystemDictGroup = {
   id: number;
   name: string;
   children?: SystemDictGroup[];
-};
-
-/** 文件存储配置 */
-export type FileSave = {
-  type: number;
-  locale: string;
-  access_id: string;
-  access_secret: string;
-  bucket: string;
 };
 
 // --------------- user

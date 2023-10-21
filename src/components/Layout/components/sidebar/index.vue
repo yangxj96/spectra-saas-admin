@@ -17,12 +17,7 @@
         <icons :name="item.icon" class-name="icon-sidebar" />
         <span>{{ item.name }}</span>
       </template>
-      <el-menu-item
-        v-for="(ch, i) in item.children"
-        v-show="ch.show"
-        :key="i"
-        :index="ch.index"
-        :route="{ path: ch.path }">
+      <el-menu-item v-for="(ch, i) in item.children" :key="i" :index="ch.index" :route="{ path: ch.path }">
         <icons :name="ch.icon" class-name="icon-sidebar" />
         {{ ch.name }}
       </el-menu-item>

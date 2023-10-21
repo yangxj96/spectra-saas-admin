@@ -94,7 +94,7 @@ export default defineComponent({
       });
     },
     formatParams() {
-      this.form.obj = Object.assign({}, this.options.datum);
+      this.form.obj = { ...this.options.datum };
       if (this.form.obj.type === 3) {
         let v = "";
         for (let item of this.form.obj.value) {
@@ -119,5 +119,3 @@ export default defineComponent({
   }
 });
 </script>
-
-<style scoped></style>

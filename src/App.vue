@@ -21,43 +21,42 @@ export default defineComponent({
       message: { max: 3 }
     };
   },
+  methods: {
+    refreshToken() {
+      clearInterval(useAppStore().checkTokenInterval);
+      UserApi.refresh()
+        .then(res => {
+          if (res.code == 0 && res.data) {
+            useUserStore().token = res.data;
+          } else {
+            this.reload();
+          }
+        })
+        .catch(() => this.reload());
+    },
+    reload() {
+      this.$message.success({
+        ...MessageDefaultConfig,
+        message: "获取token失败",
+        onClose: () => {
+          window.localStorage.clear();
+          window.sessionStorage.clear();
+          location.reload();
+        }
+      });
+    }
+  },
   mounted() {
     useUserStore().$subscribe((mutation, state) => {
       if (state.token.access_token != undefined) {
-        useAppStore().checkTokenInterval = setInterval(async () => {
-          // 检查token是否有效
-          await UserApi.check().catch(async () => {
-            // 刷新token
-            await UserApi.refresh()
-              .then(res => {
-                if (res.code === 0) {
-                  if (res.data) {
-                    this.$message.success({
-                      ...MessageDefaultConfig,
-                      message: "获取token失败",
-                      onClose: () => {
-                        window.localStorage.clear();
-                        window.sessionStorage.clear();
-                        location.reload();
-                      }
-                    });
-                  } else {
-                    useUserStore().token = res.data;
-                  }
-                }
-              })
-              .catch(async () => {
-                this.$message.error({
-                  ...MessageDefaultConfig,
-                  message: "获取token失败",
-                  onClose: () => {
-                    window.localStorage.clear();
-                    window.sessionStorage.clear();
-                    location.reload();
-                  }
-                });
-              });
-          });
+        useAppStore().checkTokenInterval = setInterval(() => {
+          UserApi.check()
+            .then(res => {
+              if (res.code != 0) {
+                this.refreshToken();
+              }
+            })
+            .catch(() => this.refreshToken());
         }, 5000);
       }
     });
