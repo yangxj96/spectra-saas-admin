@@ -117,7 +117,7 @@ interface User {
 <style scoped lang="scss">
 .box {
   height: 100vh;
-  background: url("~@/assets/images/background-login.jpg") no-repeat;
+  background: url("@/assets/images/background-login.jpg") no-repeat;
   background-size: 100% 100%;
 }
 

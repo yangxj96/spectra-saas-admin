@@ -18,8 +18,7 @@ export default defineConfig(({ mode }) => {
     plugins: [vue(), eslint()],
     resolve: {
       alias: {
-        "@": fileURLToPath(new URL("./src", import.meta.url)),
-        "~@": fileURLToPath(new URL("./src", import.meta.url))
+        "@": fileURLToPath(new URL("./src", import.meta.url))
       }
     },
     build: {
