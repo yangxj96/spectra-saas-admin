@@ -47,19 +47,19 @@ export default defineComponent({
     }
   },
   mounted() {
-    useUserStore().$subscribe((mutation, state) => {
-      if (state.token.access_token != undefined) {
-        useAppStore().checkTokenInterval = setInterval(() => {
-          UserApi.check()
-            .then(res => {
-              if (res.code != 0) {
-                this.refreshToken();
-              }
-            })
-            .catch(() => this.refreshToken());
-        }, 5000);
-      }
-    });
+    // useUserStore().$subscribe((mutation, state) => {
+    //   if (state.token.access_token != undefined) {
+    //     useAppStore().checkTokenInterval = setInterval(() => {
+    //       UserApi.check()
+    //         .then(res => {
+    //           if (res.code != 0) {
+    //             this.refreshToken();
+    //           }
+    //         })
+    //         .catch(() => this.refreshToken());
+    //     }, 5000);
+    //   }
+    // });
   },
   unmounted() {
     if (useAppStore().checkTokenInterval != 0) {
@@ -70,7 +70,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import "assets/css/common.scss";
+@use "@/assets/css/common.scss";
 
 * {
   padding: 0;
