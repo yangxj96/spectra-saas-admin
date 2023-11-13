@@ -19,7 +19,7 @@
   "dependencies": {
     "@stomp/stompjs": "^7.0.0",
     "axios": "^1.5.0",
-    "crypto-js": "^4.1.1",
+    "crypto-js": "^4.2.0",
     "default-passive-events": "^2.0.0",
     "element-plus": "^2.3.14",
     "highlight.js": "^11.8.0",
