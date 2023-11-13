@@ -106,6 +106,12 @@ const useSystemStore = defineStore("system", {
             icon: "icon-menu",
             name: "表单",
             path: "/Demo/Form"
+          },
+          {
+            index: "Embed",
+            icon: "icon-menu",
+            name: "iframe",
+            path: "/Demo/Embed"
           }
         ]
       }
