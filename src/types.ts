@@ -15,7 +15,7 @@ export type Page<T = any> = {
   optimize_count_sql: boolean;
   orders?: string[];
   pages: number;
-  records?: T[];
+  records: T[];
   search_count: boolean;
   size: number;
   total: number;
@@ -63,6 +63,35 @@ export type Role = {
   code: string;
   // 角色说明
   description?: string;
+};
+
+/**
+ * 角色树
+ */
+export interface RoleTree extends Role {
+  children?: Role[];
+}
+
+/**
+ * 账号实体类
+ */
+export type Account = {
+  // ID
+  id?: string;
+  // 用户名
+  username: string;
+  // 密码
+  password: string;
+  // 账号是否未过期
+  account_non_expired: boolean;
+  // 账号是否未锁定
+  account_non_locked: boolean;
+  // 账号是否启用
+  enabled: boolean;
+  // 密码是否未过期
+  credentials_non_expired: boolean;
+  // 权限列表
+  authorities?: string[];
 };
 
 /**

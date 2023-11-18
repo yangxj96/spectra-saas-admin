@@ -53,13 +53,13 @@ const useSystemStore = defineStore("system", {
         index: "2",
         icon: "icon-module",
         name: "用户管理",
-        default: "/User/User",
+        default: "/User/Account",
         children: [
           {
             index: "User",
             icon: "icon-menu",
-            name: "用户管理",
-            path: "/User/User"
+            name: "账号管理",
+            path: "/User/Account"
           },
           {
             index: "Tenant",

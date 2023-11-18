@@ -63,7 +63,7 @@ export default [
   },
   {
     name: "用户管理",
-    path: "/User",
+    path: "/Account",
     component: layout,
     redirect: "",
     meta: {
@@ -73,7 +73,7 @@ export default [
       {
         path: "",
         name: "用户管理",
-        component: () => import("@/views/User/User/index.vue"),
+        component: () => import("@/views/User/Account/index.vue"),
         meta: {
           title: "用户管理",
           route_group: "User"
@@ -81,7 +81,7 @@ export default [
       },
       {
         name: "租户管理",
-        path: "/User/Tenant",
+        path: "/Account/Tenant",
         redirect: "",
         meta: {
           route_group: "Tenant"

@@ -22,8 +22,8 @@
               type="primary"
               @click="
                 () => {
-                  console.log($router.resolve('/User/Tenant/Register'));
-                  $router.push({ path: '/User/Tenant/Register' });
+                  console.log($router.resolve('/Account/Tenant/Register'));
+                  $router.push({ path: '/Account/Tenant/Register' });
                 }
               ">
               <icons name="icon-add" />
@@ -55,7 +55,7 @@
             <el-button
               link
               type="primary"
-              @click="$router.push({ path: '/User/Tenant/Details', query: { id: datum.row.id } })">
+              @click="$router.push({ path: '/Account/Tenant/Details', query: { id: datum.row.id } })">
               详情
             </el-button>
           </template>
