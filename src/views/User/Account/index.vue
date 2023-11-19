@@ -158,7 +158,7 @@ export default defineComponent({
     },
     handleCurrentChange(val: number) {
       console.log(`minix重写当前页: ${val}`);
-      AccountApi.page(undefined, val, this.pagination.page).then(this.handleGetAccountResponse);
+      AccountApi.page(undefined, val, this.pagination.size).then(this.handleGetAccountResponse);
     },
     showLog(row: any) {
       this.options.log.user = row;

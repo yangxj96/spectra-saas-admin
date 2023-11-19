@@ -62,16 +62,16 @@ const useSystemStore = defineStore("system", {
             path: "/User/Account"
           },
           {
+            index: "Authority",
+            icon: "icon-menu",
+            name: "角色管理",
+            path: "/User/Role"
+          },
+          {
             index: "Tenant",
             icon: "icon-menu",
             name: "租户管理",
             path: "/User/Tenant"
-          },
-          {
-            index: "Authority",
-            icon: "icon-menu",
-            name: "权限管理",
-            path: "/User/Authority"
           }
         ]
       },

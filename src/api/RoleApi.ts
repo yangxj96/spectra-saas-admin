@@ -25,10 +25,10 @@ export default {
       return response.data;
     });
   },
-  query(params?: Role) {
+  page(params?: Role, page_num: number = 1, page_size: number = 10) {
     return http
-      .get("/api/auth/role", {
-        data: params
+      .get("/api/auth/role/page", {
+        params: { page_num, page_size, ...params }
       })
       .then((response: AxiosResponse<IResult<Page<Role>>>) => {
         return response.data;

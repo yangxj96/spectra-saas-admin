@@ -116,7 +116,7 @@ export default [
       {
         path: "Authority",
         name: "权限管理",
-        component: () => import("@/views/User/Authority/index.vue"),
+        component: () => import("@/views/User/Role/index.vue"),
         meta: {
           title: "权限管理",
           route_group: "Authority"
