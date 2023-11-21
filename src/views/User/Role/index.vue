@@ -29,7 +29,7 @@
       <el-table
         ref="content"
         :data="table_data"
-        @row-click="row => (this.current = row)"
+        @row-click="(row: any) => (current = row)"
         stripe
         border
         highlight-current-row
