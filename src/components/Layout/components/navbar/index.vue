@@ -50,6 +50,7 @@ import PersonalDetails from "@/components/Props/PersonalDetails/index.vue";
 import ChangePassword from "@/components/Props/ChangePassword/index.vue";
 import UserApi from "@/api/UserApi";
 import useAppStore from "@/plugin/store/modules/useAppStore";
+import GlobalUtils from "@/utils/GlobalUtils";
 
 export default defineComponent({
   name: "LayoutNavbar",
@@ -68,9 +69,7 @@ export default defineComponent({
             ...MessageDefaultConfig,
             message: "退出成功",
             onClose: () => {
-              window.localStorage.clear();
-              window.sessionStorage.clear();
-              location.reload();
+              GlobalUtils.exit();
             }
           });
         } else {

@@ -6,7 +6,7 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "index",
+  name: "DemoEmbedIndex",
   data() {
     return {
       src: "https://www.yangxj96.com",

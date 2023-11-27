@@ -12,6 +12,7 @@ import useAppStore from "@/plugin/store/modules/useAppStore";
 import useUserStore from "@/plugin/store/modules/useUserStore";
 import UserApi from "@/api/UserApi";
 import { MessageDefaultConfig } from "@/utils/DefaultConfig";
+import GlobalUtils from "@/utils/GlobalUtils";
 
 export default defineComponent({
   name: "app",
@@ -21,7 +22,28 @@ export default defineComponent({
       message: { max: 3 }
     };
   },
+  mounted() {
+    useUserStore().$subscribe((_mutation, state) => {
+      if (state.token.access_token != undefined) {
+        useAppStore().checkTokenInterval = setInterval(this.checkToken, 5000);
+      }
+    });
+  },
+  unmounted() {
+    if (useAppStore().checkTokenInterval != 0) {
+      clearInterval(useAppStore().checkTokenInterval);
+    }
+  },
   methods: {
+    checkToken() {
+      UserApi.check()
+        .then(res => {
+          if (res.code != 0) {
+            this.refreshToken();
+          }
+        })
+        .catch(() => this.refreshToken());
+    },
     refreshToken() {
       clearInterval(useAppStore().checkTokenInterval);
       UserApi.refresh()
@@ -35,35 +57,13 @@ export default defineComponent({
         .catch(() => this.reload());
     },
     reload() {
-      this.$message.success({
+      this.$message.error({
         ...MessageDefaultConfig,
         message: "获取token失败",
         onClose: () => {
-          window.localStorage.clear();
-          window.sessionStorage.clear();
-          location.reload();
+          GlobalUtils.exit();
         }
       });
-    }
-  },
-  mounted() {
-    // useUserStore().$subscribe((mutation, state) => {
-    //   if (state.token.access_token != undefined) {
-    //     useAppStore().checkTokenInterval = setInterval(() => {
-    //       UserApi.check()
-    //         .then(res => {
-    //           if (res.code != 0) {
-    //             this.refreshToken();
-    //           }
-    //         })
-    //         .catch(() => this.refreshToken());
-    //     }, 5000);
-    //   }
-    // });
-  },
-  unmounted() {
-    if (useAppStore().checkTokenInterval != 0) {
-      clearInterval(useAppStore().checkTokenInterval);
     }
   }
 });
