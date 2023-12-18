@@ -21,7 +21,7 @@ export default [
       {
         path: "",
         name: "首页",
-        component: () => import("@/components/Home/index.vue"),
+        component: () => import("@/views/index.vue"),
         meta: {
           title: "首页",
           menu: true,
