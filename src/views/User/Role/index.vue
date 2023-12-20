@@ -27,7 +27,6 @@
     <!-- 表格 -->
     <el-row style="height: calc(100% - 100px)">
       <el-table
-        ref="content"
         :data="table_data"
         @row-click="(row: any) => (current = row)"
         stripe
@@ -62,60 +61,30 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-import Icons from "@/components/common/Icons.vue";
-import Table from "@/mixins/Table";
-import { IResult, Page, Role } from "@/types";
-import { MessageDefaultConfig } from "@/utils/DefaultConfig";
+<script lang="ts" setup>
+import icons from "@/components/common/Icons.vue";
+import { ElMessage, ElTable } from "element-plus/es";
+import { ref } from "vue";
+import { Role } from "@/types";
+import { useTable } from "@/hooks/UseTable";
 import RoleApi from "@/api/RoleApi";
 
-export default defineComponent({
-  name: "UserAuthority",
-  mixins: [Table],
-  components: { Icons },
-  data() {
-    return {
-      current: {} as Role
-    };
-  },
-  created() {
-    this.handleCurrentChange(1);
-  },
-  methods: {
-    handleSearchRole() {
-      console.log(`handleSearchRole`);
-    },
-    handleShowDialog(created: boolean) {
-      console.log(created);
-      if (!created && JSON.stringify(this.current) === "{}") {
-        this.$message.error({
-          ...MessageDefaultConfig,
-          message: "请先选中一个角色"
-        });
-      }
-    },
-    handleSizeChange(val: number) {
-      RoleApi.page(undefined, this.pagination.page, val).then(this.handleGetAccountResponse);
-    },
-    handleCurrentChange(val: number) {
-      RoleApi.page(undefined, val, this.pagination.size).then(this.handleGetAccountResponse);
-    },
-    handleGetAccountResponse(response: IResult<Page<Role>>) {
-      if (response.code != 0) {
-        this.$message.success({
-          ...MessageDefaultConfig,
-          message: response.msg
-        });
-        return;
-      }
-      this.table_data = response.data.records;
-      this.pagination.total = response.data.total;
-      this.pagination.size = response.data.size;
-      this.pagination.page = response.data.current;
-    }
+const current = ref<Role>();
+
+const { table_data, pagination, handleSizeChange, handleCurrentChange } = useTable(RoleApi.page);
+
+function handleSearchRole() {
+  console.log(`handleSearchRole`);
+}
+
+function handleShowDialog(created: boolean) {
+  console.log(current.value);
+  if (!created && JSON.stringify(current.value) === "{}") {
+    ElMessage.error({
+      message: "请先选中一个角色"
+    });
   }
-});
+}
 </script>
 
 <style scoped lang="scss">

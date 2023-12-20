@@ -28,7 +28,7 @@
     </el-row>
     <!-- 表格 -->
     <el-row style="height: calc(100% - 100px)">
-      <el-table :data="table_data" highlight-current-row stripe border height="100%" style="width: 100%">
+      <el-table :data="data" highlight-current-row stripe border height="100%" style="width: 100%">
         <el-table-column label="租户编号" prop="id" width="140" align="center" :show-overflow-tooltip="true" />
         <el-table-column label="公司名称" prop="company_name" align="center" :show-overflow-tooltip="true" />
         <el-table-column label="管理账号" align="center">
@@ -53,12 +53,12 @@
     <!-- 分页 -->
     <el-row style="float: right; height: 50px">
       <el-pagination
-        v-model:currentPage="table.pagination.page"
+        v-model:currentPage="pagination.page"
         hide-on-single-page
         background
-        :page-sizes="table.pagination.page_sizes"
+        :page-sizes="pagination.page_sizes"
         :layout="'sizes,prev, pager, next'"
-        :total="table.pagination.total"
+        :total="pagination.total"
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange" />
     </el-row>
@@ -66,18 +66,20 @@
 </template>
 
 <script lang="ts" setup>
-import { handleCurrentChange, handleSizeChange, useTable } from "@/hooks/UseTable";
-import { onMounted, reactive } from "vue";
+import { useTable } from "@/hooks/UseTable";
+import { onMounted, reactive, ref } from "vue";
 import DateUtils from "@/utils/DateUtils";
 import { ElMessageBox } from "element-plus";
 import Icons from "@/components/common/Icons.vue";
 import { useRouter } from "vue-router";
+import RoleApi from "@/api/RoleApi";
+import { Role } from "@/types";
 
-const table = useTable();
+const { pagination, handleCurrentChange, handleSizeChange } = useTable<Role>(RoleApi.page);
 
 const router = useRouter();
 
-const table_data = reactive<TableData[]>([]);
+const data = ref<TableData[]>([]);
 
 const condition = reactive({
   company_name: "",
@@ -99,8 +101,8 @@ onMounted(() => {
       created_time: DateUtils.formatting(new Date(), "yyyy-MM-dd"),
       expiration_time: DateUtils.formatting(new Date(), "yyyy-MM-dd"),
       remaining_time: Math.round(Math.random() * 10) + i
-    } as TableData;
-    table_data.push(datum);
+    };
+    data.value.push(datum as never);
   }
 });
 
