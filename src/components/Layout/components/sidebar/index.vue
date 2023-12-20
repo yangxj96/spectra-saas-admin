@@ -2,7 +2,7 @@
   <el-menu
     class="box-menu"
     :router="true"
-    :default-active="'Home'"
+    :default-active="route.path"
     :collapse="!unfold"
     :collapse-transition="true"
     :unique-opened="true"
@@ -11,65 +11,89 @@
       <icons name="icon-home" class-name="icon-sidebar" />
       <template #title>首页</template>
     </el-menu-item>
-    <!-- 循环添加菜单 -->
-    <el-sub-menu v-for="(item, idx) in menus" :key="idx" :index="item.index" :disabled="itemDisabled">
+
+    <el-sub-menu index="1" :disabled="itemDisabled">
       <template #title>
-        <icons :name="item.icon" class-name="icon-sidebar" />
-        <span>{{ item.name }}</span>
+        <icons name="icon-setting" class-name="icon-sidebar" />
+        <span>平台配置</span>
       </template>
-      <el-menu-item v-for="(ch, i) in item.children" :key="i" :index="ch.index" :route="{ path: ch.path }">
-        <icons :name="ch.icon" class-name="icon-sidebar" />
-        {{ ch.name }}
+      <el-menu-item index="Platform" :route="{ path: '/Platform' }">
+        <icons name="icon-menu" class-name="icon-sidebar" />
+        平台配置
+      </el-menu-item>
+      <el-menu-item index="Service" :route="{ path: '/Platform/Router' }">
+        <icons name="icon-menu" class-name="icon-sidebar" />
+        路由管理
+      </el-menu-item>
+      <el-menu-item index="Module" :route="{ path: '/Platform/Module' }">
+        <icons name="icon-menu" class-name="icon-sidebar" />
+        模块管理
+      </el-menu-item>
+      <el-menu-item index="Menu" :route="{ path: '/Platform/Menu' }">
+        <icons name="icon-menu" class-name="icon-sidebar" />
+        菜单管理
+      </el-menu-item>
+      <el-menu-item index="Dict" :route="{ path: '/Platform/Dict' }">
+        <icons name="icon-menu" class-name="icon-sidebar" />
+        字典管理
+      </el-menu-item>
+    </el-sub-menu>
+
+    <el-sub-menu index="2" :disabled="itemDisabled">
+      <template #title>
+        <icons name="icon-user" class-name="icon-sidebar" />
+        <span>用户管理</span>
+      </template>
+      <el-menu-item index="User" :route="{ path: '/Account' }">
+        <icons name="icon-menu" class-name="icon-sidebar" />
+        用户管理
+      </el-menu-item>
+      <el-menu-item index="Tenant" :route="{ path: '/Account/Tenant' }">
+        <icons name="icon-menu" class-name="icon-sidebar" />
+        租户管理
+      </el-menu-item>
+      <el-menu-item index="Authority" :route="{ path: '/Account/Authority' }">
+        <icons name="icon-menu" class-name="icon-sidebar" />
+        权限管理
+      </el-menu-item>
+    </el-sub-menu>
+
+    <el-sub-menu index="4" :disabled="itemDisabled">
+      <template #title>
+        <icons name="icon-flow" class-name="icon-sidebar" />
+        <span>流程管理</span>
+      </template>
+      <el-menu-item index="Flow" :route="{ path: '/Flow' }">
+        <icons name="icon-menu" class-name="icon-sidebar" />
+        流程列表
       </el-menu-item>
     </el-sub-menu>
   </el-menu>
 </template>
 
-<script lang="ts">
-import { clean } from "@/plugin/request";
-import { defineComponent } from "vue";
+<script lang="ts" setup>
+import { onMounted, ref } from "vue";
 import useSystemStore from "@/plugin/store/modules/useSystemStore";
+import { clean } from "@/plugin/request";
 import Icons from "@/components/common/Icons.vue";
-import { MenuTree } from "@/types";
+import { useRoute } from "vue-router";
 
-export default defineComponent({
-  name: "LayoutSidebar",
-  components: { Icons },
-  data() {
-    return {
-      unfold: true,
-      itemDisabled: false,
-      menus: [] as MenuTree[]
-    };
-  },
-  mounted() {
-    // 赋值
-    this.unfold = useSystemStore().sidebar_unfold;
-    // 是否禁用
-    this.itemDisabled = useSystemStore().item_disabled;
-    // 菜单
-    this.menus = useSystemStore().menus;
-    // 订阅
-    useSystemStore().$subscribe((mutation, state) => {
-      this.unfold = state.sidebar_unfold;
-      this.itemDisabled = state.item_disabled;
-      this.menus = state.menus;
-    });
-  },
-  methods: {
-    onMenuItemClick() {
-      // 参数 index: string, path: string[], item: MenuItemClicked, router: any
-      // console.log(`index:${index},path:${path}`);
-      // console.log(`item:`, item);
-      // console.log(`router:`, router);
-      if (clean.length > 0) {
-        for (let canceler of clean) {
-          canceler("取消请求");
-        }
-      }
+const unfold = ref(true);
+const itemDisabled = ref(false);
+const route = useRoute();
+
+onMounted(() => {
+  unfold.value = useSystemStore().sidebar_unfold;
+  itemDisabled.value = useSystemStore().item_disabled;
+});
+
+function onMenuItemClick() {
+  if (clean.length > 0) {
+    for (let canceler of clean) {
+      canceler("取消请求");
     }
   }
-});
+}
 </script>
 
 <style scoped lang="scss">

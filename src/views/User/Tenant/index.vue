@@ -18,14 +18,7 @@
               <icons name="icon-search" />
               &nbsp;查询
             </el-button>
-            <el-button
-              type="primary"
-              @click="
-                () => {
-                  console.log($router.resolve('/Account/Tenant/Register'));
-                  $router.push({ path: '/Account/Tenant/Register' });
-                }
-              ">
+            <el-button type="primary" @click="handlePushRegions">
               <icons name="icon-add" />
               &nbsp;注册
             </el-button>
@@ -52,12 +45,7 @@
         <el-table-column label="操作" width="150">
           <template #default="datum">
             <el-button link type="primary" @click="handleLockTenant(datum.row)">冻结</el-button>
-            <el-button
-              link
-              type="primary"
-              @click="$router.push({ path: '/Account/Tenant/Details', query: { id: datum.row.id } })">
-              详情
-            </el-button>
+            <el-button link type="primary" @click="handlePushDetails(datum.row.id)">详情</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -65,72 +53,78 @@
     <!-- 分页 -->
     <el-row style="float: right; height: 50px">
       <el-pagination
-        v-model:currentPage="pagination.page"
+        v-model:currentPage="table.pagination.page"
         hide-on-single-page
         background
-        :page-sizes="pagination.page_sizes"
+        :page-sizes="table.pagination.page_sizes"
         :layout="'sizes,prev, pager, next'"
-        :total="pagination.total"
+        :total="table.pagination.total"
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange" />
     </el-row>
   </div>
 </template>
 
-<script lang="ts">
-import table from "@/mixins/Table";
-import { defineComponent } from "vue";
+<script lang="ts" setup>
+import { handleCurrentChange, handleSizeChange, useTable } from "@/hooks/UseTable";
+import { onMounted, reactive } from "vue";
 import DateUtils from "@/utils/DateUtils";
+import { ElMessageBox } from "element-plus";
 import Icons from "@/components/common/Icons.vue";
+import { useRouter } from "vue-router";
 
-export default defineComponent({
-  name: "UserTenant",
-  components: { Icons },
-  mixins: [table],
-  data() {
-    return {
-      condition: {
-        company_name: "",
-        enable: undefined
+const table = useTable();
+
+const router = useRouter();
+
+const table_data = reactive<TableData[]>([]);
+
+const condition = reactive({
+  company_name: "",
+  enable: true
+});
+
+onMounted(() => {
+  for (let i = 0; i < 14; i++) {
+    let datum = {
+      id: 10000000000 + i,
+      company_name: "云南XXX有限公司",
+      admin: {
+        user_id: 1111111111111,
+        username: `用户名${i + 1}`
       },
-      options: {}
-    };
-  },
-  created() {
-    for (let i = 0; i < 14; i++) {
-      let datum: TableData = {
-        id: 10000000000 + i,
-        company_name: "云南XXX有限公司",
-        admin: {
-          user_id: 1111111111111,
-          username: `用户名${i + 1}`
-        },
-        contact: "131xxxx2222",
-        address: "云南省昆明市西山区XXX街道XX大厦XX栋XX层1111",
-        modules: "基础模块,OA协同,审核模块",
-        created_time: DateUtils.formatting(new Date(), "yyyy-MM-dd"),
-        expiration_time: DateUtils.formatting(new Date(), "yyyy-MM-dd"),
-        remaining_time: Math.round(Math.random() * 10) + i
-      };
-      this.table_data.push(datum);
-    }
-  },
-  methods: {
-    handleLockTenant(row: any) {
-      this.$confirm(`是否冻结[${row.company_name}]`, "冻结租户", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning"
-      })
-        .then(() => {
-          console.log("ok");
-        })
-        .catch(() => {
-          console.log("点击取消");
-        });
-    }
+      contact: "131xxxx2222",
+      address: "云南省昆明市西山区XXX街道XX大厦XX栋XX层1111",
+      modules: "基础模块,OA协同,审核模块",
+      created_time: DateUtils.formatting(new Date(), "yyyy-MM-dd"),
+      expiration_time: DateUtils.formatting(new Date(), "yyyy-MM-dd"),
+      remaining_time: Math.round(Math.random() * 10) + i
+    } as TableData;
+    table_data.push(datum);
   }
 });
+
+function handleLockTenant(row: any) {
+  ElMessageBox.confirm(`是否冻结[${row.company_name}]`, "冻结租户", {
+    confirmButtonText: "确定",
+    cancelButtonText: "取消",
+    type: "warning"
+  })
+    .then(() => {
+      console.log("ok");
+    })
+    .catch(() => {
+      console.log("点击取消");
+    });
+}
+
+function handlePushRegions() {
+  router.push({ path: "/Account/Tenant/Register" });
+}
+
+function handlePushDetails(id: string) {
+  router.push({ path: "/Account/Tenant/Details", query: { id: id } });
+}
 
 interface TableData {
   id: number;

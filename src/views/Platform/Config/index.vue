@@ -6,38 +6,26 @@
           <icons name="icon-setting" style="color: #4d4d4d" />
           <span>&nbsp;平台属性配置</span>
         </template>
-        <Routine />
+        <routine />
       </el-tab-pane>
       <el-tab-pane name="file">
         <template #label>
           <icons name="icon-file-config" style="color: #4d4d4d" />
           <span>&nbsp;文件存储配置</span>
         </template>
-        <FileSave />
+        <file-save />
       </el-tab-pane>
     </el-tabs>
   </div>
 </template>
 
-<script lang="ts">
-import Routine from "@/views/Platform/Config/components/Routine/index.vue";
-import FileSave from "@/views/Platform/Config/components/FileSave/index.vue";
-import { defineComponent } from "vue";
+<script lang="ts" setup>
+import { ref } from "vue";
 import Icons from "@/components/common/Icons.vue";
+import routine from "@/views/Platform/Config/components/Routine/index.vue";
+import fileSave from "@/views/Platform/Config/components/FileSave/index.vue";
 
-export default defineComponent({
-  name: "SystemConfig",
-  components: {
-    Icons,
-    Routine,
-    FileSave
-  },
-  data() {
-    return {
-      active: "routine"
-    };
-  }
-});
+const active = ref("routine");
 </script>
 
 <style scoped lang="scss">

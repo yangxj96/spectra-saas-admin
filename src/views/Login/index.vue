@@ -14,7 +14,7 @@
         </p>
       </template>
       <div>
-        <el-form ref="ruleFormRef" label-width="60px" :model="user" :rules="rules">
+        <el-form ref="loginForm" label-width="60px" :model="user" :rules="rules">
           <el-form-item label="账号" prop="username">
             <el-input v-model="user['username']" placeholder="请输入账号" />
           </el-form-item>
@@ -43,7 +43,7 @@
         </el-row>
       </div>
       <template #footer>
-        <el-button type="primary" @click="handleLogin">
+        <el-button type="primary" @click="handleLogin(loginForm)">
           <icons name="icon-login" />
           <span>&nbsp;登录</span>
         </el-button>
@@ -52,61 +52,58 @@
   </div>
 </template>
 
-<script lang="ts">
-import { type FormInstance, type FormRules } from "element-plus";
-import { defineComponent } from "vue";
-import UserApi from "@/api/UserApi";
-import { MessageDefaultConfig } from "@/utils/DefaultConfig";
-import useUserStore from "@/plugin/store/modules/useUserStore";
+<script lang="ts" setup>
+import { reactive, ref } from "vue";
+import type { FormInstance, FormRules } from "element-plus";
+import { ElMessage } from "element-plus";
 import Icons from "@/components/common/Icons.vue";
+import UserApi from "@/api/UserApi";
+import { useRouter } from "vue-router";
+import useStore from "@/plugin/store";
 
-export default defineComponent({
-  name: "Login",
-  components: { Icons },
-  data() {
-    return {
-      user: {
-        username: "sysadmin",
-        password: "sysadmin"
-      } as User,
-      rules: {
-        username: [{ required: true, message: "请输入用户名", trigger: "blur" }],
-        password: [{ required: true, message: "请输入密码", trigger: "blur" }]
-      } as FormRules
-    };
-  },
-  methods: {
-    async handleLogin() {
-      let el = this.$refs.ruleFormRef as FormInstance;
-      if (!el) {
-        return;
-      }
-      await el.validate(valid => {
-        if (valid) {
-          UserApi.login(this.user.username, this.user.password).then(res => {
-            if (res.code === 0) {
-              this.$message.success({
-                ...MessageDefaultConfig,
-                message: "登录成功",
-                onClose: () => {
-                  useUserStore().token = res.data;
-                  this.$router.push({ path: "/" });
-                }
-              });
-            } else {
-              this.$message.error({ message: res.msg });
-            }
-          });
-        } else {
-          this.$message.error({
-            ...MessageDefaultConfig,
-            message: "请检查输入"
-          });
-        }
-      });
-    }
-  }
+const router = useRouter();
+const loginForm = ref<FormInstance>();
+
+const user = reactive<User>({
+  username: "sysadmin",
+  password: "sysadmin"
 });
+
+const rules = reactive<FormRules<User>>({
+  username: [{ required: true, message: "请输入用户名", trigger: "blur" }],
+  password: [{ required: true, message: "请输入密码", trigger: "blur" }]
+});
+
+async function handleLogin(formEl: FormInstance | undefined) {
+  // 没获取到表单对象
+  if (!formEl) {
+    return;
+  }
+  // 开始验证
+  await formEl.validate((valid, fields) => {
+    if (!valid) {
+      ElMessage.error({
+        message: "请检查表单"
+      });
+      console.log("错误字段为:", fields);
+      return;
+    }
+    UserApi.login(user.username, user.password).then(res => {
+      if (res.code === 0 && res.data) {
+        ElMessage.success({
+          duration: 500,
+          message: "登录成功",
+          onClose: () => {
+            useStore().user.token = res.data;
+            router.push({
+              path: "/"
+            });
+          }
+        });
+      }
+    });
+  });
+}
 
 interface User {
   username: string;

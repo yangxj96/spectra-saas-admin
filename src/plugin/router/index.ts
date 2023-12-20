@@ -1,47 +1,18 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
-import common from "@/plugin/router/router/common";
+import { createRouter, createWebHashHistory } from "vue-router";
 import useUserStore from "@/plugin/store/modules/useUserStore";
 import useSystemStore from "@/plugin/store/modules/useSystemStore";
 import { showLoading, hideLoading } from "@/plugin/element/loading";
-import Layout from "@/components/Layout/index.vue";
+import routes from "@/plugin/router/routes";
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes: common,
+  routes,
   scrollBehavior() {
     return {
       top: 0
     };
   }
 });
-
-/**
- * 生成路由
- */
-export function generateRouter() {
-  const modules = import.meta.glob("@/views/**/*.vue");
-  const menus = useSystemStore().menus;
-  for (const menu of menus) {
-    const datum = {
-      name: menu.name,
-      path: menu.default
-    } as RouteRecordRaw;
-    if (menu.children) {
-      datum.component = Layout;
-      datum.redirect = "";
-      datum.children = [];
-      for (const f1 of menu.children) {
-        datum.children?.push({
-          path: f1.path!,
-          name: f1.name,
-          component: modules[`/src/views${f1.path}/index.vue`]
-        });
-      }
-    }
-    router.addRoute(datum);
-  }
-}
-
 // 路由前置守卫
 router.beforeEach(async (to, from, next) => {
   console.debug("[路由守卫 - 前置] - 开始");

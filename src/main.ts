@@ -24,7 +24,6 @@ app
   .use(createStore())
   .use(router)
   .use(ElementPlus)
-  // .component("IconFont", iconFont)
   .directive("authority", AuthDirective)
   .directive("focus", FocusDirective)
   .mount("#app");

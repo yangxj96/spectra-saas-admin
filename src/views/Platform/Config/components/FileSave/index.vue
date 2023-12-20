@@ -38,29 +38,22 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="ts" setup>
+import { reactive } from "vue";
 
-export default defineComponent({
-  name: "SystemConfigFileSave",
-  created() {
-    this.init();
-  },
-  data() {
-    return {
-      form: {} as any
-    };
-  },
-  methods: {
-    init() {
-      this.form = {
-        type: 0,
-        locale: "/opt/file/img",
-        access_id: "access_id",
-        access_secret: "access_secret",
-        bucket: "bucket"
-      };
-    }
-  }
+const form = reactive<Form>({
+  access_id: "access_id",
+  access_secret: "access_secret",
+  bucket: "bucket",
+  locale: "/opt/file/img",
+  type: 0
 });
+
+interface Form {
+  type: number;
+  locale: string;
+  access_id: string;
+  access_secret: string;
+  bucket: string;
+}
 </script>

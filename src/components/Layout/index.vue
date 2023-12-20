@@ -47,57 +47,48 @@
   </el-container>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import Navbar from "@/components/Layout/components/navbar/index.vue";
 import Sidebar from "@/components/Layout/components/sidebar/index.vue";
-import { type RouteLocationMatched } from "vue-router";
-import { defineComponent, watch } from "vue";
-import useSystemStore from "@/plugin/store/modules/useSystemStore";
+import { type RouteLocationMatched, useRouter } from "vue-router";
+import { onMounted, ref, watch } from "vue";
 import Icons from "@/components/common/Icons.vue";
 import IM from "@/components/IM/index.vue";
-import router from "@/plugin/router";
+import useStore from "@/plugin/store";
 
-export default defineComponent({
-  name: "Layout",
-  components: {
-    IM,
-    Icons,
-    Navbar,
-    Sidebar
-  },
-  data() {
-    return {
-      systemStore: useSystemStore(),
-      breadcrumb: [] as RouteLocationMatched[],
-      showIm: false
-    };
-  },
-  created() {
-    this.handlerRouter();
-    // 监听当前路由
-    watch(
-      () => router.currentRoute.value.matched,
-      value => {
-        this.handlerRouter([...value]);
-      },
-      { immediate: true, deep: true }
-    );
-  },
-  methods: {
-    handlerRouter(router: RouteLocationMatched[] = []) {
-      if (router.length <= 0) {
-        router = [...this.$router.currentRoute.value.matched];
-      }
-      if (router.length >= 2 && router[router.length - 1].name == router[router.length - 2].name) {
-        router = router.splice(0, router.length - 1);
-      }
-      this.breadcrumb = router;
+const router = useRouter();
+const systemStore = useStore().system;
+// 面包屑
+const breadcrumb = ref<RouteLocationMatched[]>([]);
+
+onMounted(() => {
+  handlerRouter();
+
+  watch(
+    () => router.currentRoute.value.matched,
+    value => {
+      handlerRouter([...value]);
     },
-    chooseSidebarUnfold() {
-      this.systemStore.sidebar_unfold = !this.systemStore.sidebar_unfold;
+    {
+      immediate: true,
+      deep: true
     }
-  }
+  );
 });
+
+function handlerRouter(r: RouteLocationMatched[] = []) {
+  if (r.length <= 0) {
+    r = [...router.currentRoute.value.matched];
+  }
+  if (r.length >= 2 && r[r.length - 1].name == r[r.length - 2].name) {
+    r = r.splice(0, r.length - 1);
+  }
+  breadcrumb.value = r;
+}
+
+function chooseSidebarUnfold() {
+  systemStore.sidebar_unfold = !systemStore.sidebar_unfold;
+}
 </script>
 
 <style scoped lang="scss">

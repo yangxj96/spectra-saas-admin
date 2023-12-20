@@ -40,57 +40,53 @@
   <change-password />
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-import { MessageDefaultConfig } from "@/utils/DefaultConfig";
-import usePropsStore from "@/plugin/store/modules/usePropsStore";
-import useSystemStore from "@/plugin/store/modules/useSystemStore";
-import Icons from "@/components/common/Icons.vue";
-import PersonalDetails from "@/components/Props/PersonalDetails/index.vue";
-import ChangePassword from "@/components/Props/ChangePassword/index.vue";
+<script lang="ts" setup>
 import UserApi from "@/api/UserApi";
-import useAppStore from "@/plugin/store/modules/useAppStore";
 import GlobalUtils from "@/utils/GlobalUtils";
+import changePassword from "@/components/Props/ChangePassword/index.vue";
+import personalDetails from "@/components/Props/PersonalDetails/index.vue";
+import icons from "@/components/common/Icons.vue";
+import { useRouter } from "vue-router";
+import { ElMessage } from "element-plus/es";
+import useStore from "@/plugin/store";
 
-export default defineComponent({
-  name: "LayoutNavbar",
-  components: { Icons, PersonalDetails, ChangePassword },
-  methods: {
-    gotoHome() {
-      this.$router.push({ path: "/" });
-    },
-    handleUserLogout() {
-      UserApi.logout().then(res => {
-        if (res.code == 0) {
-          if (useAppStore().checkTokenInterval != 0) {
-            clearInterval(useAppStore().checkTokenInterval);
-          }
-          this.$message.success({
-            ...MessageDefaultConfig,
-            message: "退出成功",
-            onClose: () => {
-              GlobalUtils.exit();
-            }
-          });
-        } else {
-          this.$message.error({
-            ...MessageDefaultConfig,
-            message: res.msg
-          });
+const router = useRouter();
+
+function gotoHome() {
+  router.push({ path: "/" });
+}
+
+function handleUserLogout() {
+  UserApi.logout().then(res => {
+    if (res.code == 0) {
+      if (useStore().app.checkTokenInterval != 0) {
+        clearInterval(useStore().app.checkTokenInterval);
+      }
+      ElMessage.success({
+        message: "退出成功",
+        onClose: () => {
+          GlobalUtils.exit();
         }
       });
-    },
-    handleModifyPasswordPopup() {
-      usePropsStore().change_password = true;
-    },
-    handlePersonalPopup() {
-      usePropsStore().personal_details = true;
-    },
-    handleToggleIMState() {
-      useSystemStore().IM = true;
+    } else {
+      ElMessage.error({
+        message: res.msg
+      });
     }
-  }
-});
+  });
+}
+
+function handleModifyPasswordPopup() {
+  useStore().props.change_password = true;
+}
+
+function handlePersonalPopup() {
+  useStore().props.personal_details = true;
+}
+
+function handleToggleIMState() {
+  useStore().system.IM = true;
+}
 </script>
 
 <style scoped lang="scss">
