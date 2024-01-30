@@ -20,15 +20,15 @@
         </el-form-item>
         <el-form-item>
           <el-button-group>
-            <el-button type="primary" @click="handleSearchAccount">
+            <el-button type="primary">
               <icons name="icon-search" />
               &nbsp;查询
             </el-button>
-            <el-button type="primary" @click="handleCreatedAccount">
+            <el-button type="primary">
               <icons name="icon-add" />
               &nbsp;新增
             </el-button>
-            <el-button type="primary" @click="handleModifyAccount">
+            <el-button type="primary">
               <icons name="icon-edit" />
               &nbsp;编辑
             </el-button>
@@ -110,93 +110,50 @@
     </el-row>
 
     <!-- 组件区 -->
-    <Log v-if="options.log.user.id" :user="options.log.user" @close="onInit" />
+    <log v-if="options.log.user.id" :user="options.log.user" />
   </div>
 </template>
 
-<script lang="ts">
-import Table from "@/mixins/Table";
-import Log from "./components/Log/index.vue";
-import { defineComponent } from "vue";
+<script lang="ts" setup>
 import Icons from "@/components/common/Icons.vue";
-import { IResult, Page, UserList, Account } from "@/types";
+import Log from "@/views/User/Account/components/Log/index.vue";
+import { useTable } from "@/hooks/UseTable";
 import AccountApi from "@/api/AccountApi";
-import { MessageDefaultConfig } from "@/utils/DefaultConfig";
+import { ref } from "vue";
+import { UserList } from "@/types";
+import { ElMessageBox } from "element-plus";
 
-export default defineComponent({
-  name: "User",
-  mixins: [Table],
-  components: {
-    Icons,
-    Log
-  },
-  data() {
-    return {
-      condition: {
-        username: "",
-        org_id: undefined,
-        enable: true
-      },
-      options: {
-        log: {
-          user: {} as UserList
-        }
-      }
-    };
-  },
-  created() {
-    this.onInit();
-  },
-  methods: {
-    onInit() {
-      this.options.log.user = {} as UserList;
-      AccountApi.page().then(this.handleGetAccountResponse);
-    },
-    handleSizeChange(val: number) {
-      console.log(`minix重写每页数量: ${val}`);
-      AccountApi.page(undefined, this.pagination.page, val).then(this.handleGetAccountResponse);
-    },
-    handleCurrentChange(val: number) {
-      console.log(`minix重写当前页: ${val}`);
-      AccountApi.page(undefined, val, this.pagination.size).then(this.handleGetAccountResponse);
-    },
-    showLog(row: any) {
-      this.options.log.user = row;
-    },
-    handleResetPassword(row: UserList) {
-      this.$confirm(`是否重置${row.username}的密码`, "重置密码", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning"
-      })
-        .then(() => {
-          console.log("ok");
-        })
-        .catch(() => {
-          console.log("点击取消");
-        });
-    },
-    handleGetAccountResponse(response: IResult<Page<Account>>) {
-      if (response.code != 0) {
-        this.$message.success({
-          ...MessageDefaultConfig,
-          message: response.msg
-        });
-        return;
-      }
-      this.table_data = response.data.records;
-      this.pagination.total = response.data.total;
-      this.pagination.size = response.data.size;
-      this.pagination.page = response.data.current;
-    },
-    handleModifyAccount() {
-      console.log(this.$refs.table);
-      console.log((this.$refs.table as any).getSelectionRows());
-    },
-    handleSearchAccount() {},
-    handleCreatedAccount() {}
+const { table_data, pagination, handleCurrentChange, handleSizeChange } = useTable(AccountApi.page);
+
+const condition = ref({
+  username: "",
+  org_id: undefined,
+  enable: true
+});
+
+const options = ref({
+  log: {
+    user: {} as UserList
   }
 });
+
+function showLog(row: any) {
+  options.value.log.user = row;
+}
+
+function handleResetPassword(row: UserList) {
+  ElMessageBox.confirm(`是否重置${row.username}的密码`, "重置密码", {
+    confirmButtonText: "确定",
+    cancelButtonText: "取消",
+    type: "warning"
+  })
+    .then(() => {
+      console.log("ok");
+    })
+    .catch(() => {
+      console.log("点击取消");
+    });
+}
 </script>
 
 <style scoped lang="scss">
