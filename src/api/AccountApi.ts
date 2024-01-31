@@ -4,17 +4,17 @@ import { IResult, Page, Account } from "@/types";
 import { ElMessage } from "element-plus";
 
 export default {
-  created(params: Account) {
+  created(params: Account): Promise<IResult<Account>> {
     return http.post("/api/auth/account", params).then((response: AxiosResponse<IResult<Account>>) => {
       return response.data;
     });
   },
-  remove(id: string) {
+  remove(id: string): Promise<IResult> {
     return http.delete(`/api/auth/account/${id}`).then((response: AxiosResponse<IResult>) => {
       return response.data;
     });
   },
-  modify(params: Account) {
+  modify(params: Account): Promise<IResult<Account>> | undefined {
     if (!params.id) {
       ElMessage.error({
         message: "修改数据需要提交数据ID"
@@ -25,7 +25,7 @@ export default {
       return response.data;
     });
   },
-  page(params?: Account, page_num: number = 1, page_size: number = 10) {
+  page(params?: Account, page_num: number = 1, page_size: number = 10): Promise<IResult<Page<Account>>> {
     return http
       .get("/api/auth/account/page", {
         params: { page_num, page_size, ...params }

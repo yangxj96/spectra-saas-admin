@@ -60,7 +60,7 @@ export type Role = {
   // 角色名称
   name: string;
   // 角色代码
-  code: string;
+  code?: string;
   // 角色说明
   description?: string;
 };

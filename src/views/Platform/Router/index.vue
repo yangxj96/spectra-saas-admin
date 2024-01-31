@@ -33,47 +33,16 @@
   </div>
 </template>
 
-<script lang="ts">
-import table from "@/mixins/Table";
-import { defineComponent } from "vue";
+<script lang="ts" setup>
+import { useTable } from "@/hooks/UseTable";
 import RouteApi from "@/api/RouteApi";
-import { IResult, Page, Route } from "@/types";
+import { ElMessage } from "element-plus/es";
 
-export default defineComponent({
-  name: "SystemRoute",
-  mixins: [table],
-  mounted() {
-    this.initData();
-  },
-  data() {
-    const table_data: Route[] = [];
-    return {
-      table_data: table_data
-    };
-  },
-  methods: {
-    initData() {
-      RouteApi.query().then(res => this.handleResponse(res));
-    },
-    handleSizeChange(val: number) {
-      console.log(`每页数量: ${val}`);
-      RouteApi.query(this.pagination.page, val).then(res => this.handleResponse(res));
-    },
-    handleCurrentChange(val: number) {
-      console.log(`当前页: ${val}`);
-      RouteApi.query(val, this.pagination.size).then(res => this.handleResponse(res));
-    },
-    handleResponse(res: IResult<Page<Route>>) {
-      if (res.code == 0 && res.data.records != null) {
-        this.table_data = res.data.records;
-        this.pagination.size = res.data.size;
-        this.pagination.page = res.data.current;
-        this.pagination.total = res.data.total;
-      }
-    },
-    handleShowDetails() {
-      this.$message.warning({ message: "开发中" });
-    }
-  }
-});
+const { table_data, pagination, handleCurrentChange, handleSizeChange } = useTable(RouteApi.page);
+
+function handleShowDetails() {
+  ElMessage.warning({
+    message: "开发中"
+  });
+}
 </script>

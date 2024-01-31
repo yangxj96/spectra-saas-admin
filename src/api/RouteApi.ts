@@ -3,13 +3,10 @@ import { AxiosResponse } from "axios";
 import { IResult, Page, Route } from "@/types";
 
 export default {
-  query(num: number = 1, size: number = 10) {
+  page(params?: Route, page_num: number = 1, page_size: number = 10): Promise<IResult<Page<Route>>> {
     return http
       .get("/api/platform/route", {
-        params: {
-          page_num: num,
-          page_size: size
-        }
+        params: { page_num, page_size, ...params }
       })
       .then((response: AxiosResponse<IResult<Page<Route>>>) => {
         return response.data;
