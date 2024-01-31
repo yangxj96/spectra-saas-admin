@@ -47,50 +47,35 @@
   </div>
 </template>
 
-<script lang="ts">
-import Table from "@/mixins/Table";
-import { defineComponent } from "vue";
+<script lang="ts" setup>
 import Icons from "@/components/common/Icons.vue";
+import { ref } from "vue";
 
-export default defineComponent({
-  name: "SystemMenu",
-  components: { Icons },
-  mixins: [Table],
-  data() {
-    const tree_data: TreeData[] = [
-      {
-        name: "人物",
-        children: [{ name: "性别" }, { name: "学历" }]
-      },
-      {
-        name: "层级2",
-        children: [{ name: "层级2-1", children: [{ name: "层级2-1-1" }] }]
-      },
-      {
-        name: "层级3",
-        children: [{ name: "层级3-1", children: [{ name: "层级3-1-1" }] }]
-      }
-    ];
-    const table_data: TableData[] = [];
-    return {
-      tree_data: tree_data,
-      table_data: table_data,
-      menu_details: {
-        name: "",
-        code: "",
-        enable: true
-      }
-    };
-  }
+const menu_details = ref({
+  name: "",
+  code: "",
+  enable: true
 });
 
-// 树结构
+const tree_data: TreeData[] = [
+  {
+    name: "人物",
+    children: [{ name: "性别" }, { name: "学历" }]
+  },
+  {
+    name: "层级2",
+    children: [{ name: "层级2-1", children: [{ name: "层级2-1-1" }] }]
+  },
+  {
+    name: "层级3",
+    children: [{ name: "层级3-1", children: [{ name: "层级3-1-1" }] }]
+  }
+];
+
 interface TreeData {
   name: string;
   children?: TreeData[];
 }
-
-interface TableData {}
 </script>
 
 <style scoped lang="scss">

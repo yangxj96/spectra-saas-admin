@@ -30,8 +30,8 @@
       <!-- 字典组树 -->
       <el-col :span="4" class="tree">
         <el-tree
-          ref="group_tree"
-          :data="tree_data"
+          ref="groupTree"
+          :data="treeData"
           :props="{ children: 'children', label: 'name' }"
           @node-click="onDictGroupClick" />
       </el-col>
@@ -77,119 +77,85 @@
   </div>
 </template>
 
-<script lang="ts">
-import Table from "@/mixins/Table";
-import { defineComponent } from "vue";
+<script lang="ts" setup>
+import { useTable } from "@/hooks/UseTable";
+import AccountApi from "@/api/AccountApi";
 import Icons from "@/components/common/Icons.vue";
 import CommonUtils from "@/utils/CommonUtils";
-import { SystemDictGroup } from "@/types";
+import { ElMessageBox, ElTree } from "element-plus";
+import { ElMessage } from "element-plus/es";
+import { ref } from "vue";
 
-export default defineComponent({
-  name: "SystemDict",
-  components: { Icons },
-  mixins: [Table],
-  data() {
-    const table_data: TableData[] = [];
-    return {
-      tree_data: [] as SystemDictGroup[],
-      table_data: table_data
-    };
-  },
-  created() {
-    this.handleTableData();
-    this.initData();
-  },
-  methods: {
-    initData() {
-      this.tree_data = [
-        {
-          id: CommonUtils.getRandom(10000000, 99999999),
-          name: "人物",
-          children: [
-            {
-              id: CommonUtils.getRandom(10000000, 99999999),
-              name: "性别"
-            },
-            {
-              id: CommonUtils.getRandom(10000000, 99999999),
-              name: "学历"
-            }
-          ]
-        },
-        {
-          id: CommonUtils.getRandom(10000000, 99999999),
-          name: "人物",
-          children: [
-            {
-              id: CommonUtils.getRandom(10000000, 99999999),
-              name: "性别"
-            },
-            {
-              id: CommonUtils.getRandom(10000000, 99999999),
-              name: "学历"
-            }
-          ]
-        },
-        {
-          id: CommonUtils.getRandom(10000000, 99999999),
-          name: "人物",
-          children: [
-            {
-              id: CommonUtils.getRandom(10000000, 99999999),
-              name: "性别"
-            },
-            {
-              id: CommonUtils.getRandom(10000000, 99999999),
-              name: "学历"
-            }
-          ]
-        }
-      ];
-    },
-    handleTableData() {
-      this.table_data = [];
-      for (let i = 0; i < 10; i++) {
-        this.table_data.push({
-          id: "100",
-          name: "项目1",
-          value: "1",
-          internal: true,
-          enable: true
-        });
+const { table_data, pagination, handleCurrentChange, handleSizeChange } = useTable(AccountApi.page);
+
+const treeData = [
+  {
+    id: CommonUtils.getRandom(10000000, 99999999),
+    name: "人物",
+    children: [
+      {
+        id: CommonUtils.getRandom(10000000, 99999999),
+        name: "性别"
+      },
+      {
+        id: CommonUtils.getRandom(10000000, 99999999),
+        name: "学历"
       }
-    },
-    handleCreateDictGroup() {
-      let el: any = this.$refs.group_tree;
-      let node = el.getCurrentNode();
-      console.log(node);
-      if (node) {
-        this.$confirm(`是否新建在${node.name}的下级`, "", {
-          cancelButtonText: "取消",
-          confirmButtonText: "确定"
-        });
+    ]
+  },
+  {
+    id: CommonUtils.getRandom(10000000, 99999999),
+    name: "人物",
+    children: [
+      {
+        id: CommonUtils.getRandom(10000000, 99999999),
+        name: "性别"
+      },
+      {
+        id: CommonUtils.getRandom(10000000, 99999999),
+        name: "学历"
       }
-    },
-    handleCreateDictItem() {
-      this.$message.success("开发中");
-    },
-    // 字典组被单击事件
-    onDictGroupClick(o: any, node: any, tn: any, e: PointerEvent) {
-      console.log(`o`, o);
-      console.log(`node`, node);
-      console.log(`tn`, tn);
-      console.log(`e`, e);
-    }
+    ]
+  },
+  {
+    id: CommonUtils.getRandom(10000000, 99999999),
+    name: "人物",
+    children: [
+      {
+        id: CommonUtils.getRandom(10000000, 99999999),
+        name: "性别"
+      },
+      {
+        id: CommonUtils.getRandom(10000000, 99999999),
+        name: "学历"
+      }
+    ]
   }
-});
+];
 
-// 树结构
-// 表格数据结构
-interface TableData {
-  id: string;
-  name: string;
-  value: string;
-  internal: boolean;
-  enable: boolean;
+const groupTree = ref<InstanceType<typeof ElTree>>();
+
+// 字典组被单击事件
+function onDictGroupClick(o: any, node: any, tn: any, e: PointerEvent) {
+  console.log(`o`, o);
+  console.log(`node`, node);
+  console.log(`tn`, tn);
+  console.log(`e`, e);
+}
+
+function handleCreateDictGroup() {
+  let node = groupTree.value!.getCurrentNode();
+  console.log(node);
+  if (node) {
+    ElMessageBox.confirm(`是否新建在${node.name}的下级`, "", {
+      cancelButtonText: "取消",
+      confirmButtonText: "确定"
+    });
+  }
+}
+
+function handleCreateDictItem() {
+  ElMessage.success("开发中");
 }
 </script>
 

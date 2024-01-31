@@ -52,95 +52,32 @@
         @current-change="handleCurrentChange" />
     </el-row>
 
-    <Editor v-if="options.editor.datum.id" :datum="options.editor.datum" @close="initData" />
+    <Editor v-if="options.editor.datum.id" :datum="options.editor.datum" />
   </div>
 </template>
 
-<script lang="ts">
-import Table from "@/mixins/Table";
+<script lang="ts" setup>
+import { useTable } from "@/hooks/UseTable";
+import AccountApi from "@/api/AccountApi";
 import Editor from "@/views/Platform/Config/components/Routine/components/Editor/index.vue";
-import { defineComponent } from "vue";
 import Icons from "@/components/common/Icons.vue";
+import { ref } from "vue";
 import { SystemConfig } from "@/types";
 
-/**
- * 常规配置
- */
-export default defineComponent({
-  name: "SystemConfigRoutine",
-  components: { Icons, Editor },
-  mixins: [Table],
-  data() {
-    return {
-      condition: {
-        key: "",
-        value: undefined
-      },
-      options: {
-        editor: {
-          datum: {} as SystemConfig
-        }
-      }
-    };
-  },
-  created() {
-    this.initData();
-  },
-  methods: {
-    initData() {
-      this.options.editor.datum = {} as SystemConfig;
-      this.table_data = [
-        {
-          id: "1628283509519011841",
-          key: "sys.default.password",
-          type: 1,
-          type_str: "字符串",
-          value: "123456",
-          value_str: "123456",
-          remark: "默认密码"
-        },
-        {
-          id: "1628283509519011841",
-          key: "sys.default.avatar",
-          type: 1,
-          type_str: "字符串",
-          value: "/api/file/oss/default/avatar.png",
-          value_str: "/api/file/oss/default/avatar.png",
-          remark: "默认头像地址"
-        },
-        {
-          id: "1628283509519011841",
-          key: "sys.default.gender",
-          type: 2,
-          type_str: "单选字典",
-          value: "0",
-          value_str: "男",
-          remark: "默认性别",
-          items: [
-            { name: "男", value: 0 },
-            { name: "女", value: 1 },
-            { name: "未知", value: 2 }
-          ]
-        },
-        {
-          id: "1628283509519011841",
-          key: "sys.default.free_modules",
-          type: 3,
-          type_str: "多选字典",
-          value: "0,1",
-          value_str: "OA,管理",
-          remark: "默认的免费模块",
-          items: [
-            { name: "OA", value: 0 },
-            { name: "管理", value: 1 },
-            { name: "OSS", value: 2 }
-          ]
-        }
-      ];
-    },
-    onEditorConfig(row: SystemConfig) {
-      this.options.editor.datum = row;
-    }
+const { table_data, pagination, handleCurrentChange, handleSizeChange } = useTable(AccountApi.page);
+
+const options = ref({
+  editor: {
+    datum: {} as SystemConfig
   }
 });
+
+const condition = ref({
+  key: "",
+  value: undefined
+});
+
+function onEditorConfig(row: SystemConfig) {
+  options.value.editor.datum = row;
+}
 </script>
