@@ -1,6 +1,6 @@
 <template>
   <el-row class="box-content">
-    <div v-authority="'_ROLE_SYSADMIN'">有权限</div>
+    <div v-owner="'ROLE_SYSADMIN'">有权限</div>
   </el-row>
 </template>
 
