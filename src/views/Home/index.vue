@@ -1,7 +1,5 @@
 <template>
-  <el-row class="box-content">
-    <div v-owner="'ROLE_SYSADMIN'">有权限</div>
-  </el-row>
+  <el-row class="box-content"></el-row>
 </template>
 
 <script lang="ts" setup></script>
