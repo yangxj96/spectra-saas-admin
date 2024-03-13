@@ -16,6 +16,17 @@ const http = axios.create({
 
 export const clean: Canceler[] = [];
 
+/**
+ * 停止所有正在执行的请求
+ */
+export function stopAllRequest() {
+  if (clean.length > 0) {
+    for (const canceler of clean) {
+      canceler("取消请求");
+    }
+  }
+}
+
 // 请求拦截器
 http.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {

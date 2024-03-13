@@ -49,6 +49,7 @@ import icons from "@/components/common/Icons.vue";
 import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus/es";
 import useStore from "@/plugin/store";
+import { stopAllRequest } from "@/plugin/request";
 
 const router = useRouter();
 
@@ -57,6 +58,7 @@ function gotoHome() {
 }
 
 function handleUserLogout() {
+  stopAllRequest();
   UserApi.logout().then(res => {
     if (res.code == 0) {
       if (useStore().app.checkTokenInterval != 0) {

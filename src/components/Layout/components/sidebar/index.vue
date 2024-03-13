@@ -74,7 +74,7 @@
 <script lang="ts" setup>
 import { onMounted, ref } from "vue";
 import useSystemStore from "@/plugin/store/modules/useSystemStore";
-import { clean } from "@/plugin/request";
+import { stopAllRequest } from "@/plugin/request";
 import Icons from "@/components/common/Icons.vue";
 import { useRoute } from "vue-router";
 
@@ -88,11 +88,7 @@ onMounted(() => {
 });
 
 function onMenuItemClick() {
-  if (clean.length > 0) {
-    for (let canceler of clean) {
-      canceler("取消请求");
-    }
-  }
+  stopAllRequest();
 }
 </script>
 
