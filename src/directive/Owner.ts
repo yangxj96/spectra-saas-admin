@@ -4,7 +4,7 @@ import CommonUtils from "@/utils/CommonUtils";
 
 let del: boolean = false;
 
-const Owner: Directive = {
+export default {
   created(el: HTMLElement, binging: DirectiveBinding<string>) {
     const authority = useUserStore().token.authorities;
     if (authority.indexOf(binging.value) == -1) {
@@ -18,6 +18,4 @@ const Owner: Directive = {
       document.getElementById(el.id)?.remove();
     }
   }
-};
-
-export default Owner;
+} as Directive;
