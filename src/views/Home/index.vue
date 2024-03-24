@@ -10,7 +10,7 @@ let title = ref<InstanceType<typeof HTMLDivElement>>();
 
 onMounted(() => {
   console.log("输出日志", title);
-  title.value!.innerText = "ok";
+  title.value!.innerText = "小乌龟提交测试";
 });
 </script>
 
