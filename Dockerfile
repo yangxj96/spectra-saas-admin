@@ -2,7 +2,7 @@ FROM node:18-alpine AS deps
 RUN apk add --no-cache libc6-compat && mkdir "/app"
 WORKDIR /app
 COPY . ./
-RUN yarn install --frozen-lockfile && yarn run build-only
+RUN yarn install --frozen-lockfile && yarn run build
 
 FROM nginx:1.25.2-alpine3.18
 COPY --from=deps /app/build /usr/share/nginx/html
