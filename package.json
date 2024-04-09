@@ -1,11 +1,16 @@
 {
   "name": "yangxj96-saas-admin",
+  "author": {
+    "name": "yangxj96",
+    "email": "yangxj96@gmail.com",
+    "url": "https://www.yangxj96.com/"
+  },
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "vite",
     "build": "vite build",
-    "image": "cross-conf-env docker build -t yangxj96-saas-admin:$npm_package_version .",
+    "image": "cross-conf-env docker build -t $npm_package_name:$npm_package_version .",
     "preview": "vite preview --host",
     "type-check": "vue-tsc --noEmit --composite false",
     "lint": "eslint ./src --fix --ext .vue,.js,.ts,.jsx,.tsx",
@@ -16,6 +21,19 @@
     "hooks": {
       "pre-commit": "yarn format && yarn lint && yarn type-check"
     }
+  },
+  "homepage": "https://github.com/yangxj96/yangxj96-saas-admin",
+  "keywords": [
+    "SAAS",
+    "VUE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yangxj96/yangxj96-saas-admin"
+  },
+  "bugs": {
+    "email": "yangxj96@gmail.com",
+    "url": "https://github.com/yangxj96/yangxj96-saas-admin/issues"
   },
   "dependencies": {
     "@stomp/stompjs": "7.0.0",
