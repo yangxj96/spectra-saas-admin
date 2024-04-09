@@ -1,6 +1,6 @@
 import http from "@/plugin/request";
 import type { AxiosResponse } from "axios";
-import { IResult, Page, Account } from "@/types";
+import type { IResult, Page, Account } from "@/types";
 import { ElMessage } from "element-plus";
 
 export default {

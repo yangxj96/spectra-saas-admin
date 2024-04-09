@@ -1,7 +1,7 @@
 import http from "@/plugin/request";
 import type { AxiosResponse } from "axios";
 import useUserStore from "@/plugin/store/modules/useUserStore";
-import { IResult, Token } from "@/types";
+import type { IResult, Token } from "@/types";
 
 export default {
   /**

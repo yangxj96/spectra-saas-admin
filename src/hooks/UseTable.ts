@@ -1,5 +1,5 @@
 import { onMounted, ref } from "vue";
-import { IResult, Page, Pagination } from "@/types";
+import type { IResult, Page, Pagination } from "@/types";
 import { ElMessage } from "element-plus";
 
 export function useTable<T>(

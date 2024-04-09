@@ -1,6 +1,6 @@
 import http from "@/plugin/request";
-import { AxiosResponse } from "axios";
-import { IResult, Page, Route } from "@/types";
+import type { AxiosResponse } from "axios";
+import type { IResult, Page, Route } from "@/types";
 
 export default {
   page(params?: Route, page_num: number = 1, page_size: number = 10): Promise<IResult<Page<Route>>> {

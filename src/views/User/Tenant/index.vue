@@ -73,7 +73,7 @@ import { ElMessageBox } from "element-plus";
 import Icons from "@/components/common/Icons.vue";
 import { useRouter } from "vue-router";
 import RoleApi from "@/api/RoleApi";
-import { Role } from "@/types";
+import type { Role } from "@/types";
 
 const { pagination, handleCurrentChange, handleSizeChange } = useTable<Role>(RoleApi.page);
 

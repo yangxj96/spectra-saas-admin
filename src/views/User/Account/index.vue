@@ -120,7 +120,7 @@ import Log from "@/views/User/Account/components/Log/index.vue";
 import { useTable } from "@/hooks/UseTable";
 import AccountApi from "@/api/AccountApi";
 import { ref } from "vue";
-import { UserList } from "@/types";
+import type { UserList } from "@/types";
 import { ElMessageBox } from "element-plus";
 
 const { table_data, pagination, handleCurrentChange, handleSizeChange } = useTable(AccountApi.page);

@@ -3,7 +3,7 @@ import { hideLoading, showLoading } from "@/plugin/element/loading";
 import { ElMessage } from "element-plus/es";
 import { MessageDefaultConfig } from "@/utils/DefaultConfig";
 import useUserStore from "@/plugin/store/modules/useUserStore";
-import { IResult } from "@/types";
+import type { IResult } from "@/types";
 
 const http = axios.create({
   baseURL: import.meta.env.VITE_API_URL,

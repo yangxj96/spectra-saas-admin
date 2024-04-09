@@ -62,7 +62,7 @@ import AccountApi from "@/api/AccountApi";
 import Editor from "@/views/Platform/Config/components/Routine/components/Editor/index.vue";
 import Icons from "@/components/common/Icons.vue";
 import { ref } from "vue";
-import { SystemConfig } from "@/types";
+import type { SystemConfig } from "@/types";
 
 const { table_data, pagination, handleCurrentChange, handleSizeChange } = useTable(AccountApi.page);
 
