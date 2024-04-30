@@ -1,21 +1,17 @@
 # 通用SAAS平台前端项目
 
-[![star](https://gitee.com/yangxj96/yangxj96-saas-visual/badge/star.svg?theme=dark)](https://gitee.com/yangxj96/yangxj96-saas-visual/stargazers)
-[![fork](https://gitee.com/yangxj96/yangxj96-saas-visual/badge/fork.svg?theme=dark)](https://gitee.com/yangxj96/yangxj96-saas-visual/members)
-
 # 1 技术架构选型
 
 技术架构：
 
-- 🚀️  `vite 4.2.1`
-- 🚀️  `vue 3.2.47`
-- 🚀️  `vue-router 4.1.6`
-- 🚀️  `pinia 2.0.33`
-- 🚀️  `sass 1.60.0`
-- 🚀️  `element Plus 2.3.1`
-- 🚀️  `echarts 5.4.2`
-- 🚀️  `axios 1.3.4`
-- 🚀️  `typescript 5.0.2`
+- 🚀️  `vite 5.2.8`
+- 🚀️  `vue 3.4.21`
+- 🚀️  `vue-router 4.3.0`
+- 🚀️  `pinia 2.1.7`
+- 🚀️  `sass 1.74.1`
+- 🚀️  `element-plus 2.6.3`
+- 🚀️  `axios 1.6.8`
+- 🚀️  `typescript 5.2.2`
 - ...
 
 # 3 功能计划
