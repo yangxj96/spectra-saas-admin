@@ -162,16 +162,15 @@ export type SystemDictGroup = {
 
 /** 登录响应的token */
 export type Token = {
+  id: string;
   /** 用户名 */
   username: string;
   /** 认证token */
-  access_token: string;
-  /** 刷新的token */
-  refresh_token: string;
+  accessToken: string;
   /** 权限列表 */
   authorities: string[];
-  /** 过期时间 */
-  expiration_time: string;
+  /** 角色 */
+  roles: string[];
 };
 
 /** 用户信息实体 */

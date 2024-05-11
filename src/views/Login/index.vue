@@ -95,9 +95,7 @@ async function handleLogin(formEl: FormInstance | undefined) {
           message: "登录成功",
           onClose: () => {
             useStore().user.token = res.data;
-            router.push({
-              path: "/"
-            });
+            router.push("");
           }
         });
       }

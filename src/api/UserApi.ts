@@ -27,7 +27,7 @@ export default {
       .post(
         "/api/auth/check_token",
         {
-          token: useUserStore().token.access_token
+          token: useUserStore().token.accessToken
         },
         {
           headers: {
@@ -65,7 +65,7 @@ export default {
   logout() {
     return http
       .post("/api/auth/logoff", {
-        token: useUserStore().token.access_token
+        token: useUserStore().token.accessToken
       })
       .then((response: AxiosResponse<IResult>) => {
         return response.data;

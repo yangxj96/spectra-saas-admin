@@ -7,7 +7,7 @@ import layout from "@/components/Layout/index.vue";
 export default [
   {
     path: "/Login",
-    name: "登录",
+    name: "Login",
     component: () => import("@/views/Login/index.vue"),
     meta: {
       title: "登录"
@@ -15,7 +15,7 @@ export default [
   },
   {
     path: "",
-    name: "首页",
+    name: "Home",
     component: layout,
     children: [
       {
@@ -47,7 +47,7 @@ export default [
       },
       {
         path: "401",
-        name: "无权访问",
+        name: "no_access",
         component: () => import("@/views/Error/401/index.vue"),
         meta: {
           title: "无权访问"
@@ -56,14 +56,14 @@ export default [
     ]
   },
   {
-    name: "流程控制",
     path: "/Flow",
+    name: "Flow",
     component: layout,
     redirect: "",
     children: [
       {
         path: "",
-        name: "流程控制",
+        name: "CreatedList",
         component: () => import("@/views/Flow/List/index.vue"),
         meta: {
           title: "流程控制"
@@ -71,7 +71,7 @@ export default [
       },
       {
         path: "Created",
-        name: "创建流程",
+        name: "CreatedFlow",
         component: () => import("@/views/Flow/Created/index.vue"),
         meta: {
           title: "创建流程"
@@ -80,8 +80,8 @@ export default [
     ]
   },
   {
-    name: "平台配置",
     path: "/Platform",
+    name: "Platform",
     component: layout,
     redirect: "",
     meta: {
@@ -90,7 +90,7 @@ export default [
     children: [
       {
         path: "",
-        name: "平台配置",
+        name: "PlatformConfig",
         component: () => import("@/views/Platform/Config/index.vue"),
         meta: {
           title: "平台配置",
@@ -99,7 +99,7 @@ export default [
       },
       {
         path: "Router",
-        name: "路由管理",
+        name: "PlatformRouter",
         component: () => import("@/views/Platform/Router/index.vue"),
         meta: {
           title: "路由管理",
@@ -108,7 +108,7 @@ export default [
       },
       {
         path: "Module",
-        name: "模块管理",
+        name: "PlatformModule",
         component: () => import("@/views/Platform/Module/index.vue"),
         meta: {
           title: "模块管理",
@@ -117,7 +117,7 @@ export default [
       },
       {
         path: "Menu",
-        name: "菜单管理",
+        name: "PlatformMenu",
         component: () => import("@/views/Platform/Menu/index.vue"),
         meta: {
           title: "菜单管理",
@@ -126,7 +126,7 @@ export default [
       },
       {
         path: "Dict",
-        name: "字典管理",
+        name: "PlatformDict",
         component: () => import("@/views/Platform/Dict/index.vue"),
         meta: {
           title: "字典管理",
@@ -136,7 +136,7 @@ export default [
     ]
   },
   {
-    name: "用户管理",
+    name: "Account",
     path: "/Account",
     component: layout,
     redirect: "",
@@ -146,7 +146,7 @@ export default [
     children: [
       {
         path: "",
-        name: "用户管理",
+        name: "AccountList",
         component: () => import("@/views/User/Account/index.vue"),
         meta: {
           title: "用户管理",
@@ -154,7 +154,7 @@ export default [
         }
       },
       {
-        name: "租户管理",
+        name: "AccountTenant",
         path: "/Account/Tenant",
         redirect: "",
         meta: {
@@ -163,7 +163,7 @@ export default [
         children: [
           {
             path: "",
-            name: "租户信息",
+            name: "AccountTenantList",
             component: () => import("@/views/User/Tenant/index.vue"),
             meta: {
               title: "租户信息"
@@ -171,7 +171,7 @@ export default [
           },
           {
             path: "Register",
-            name: "租户注册",
+            name: "AccountTenantRegister",
             component: () => import("@/views/User/Tenant/components/register.vue"),
             meta: {
               title: "租户注册"
@@ -179,7 +179,7 @@ export default [
           },
           {
             path: "Details",
-            name: "租户详情",
+            name: "AccountTenantDetails",
             component: () => import("@/views/User/Tenant/components/register.vue"),
             meta: {
               title: "租户详情"
@@ -189,7 +189,7 @@ export default [
       },
       {
         path: "Authority",
-        name: "权限管理",
+        name: "AccountAuthority",
         component: () => import("@/views/User/Role/index.vue"),
         meta: {
           title: "权限管理",

@@ -21,7 +21,7 @@ const message = reactive({
 
 onMounted(() => {
   useUserStore().$subscribe((_mutation, state) => {
-    if (state.token.access_token != undefined) {
+    if (state.token.accessToken != undefined) {
       useAppStore().checkTokenInterval = setInterval(checkToken, 5000);
     }
   });

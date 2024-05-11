@@ -18,18 +18,15 @@ router.beforeEach(async (to, from, next) => {
   console.debug("[路由守卫 - 前置] - 开始");
   // 判断token
   const token = useUserStore().token;
-  if (token.access_token === undefined && to.path !== "/Login") {
-    next({
-      path: "/Login"
-    });
+  console.info(`[路由守卫 - 前置] token:${token.accessToken},目标:${to.path}`);
+  if (token.accessToken === undefined && to.path !== "/Login") {
+    next({ path: "/Login" });
   } else {
     showLoading();
     useSystemStore().item_disabled = true;
     if (to.matched.length <= 0) {
       hideLoading();
-      next({
-        path: "/Error/404"
-      });
+      next({ path: "/Error/404" });
     } else {
       next();
     }
