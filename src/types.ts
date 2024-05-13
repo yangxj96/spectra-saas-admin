@@ -166,7 +166,7 @@ export type Token = {
   /** 用户名 */
   username: string;
   /** 认证token */
-  accessToken: string;
+  access_token: string;
   /** 权限列表 */
   authorities: string[];
   /** 角色 */

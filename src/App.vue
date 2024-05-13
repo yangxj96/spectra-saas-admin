@@ -7,24 +7,12 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, onUnmounted, reactive, ref } from "vue";
-import useUserStore from "@/plugin/store/modules/useUserStore";
+import { onUnmounted, reactive, ref } from "vue";
 import useAppStore from "@/plugin/store/modules/useAppStore";
-import { ElMessage } from "element-plus";
-import UserApi from "@/api/UserApi";
-import GlobalUtils from "@/utils/GlobalUtils";
 
 const locale = ref(useAppStore().lang);
 const message = reactive({
   max: 3
-});
-
-onMounted(() => {
-  useUserStore().$subscribe((_mutation, state) => {
-    if (state.token.accessToken != undefined) {
-      useAppStore().checkTokenInterval = setInterval(checkToken, 5000);
-    }
-  });
 });
 
 onUnmounted(() => {
@@ -32,38 +20,6 @@ onUnmounted(() => {
     clearInterval(useAppStore().checkTokenInterval);
   }
 });
-
-function checkToken() {
-  UserApi.check()
-    .then(res => {
-      if (res.code != 0) {
-        refreshToken();
-      }
-    })
-    .catch(() => refreshToken());
-}
-
-function refreshToken() {
-  clearInterval(useAppStore().checkTokenInterval);
-  UserApi.refresh()
-    .then(res => {
-      if (res.code == 0 && res.data) {
-        useUserStore().token = res.data;
-      } else {
-        reload();
-      }
-    })
-    .catch(() => reload());
-}
-
-function reload() {
-  ElMessage.error({
-    message: "获取token失败",
-    onClose: () => {
-      GlobalUtils.exit();
-    }
-  });
-}
 </script>
 
 <style lang="scss">

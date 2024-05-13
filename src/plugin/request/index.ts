@@ -34,7 +34,7 @@ http.interceptors.request.use(
       showLoading();
       config.headers.loading = undefined;
     }
-    const token = useUserStore().token.accessToken;
+    const token = useUserStore().token.access_token;
     if (token != null || token != undefined || token != "") {
       config.headers["Authorization"] = token;
     }
@@ -75,35 +75,24 @@ http.interceptors.response.use(
       switch (error.response.status) {
         case 404:
           ElMessage.error({
-            ...MessageDefaultConfig,
             type: "error",
             message: "请求URL错误"
           });
           break;
-        case 502:
+        case 500:
           ElMessage.error({
-            ...MessageDefaultConfig,
             type: "error",
             message: "服务器异常"
           });
           break;
-        case 503:
-          ElMessage.error({
-            ...MessageDefaultConfig,
-            type: "error",
-            message: "服务器异常2"
-          });
-          break;
         default:
           ElMessage.error({
-            ...MessageDefaultConfig,
             type: "error",
             message: "请求失败,请稍后重试"
           });
       }
     } else {
       ElMessage.error({
-        ...MessageDefaultConfig,
         type: "error",
         message: "网络错误,请检查网络"
       });

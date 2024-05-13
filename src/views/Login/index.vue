@@ -60,6 +60,7 @@ import Icons from "@/components/common/Icons.vue";
 import UserApi from "@/api/UserApi";
 import { useRouter } from "vue-router";
 import useStore from "@/plugin/store";
+import useUserStore from "@/plugin/store/modules/useUserStore";
 
 const router = useRouter();
 const loginForm = ref<FormInstance>();
@@ -89,13 +90,13 @@ async function handleLogin(formEl: FormInstance | undefined) {
       return;
     }
     UserApi.login(user.username, user.password).then(res => {
-      if (res.code === 0 && res.data) {
+      if (res && res.code === 0 && res.data) {
         ElMessage.success({
           duration: 500,
           message: "登录成功",
-          onClose: () => {
-            useStore().user.token = res.data;
-            router.push("");
+          onClose() {
+            useUserStore().token = res.data;
+            router.push({ path: "/" });
           }
         });
       }

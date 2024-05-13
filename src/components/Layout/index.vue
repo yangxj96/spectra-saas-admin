@@ -18,9 +18,10 @@
               <icons name="icon-caret-left" v-if="systemStore.sidebar_unfold" />
               <icons name="icon-caret-right" v-else />
             </i>
+            <!-- 面包屑 -->
             <el-breadcrumb separator-class="el-icon-arrow-right">
               <el-breadcrumb-item v-for="(item, idx) in breadcrumb" :key="idx" :to="{ path: item.path }">
-                {{ item.name }}
+                {{ item.meta.title }}
               </el-breadcrumb-item>
             </el-breadcrumb>
           </el-row>

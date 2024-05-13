@@ -17,16 +17,17 @@ export default [
     path: "",
     name: "Home",
     component: layout,
+    redirect: "",
+    meta: {
+      title: "首页"
+    },
     children: [
       {
         path: "",
         name: "首页",
         component: () => import("@/views/Home/index.vue"),
         meta: {
-          title: "首页",
-          menu: true,
-          authority: [],
-          route_group: "Home"
+          title: "首页"
         }
       }
     ]
@@ -39,7 +40,7 @@ export default [
     children: [
       {
         path: "404",
-        name: "未匹配到页面",
+        name: "no_matching",
         component: () => import("@/views/Error/404/index.vue"),
         meta: {
           title: "未匹配到页面"
@@ -60,6 +61,9 @@ export default [
     name: "Flow",
     component: layout,
     redirect: "",
+    meta: {
+      title: "流程控制"
+    },
     children: [
       {
         path: "",
@@ -85,7 +89,7 @@ export default [
     component: layout,
     redirect: "",
     meta: {
-      menu: true
+      title: "平台配置"
     },
     children: [
       {
@@ -141,7 +145,7 @@ export default [
     component: layout,
     redirect: "",
     meta: {
-      menu: true
+      title: "用户管理"
     },
     children: [
       {
@@ -158,7 +162,7 @@ export default [
         path: "/Account/Tenant",
         redirect: "",
         meta: {
-          route_group: "Tenant"
+          title: "租户管理"
         },
         children: [
           {

@@ -47,7 +47,7 @@
     "pinia-plugin-persistedstate": "3.2.1",
     "sass": "1.74.1",
     "vkbeautify": "0.99.3",
-    "vue": "3.4.21",
+    "vue": "3.4.27",
     "vue-router": "4.3.2"
   },
   "devDependencies": {

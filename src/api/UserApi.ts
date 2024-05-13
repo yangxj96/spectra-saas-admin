@@ -9,15 +9,12 @@ export default {
    * @param username 用户名
    * @param password 密码
    */
-  login(username: string, password: string) {
-    return http
-      .post("/api/auth/login", {
-        username: username,
-        password: password
-      })
-      .then((response: AxiosResponse<IResult<Token>>) => {
-        return response.data;
-      });
+  async login(username: string, password: string) {
+    const response = await http.post<IResult<Token>>("/api/auth/login", {
+      username: username,
+      password: password
+    });
+    return response.data;
   },
   /**
    * 检查token
@@ -27,27 +24,7 @@ export default {
       .post(
         "/api/auth/check_token",
         {
-          token: useUserStore().token.accessToken
-        },
-        {
-          headers: {
-            loading: false
-          }
-        }
-      )
-      .then((response: AxiosResponse<IResult<Token>>) => {
-        return response.data;
-      });
-  },
-  /**
-   * 刷新token
-   */
-  refresh() {
-    return http
-      .post(
-        "/api/auth/refresh",
-        {
-          token: useUserStore().token.refresh_token
+          token: useUserStore().token.access_token
         },
         {
           headers: {
@@ -65,7 +42,7 @@ export default {
   logout() {
     return http
       .post("/api/auth/logoff", {
-        token: useUserStore().token.accessToken
+        token: useUserStore().token.access_token
       })
       .then((response: AxiosResponse<IResult>) => {
         return response.data;
