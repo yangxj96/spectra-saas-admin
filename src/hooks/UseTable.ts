@@ -29,7 +29,6 @@ export function useTable<T>(
   }
 
   function handleRequestResult(response: IResult<Page<T>>) {
-    console.log("请求结果:", response);
     if (response.code != 0) {
       ElMessage.success({
         message: response.msg

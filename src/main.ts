@@ -11,7 +11,7 @@ import ElementPlus from "element-plus";
 // 自定义指令
 import Owner from "@/directive/Owner";
 // iconfont
-import "//at.alicdn.com/t/c/font_3119163_oqg12xgkssd.js";
+import "//at.alicdn.com/t/c/font_3119163_hp36jfkhicb.js";
 
 // 创建APP
 const app = createApp(App);

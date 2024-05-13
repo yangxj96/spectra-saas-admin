@@ -59,7 +59,6 @@ import { ElMessage } from "element-plus";
 import Icons from "@/components/common/Icons.vue";
 import UserApi from "@/api/UserApi";
 import { useRouter } from "vue-router";
-import useStore from "@/plugin/store";
 import useUserStore from "@/plugin/store/modules/useUserStore";
 
 const router = useRouter();

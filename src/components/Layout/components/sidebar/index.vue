@@ -21,6 +21,10 @@
         <icons name="icon-menu" class-name="icon-sidebar" />
         平台配置
       </el-menu-item>
+      <el-menu-item index="AdministrativeDivision" :route="{ path: '/Platform/AdministrativeDivision' }">
+        <icons name="icon-menu" class-name="icon-sidebar" />
+        行政区域管理
+      </el-menu-item>
       <el-menu-item index="Service" :route="{ path: '/Platform/Router' }">
         <icons name="icon-menu" class-name="icon-sidebar" />
         路由管理

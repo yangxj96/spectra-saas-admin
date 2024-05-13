@@ -47,6 +47,25 @@ export type Route = {
   metadata: string;
 };
 
+/**
+ * 行政区划对象
+ */
+export type AdministrativeDivision = {
+  id: string;
+  name: string;
+  pid: string;
+  level: string;
+};
+
+/**
+ * 行政区划对象树
+ */
+export type AdministrativeDivisionTree = AdministrativeDivision & {
+  children?: Array<AdministrativeDivisionTree>;
+};
+
+// --------------- Auth
+
 // --------------- role
 
 /**

@@ -111,6 +111,14 @@ export default [
         }
       },
       {
+        path: "AdministrativeDivision",
+        name: "AdministrativeDivision",
+        component: () => import("@/views/Platform/AdministrativeDivision/index.vue"),
+        meta: {
+          title: "行政区划管理"
+        }
+      },
+      {
         path: "Module",
         name: "PlatformModule",
         component: () => import("@/views/Platform/Module/index.vue"),
