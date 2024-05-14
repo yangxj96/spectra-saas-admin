@@ -1,40 +1,11 @@
 <template>
   <div style="height: 100%">
-    <el-row>
-      <el-form :inline="true">
-        <el-form-item label="区划名称">
-          <el-input placeholder="请输入区划名称" />
-        </el-form-item>
-        <el-form-item>
-          <el-button-group>
-            <el-button type="primary" @click="search">
-              <icons name="icon-search" />
-              &nbsp;查询
-            </el-button>
-            <el-button type="primary" @click="addData">
-              <icons name="icon-add" />
-              &nbsp;新增
-            </el-button>
-            <el-button type="primary" @click="editData">
-              <icons name="icon-edit" />
-              &nbsp;编辑
-            </el-button>
-            <el-button type="danger" @click="delData">
-              <icons name="icon-del" />
-              &nbsp;删除
-            </el-button>
-          </el-button-group>
-        </el-form-item>
-      </el-form>
-    </el-row>
-
-    <el-divider style="margin: 0" />
-
     <el-row class="box-content">
       <!-- 菜单树 -->
       <el-col :span="6" class="tree">
         <el-tree
           ref="tree"
+          highlight-current
           :data="tree_data"
           :props="{ children: 'children', label: 'name' }"
           @node-click="treeNodeClick">
