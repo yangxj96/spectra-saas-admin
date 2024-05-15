@@ -12,8 +12,8 @@
         <el-table-column label="断言器" prop="predicates" :show-overflow-tooltip="true" />
         <el-table-column label="元数据" prop="metadata" :show-overflow-tooltip="true" />
         <el-table-column label="操作" width="120" fixed="right">
-          <template #default>
-            <el-button text type="primary" @click="handleShowDetails">详情</el-button>
+          <template #default="scope">
+            <el-button text type="primary" @click="handleShowDetails(scope.row)">详情</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -30,19 +30,34 @@
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange" />
     </el-row>
+
+    <router-details v-model="details.show" :route="details.datum" @close="handleCloseDetails" />
   </div>
 </template>
 
 <script lang="ts" setup>
 import { useTable } from "@/hooks/UseTable";
 import RouteApi from "@/api/RouteApi";
-import { ElMessage } from "element-plus/es";
+import RouterDetails from "./Details/index.vue";
+import { reactive } from "vue";
+import type { Route } from "@/types";
 
 const { table_data, pagination, handleCurrentChange, handleSizeChange } = useTable(RouteApi.page);
 
-function handleShowDetails() {
-  ElMessage.warning({
-    message: "开发中"
-  });
+const details = reactive({
+  show: false,
+  datum: {} as Route
+});
+
+function handleShowDetails(row: Route) {
+  details.datum = row;
+  details.show = true;
+}
+
+function handleCloseDetails() {
+  details.datum = {} as Route;
+  details.show = false;
+  // 重新获取当前页内容
+  handleSizeChange(pagination.value.size);
 }
 </script>

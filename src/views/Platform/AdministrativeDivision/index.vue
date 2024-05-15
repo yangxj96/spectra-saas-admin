@@ -43,11 +43,10 @@
 </template>
 
 <script lang="ts" setup>
-import Icons from "@/components/common/Icons.vue";
 import { ref } from "vue";
 import type { AdministrativeDivision, AdministrativeDivisionTree } from "@/types";
 import AdministrativeDivisionApi from "@/api/AdministrativeDivisionApi";
-import { ElMessage, type ElTree } from "element-plus";
+import { type ElTree } from "element-plus";
 
 const tree = ref<InstanceType<typeof ElTree>>();
 
@@ -65,29 +64,6 @@ AdministrativeDivisionApi.tree().then(res => {
     tree_data.value = res.data;
   }
 });
-
-function search() {}
-
-function addData() {}
-
-function editData() {}
-
-function delData() {
-  let currentNode = tree.value!.getCurrentNode();
-  if (!currentNode) {
-    ElMessage.error({
-      message: "请选中一条数据"
-    });
-    return;
-  }
-  AdministrativeDivisionApi.remote(currentNode.id).then(res => {
-    if (res.code == 0) {
-      ElMessage.success({ message: res.msg });
-    } else {
-      ElMessage.error({ message: res.msg });
-    }
-  });
-}
 
 function treeNodeClick(node: AdministrativeDivisionTree) {
   menu_details.value = node;
