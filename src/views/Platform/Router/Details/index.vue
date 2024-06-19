@@ -31,17 +31,19 @@ watch(
 );
 
 function save() {
-  RouteApi.modify(datum.value).then(res => {
-    if (res && res.code == 0) {
-      ElMessage.success({
-        message: "修改成功",
-        duration: 1000,
-        onClose() {
-          emit("close");
-        }
-      });
-    }
-  });
+  if (datum.value) {
+    RouteApi.modify(datum.value).then(res => {
+      if (res && res.code == 0) {
+        ElMessage.success({
+          message: "修改成功",
+          duration: 1000,
+          onClose() {
+            emit("close");
+          }
+        });
+      }
+    });
+  }
 }
 
 function closeDialog(done: any) {
@@ -62,22 +64,22 @@ function closeDialog(done: any) {
     <!-- 内容 -->
     <el-form :model="datum" label-width="auto" style="max-width: 600px" class="loading-box">
       <el-form-item label="主键ID">
-        {{ datum.id }}
+        {{ datum!!.id }}
       </el-form-item>
       <el-form-item label="URI">
-        <el-input v-model="datum.uri" />
+        <el-input v-model="datum!!.uri" />
       </el-form-item>
       <el-form-item label="排序">
-        <el-input-number style="width: 100%" v-model="datum.order" />
+        <el-input-number style="width: 100%" v-model="datum!!.order" />
       </el-form-item>
       <el-form-item label="过滤器">
-        <el-input type="textarea" :autosize="textareaAutoSize" v-model="datum.filters" />
+        <el-input type="textarea" :autosize="textareaAutoSize" v-model="datum!!.filters" />
       </el-form-item>
       <el-form-item label="断言器">
-        <el-input type="textarea" :autosize="textareaAutoSize" v-model="datum.predicates" />
+        <el-input type="textarea" :autosize="textareaAutoSize" v-model="datum!!.predicates" />
       </el-form-item>
       <el-form-item label="元数据">
-        <el-input type="textarea" :autosize="textareaAutoSize" v-model="datum.metadata" />
+        <el-input type="textarea" :autosize="textareaAutoSize" v-model="datum!!.metadata" />
       </el-form-item>
     </el-form>
     <!-- 底部 -->

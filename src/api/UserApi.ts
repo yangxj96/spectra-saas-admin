@@ -20,7 +20,7 @@ export default {
    */
   async logout() {
     const resp = await http.post("/api/auth/logoff", {
-      token: useUserStore().token.access_token
+      token: useUserStore().token.accessToken
     });
     return resp.data;
   }
