@@ -1,5 +1,4 @@
 import * as Cesium from "cesium";
-import * as cesium from "cesium";
 
 /**
  * 创建一个地图对象

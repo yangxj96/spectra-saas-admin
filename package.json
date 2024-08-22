@@ -38,7 +38,7 @@
   "dependencies": {
     "@stomp/stompjs": "7.0.0",
     "@vueuse/core": "10.9.0",
-    "axios": "1.6.8",
+    "axios": "1.7.4",
     "cesium": "1.118.2",
     "crypto-js": "4.2.0",
     "element-plus": "2.6.3",
@@ -46,7 +46,6 @@
     "highlight.js": "11.9.0",
     "pinia": "2.1.7",
     "pinia-plugin-persistedstate": "3.2.1",
-    "rollup": "2.25.0",
     "sass": "1.74.1",
     "vkbeautify": "0.99.3",
     "vue": "3.4.27",
@@ -82,5 +81,9 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "volta": {
+    "node": "20.16.0",
+    "yarn": "4.4.0"
+  }
 }
