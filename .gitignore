@@ -4,7 +4,6 @@ node_modules
 /build
 
 .yarn
-install-state.gz
 
 # local env files
 .env.local
