@@ -65,7 +65,6 @@
 import icons from "@/components/common/Icons.vue";
 import { ElMessage, ElTable } from "element-plus/es";
 import { ref } from "vue";
-import type { Role } from "@/types";
 import { useTable } from "@/hooks/UseTable";
 import RoleApi from "@/api/RoleApi";
 

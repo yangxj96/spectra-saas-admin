@@ -48,7 +48,6 @@
 import { useTable } from "@/hooks/UseTable";
 import AccountApi from "@/api/AccountApi";
 import { onMounted, ref, watch } from "vue";
-import type { Account, UserList, UserOperateLog } from "@/types";
 import CommonUtils from "@/utils/CommonUtils";
 
 const { pagination, handleSizeChange, handleCurrentChange } = useTable<Account>(AccountApi.page);

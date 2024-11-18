@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { Route } from "@/types";
 import RouteApi from "@/api/RouteApi";
 import { ElMessage } from "element-plus";
 import { ref, watch } from "vue";

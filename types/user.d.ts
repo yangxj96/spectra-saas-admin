@@ -1,43 +1,7 @@
 /**
- * 响应整体
- */
-export type IResult<T = any> = {
-  code: number;
-  msg: string;
-  data: T;
-};
-
-/**
- * 分页实体
- */
-export type Page<T = any> = {
-  current: number;
-  optimize_count_sql: boolean;
-  orders?: string[];
-  pages: number;
-  records: T[];
-  search_count: boolean;
-  size: number;
-  total: number;
-};
-
-/**
- * 分页参数实体
- */
-export type Pagination = {
-  size: number;
-  page: number;
-  page_sizes: Array<number>;
-  default_page_size: number;
-  total: number;
-};
-
-// --------------- platform
-
-/**
  * 路由对象
  */
-export type Route = {
+type Route = {
   id: string;
   uri: string;
   route_id: string;
@@ -50,7 +14,7 @@ export type Route = {
 /**
  * 行政区划对象
  */
-export type AdministrativeDivision = {
+type AdministrativeDivision = {
   id: string;
   name: string;
   pid: string;
@@ -60,18 +24,14 @@ export type AdministrativeDivision = {
 /**
  * 行政区划对象树
  */
-export type AdministrativeDivisionTree = AdministrativeDivision & {
+type AdministrativeDivisionTree = AdministrativeDivision & {
   children?: Array<AdministrativeDivisionTree>;
 };
-
-// --------------- Auth
-
-// --------------- role
 
 /**
  * 角色类
  */
-export type Role = {
+type Role = {
   // ID
   id: string | null;
   // PID
@@ -87,14 +47,14 @@ export type Role = {
 /**
  * 角色树
  */
-export interface RoleTree extends Role {
+interface RoleTree extends Role {
   children?: Role[];
 }
 
 /**
  * 账号实体类
  */
-export type Account = {
+type Account = {
   // ID
   id?: string;
   // 用户名
@@ -116,14 +76,14 @@ export type Account = {
 /**
  * 角色树
  */
-export interface RoleTree extends Role {
+interface RoleTree extends Role {
   children?: Role[];
 }
 
 /**
  * 权限类
  */
-export type Authority = {
+type Authority = {
   // ID
   id: string | null;
   // PID
@@ -136,51 +96,12 @@ export type Authority = {
   description?: string;
 };
 
-export interface AuthorityTree extends Authority {
+interface AuthorityTree extends Authority {
   children?: Authority[];
 }
 
-// --------------- system
-
-/** 系统配置实体 */
-export type SystemConfig = {
-  id: number;
-  key: string;
-  value: any;
-  value_str?: string;
-  type: number;
-  remark?: string;
-  items?: {
-    name: string;
-    value: number;
-  }[];
-};
-
-/** 菜单对象 **/
-export type Menu = {
-  index: string;
-  icon: string;
-  name: string;
-  default?: string;
-  path?: string;
-  component?: string;
-};
-
-export interface MenuTree extends Menu {
-  children?: Menu[];
-}
-
-/** 系统字典 */
-export type SystemDictGroup = {
-  id: number;
-  name: string;
-  children?: SystemDictGroup[];
-};
-
-// --------------- user
-
 /** 登录响应的token */
-export type Token = {
+type Token = {
   id: string;
   /** 用户名 */
   username: string;
@@ -193,7 +114,7 @@ export type Token = {
 };
 
 /** 用户信息实体 */
-export type UserList = {
+type UserList = {
   id: number;
   username: string;
   password: string;
@@ -205,7 +126,7 @@ export type UserList = {
 };
 
 /** 用户日志实体接口 */
-export type UserOperateLog = {
+type UserOperateLog = {
   /** 日志ID */
   id: number;
   /** 创建时间 */

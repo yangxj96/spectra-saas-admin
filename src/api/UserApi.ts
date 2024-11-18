@@ -1,6 +1,5 @@
 import http from "@/plugin/request";
 import useUserStore from "@/plugin/store/modules/useUserStore";
-import type { IResult, Token } from "@/types";
 
 export default {
   /**

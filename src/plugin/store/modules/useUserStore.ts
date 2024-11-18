@@ -1,5 +1,4 @@
 import { defineStore } from "pinia";
-import type { Token } from "@/types";
 
 export interface UserState {
   token: Token;

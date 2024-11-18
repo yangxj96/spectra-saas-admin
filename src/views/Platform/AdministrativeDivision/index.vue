@@ -44,7 +44,6 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
-import type { AdministrativeDivision, AdministrativeDivisionTree } from "@/types";
 import AdministrativeDivisionApi from "@/api/AdministrativeDivisionApi";
 import { type ElTree } from "element-plus";
 

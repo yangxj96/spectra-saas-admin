@@ -1,5 +1,4 @@
 import http from "@/plugin/request";
-import type { IResult, Page, Route } from "@/types";
 import { ElMessage } from "element-plus";
 
 export default {

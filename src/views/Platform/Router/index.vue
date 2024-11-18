@@ -40,7 +40,6 @@ import { useTable } from "@/hooks/UseTable";
 import RouteApi from "@/api/RouteApi";
 import RouterDetails from "./Details/index.vue";
 import { reactive } from "vue";
-import type { Route } from "@/types";
 
 const { table_data, pagination, handleCurrentChange, handleSizeChange } = useTable(RouteApi.page);
 

@@ -1,5 +1,4 @@
 import http from "@/plugin/request";
-import type { AdministrativeDivision, AdministrativeDivisionTree, IResult, Page } from "@/types";
 import { ElMessage } from "element-plus";
 
 const url = "/api/platform/administrativeDivision";
