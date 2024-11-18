@@ -44,7 +44,7 @@ http.interceptors.request.use(
   },
   error => {
     hideLoading();
-    return Promise.reject(error);
+    return Promise.reject(error as Error);
   }
 );
 
@@ -68,7 +68,7 @@ http.interceptors.response.use(
     console.log(error);
     hideLoading();
     if (error.name === "CanceledError") {
-      return Promise.reject(error);
+      return Promise.reject(error as Error);
     }
     if (error.response) {
       switch (error.response.status) {
@@ -96,7 +96,7 @@ http.interceptors.response.use(
         message: "网络错误,请检查网络"
       });
     }
-    return Promise.reject(error);
+    return Promise.reject(error as Error);
   }
 );
 

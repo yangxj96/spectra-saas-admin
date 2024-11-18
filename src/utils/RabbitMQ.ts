@@ -1,7 +1,7 @@
 import { Client, type IFrame } from "@stomp/stompjs";
 
 export default class RabbitMQ {
-  private _client: Client;
+  private readonly _client: Client;
 
   constructor(options: { url: string; username: string; password: string }) {
     this._client = new Client({

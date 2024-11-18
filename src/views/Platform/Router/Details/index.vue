@@ -89,5 +89,3 @@ function closeDialog(done: any) {
     </template>
   </el-dialog>
 </template>
-
-<style scoped lang="scss"></style>

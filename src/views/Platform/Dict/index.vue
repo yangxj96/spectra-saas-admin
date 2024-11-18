@@ -82,8 +82,7 @@ import { useTable } from "@/hooks/UseTable";
 import AccountApi from "@/api/AccountApi";
 import Icons from "@/components/common/Icons.vue";
 import CommonUtils from "@/utils/CommonUtils";
-import { ElMessageBox, ElTree } from "element-plus";
-import { ElMessage } from "element-plus/es";
+import { ElMessageBox, ElTree, ElMessage } from "element-plus";
 import { ref } from "vue";
 
 const { table_data, pagination, handleCurrentChange, handleSizeChange } = useTable(AccountApi.page);
