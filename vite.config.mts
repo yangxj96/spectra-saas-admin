@@ -8,7 +8,7 @@ import CesiumJS from "vite-plugin-cesium";
 export default defineConfig(({ mode }) => {
   const root = process.cwd();
   const env = loadEnv(mode, root);
-  console.log(env);
+  console.log("环境变量:", env);
   return {
     base: "./",
     server: {

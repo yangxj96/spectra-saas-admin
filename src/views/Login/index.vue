@@ -57,7 +57,6 @@ import { reactive, ref } from "vue";
 import type { FormInstance, FormRules } from "element-plus";
 import { ElMessage } from "element-plus";
 import Icons from "@/components/common/Icons.vue";
-import UserApi from "@/api/UserApi";
 import { useRouter } from "vue-router";
 import useUserStore from "@/plugin/store/modules/useUserStore";
 
@@ -88,18 +87,26 @@ async function handleLogin(formElement: FormInstance | undefined) {
       console.log("错误字段为:", fields);
       return;
     }
-    UserApi.login(user.username, user.password).then(res => {
-      if (res && res.code === 0 && res.data) {
-        ElMessage.success({
-          duration: 500,
-          message: "登录成功",
-          onClose() {
-            useUserStore().token = res.data;
-            router.push({ path: "/" });
-          }
-        });
-      }
-    });
+    useUserStore().token = {
+      id: "12345678",
+      username: "string",
+      accessToken: "string",
+      authorities: ["string"],
+      roles: ["string"]
+    };
+    router.push({ path: "/" });
+    // UserApi.login(user.username, user.password).then(res => {
+    //   if (res && res.code === 0 && res.data) {
+    //     ElMessage.success({
+    //       duration: 500,
+    //       message: "登录成功",
+    //       onClose() {
+    //         useUserStore().token = res.data;
+    //         router.push({ path: "/" });
+    //       }
+    //     });
+    //   }
+    // });
   });
 }
 

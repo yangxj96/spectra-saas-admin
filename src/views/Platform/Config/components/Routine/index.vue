@@ -46,7 +46,7 @@
         hide-on-single-page
         background
         :page-sizes="pagination.page_sizes"
-        :layout="'sizes,prev, pager, next'"
+        :layout="'sizes,prev,pager,next'"
         :total="pagination.total"
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange" />
