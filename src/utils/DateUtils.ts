@@ -1,5 +1,5 @@
-export default class DateUtils {
-  static formatting(date: any, fmt: string = "yyyy-MM-dd HH:mm:ss") {
+const DateUtils = {
+  formatting(date: any, fmt: string = "yyyy-MM-dd HH:mm:ss") {
     const dict: any = {
       yyyy: date.getFullYear(),
       M: date.getMonth() + 1,
@@ -7,14 +7,16 @@ export default class DateUtils {
       H: date.getHours(),
       m: date.getMinutes(),
       s: date.getSeconds(),
-      MM: ("" + (date.getMonth() + 101)).substring(1),
-      dd: ("" + (date.getDate() + 100)).substring(1),
-      HH: ("" + (date.getHours() + 100)).substring(1),
-      mm: ("" + (date.getMinutes() + 100)).substring(1),
-      ss: ("" + (date.getSeconds() + 100)).substring(1)
+      MM: ("" + (date.getMonth() + 101)).slice(1),
+      dd: ("" + (date.getDate() + 100)).slice(1),
+      HH: ("" + (date.getHours() + 100)).slice(1),
+      mm: ("" + (date.getMinutes() + 100)).slice(1),
+      ss: ("" + (date.getSeconds() + 100)).slice(1)
     };
-    return fmt.replace(/(yyyy|MM?|dd?|HH?|mm?|ss?)/g, function (substring: string, ...args: any[]) {
-      return dict[args[0]];
+    return fmt.replaceAll(/(yyyy|MM?|dd?|HH?|mm?|ss?)/g, function (substring: string, ...arguments_: any[]) {
+      return dict[arguments_[0]];
     });
   }
-}
+};
+
+export default DateUtils;

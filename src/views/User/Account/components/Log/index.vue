@@ -3,10 +3,10 @@
     <el-dialog
       :model-value="true"
       destroy-on-close
-      @close="handleClose"
       :title="`用户[${options.user.username}]日志`"
       width="80%"
-      class="loading-box">
+      class="loading-box"
+      @close="handleClose">
       <el-row>
         <el-table :data="data" stripe border height="100%" style="width: 100%">
           <el-table-column type="expand">
@@ -52,7 +52,7 @@ import CommonUtils from "@/utils/CommonUtils";
 
 const { pagination, handleSizeChange, handleCurrentChange } = useTable<Account>(AccountApi.page);
 
-const props = defineProps({
+const properties = defineProps({
   user: {
     type: Object,
     required: true
@@ -69,9 +69,9 @@ const data = ref<UserOperateLog[]>([]);
 
 onMounted(() => {
   let status: number[] = [200, 204, 206, 301, 302, 303, 304, 400, 401, 403, 404, 500, 503];
-  for (let i = 0; i < 10; i++) {
+  for (let index = 0; index < 10; index++) {
     data.value.push({
-      id: CommonUtils.getRandom(10000000, 99999999),
+      id: CommonUtils.getRandom(10_000_000, 99_999_999),
       created_time: "2022-12-12 00:00:00",
       url: "/baidu.com",
       response_status: status[CommonUtils.getRandom(1, status.length)],
@@ -85,12 +85,8 @@ onMounted(() => {
  * 处理响应状态啊选择
  * @param val 对应的值
  */
-function handleChooseResponseStatusTagType(val: number) {
-  if (val >= 200 && val <= 300) {
-    return "success";
-  } else {
-    return "danger";
-  }
+function handleChooseResponseStatusTagType(value: number) {
+  return value >= 200 && value <= 300 ? "success" : "danger";
 }
 
 /**
@@ -101,10 +97,10 @@ function handleClose() {
 }
 
 watch(
-  () => props.user,
-  (newVal: any, oldValue: any) => {
+  () => properties.user,
+  (newValue: any, oldValue: any) => {
     console.log("旧的值", oldValue);
-    options.value.user = newVal;
+    options.value.user = newValue;
   },
   { immediate: true }
 );

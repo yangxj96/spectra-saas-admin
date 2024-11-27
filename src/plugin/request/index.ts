@@ -72,23 +72,26 @@ http.interceptors.response.use(
     }
     if (error.response) {
       switch (error.response.status) {
-        case 404:
+        case 404: {
           ElMessage.error({
             type: "error",
             message: "请求URL错误"
           });
           break;
-        case 500:
+        }
+        case 500: {
           ElMessage.error({
             type: "error",
             message: "服务器异常"
           });
           break;
-        default:
+        }
+        default: {
           ElMessage.error({
             type: "error",
             message: "请求失败,请稍后重试"
           });
+        }
       }
     } else {
       ElMessage.error({

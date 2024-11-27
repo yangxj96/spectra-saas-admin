@@ -3,8 +3,8 @@ import type { AxiosResponse } from "axios";
 import { ElMessage } from "element-plus";
 
 export default {
-  created(params: Role): Promise<IResult<Role>> {
-    return http.post("/api/auth/role", params).then((response: AxiosResponse<IResult<Role>>) => {
+  created(parameters: Role): Promise<IResult<Role>> {
+    return http.post("/api/auth/role", parameters).then((response: AxiosResponse<IResult<Role>>) => {
       return response.data;
     });
   },
@@ -13,21 +13,21 @@ export default {
       return response.data;
     });
   },
-  modify(params: Role): Promise<IResult<Role>> | undefined {
-    if (!params.id) {
+  modify(parameters: Role): Promise<IResult<Role>> | undefined {
+    if (!parameters.id) {
       ElMessage.error({
         message: "修改数据需要提交数据ID"
       });
       return;
     }
-    return http.put("/api/auth/role", params).then((response: AxiosResponse<IResult<Role>>) => {
+    return http.put("/api/auth/role", parameters).then((response: AxiosResponse<IResult<Role>>) => {
       return response.data;
     });
   },
-  page(params?: Role, page_num: number = 1, page_size: number = 10): Promise<IResult<Page<Role>>> {
+  page(parameters?: Role, page_number: number = 1, page_size: number = 10): Promise<IResult<Page<Role>>> {
     return http
       .get("/api/auth/role/page", {
-        params: { page_num, page_size, ...params }
+        params: { page_num: page_number, page_size, ...parameters }
       })
       .then((response: AxiosResponse<IResult<Page<Role>>>) => {
         return response.data;

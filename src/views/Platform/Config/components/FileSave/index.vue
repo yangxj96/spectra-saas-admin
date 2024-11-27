@@ -41,7 +41,7 @@
 <script lang="ts" setup>
 import { reactive } from "vue";
 
-const form = reactive<Form>({
+let form = reactive<Form>({
   access_id: "access_id",
   access_secret: "access_secret",
   bucket: "bucket",

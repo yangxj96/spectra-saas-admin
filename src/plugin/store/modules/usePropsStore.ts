@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-const usePropsStore = defineStore("props", {
+const usePropertiesStore = defineStore("props", {
   state: () => ({
     personal_details: false,
     change_password: false
@@ -8,4 +8,4 @@ const usePropsStore = defineStore("props", {
   persist: true
 });
 
-export default usePropsStore;
+export default usePropertiesStore;

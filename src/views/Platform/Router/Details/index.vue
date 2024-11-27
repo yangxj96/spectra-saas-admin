@@ -5,7 +5,7 @@ import { ref, watch } from "vue";
 
 const model = defineModel();
 
-const props = defineProps({
+const properties = defineProps({
   route: {
     type: Object,
     required: true,
@@ -23,9 +23,10 @@ const textareaAutoSize = {
 };
 
 watch(
-  () => props.route,
+  () => properties.route,
   (n: any) => {
-    datum.value = JSON.parse(JSON.stringify(n)) as Route;
+    // datum.value = JSON.parse(JSON.stringify(n)) as Route;
+    datum.value = structuredClone(n);
   }
 );
 
@@ -69,16 +70,16 @@ function closeDialog(done: any) {
         <el-input v-model="datum!!.uri" />
       </el-form-item>
       <el-form-item label="排序">
-        <el-input-number style="width: 100%" v-model="datum!!.order" />
+        <el-input-number v-model="datum!!.order" style="width: 100%" />
       </el-form-item>
       <el-form-item label="过滤器">
-        <el-input type="textarea" :autosize="textareaAutoSize" v-model="datum!!.filters" />
+        <el-input v-model="datum!!.filters" type="textarea" :autosize="textareaAutoSize" />
       </el-form-item>
       <el-form-item label="断言器">
-        <el-input type="textarea" :autosize="textareaAutoSize" v-model="datum!!.predicates" />
+        <el-input v-model="datum!!.predicates" type="textarea" :autosize="textareaAutoSize" />
       </el-form-item>
       <el-form-item label="元数据">
-        <el-input type="textarea" :autosize="textareaAutoSize" v-model="datum!!.metadata" />
+        <el-input v-model="datum!!.metadata" type="textarea" :autosize="textareaAutoSize" />
       </el-form-item>
     </el-form>
     <!-- 底部 -->

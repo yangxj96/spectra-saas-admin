@@ -2,13 +2,13 @@
 
 import { ElLoadingService, ElMessage, ElMessageBox, ElNotification } from "element-plus";
 
-interface ImportMetaEnv {
+interface ImportMetaEnvironment {
   /** api请求地址 **/
   readonly VITE_API_URL: string;
 }
 
 interface ImportMeta {
-  readonly env: ImportMetaEnv;
+  readonly env: ImportMetaEnvironment;
 }
 
 declare module "*.vue" {

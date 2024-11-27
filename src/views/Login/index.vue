@@ -74,13 +74,13 @@ const rules = reactive<FormRules<User>>({
   password: [{ required: true, message: "请输入密码", trigger: "blur" }]
 });
 
-async function handleLogin(formEl: FormInstance | undefined) {
+async function handleLogin(formElement: FormInstance | undefined) {
   // 没获取到表单对象
-  if (!formEl) {
+  if (!formElement) {
     return;
   }
   // 开始验证
-  await formEl.validate((valid, fields) => {
+  await formElement.validate((valid, fields) => {
     if (!valid) {
       ElMessage.error({
         message: "请检查表单"

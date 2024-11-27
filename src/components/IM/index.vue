@@ -131,7 +131,7 @@ export default defineComponent({
       this.show = state.IM;
       if (this.show) {
         this.$nextTick(() => {
-          (this.$refs.scrollbar as any).setScrollTop(99999);
+          (this.$refs.scrollbar as any).setScrollTop(99_999);
         });
       }
     });

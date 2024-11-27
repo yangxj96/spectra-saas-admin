@@ -2,8 +2,8 @@ import { onMounted, ref } from "vue";
 import { ElMessage } from "element-plus";
 
 export function useTable<T>(
-  request: (params?: T, page_num?: number, page_size?: number) => Promise<IResult<Page<T>>>,
-  params: T | undefined = undefined
+  request: (parameters?: T, page_number?: number, page_size?: number) => Promise<IResult<Page<T>>>,
+  parameters?: T | undefined
 ) {
   const pagination = ref<Pagination>({
     size: 10,
@@ -19,12 +19,12 @@ export function useTable<T>(
     handleCurrentChange(pagination.value.page);
   });
 
-  function handleCurrentChange(val: number) {
-    request(params, val, pagination.value.size).then(handleRequestResult);
+  function handleCurrentChange(value: number) {
+    request(parameters, value, pagination.value.size).then(handleRequestResult);
   }
 
-  function handleSizeChange(val: number) {
-    request(params, pagination.value.page, val).then(handleRequestResult);
+  function handleSizeChange(value: number) {
+    request(parameters, pagination.value.page, value).then(handleRequestResult);
   }
 
   function handleRequestResult(response: IResult<Page<T>>) {

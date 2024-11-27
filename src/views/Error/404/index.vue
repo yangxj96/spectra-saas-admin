@@ -16,7 +16,7 @@ const time = ref<number>(-1);
 const second = ref<number>(3);
 
 onMounted(() => {
-  time.value = window.setInterval(() => {
+  time.value = globalThis.setInterval(() => {
     second.value = second.value - 1;
     if (second.value <= 0) {
       router.back();

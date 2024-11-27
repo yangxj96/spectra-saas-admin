@@ -55,6 +55,11 @@ import Icons from "@/components/common/Icons.vue";
 export default defineComponent({
   name: "PropsPersonalDetails",
   components: { Icons },
+  data() {
+    return {
+      isShow: usePropsStore().personal_details
+    };
+  },
   created() {
     usePropsStore().$subscribe((mutation, state) => {
       /*
@@ -70,11 +75,6 @@ export default defineComponent({
       // 我们就可以在此处监听store中值的变化，当变化为某个值的时候，去做一些业务操作之类的
       this.isShow = state.personal_details;
     });
-  },
-  data() {
-    return {
-      isShow: usePropsStore().personal_details
-    };
   },
   methods: {
     // 关闭弹窗

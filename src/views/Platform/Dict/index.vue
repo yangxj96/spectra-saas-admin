@@ -55,9 +55,7 @@
               </template>
             </el-table-column>
             <el-table-column label="操作" align="center">
-              <template>
-                <el-button text type="primary">修改</el-button>
-              </template>
+              <el-button text type="primary">修改</el-button>
             </el-table-column>
           </el-table>
         </el-row>
@@ -89,43 +87,43 @@ const { table_data, pagination, handleCurrentChange, handleSizeChange } = useTab
 
 const treeData = [
   {
-    id: CommonUtils.getRandom(10000000, 99999999),
+    id: CommonUtils.getRandom(10_000_000, 99_999_999),
     name: "人物",
     children: [
       {
-        id: CommonUtils.getRandom(10000000, 99999999),
+        id: CommonUtils.getRandom(10_000_000, 99_999_999),
         name: "性别"
       },
       {
-        id: CommonUtils.getRandom(10000000, 99999999),
+        id: CommonUtils.getRandom(10_000_000, 99_999_999),
         name: "学历"
       }
     ]
   },
   {
-    id: CommonUtils.getRandom(10000000, 99999999),
+    id: CommonUtils.getRandom(10_000_000, 99_999_999),
     name: "人物",
     children: [
       {
-        id: CommonUtils.getRandom(10000000, 99999999),
+        id: CommonUtils.getRandom(10_000_000, 99_999_999),
         name: "性别"
       },
       {
-        id: CommonUtils.getRandom(10000000, 99999999),
+        id: CommonUtils.getRandom(10_000_000, 99_999_999),
         name: "学历"
       }
     ]
   },
   {
-    id: CommonUtils.getRandom(10000000, 99999999),
+    id: CommonUtils.getRandom(10_000_000, 99_999_999),
     name: "人物",
     children: [
       {
-        id: CommonUtils.getRandom(10000000, 99999999),
+        id: CommonUtils.getRandom(10_000_000, 99_999_999),
         name: "性别"
       },
       {
-        id: CommonUtils.getRandom(10000000, 99999999),
+        id: CommonUtils.getRandom(10_000_000, 99_999_999),
         name: "学历"
       }
     ]

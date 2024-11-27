@@ -1,11 +1,11 @@
 <template>
   <el-row>
     <el-col :span="3">
-      <img src="/src/assets/logo-across.png" class="goto-home" @click="gotoHome" alt="logo" style="height: 56px" />
+      <img src="/src/assets/logo-across.png" class="goto-home" alt="logo" style="height: 56px" @click="gotoHome" />
     </el-col>
 
     <el-col :span="20" style="padding-right: 40px">
-      <el-button link @click="handleToggleIMState" style="line-height: 100%; height: 100%; float: right">
+      <el-button link style="line-height: 100%; height: 100%; float: right" @click="handleToggleIMState">
         <icons name="icon-IM" style="width: 1.3em; height: 1.3em" />
       </el-button>
     </el-col>

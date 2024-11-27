@@ -15,8 +15,8 @@
         <div style="height: 100%">
           <el-row>
             <i class="box-unfold-a" @click="chooseSidebarUnfold">
-              <icons name="icon-caret-left" v-if="systemStore.sidebar_unfold" />
-              <icons name="icon-caret-right" v-else />
+              <icons v-if="systemStore.sidebar_unfold" name="icon-caret-left" />
+              <icons v-else name="icon-caret-right" />
             </i>
             <!-- 面包屑 -->
             <el-breadcrumb separator-class="el-icon-arrow-right">
@@ -81,7 +81,7 @@ function handlerRouter(r: RouteLocationMatched[] = []) {
   if (r.length <= 0) {
     r = [...router.currentRoute.value.matched];
   }
-  if (r.length >= 2 && r[r.length - 1].name == r[r.length - 2].name) {
+  if (r.length >= 2 && r.at(-1).name == r.at(-2).name) {
     r = r.splice(0, r.length - 1);
   }
   breadcrumb.value = r;

@@ -3,10 +3,10 @@
     <el-dialog
       :model-value="true"
       destroy-on-close
-      @close="onCancel"
       :title="`编辑[${options.datum.key}]`"
       width="25%"
-      class="loading-box">
+      class="loading-box"
+      @close="onCancel">
       <el-form ref="ruleForm" :model="options.datum" :rules="form.rules" label-width="70px">
         <el-form-item label="id">
           <el-input v-model="options.datum.id" disabled />
@@ -14,10 +14,10 @@
         <el-form-item label="配置键">
           <el-input v-model="options.datum.key" disabled />
         </el-form-item>
-        <el-form-item label="配置值" prop="value" v-if="options.datum.type === 1">
+        <el-form-item v-if="options.datum.type === 1" label="配置值" prop="value">
           <el-input v-model="options.datum.value" :autosize="{ minRows: 2, maxRows: 4 }" type="textarea" />
         </el-form-item>
-        <el-form-item label="配置值" prop="value" v-else-if="options.datum.type === 2">
+        <el-form-item v-else-if="options.datum.type === 2" label="配置值" prop="value">
           <el-select v-model="options.datum.value" placeholder="请选择值" style="width: 100%">
             <el-option
               v-for="item in options.datum.items"
@@ -26,7 +26,7 @@
               :value="item.value.toString()" />
           </el-select>
         </el-form-item>
-        <el-form-item label="配置值" prop="value" v-else-if="options.datum.type === 3">
+        <el-form-item v-else-if="options.datum.type === 3" label="配置值" prop="value">
           <el-select v-model="options.datum.value" placeholder="请选择值" :multiple="true" style="width: 100%">
             <el-option
               v-for="item in options.datum.items"
@@ -75,6 +75,17 @@ export default defineComponent({
       }
     };
   },
+  watch: {
+    datum: {
+      handler(nv) {
+        this.options.datum = nv;
+        if (this.options.datum.type === 3) {
+          this.options.datum.value = this.options.datum.value.split(",");
+        }
+      },
+      immediate: true
+    }
+  },
   methods: {
     onCancel() {
       this.$emit("close", false);
@@ -99,21 +110,10 @@ export default defineComponent({
         for (let item of this.form.obj.value) {
           v += item + ",";
         }
-        v = v.substring(0, v.length - 1);
+        v = v.slice(0, Math.max(0, v.length - 1));
         this.form.obj.value = v;
       }
       return this.form.obj;
-    }
-  },
-  watch: {
-    datum: {
-      handler(nv) {
-        this.options.datum = nv;
-        if (this.options.datum.type === 3) {
-          this.options.datum.value = this.options.datum.value.split(",");
-        }
-      },
-      immediate: true
     }
   }
 });

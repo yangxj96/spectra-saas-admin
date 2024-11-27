@@ -9,9 +9,9 @@ let count: number = 0;
 let loading: any;
 
 function open(): void {
-  const els = document.getElementsByClassName("loading-box") as HTMLCollectionOf<HTMLElement>;
+  const els = document.querySelectorAll(".loading-box") as HTMLCollectionOf<HTMLElement>;
   loading = ElLoading.service({
-    target: els[els.length - 1],
+    target: els.at(-1),
     lock: true,
     text: "数据加载中...",
     background: "rgba(0,0,0,0.5)"

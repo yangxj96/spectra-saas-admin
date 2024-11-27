@@ -28,12 +28,12 @@
     <el-row style="height: calc(100% - 100px)">
       <el-table
         :data="table_data"
-        @row-click="(row: any) => (current = row)"
         stripe
         border
         highlight-current-row
         height="100%"
-        style="width: 100%">
+        style="width: 100%"
+        @row-click="(row: any) => (current = row)">
         <el-table-column align="center" type="index" width="50" />
         <el-table-column align="center" prop="id" width="190" label="ID" />
         <el-table-column align="center" prop="name" label="角色名称" />

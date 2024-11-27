@@ -23,11 +23,11 @@ export default defineComponent({
       default: ""
     }
   },
-  setup(props) {
-    const symbolId = computed(() => `#${props.name}`);
+  setup(properties) {
+    const symbolId = computed(() => `#${properties.name}`);
     const svgClass = computed(() => {
-      if (props.className) {
-        return `svg-icon ${props.className}`;
+      if (properties.className) {
+        return `svg-icon ${properties.className}`;
       }
       return "svg-icon";
     });

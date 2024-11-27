@@ -43,8 +43,8 @@ export default defineComponent({
     };
   },
   created() {
-    let num = CommonUtils.getRandom(1, 50);
-    for (let i = 0; i < num; i++) {
+    let number_ = CommonUtils.getRandom(1, 50);
+    for (let index = 0; index < number_; index++) {
       this.msg += "🙂";
     }
   }

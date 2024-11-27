@@ -86,20 +86,20 @@ const condition = reactive({
 });
 
 onMounted(() => {
-  for (let i = 0; i < 14; i++) {
+  for (let index = 0; index < 14; index++) {
     let datum = {
-      id: 10000000000 + i,
+      id: 10_000_000_000 + index,
       company_name: "云南XXX有限公司",
       admin: {
-        user_id: 1111111111111,
-        username: `用户名${i + 1}`
+        user_id: 1_111_111_111_111,
+        username: `用户名${index + 1}`
       },
       contact: "131xxxx2222",
       address: "云南省昆明市西山区XXX街道XX大厦XX栋XX层1111",
       modules: "基础模块,OA协同,审核模块",
       created_time: DateUtils.formatting(new Date(), "yyyy-MM-dd"),
       expiration_time: DateUtils.formatting(new Date(), "yyyy-MM-dd"),
-      remaining_time: Math.round(Math.random() * 10) + i
+      remaining_time: Math.round(Math.random() * 10) + index
     };
     data.value.push(datum as never);
   }

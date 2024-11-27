@@ -146,11 +146,11 @@ import { useTable } from "@/hooks/UseTable";
 import AccountApi from "@/api/AccountApi";
 
 const vHighlight = {
-  mounted: (el: any) => {
-    let blocks = el.querySelectorAll("pre code");
-    blocks.forEach((block: any) => {
+  mounted: (element: any) => {
+    let blocks = element.querySelectorAll("pre code");
+    for (let block of blocks) {
       hljs.highlightElement(block);
-    });
+    }
   }
 };
 
@@ -287,7 +287,7 @@ const dialog = ref({
 const { pagination, handleCurrentChange, handleSizeChange } = useTable(AccountApi.page);
 
 onMounted(() => {
-  for (let i = 0; i < 10; i++) {
+  for (let index = 0; index < 10; index++) {
     data.value.push({
       id: "1628283509519011841",
       name: "流程名称",
@@ -305,16 +305,21 @@ onMounted(() => {
 // 翻译tag类型
 function handleTagTypeTransition(type: number) {
   switch (type) {
-    case 0:
+    case 0: {
       return "info";
-    case 1:
+    }
+    case 1: {
       return "warning";
-    case 2:
+    }
+    case 2: {
       return "success";
-    case 3:
+    }
+    case 3: {
       return "danger";
-    default:
+    }
+    default: {
       return "";
+    }
   }
 }
 

@@ -3,8 +3,8 @@ import type { AxiosResponse } from "axios";
 import { ElMessage } from "element-plus";
 
 export default {
-  created(params: Account): Promise<IResult<Account>> {
-    return http.post("/api/auth/account", params).then((response: AxiosResponse<IResult<Account>>) => {
+  created(parameters: Account): Promise<IResult<Account>> {
+    return http.post("/api/auth/account", parameters).then((response: AxiosResponse<IResult<Account>>) => {
       return response.data;
     });
   },
@@ -13,21 +13,21 @@ export default {
       return response.data;
     });
   },
-  modify(params: Account): Promise<IResult<Account>> | undefined {
-    if (!params.id) {
+  modify(parameters: Account): Promise<IResult<Account>> | undefined {
+    if (!parameters.id) {
       ElMessage.error({
         message: "修改数据需要提交数据ID"
       });
       return;
     }
-    return http.put("/api/auth/account", params).then((response: AxiosResponse<IResult<Account>>) => {
+    return http.put("/api/auth/account", parameters).then((response: AxiosResponse<IResult<Account>>) => {
       return response.data;
     });
   },
-  page(params?: Account, page_num: number = 1, page_size: number = 10): Promise<IResult<Page<Account>>> {
+  page(parameters?: Account, page_number: number = 1, page_size: number = 10): Promise<IResult<Page<Account>>> {
     return http
       .get("/api/auth/account/page", {
-        params: { page_num, page_size, ...params }
+        params: { page_num: page_number, page_size, ...parameters }
       })
       .then((response: AxiosResponse<IResult<Page<Account>>>) => {
         return response.data;

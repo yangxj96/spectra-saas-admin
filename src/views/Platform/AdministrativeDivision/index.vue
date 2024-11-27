@@ -58,11 +58,12 @@ const menu_details = ref<AdministrativeDivision>({
 
 let tree_data = ref<AdministrativeDivisionTree[]>();
 
-AdministrativeDivisionApi.tree().then(res => {
-  if (res.data) {
-    tree_data.value = res.data;
-  }
-});
+try {
+  const response = await AdministrativeDivisionApi.tree();
+  tree_data.value = response.data.data.records;
+} catch (error) {
+  console.error("Failed to fetch data:", error);
+}
 
 function treeNodeClick(node: AdministrativeDivisionTree) {
   menu_details.value = node;

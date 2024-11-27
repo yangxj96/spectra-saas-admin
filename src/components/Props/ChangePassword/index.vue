@@ -47,11 +47,6 @@ import Icons from "@/components/common/Icons.vue";
 export default defineComponent({
   name: "PropsChangePassword",
   components: { Icons },
-  created() {
-    usePropsStore().$subscribe((mutation, state) => {
-      this.isShow = state.change_password;
-    });
-  },
   data() {
     return {
       isShow: usePropsStore().change_password,
@@ -66,6 +61,11 @@ export default defineComponent({
         verify_password: [{ required: true, message: "请重复输入新密码", trigger: "blur" }]
       }
     };
+  },
+  created() {
+    usePropsStore().$subscribe((mutation, state) => {
+      this.isShow = state.change_password;
+    });
   },
   methods: {
     handlePropsCancel() {
