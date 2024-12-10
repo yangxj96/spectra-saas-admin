@@ -78,7 +78,6 @@
 <script lang="ts" setup>
     import { useTable } from "@/hooks/UseTable";
     import AccountApi from "@/api/AccountApi";
-    import Icons from "@/components/common/Icons.vue";
     import CommonUtils from "@/utils/CommonUtils";
     import { ElMessageBox, ElTree, ElMessage } from "element-plus";
     import { ref } from "vue";

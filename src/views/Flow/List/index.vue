@@ -142,7 +142,6 @@
     import vkbeautify from "vkbeautify";
     import "highlight.js/styles/github-dark.css";
     import hljs from "highlight.js";
-    import Icons from "@/components/common/Icons.vue";
     import { onMounted, ref } from "vue";
     import { useTable } from "@/hooks/UseTable";
     import AccountApi from "@/api/AccountApi";

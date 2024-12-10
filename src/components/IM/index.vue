@@ -114,12 +114,11 @@
 <script lang="ts">
     import { defineComponent } from "vue";
     import useSystemStore from "@/plugin/store/modules/useSystemStore";
-    import Icons from "@/components/common/Icons.vue";
     import MessageItem from "@/components/IM/components/MessageItem.vue";
 
     export default defineComponent({
         name: "IM",
-        components: { Icons, MessageItem },
+        components: { MessageItem },
         data() {
             return {
                 show: useSystemStore().IM,
@@ -136,7 +135,8 @@
                 }
             });
         },
-        mounted() {},
+        mounted() {
+        },
         methods: {
             handleMinimizeIm() {
                 useSystemStore().IM = false;

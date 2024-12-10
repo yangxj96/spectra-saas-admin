@@ -21,7 +21,6 @@
 
 <script lang="ts" setup>
     import { ref } from "vue";
-    import Icons from "@/components/common/Icons.vue";
     import routine from "@/views/Platform/Config/components/Routine/index.vue";
     import fileSave from "@/views/Platform/Config/components/FileSave/index.vue";
 

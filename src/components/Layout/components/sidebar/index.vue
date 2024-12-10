@@ -79,7 +79,6 @@
     import { onMounted, ref } from "vue";
     import useSystemStore from "@/plugin/store/modules/useSystemStore";
     import { stopAllRequest } from "@/plugin/request";
-    import Icons from "@/components/common/Icons.vue";
     import { useRoute } from "vue-router";
 
     const unfold = ref(true);

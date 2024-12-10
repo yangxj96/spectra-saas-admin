@@ -48,7 +48,6 @@
 </template>
 
 <script lang="ts" setup>
-    import Icons from "@/components/common/Icons.vue";
     import { ref } from "vue";
 
     const menu_details = ref({

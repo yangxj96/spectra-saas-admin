@@ -50,11 +50,9 @@
 <script lang="ts">
     import { defineComponent } from "vue";
     import usePropsStore from "@/plugin/store/modules/usePropsStore";
-    import Icons from "@/components/common/Icons.vue";
 
     export default defineComponent({
         name: "PropsPersonalDetails",
-        components: { Icons },
         data() {
             return {
                 isShow: usePropsStore().personal_details

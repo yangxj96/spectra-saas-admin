@@ -64,7 +64,6 @@
 </template>
 
 <script lang="ts" setup>
-    import icons from "@/components/common/Icons.vue";
     import { ElMessage, ElTable } from "element-plus/es";
     import { ref } from "vue";
     import { useTable } from "@/hooks/UseTable";

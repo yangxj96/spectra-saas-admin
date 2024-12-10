@@ -60,7 +60,6 @@
     import { useTable } from "@/hooks/UseTable";
     import AccountApi from "@/api/AccountApi";
     import Editor from "@/views/Platform/Config/components/Routine/components/Editor/index.vue";
-    import Icons from "@/components/common/Icons.vue";
     import { ref } from "vue";
 
     const { table_data, pagination, handleCurrentChange, handleSizeChange } = useTable(AccountApi.page);

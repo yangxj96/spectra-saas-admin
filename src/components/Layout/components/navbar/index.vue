@@ -50,7 +50,6 @@
     import GlobalUtils from "@/utils/GlobalUtils";
     import changePassword from "@/components/Props/ChangePassword/index.vue";
     import personalDetails from "@/components/Props/PersonalDetails/index.vue";
-    import icons from "@/components/common/Icons.vue";
     import { useRouter } from "vue-router";
     import { ElMessage } from "element-plus/es";
     import useStore from "@/plugin/store";

@@ -55,7 +55,6 @@
     import Sidebar from "@/components/Layout/components/sidebar/index.vue";
     import { type RouteLocationMatched, useRouter } from "vue-router";
     import { onMounted, ref, watch } from "vue";
-    import Icons from "@/components/common/Icons.vue";
     import IM from "@/components/IM/index.vue";
     import useStore from "@/plugin/store";
 

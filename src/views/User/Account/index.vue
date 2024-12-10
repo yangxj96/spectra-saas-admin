@@ -122,7 +122,6 @@
 </template>
 
 <script lang="ts" setup>
-    import Icons from "@/components/common/Icons.vue";
     import Log from "@/views/User/Account/components/Log/index.vue";
     import { useTable } from "@/hooks/UseTable";
     import AccountApi from "@/api/AccountApi";
