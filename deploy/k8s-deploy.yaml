@@ -1,39 +1,39 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: yangxj96-saas-admin
-  labels:
-    app: yangxj96-saas-admin
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: yangxj96-saas-admin
-  template:
-    metadata:
-      name: yangxj96-saas-admin
-      labels:
+    name: yangxj96-saas-admin
+    labels:
         app: yangxj96-saas-admin
-    spec:
-      containers:
-        - name: yangxj96-saas-admin
-          image: yangxj96-saas-admin:0.0.1
-          imagePullPolicy: IfNotPresent
-      restartPolicy: Always
+spec:
+    replicas: 2
+    selector:
+        matchLabels:
+            app: yangxj96-saas-admin
+    template:
+        metadata:
+            name: yangxj96-saas-admin
+            labels:
+                app: yangxj96-saas-admin
+        spec:
+            containers:
+                - name: yangxj96-saas-admin
+                  image: yangxj96-saas-admin:0.0.1
+                  imagePullPolicy: IfNotPresent
+            restartPolicy: Always
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: yangxj96-saas-admin
+    name: yangxj96-saas-admin
 spec:
-  selector:
-    app: yangxj96-saas-admin
-  ports:
-    - protocol: TCP
-      # 这是指 Service 在集群内部暴露的端口号。当其他服务或 Pod 需要通过 Service 访问后端 Pod 时，它们会使用这个端口。
-      port: 80
-      # 这是指后端 Pod 上实际监听的端口，即 Service 将请求转发到的 Pod 的端口。
-      targetPort: 80
-      nodePort: 30007
-  type: NodePort
+    selector:
+        app: yangxj96-saas-admin
+    ports:
+        - protocol: TCP
+          # 这是指 Service 在集群内部暴露的端口号。当其他服务或 Pod 需要通过 Service 访问后端 Pod 时，它们会使用这个端口。
+          port: 80
+          # 这是指后端 Pod 上实际监听的端口，即 Service 将请求转发到的 Pod 的端口。
+          targetPort: 80
+          nodePort: 30007
+    type: NodePort

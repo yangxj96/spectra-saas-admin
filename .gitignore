@@ -1,9 +1,10 @@
+# custom
+/.yarn
+
 .DS_Store
 node_modules
 /dist
 /build
-
-.yarn
 
 # local env files
 .env.local

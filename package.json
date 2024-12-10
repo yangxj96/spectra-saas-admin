@@ -1,90 +1,90 @@
 {
-  "name": "yangxj96-saas-admin",
-  "author": {
-    "name": "yangxj96",
-    "email": "yangxj96@gmail.com",
-    "url": "https://www.yangxj96.com/"
-  },
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "start": "vite",
-    "build": "vite build",
-    "image": "cross-conf-env docker build -t $npm_package_name:$npm_package_version -f deploy/Dockerfile .",
-    "preview": "vite preview --host",
-    "format": "prettier --write src/ --config ./.prettierrc.json",
-    "lint": "eslint  ./src --fix --flag unstable_ts_config",
-    "type-check": "vue-tsc --noEmit --composite false",
-    "prestart": "yarn format && yarn lint && yarn type-check"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn format && yarn lint && yarn type-check"
+    "name": "yangxj96-saas-admin",
+    "author": {
+        "name": "yangxj96",
+        "email": "yangxj96@gmail.com",
+        "url": "https://www.yangxj96.com/"
+    },
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "vite",
+        "build": "vite build",
+        "image": "cross-conf-env docker build -t $npm_package_name:$npm_package_version -f deploy/Dockerfile .",
+        "preview": "vite preview --host",
+        "format": "prettier --write . --config ./.prettierrc.json",
+        "lint": "eslint  ./src --fix --flag unstable_ts_config",
+        "type-check": "vue-tsc --noEmit --composite false",
+        "prestart": "yarn format && yarn lint && yarn type-check"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "yarn format && yarn lint && yarn type-check"
+        }
+    },
+    "homepage": "https://github.com/yangxj96/yangxj96-saas-admin",
+    "keywords": [
+        "SAAS",
+        "VUE"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/yangxj96/yangxj96-saas-admin"
+    },
+    "bugs": {
+        "email": "yangxj96@gmail.com",
+        "url": "https://github.com/yangxj96/yangxj96-saas-admin/issues"
+    },
+    "dependencies": {
+        "@stomp/stompjs": "7.0.0",
+        "@vueuse/core": "11.3.0",
+        "axios": "1.7.7",
+        "cesium": "1.123.1",
+        "crypto-js": "4.2.0",
+        "element-plus": "2.8.8",
+        "follow-redirects": "1.15.9",
+        "highlight.js": "11.10.0",
+        "pinia": "2.2.6",
+        "pinia-plugin-persistedstate": "4.1.3",
+        "sass": "1.81.0",
+        "vkbeautify": "0.99.3",
+        "vue": "3.5.13",
+        "vue-router": "4.4.5"
+    },
+    "devDependencies": {
+        "@eslint/js": "9.15.0",
+        "@tsconfig/node20": "20.1.4",
+        "@types/crypto-js": "4.2.2",
+        "@types/node": "20.17.7",
+        "@types/vkbeautify": "0.99.4",
+        "@vitejs/plugin-vue": "5.2.0",
+        "@vitejs/plugin-vue-jsx": "4.1.0",
+        "@vue/runtime-core": "3.5.13",
+        "@vue/tsconfig": "0.6.0",
+        "cross-conf-env": "1.3.0",
+        "eslint": "9.15.0",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-prettier": "^5.2.1",
+        "eslint-plugin-unicorn": "^56.0.1",
+        "eslint-plugin-vue": "9.31.0",
+        "globals": "15.12.0",
+        "jiti": "2.4.0",
+        "npm-run-all2": "7.0.1",
+        "prettier": "^3.4.1",
+        "typescript": "5.6.2",
+        "typescript-eslint": "8.16.0",
+        "vite": "5.4.11",
+        "vite-plugin-cesium": "1.2.23",
+        "vite-plugin-vue-devtools": "7.6.4",
+        "vue-tsc": "2.1.10"
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions",
+        "not dead"
+    ],
+    "volta": {
+        "node": "20.16.0",
+        "yarn": "4.4.0"
     }
-  },
-  "homepage": "https://github.com/yangxj96/yangxj96-saas-admin",
-  "keywords": [
-    "SAAS",
-    "VUE"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/yangxj96/yangxj96-saas-admin"
-  },
-  "bugs": {
-    "email": "yangxj96@gmail.com",
-    "url": "https://github.com/yangxj96/yangxj96-saas-admin/issues"
-  },
-  "dependencies": {
-    "@stomp/stompjs": "7.0.0",
-    "@vueuse/core": "11.3.0",
-    "axios": "1.7.7",
-    "cesium": "1.123.1",
-    "crypto-js": "4.2.0",
-    "element-plus": "2.8.8",
-    "follow-redirects": "1.15.9",
-    "highlight.js": "11.10.0",
-    "pinia": "2.2.6",
-    "pinia-plugin-persistedstate": "4.1.3",
-    "sass": "1.81.0",
-    "vkbeautify": "0.99.3",
-    "vue": "3.5.13",
-    "vue-router": "4.4.5"
-  },
-  "devDependencies": {
-    "@eslint/js": "9.15.0",
-    "@tsconfig/node20": "20.1.4",
-    "@types/crypto-js": "4.2.2",
-    "@types/node": "20.17.7",
-    "@types/vkbeautify": "0.99.4",
-    "@vitejs/plugin-vue": "5.2.0",
-    "@vitejs/plugin-vue-jsx": "4.1.0",
-    "@vue/runtime-core": "3.5.13",
-    "@vue/tsconfig": "0.6.0",
-    "cross-conf-env": "1.3.0",
-    "eslint": "9.15.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.2.1",
-    "eslint-plugin-unicorn": "^56.0.1",
-    "eslint-plugin-vue": "9.31.0",
-    "globals": "15.12.0",
-    "jiti": "2.4.0",
-    "npm-run-all2": "7.0.1",
-    "prettier": "^3.4.1",
-    "typescript": "5.6.2",
-    "typescript-eslint": "8.16.0",
-    "vite": "5.4.11",
-    "vite-plugin-cesium": "1.2.23",
-    "vite-plugin-vue-devtools": "7.6.4",
-    "vue-tsc": "2.1.10"
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ],
-  "volta": {
-    "node": "20.16.0",
-    "yarn": "4.4.0"
-  }
 }

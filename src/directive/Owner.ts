@@ -5,18 +5,18 @@ import CommonUtils from "@/utils/CommonUtils";
 let del: boolean = false;
 
 export default {
-  created(element: HTMLElement, binging: DirectiveBinding<string>) {
-    const authority = useUserStore().token.authorities;
-    if (!authority.includes(binging.value)) {
-      element.hidden = true;
-      del = true;
+    created(element: HTMLElement, binging: DirectiveBinding<string>) {
+        const authority = useUserStore().token.authorities;
+        if (!authority.includes(binging.value)) {
+            element.hidden = true;
+            del = true;
+        }
+    },
+    mounted(element: HTMLElement) {
+        if (del) {
+            element.id = CommonUtils.UUID();
+            // document.getElementById(element.id)?.remove();
+            document.querySelector("#" + element.id)?.remove();
+        }
     }
-  },
-  mounted(element: HTMLElement) {
-    if (del) {
-      element.id = CommonUtils.UUID();
-      // document.getElementById(element.id)?.remove();
-      document.querySelector("#" + element.id)?.remove();
-    }
-  }
 } as Directive;
