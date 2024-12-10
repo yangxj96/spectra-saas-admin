@@ -11,7 +11,7 @@ let loading: any;
 function open(): void {
     // const els = document.querySelectorAll(".loading-box") as unknown as HTMLCollectionOf<HTMLElement>;
     const els = document.querySelectorAll(".loading-box");
-    const arr = Array.from(els) as HTMLElement[];
+    const arr = [...els] as HTMLElement[];
     loading = ElLoading.service({
         target: arr.at(-1),
         lock: true,

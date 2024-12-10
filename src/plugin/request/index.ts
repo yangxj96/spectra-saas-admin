@@ -34,7 +34,7 @@ http.interceptors.request.use(
             config.headers.loading = undefined;
         }
         const token = useUserStore().token.accessToken;
-        if (token != null || token != undefined || token != "") {
+        if (token != undefined || token != undefined || token != "") {
             config.headers["Authorization"] = token;
         }
         config.cancelToken = new axios.CancelToken(function executor(c) {
