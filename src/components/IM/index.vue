@@ -135,8 +135,7 @@
                 }
             });
         },
-        mounted() {
-        },
+        mounted() {},
         methods: {
             handleMinimizeIm() {
                 useSystemStore().IM = false;
