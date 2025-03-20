@@ -1,6 +1,5 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import useUserStore from "@/plugin/store/modules/useUserStore";
-import useSystemStore from "@/plugin/store/modules/useSystemStore";
 import { showLoading, hideLoading } from "@/plugin/element/loading";
 import routes from "@/plugin/router/routes";
 
@@ -23,10 +22,9 @@ router.beforeEach(async (to, from, next) => {
         next({ path: "/Login" });
     } else {
         showLoading();
-        useSystemStore().item_disabled = true;
         if (to.matched.length <= 0) {
             hideLoading();
-            next({ path: "/Error/404" });
+            next({ path: "/404" });
         } else {
             next();
         }
@@ -41,7 +39,6 @@ router.afterEach(to => {
         // 强制转换成了string,后续优化
         document.title = String(to.meta.title);
     }
-    useSystemStore().item_disabled = false;
     hideLoading();
     console.debug("[路由守卫 - 后置] - 解析守卫结束");
 });

@@ -29,9 +29,4 @@
         padding: 0;
         margin: 0;
     }
-
-    // cesium版权信息
-    .cesium-widget-credits {
-        display: none !important;
-    }
 </style>

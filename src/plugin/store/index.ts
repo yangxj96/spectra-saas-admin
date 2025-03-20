@@ -1,6 +1,5 @@
 import useAppStore from "@/plugin/store/modules/useAppStore";
 import usePropsStore from "@/plugin/store/modules/usePropsStore";
-import useSystemStore from "@/plugin/store/modules/useSystemStore";
 import useUserStore from "@/plugin/store/modules/useUserStore";
 import { createPinia } from "pinia";
 import { createPersistedState } from "pinia-plugin-persistedstate";
@@ -26,7 +25,6 @@ export default function useStore() {
     return {
         app: useAppStore(),
         props: usePropsStore(),
-        system: useSystemStore(),
         user: useUserStore()
     };
 }

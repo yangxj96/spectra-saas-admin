@@ -5,8 +5,6 @@
         </el-header>
 
         <el-container class="box-container">
-            <IM />
-
             <el-aside width="200px">
                 <sidebar />
             </el-aside>
@@ -14,10 +12,6 @@
             <el-main class="box-main">
                 <div style="height: 100%">
                     <el-row>
-                        <i class="box-unfold-a" @click="chooseSidebarUnfold">
-                            <icons v-if="systemStore.sidebar_unfold" name="icon-caret-left" />
-                            <icons v-else name="icon-caret-right" />
-                        </i>
                         <!-- 面包屑 -->
                         <el-breadcrumb separator-class="el-icon-arrow-right">
                             <el-breadcrumb-item v-for="(item, idx) in breadcrumb" :key="idx" :to="{ path: item.path }">
@@ -55,7 +49,6 @@
     import Sidebar from "@/components/Layout/components/sidebar/index.vue";
     import { type RouteLocationMatched, useRouter } from "vue-router";
     import { onMounted, ref, watch } from "vue";
-    import IM from "@/components/IM/index.vue";
     import useStore from "@/plugin/store";
 
     const router = useRouter();
@@ -82,14 +75,8 @@
         if (r.length <= 0) {
             r = [...router.currentRoute.value.matched];
         }
-        if (r.length >= 2 && r.at(-1).name == r.at(-2).name) {
-            r = r.splice(0, r.length - 1);
-        }
+        console.log(r);
         breadcrumb.value = r;
-    }
-
-    function chooseSidebarUnfold() {
-        systemStore.sidebar_unfold = !systemStore.sidebar_unfold;
     }
 </script>
 
