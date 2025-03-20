@@ -9,11 +9,7 @@
                 @click="gotoHome" />
         </el-col>
 
-        <el-col :span="20" style="padding-right: 40px">
-            <el-button link style="line-height: 100%; height: 100%; float: right" @click="handleToggleIMState">
-                <icons name="icon-IM" style="width: 1.3em; height: 1.3em" />
-            </el-button>
-        </el-col>
+        <el-col :span="20" style="padding-right: 40px"></el-col>
 
         <el-col :span="1">
             <el-dropdown>
@@ -88,10 +84,6 @@
 
     function handlePersonalPopup() {
         useStore().props.personal_details = true;
-    }
-
-    function handleToggleIMState() {
-        useStore().system.IM = true;
     }
 </script>
 

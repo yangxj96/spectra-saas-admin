@@ -58,7 +58,7 @@
     import { ElMessage } from "element-plus";
     import { useRouter } from "vue-router";
     import useUserStore from "@/plugin/store/modules/useUserStore";
-    import request from "@/plugin/request/index.ts";
+    import UserApi from "@/api/UserApi.ts";
 
     const router = useRouter();
     const loginForm = ref<FormInstance>();
@@ -87,28 +87,26 @@
                 console.log("错误字段为:", fields);
                 return;
             }
-            request.get("/user").then(value => {
-                console.log(value);
-            });
-            //            useUserStore().token = {
-            //                id: "12345678",
-            //                username: "string",
-            //                accessToken: "string",
-            //                authorities: ["string"],
-            //                roles: ["string"]
-            //            };
-            //            router.push({ path: "/" });
+
+            useUserStore().token = {
+                id: "12345678",
+                username: "string",
+                accessToken: "string",
+                authorities: ["string"],
+                roles: ["string"]
+            };
+            router.push({ path: "/" });
             // UserApi.login(user.username, user.password).then(res => {
-            //   if (res && res.code === 0 && res.data) {
-            //     ElMessage.success({
-            //       duration: 500,
-            //       message: "登录成功",
-            //       onClose() {
-            //         useUserStore().token = res.data;
-            //         router.push({ path: "/" });
-            //       }
-            //     });
-            //   }
+            //     if (res && res.code === 0 && res.data) {
+            //         ElMessage.success({
+            //             duration: 500,
+            //             message: "登录成功",
+            //             onClose() {
+            //                 useUserStore().token = res.data;
+            //                 router.push({ path: "/" });
+            //             }
+            //         });
+            //     }
             // });
         });
     }
