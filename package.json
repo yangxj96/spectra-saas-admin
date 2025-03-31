@@ -8,13 +8,13 @@
     "version": "0.0.1",
     "private": true,
     "scripts": {
-        "start": "pnpm format && pnpm lint && pnpm type-check && vite",
+        "start": "vite",
         "build": "vite build",
-        "image": "cross-conf-env docker build -t $npm_package_name:$npm_package_version -f deploy/Dockerfile .",
         "preview": "vite preview --host",
         "format": "prettier --write . --config ./.prettierrc.json",
         "lint": "eslint  ./src --fix --flag unstable_ts_config",
-        "type-check": "vue-tsc --noEmit --composite false"
+        "type-check": "vue-tsc --noEmit --composite false",
+        "prestart": "pnpm format && pnpm lint && pnpm type-check"
     },
     "husky": {
         "hooks": {
