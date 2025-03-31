@@ -18,7 +18,7 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "yarn format && yarn lint && yarn type-check"
+            "pre-commit": "pnpm format && pnpm lint && pnpm type-check"
         }
     },
     "homepage": "https://github.com/yangxj96/spectra-saas-admin",
