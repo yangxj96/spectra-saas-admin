@@ -7,6 +7,15 @@ import loadDirective from "@/directive";
 import "//at.alicdn.com/t/c/font_3119163_hp36jfkhicb.js";
 import Icons from "@/components/common/Icons.vue";
 
+import Mock from "@/mocks/browser.ts";
+
+// 启动mock模拟请求
+if (import.meta.env.DEV) {
+    await Mock.start({
+        onUnhandledRequest: "bypass"
+    });
+}
+
 // 创建APP
 const app = createApp(App);
 loadPlugins(app);
