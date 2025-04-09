@@ -80,7 +80,6 @@ export default [
             ...pluginVue.configs.recommended.rules,
             ...pluginTypescript.configs.recommended.rules,
             ...sharedRules,
-            "vue/script-setup-uses-vars": "error",
             "vue/no-v-html": "error"
         }
     },
