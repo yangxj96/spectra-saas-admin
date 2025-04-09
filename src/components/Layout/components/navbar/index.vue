@@ -61,9 +61,6 @@
         stopAllRequest();
         UserApi.logout().then(res => {
             if (res.code == 0) {
-                if (useStore().app.checkTokenInterval != 0) {
-                    clearInterval(useStore().app.checkTokenInterval);
-                }
                 ElMessage.success({
                     message: "退出成功",
                     onClose: () => {
