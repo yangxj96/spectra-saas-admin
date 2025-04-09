@@ -12,6 +12,7 @@ import Mock from "@/mocks/browser.ts";
 // 启动mock模拟请求
 if (import.meta.env.DEV) {
     await Mock.start({
+        // 未拦截的地址不进行警告
         onUnhandledRequest: "bypass"
     });
 }

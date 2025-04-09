@@ -18,8 +18,8 @@ export default {
      * 退出登录
      */
     async logout() {
-        const resp = await http.post("/api/auth/logoff", {
-            token: useUserStore().token.accessToken
+        const resp = await http.post("/api/auth/logout", {
+            token: useUserStore().token.access_token
         });
         return resp.data;
     }

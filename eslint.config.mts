@@ -15,7 +15,7 @@ const sharedRules = {
     // 检测 TypeScript 代码中未使用的变量、函数参数、类成员等
     "@typescript-eslint/no-unused-vars": "off",
     // 不允许使用any 关闭
-    "@typescript-eslint/no-explicit-any": "off",
+    // "@typescript-eslint/no-explicit-any": "off",
     // 文件命名规则
     "unicorn/filename-case": [
         "error",
@@ -39,7 +39,8 @@ const sharedRules = {
         }
     ],
     // 变量命名规则
-    "unicorn/prevent-abbreviations": "off"
+    "unicorn/prevent-abbreviations": "off",
+    "unicorn/prefer-at": "off"
 };
 
 export default [

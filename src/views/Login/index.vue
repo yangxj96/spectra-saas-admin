@@ -88,26 +88,18 @@
                 return;
             }
 
-            useUserStore().token = {
-                id: "12345678",
-                username: "string",
-                accessToken: "string",
-                authorities: ["string"],
-                roles: ["string"]
-            };
-            router.push({ path: "/" });
-            // UserApi.login(user.username, user.password).then(res => {
-            //     if (res && res.code === 0 && res.data) {
-            //         ElMessage.success({
-            //             duration: 500,
-            //             message: "登录成功",
-            //             onClose() {
-            //                 useUserStore().token = res.data;
-            //                 router.push({ path: "/" });
-            //             }
-            //         });
-            //     }
-            // });
+            UserApi.login(user.username, user.password).then(res => {
+                if (res && res.code === 0 && res.data) {
+                    ElMessage.success({
+                        duration: 500,
+                        message: "登录成功",
+                        onClose() {
+                            useUserStore().token = res.data;
+                            router.push({ path: "/" });
+                        }
+                    });
+                }
+            });
         });
     }
 

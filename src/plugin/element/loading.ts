@@ -1,19 +1,19 @@
 // ElLoading       : loading组件
 // ILoadingInstance: loading对象类型接口
 import { ElLoading } from "element-plus";
+import type { LoadingInstance } from "element-plus/lib/components/loading/src/loading";
 
 // 计数器
 let count: number = 0;
 
 // loading对象
-let loading: any;
+let loading: LoadingInstance;
 
 function open(): void {
-    // const els = document.querySelectorAll(".loading-box") as unknown as HTMLCollectionOf<HTMLElement>;
     const els = document.querySelectorAll(".loading-box");
     const arr = [...els] as HTMLElement[];
     loading = ElLoading.service({
-        target: arr.at(-1),
+        target: arr[arr.length - 1],
         lock: true,
         text: "数据加载中...",
         background: "rgba(0,0,0,0.5)"

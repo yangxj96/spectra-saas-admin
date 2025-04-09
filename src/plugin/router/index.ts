@@ -17,8 +17,8 @@ router.beforeEach(async (to, from, next) => {
     console.debug("[路由守卫 - 前置] - 开始");
     // 判断token
     const token = useUserStore().token;
-    console.debug(`[路由守卫 - 前置] token:${token.accessToken},目标:${to.path}`);
-    if (token.accessToken === undefined && to.path !== "/Login") {
+    console.debug(`[路由守卫 - 前置] token:${token.access_token},目标:${to.path}`);
+    if (token.access_token === undefined && to.path !== "/Login") {
         next({ path: "/Login" });
     } else {
         showLoading();
@@ -47,12 +47,6 @@ declare module "vue-router" {
     interface RouteMeta {
         /** 修改的标题 */
         title?: string;
-        /** 所需权限集合 */
-        authority?: string[];
-        /** 路由分组 **/
-        route_group?: string;
-        /** 菜单项 **/
-        menu?: boolean;
     }
 }
 
